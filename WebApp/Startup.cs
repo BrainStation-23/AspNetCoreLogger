@@ -9,6 +9,7 @@ using Serilog;
 using Serilog.Events;
 using System.Linq;
 using WebApp.Core;
+using WebApp.Core.Mongos.Configurations;
 using WebApp.Service.Configurations;
 using WebApp.Sql.Configurations;
 
@@ -37,6 +38,7 @@ namespace DotnetCoreApplicationBoilerplate
             services.AddDbContextDependencies(Configuration);
             services.AddServiceDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddMongoDb(Configuration);
 
             var origins = Configuration.GetSection("Domain").Get<Domain>();
             if (origins.Client2.Any()) { origins?.Client1?.AddRange(origins.Client2); }
@@ -65,7 +67,8 @@ namespace DotnetCoreApplicationBoilerplate
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotnetCoreLogger v1"));
             }
 
-            app.UseSerilogRequestLogging(options => {
+            app.UseSerilogRequestLogging(options =>
+            {
                 options.MessageTemplate = "Handled {RequestPath}";
                 options.GetLevel = (httpContext, elapsed, ex) => LogEventLevel.Debug;
 

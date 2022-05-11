@@ -22,6 +22,14 @@ namespace WebApp.Core
         public string DomainName { get; set; }
     }
 
+    public interface IMongoDbSettings
+    {
+        string DatabaseName { get; set; }
+        string ConnectionString { get; set; }
+        string AuditCollectinName { get; set; }
+    }
+
+
     public class RabbitMqConnection
     {
         public string Host { get; set; }
