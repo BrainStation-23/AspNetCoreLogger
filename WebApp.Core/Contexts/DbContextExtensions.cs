@@ -1,14 +1,124 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using WebApp.Core.Extensions;
+using WebApp.Core.Sqls;
 
 namespace WebApp.Core.Contexts
 {
     public static class DbContextExtensions
     {
+        public static IList<AuditEntry> AuditTrail(this ChangeTracker changeTracker, long userId, string ignoreEntity)
+        {
+            changeTracker.DetectChanges();
+            var auditEntries = new List<AuditEntry>();
+            foreach (var entry in changeTracker.Entries())
+            {
+                if (entry.State == EntityState.Detached
+                    || entry.State == EntityState.Unchanged
+                    //|| entry.Entity is BaseEntity
+                    //|| entry.Entity is AuditLog
+                    || entry.Entity.GetType().Name == ignoreEntity)
+                    continue;
+
+                var auditEntry = new AuditEntry(entry);
+                auditEntry.TableName = entry.Entity.GetType().Name;
+                auditEntry.UserId = userId;
+                auditEntries.Add(auditEntry);
+                var originalEntry = entry.GetDatabaseValues();
+                var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
+
+                foreach (var property in entry.Properties)
+                {
+                    string propertyName = property.Metadata.Name;
+                    if (property.Metadata.IsPrimaryKey())
+                    {
+                        auditEntry.KeyValues[propertyName] = property.CurrentValue;
+                        continue;
+                    }
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+                            auditEntry.AuditType = AuditType.Create;
+                            auditEntry.NewValues[propertyName] = property.CurrentValue;
+                            break;
+                        case EntityState.Deleted:
+                            auditEntry.AuditType = AuditType.Delete;
+                            auditEntry.OldValues[propertyName] = property.OriginalValue;
+                            break;
+                        case EntityState.Modified:
+                            if (property.IsModified)
+                            {
+                                auditEntry.AuditType = AuditType.Update;
+                                auditEntry.OldValues[propertyName] = originalEntry[propertyName];
+                                auditEntry.NewValues[propertyName] = property.CurrentValue;
+
+                                if (ignorePropertyName.Contains(propertyName))
+                                    continue;
+
+                                var currentValue = property.CurrentValue?.ToString();
+                                var originalValue = originalEntry[propertyName]?.ToString();
+                                if (currentValue != originalValue)
+                                {
+                                    auditEntry.ChangedColumnNames.Add(propertyName);
+                                    auditEntry.Changes[propertyName] = currentValue;
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+
+            var data = changeTracker.DebugView.LongView;
+            return auditEntries;
+        }
+
+        public static void Audit(this ChangeTracker changeTracker, long userId)
+        {
+            var now = DateTimeOffset.UtcNow;
+
+            foreach (var entry in changeTracker.Entries<BaseEntity>()
+               .Where(e => e.State == EntityState.Added
+                        || e.State == EntityState.Modified))
+            {
+                if (entry.State != EntityState.Added)
+                {
+                    entry.Entity.UpdatedDateUtc ??= now;
+                    entry.Entity.UpdatedBy ??= userId;
+                }
+                else
+                {
+                    entry.Entity.CreatedBy = entry.Entity.CreatedBy != 0 ? entry.Entity.CreatedBy : userId;
+                    entry.Entity.CreatedDateUtc = entry.Entity.CreatedDateUtc == DateTimeOffset.MinValue ? now : entry.Entity.CreatedDateUtc;
+                }
+            }
+        }
+
+        public static void RevertChanges(this ChangeTracker changeTracker)
+        {
+            foreach (var entry in changeTracker.Entries().Where(e => e.Entity != null).ToList())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Modified:
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Modified;  //Revert changes made to deleted entity.
+                        entry.State = EntityState.Unchanged;
+                        break;
+                    case EntityState.Added:
+                        entry.State = EntityState.Detached;
+                        break;
+                }
+            }
+        }
+
         public static DataTable GetDataTable(this DbContext context, string sqlQuery,
             List<SqlParameter> parameters = null,
             CommandType commandType = CommandType.Text
@@ -60,5 +170,34 @@ namespace WebApp.Core.Contexts
                 }
             }
         }
+    }
+
+
+    public class AuditEntry
+    {
+        public AuditEntry(EntityEntry entry)
+        {
+            Entry = entry;
+        }
+
+
+        public EntityEntry Entry { get; }
+
+        public long UserId { get; set; }
+        public string TableName { get; set; }
+        public Dictionary<string, object> KeyValues { get; } = new Dictionary<string, object>();
+        public Dictionary<string, object> OldValues { get; } = new Dictionary<string, object>();
+        public Dictionary<string, object> NewValues { get; } = new Dictionary<string, object>();
+        public AuditType AuditType { get; set; }
+        public List<string> ChangedColumnNames { get; } = new List<string>();
+        public IDictionary<string, object> Changes { get; set; } = new Dictionary<string, object>();
+    }
+
+    public enum AuditType
+    {
+        None = 0,
+        Create = 1,
+        Update = 2,
+        Delete = 3
     }
 }

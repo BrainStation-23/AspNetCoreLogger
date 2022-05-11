@@ -1,5 +1,5 @@
 ﻿using WebApp.Core.Sqls;
-using WebApp.Sql.Entities.Logs;
+using WebApp.Entity.Entities.Logs;
 
 namespace WebApp.Sql.Repositories
 {
