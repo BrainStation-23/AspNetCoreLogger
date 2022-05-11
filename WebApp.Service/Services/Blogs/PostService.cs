@@ -7,7 +7,7 @@ using WebApp.Core;
 using WebApp.Core.Collections;
 using WebApp.Service.Models.Blogs;
 using WebApp.Services;
-using WebApp.Sql.Entities.Blogs;
+using WebApp.Entity.Entities.Blogs;
 
 namespace WebApp.Service
 {

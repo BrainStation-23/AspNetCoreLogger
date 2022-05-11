@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using static WebApp.Sql.Entities.Identities.IdentityModel;
+using static WebApp.Entity.Entities.Identities.IdentityModel;
 
 namespace WebApp.Sql.Configurations
 {

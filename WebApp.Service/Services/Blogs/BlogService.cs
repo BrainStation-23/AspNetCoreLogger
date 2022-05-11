@@ -6,7 +6,7 @@ using WebApp.Core;
 using WebApp.Core.Collections;
 using WebApp.Service.Models.Blogs;
 using WebApp.Services;
-using WebApp.Sql.Entities.Blogs;
+using WebApp.Entity.Entities.Blogs;
 
 namespace WebApp.Service
 {
@@ -47,9 +47,20 @@ namespace WebApp.Service
             return response;
         }
 
-        public async Task<BlogModel> UpdateBlogDetailAsync(long blogId, BlogModel blog)
+        public async Task<BlogModel>AddBlogDetailAsync(BlogModel blog)
         {
             var entity = _mapper.Map<BlogModel, BlogEntity>(blog);
+
+            await _unitOfWork.Repository<BlogEntity>().InsertAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new BlogModel();
+        }
+
+        public async Task<BlogModel> UpdateBlogDetailAsync(long blogId, BlogModel model)
+        {
+            var entity = _mapper.Map<BlogModel, BlogEntity>(model);
+            entity.Id = blogId;
 
             await _unitOfWork.Repository<BlogEntity>().UpdateAsync(entity);
             await _unitOfWork.CompleteAsync();

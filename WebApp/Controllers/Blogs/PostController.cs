@@ -4,7 +4,7 @@ using WebApp.Core;
 using WebApp.Core.Responses;
 using WebApp.Helpers.Base;
 using WebApp.Service;
-using WebApp.Sql.Entities.Blogs;
+using WebApp.Entity.Entities.Blogs;
 
 namespace WebApp.Controllers
 {

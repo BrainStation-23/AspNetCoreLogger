@@ -1,5 +1,5 @@
 ﻿using WebApp.Core.Sqls;
-using WebApp.Sql.Entities.Blogs;
+using WebApp.Entity.Entities.Blogs;
 
 namespace WebApp.Sql.Repositories
 {

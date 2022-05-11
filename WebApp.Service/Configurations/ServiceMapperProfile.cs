@@ -3,8 +3,8 @@ using WebApp.Core.Sqls;
 using WebApp.Service.Models;
 using WebApp.Service.Models.Blogs;
 using WebApp.Service.Models.Users;
-using WebApp.Sql.Entities.Blogs;
-using static WebApp.Sql.Entities.Identities.IdentityModel;
+using WebApp.Entity.Entities.Blogs;
+using static WebApp.Entity.Entities.Identities.IdentityModel;
 
 namespace WebApp.Service.Configurations
 {

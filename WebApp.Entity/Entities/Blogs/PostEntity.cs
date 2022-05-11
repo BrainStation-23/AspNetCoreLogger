@@ -1,9 +1,9 @@
 ﻿using System;
-using WebApp.Entity.Entities.Blogs;
+using WebApp.Core.Sqls;
 
-namespace WebApp.Service.Models.Blogs
+namespace WebApp.Entity.Entities.Blogs
 {
-    public class PostModel : MasterModel
+    public class PostEntity : BaseEntity
     {
         public long BlogId { get; set; }
         public string Title { get; set; }
