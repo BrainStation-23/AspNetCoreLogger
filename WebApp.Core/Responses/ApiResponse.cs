@@ -17,6 +17,11 @@ namespace WebApp.Core.Responses
 
         }
 
+        public ApiResponse(bool isSuccess)
+        {
+            IsSuccess = isSuccess;
+        }
+
         public ApiResponse(int statusCode, string message, IEnumerable<string> errors = null)
         {
             StatusCode = statusCode;

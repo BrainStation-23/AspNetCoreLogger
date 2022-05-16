@@ -43,8 +43,8 @@ namespace WebApp.Sql
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.LogTo(Console.WriteLine);
-            optionsBuilder.LogTo(message => LoggerExtension.WriteSqlQueryLog(message));
-            optionsBuilder.UseLoggerFactory(_myLoggerFactory);
+            optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
+            optionsBuilder.UseLoggerFactory(_myLoggerFactory).EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -75,14 +75,14 @@ namespace WebApp.Sql
             base.ChangeTracker.Audit(userId);
         }
 
-        private void AuditTrail()
+        private void AuditTrailLog()
         {
             long userId = 0;
 
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
-            var auditEntries = base.ChangeTracker.AuditTrail(userId, nameof(AuditLog));
+            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));
 
             foreach (var auditEntry in auditEntries)
             {
@@ -125,14 +125,14 @@ namespace WebApp.Sql
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             Audit();
-            AuditTrail();
+            AuditTrailLog();
 
             return base.SaveChangesAsync(cancellationToken);
         }
         public override int SaveChanges()
         {
             Audit();
-            AuditTrail();
+            AuditTrailLog();
 
             return base.SaveChanges();
         }

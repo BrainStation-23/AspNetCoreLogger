@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Events;
 using System.Linq;
 using WebApp.Core;
+using WebApp.Core.Loggers;
 using WebApp.Core.Mongos.Configurations;
 using WebApp.Service.Configurations;
 using WebApp.Sql.Configurations;
@@ -38,7 +40,10 @@ namespace DotnetCoreApplicationBoilerplate
             services.AddDbContextDependencies(Configuration);
             services.AddServiceDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddHttpContextAccessor();
             //services.AddMongoDb(Configuration);
+            //services.AddDatabaseDeveloperPageExceptionFilter();
 
             var origins = Configuration.GetSection("Domain").Get<Domain>();
             if (origins.Client2.Any()) { origins?.Client1?.AddRange(origins.Client2); }
@@ -58,7 +63,7 @@ namespace DotnetCoreApplicationBoilerplate
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -80,14 +85,18 @@ namespace DotnetCoreApplicationBoilerplate
             });
             app.UseCors(WebAppCorsPolicy);
             app.UseHttpsRedirection();
+            
 
             app.UseRouting();
-
+            app.ExceptionLog(logger);
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                        name: "default",
+                        pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

@@ -6,35 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Attributes\**" />
     <Compile Remove="DataType\**" />
     <Compile Remove="Extensions\**" />
     <Compile Remove="Helpers\**" />
     <Compile Remove="Interface\**" />
     <Compile Remove="Messages\**" />
-    <Compile Remove="Middlewares\**" />
     <Compile Remove="Redis\**" />
     <Compile Remove="Results\**" />
     <Compile Remove="StackExchange\**" />
     <Compile Remove="ThreadChannels\**" />
-    <EmbeddedResource Remove="Attributes\**" />
     <EmbeddedResource Remove="DataType\**" />
     <EmbeddedResource Remove="Extensions\**" />
     <EmbeddedResource Remove="Helpers\**" />
     <EmbeddedResource Remove="Interface\**" />
     <EmbeddedResource Remove="Messages\**" />
-    <EmbeddedResource Remove="Middlewares\**" />
     <EmbeddedResource Remove="Redis\**" />
     <EmbeddedResource Remove="Results\**" />
     <EmbeddedResource Remove="StackExchange\**" />
     <EmbeddedResource Remove="ThreadChannels\**" />
-    <None Remove="Attributes\**" />
     <None Remove="DataType\**" />
     <None Remove="Extensions\**" />
     <None Remove="Helpers\**" />
     <None Remove="Interface\**" />
     <None Remove="Messages\**" />
-    <None Remove="Middlewares\**" />
     <None Remove="Redis\**" />
     <None Remove="Results\**" />
     <None Remove="StackExchange\**" />
@@ -68,6 +62,7 @@
 
   <ItemGroup>
     <Compile Include="DataType\ObjectExtension.cs" />
+    <Compile Include="Extensions\HttpExtension.cs" />
     <Compile Include="Extensions\EnumExtension.cs" />
     <Compile Include="Extensions\ClassExtension.cs" />
     <Compile Include="Extensions\ObjectExtension.cs" />
@@ -124,6 +119,7 @@
 
   <ItemGroup>
     <Folder Include="Loggers\Serilogs\Sinks\" />
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>

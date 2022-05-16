@@ -6,6 +6,8 @@ using WebApp.Helpers.Base;
 using WebApp.Service;
 using WebApp.Entity.Entities.Blogs;
 using WebApp.Service.Models.Blogs;
+using System;
+using WebApp.Core.Exceptions;
 
 namespace WebApp.Controllers
 {
@@ -39,6 +41,15 @@ namespace WebApp.Controllers
         [HttpPut("{blogId}")]
         public async Task<IActionResult> UpdateBlogDetailAsync(long blogId, [FromForm] BlogModel model)
         {
+            if (blogId == 1)
+                throw new ArgumentException("error argument");
+
+            if (blogId == 2)
+                throw new BadRequestException("error argument");
+
+            if (blogId == 3)
+                throw new NotFoundException("error argument");
+
             var res = await _blogService.UpdateBlogDetailAsync(blogId, model);
 
             return new OkResponse(res);
