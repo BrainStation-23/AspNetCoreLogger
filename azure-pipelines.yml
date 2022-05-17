@@ -27,30 +27,30 @@ steps:
     command: 'build'
     arguments: '--configuration $(buildConfiguration) --no-restore'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Dotnet Test Core'
-  inputs:
-    command: test
-    projects: 'WebApp.Core.Test/WebApp.Core.Test.csproj'
-    arguments: '
-      --configuration $(buildConfiguration)
-      --no-build
-      --no-restore
-      --logger "trx;LogFileName=testresults.trx" 
-      /p:CollectCoverage=true
-      /p:CoverletOutputFormat=cobertura
-      /p:CoverletOutput=./TestResults/
-      /p:Threshold=35
-      /p:ThresholdType=line
-      /p:Exclude="[WebApp.Sql]*%2c[WebApp.Service]*"
-
-- task: PublishCodeCoverageResults@1
-  displayName: 'Dotnet Test Publish Code Coverage'
-  inputs:
-    codeCoverageTool: 'cobertura'
-    summaryFileLocation: $(Build.SourcesDirectory)/**/TestResults/coverage.cobertura.xml
-    reportDirectory: $(Build.SourcesDirectory)/coveragereport
-    failIfCoverageEmpty: false
+# - task: DotNetCoreCLI@2
+#   displayName: 'Dotnet Test Core'
+#   inputs:
+#     command: test
+#     projects: 'WebApp.Core.Test/WebApp.Core.Test.csproj'
+#     arguments: '
+#       --configuration $(buildConfiguration)
+#       --no-build
+#       --no-restore
+#       --logger "trx;LogFileName=testresults.trx" 
+#       /p:CollectCoverage=true
+#       /p:CoverletOutputFormat=cobertura
+#       /p:CoverletOutput=./TestResults/
+#       /p:Threshold=35
+#       /p:ThresholdType=line
+#       /p:Exclude="[WebApp.Sql]*%2c[WebApp.Service]*"
+#     '
+# - task: PublishCodeCoverageResults@1
+#   displayName: 'Dotnet Test Publish Code Coverage'
+#   inputs:
+#     codeCoverageTool: 'cobertura'
+#     summaryFileLocation: $(Build.SourcesDirectory)/**/TestResults/coverage.cobertura.xml
+#     reportDirectory: $(Build.SourcesDirectory)/coveragereport
+#     failIfCoverageEmpty: false
 
 - task: DotNetCoreCLI@2
   displayName: 'Artifact Generate'
@@ -64,4 +64,4 @@ steps:
   displayName: 'Upload Artifact'
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'myWebsiteName'
+    artifactName: 'DotnetCoreLoggerSite'
