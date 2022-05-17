@@ -1,6 +1,8 @@
 # Dotnet logger wrapper
 Dotnet logger wrapper for fastest usage
 
+[![Build Status](https://dev.azure.com/mdtaslim/DotnetCoreLogger/_apis/build/status/BrainStation-23.AspNetCoreLogger?branchName=main)](https://dev.azure.com/mdtaslim/DotnetCoreLogger/_build/latest?definitionId=6&branchName=main)
+
 ## Why logger wrapper
 - Dotnet has default logger, but has some limitations
 -- too much nosiy
