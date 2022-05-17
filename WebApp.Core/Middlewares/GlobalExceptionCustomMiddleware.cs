@@ -24,6 +24,10 @@ namespace WebApp.Core.Middlewares
         {
             try
             {
+                httpContext.Request.EnableBuffering();
+                var bodyAsText = await new System.IO.StreamReader(httpContext.Request.Body).ReadToEndAsync();
+                httpContext.Request.Body.Position = 0;
+
                 await _next(httpContext);
             }
             catch (Exception exception)

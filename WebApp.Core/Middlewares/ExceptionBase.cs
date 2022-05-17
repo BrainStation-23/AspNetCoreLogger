@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Security.Claims;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using WebApp.Core.Extensions;
@@ -64,6 +65,10 @@ namespace WebApp.Core.Middlewares
             model.Application = exception.Source;
             model.Version = context.Request.Scheme;
 
+            context.Request.EnableBuffering();
+            var requestReader = new StreamReader(context.Request.Body);
+            var requestContent = requestReader.ReadToEnd();
+            context.Request.Body.Position = 0;
             //var form = JsonSerializer.Serialize(context.Request.Form);
             //var body1 = JsonSerializer.Serialize(context.Request.Body);
             //var headers = JsonSerializer.Serialize(context.Request.Headers);

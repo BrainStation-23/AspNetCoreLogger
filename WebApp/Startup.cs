@@ -11,6 +11,7 @@ using Serilog.Events;
 using System.Linq;
 using WebApp.Core;
 using WebApp.Core.Loggers;
+using WebApp.Core.Middlewares;
 using WebApp.Core.Mongos.Configurations;
 using WebApp.Service.Configurations;
 using WebApp.Sql.Configurations;
@@ -42,6 +43,7 @@ namespace DotnetCoreApplicationBoilerplate
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddHttpContextAccessor();
+            services.ConfigureModelBindingExceptionHandling();
             //services.AddMongoDb(Configuration);
             //services.AddDatabaseDeveloperPageExceptionFilter();
 
