@@ -1,0 +1,67 @@
+trigger:
+  branches:
+    include:
+      - main
+      - master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- script: echo Directories - $(Build.SourcesDirectory) - $(Agent.TempDirectory)
+- script: printenv
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: 'restore'
+    projects: "**/*.csproj"
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build $(buildConfiguration)'
+  inputs:
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration) --no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Dotnet Test Core'
+  inputs:
+    command: test
+    projects: 'WebApp.Core.Test/WebApp.Core.Test.csproj'
+    arguments: '
+      --configuration $(buildConfiguration)
+      --no-build
+      --no-restore
+      --logger "trx;LogFileName=testresults.trx" 
+      /p:CollectCoverage=true
+      /p:CoverletOutputFormat=cobertura
+      /p:CoverletOutput=./TestResults/
+      /p:Threshold=35
+      /p:ThresholdType=line
+      /p:Exclude="[WebApp.Sql]*%2c[WebApp.Service]*"
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Dotnet Test Publish Code Coverage'
+  inputs:
+    codeCoverageTool: 'cobertura'
+    summaryFileLocation: $(Build.SourcesDirectory)/**/TestResults/coverage.cobertura.xml
+    reportDirectory: $(Build.SourcesDirectory)/coveragereport
+    failIfCoverageEmpty: false
+
+- task: DotNetCoreCLI@2
+  displayName: 'Artifact Generate'
+  inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Upload Artifact'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'myWebsiteName'
