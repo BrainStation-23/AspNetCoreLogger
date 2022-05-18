@@ -128,7 +128,7 @@ namespace WebApp.Core.Loggers.Serilogs
             columnOptions.LogEvent.ExcludeAdditionalProperties = false;
 
             loggerConfiguration.WriteTo.MSSqlServer(connectionString: hostBuilderContext.Configuration.GetConnectionString("DefaultConnection"),
-                sinkOptions: new MSSqlServerSinkOptions { TableName = "LogEvents", AutoCreateSqlTable = true },
+                sinkOptions: new SinkOptions { TableName = "LogEvents", AutoCreateSqlTable = true },
                 columnOptions: new ColumnOptions
                 {
                     AdditionalColumns = new Collection<SqlColumn> {

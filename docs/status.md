@@ -6,7 +6,7 @@
 	- [x] audit log for entities including changes columns
 	- [x] global exception handling including same pattern	
 	- [ ] request log 
-	- [ ] compitable with tdotnet 5, 6
+	- [ ] compatible with dotnet 5, 6
 	- [ ] add serilog
 	- [ ] add serilog wrapper
 
