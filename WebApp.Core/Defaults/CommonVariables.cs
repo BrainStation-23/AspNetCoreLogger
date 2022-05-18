@@ -1,6 +1,6 @@
 ﻿namespace WebApp.Core
 {
-    public class CommonVariables
+    public static class CommonVariables
     {
         public const int pageIndex = 0;
         public const int pageSize = 10;

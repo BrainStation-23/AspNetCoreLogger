@@ -4,11 +4,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Serilog;
 using Serilog.Events;
 using System.Linq;
 using WebApp.Core;
+using WebApp.Core.Loggers;
+using WebApp.Core.Middlewares;
+using WebApp.Core.Mongos.Configurations;
 using WebApp.Service.Configurations;
 using WebApp.Sql.Configurations;
 
@@ -28,7 +34,10 @@ namespace DotnetCoreApplicationBoilerplate
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson(options => {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
             //services.AddControllersWithViews(options =>
             //{
             //    options.Filters.Add<RouteFilterAttribute>();
@@ -37,6 +46,11 @@ namespace DotnetCoreApplicationBoilerplate
             services.AddDbContextDependencies(Configuration);
             services.AddServiceDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddHttpContextAccessor();
+            services.ConfigureModelBindingExceptionHandling();
+            //services.AddMongoDb(Configuration);
+            //services.AddDatabaseDeveloperPageExceptionFilter();
 
             var origins = Configuration.GetSection("Domain").Get<Domain>();
             if (origins.Client2.Any()) { origins?.Client1?.AddRange(origins.Client2); }
@@ -56,7 +70,7 @@ namespace DotnetCoreApplicationBoilerplate
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -65,7 +79,8 @@ namespace DotnetCoreApplicationBoilerplate
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotnetCoreLogger v1"));
             }
 
-            app.UseSerilogRequestLogging(options => {
+            app.UseSerilogRequestLogging(options =>
+            {
                 options.MessageTemplate = "Handled {RequestPath}";
                 options.GetLevel = (httpContext, elapsed, ex) => LogEventLevel.Debug;
 
@@ -77,14 +92,18 @@ namespace DotnetCoreApplicationBoilerplate
             });
             app.UseCors(WebAppCorsPolicy);
             app.UseHttpsRedirection();
+            
 
             app.UseRouting();
-
+            app.ExceptionLog(logger);
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                        name: "default",
+                        pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,18 +1,59 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Diagnostics;
+using WebApp.Core.Contexts;
+using WebApp.Core.Enums;
+using WebApp.Core.Middlewares;
+using WebApp.Core.Models;
 
 namespace WebApp.Core.Loggers
 {
     public static class LoggerExtension
     {
-        public static void WriteSqlQueryLog(string query, LogStoreTypeEnum storeType = LogStoreTypeEnum.Output)
+        /// <summary>
+        /// Handling all exception message globaly with custom middleware
+        /// startup.cs -> app.ExceptionLogCustom();
+        /// </summary>
+        public static void ExceptionLog(this IApplicationBuilder app)
         {
-            if (storeType == LogStoreTypeEnum.Output)
+            app.UseMiddleware<GlobalExceptionCustomMiddleware>();
+        }
+
+        /// <summary>
+        /// Handling all exception message globaly with builtin middleware
+        /// startup.cs -> app.ExceptionLog(log);
+        /// </summary>
+        public static void ExceptionLog(this IApplicationBuilder app, ILogger logger)
+        {
+            app.ConfigureExceptionHandler(logger);
+        }
+
+        /// <summary>
+        /// Handling all changes in database
+        /// WebAppDbContext] -> SaveChanges() -> base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));;
+        /// </summary>
+        public static IList<AuditEntry> AuditTrailLog(this ChangeTracker changeTracker, long userId, string ignoreEntity)
+        {
+            return changeTracker.AuditTrail(userId, ignoreEntity);
+        }
+
+        /// <summary>
+        /// All db generated sql queries log
+        /// WebAppDbContext.cs -> OnConfiguring(DbContextOptionsBuilder optionsBuilder) -> optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));;
+        /// </summary>
+        public static void SqlQueryLog(string query, LogStoreType storeType = LogStoreType.Output)
+        {
+            if (storeType == LogStoreType.Output)
+            {
                 Debug.WriteLine(query);
-            else if (storeType == LogStoreTypeEnum.Db)
+            }
+            else if (storeType == LogStoreType.Db)
             {
                 // store in db
             }
-            else if (storeType == LogStoreTypeEnum.File)
+            else if (storeType == LogStoreType.File)
             {
                 // store & append in file
                 //new StreamWriter("mylog.txt", append: true);

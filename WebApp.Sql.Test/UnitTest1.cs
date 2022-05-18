@@ -8,6 +8,7 @@ namespace WebApp.Sql.Test
         [TestMethod]
         public void TestMethod1()
         {
+            throw new System.NotSupportedException();
         }
     }
 }

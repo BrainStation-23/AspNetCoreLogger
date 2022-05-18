@@ -91,8 +91,7 @@ namespace WebApp.Core.Sqls
         }
         #endregion
 
-        //public IQueryable<TViewModel> QueryTo<TViewModel>() where TViewModel : class
-        //    => Query().ProjectTo<TViewModel>(_mapper.ConfigurationProvider);
+        //public IQueryable<TViewModel> QueryTo<TViewModel>() where TViewModel : class => Query().ProjectTo<TViewModel>(_mapper.ConfigurationProvider);
 
         public virtual async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate = null)
         {
@@ -106,37 +105,19 @@ namespace WebApp.Core.Sqls
 
         #region RAW_SQL
 
-        public async Task<List<T>> RawSqlListAsync<T>(FormattableString sql) where T : class
-            => await _dbContext.Set<T>().FromSqlInterpolated(sql).ToListAsync();
-
-        public async Task<T> RawSqlFirstOrDefaultAsync<T>(FormattableString sql) where T : class
-            => (await _dbContext.Set<T>().FromSqlInterpolated(sql).ToListAsync()).FirstOrDefault();
-
-        public async Task RawSqlAsync(FormattableString sql)
-            => await _dbContext.Database.ExecuteSqlInterpolatedAsync(sql);
-
-        public async Task<List<T>> RawSqlListAsync<T>(string sql, params object[] parameters) where T : class
+        public async Task RawSqlAsync(FormattableString sql) => await _dbContext.Database.ExecuteSqlInterpolatedAsync(sql);
+        public async Task RawSqlAsync(string sql, params object[] parameters) => await _dbContext.Database.ExecuteSqlRawAsync(sql, parameters);
+        public async Task<List<T>> RawSqlListAsync(string sql, params object[] parameters)
             => await _dbContext.Set<T>().FromSqlRaw(sql, parameters).ToListAsync();
-
-        public async Task<T> RawSqlFirstOrDefaultAsync<T>(string sql, params object[] parameters) where T : class
+        public async Task<List<T>> RawSqlListAsync(FormattableString sql) => await _dbContext.Set<T>().FromSqlInterpolated(sql).ToListAsync();
+        public async Task<T> RawSqlFirstOrDefaultAsync(string sql, params object[] parameters)
             => (await _dbContext.Set<T>().FromSqlRaw(sql, parameters).ToListAsync()).FirstOrDefault();
-
-        public async Task RawSqlAsync(string sql, params object[] parameters)
-            => await _dbContext.Database.ExecuteSqlRawAsync(sql, parameters);
-
+        public async Task<T> RawSqlFirstOrDefaultAsync(FormattableString sql) => (await _dbContext.Set<T>().FromSqlInterpolated(sql).ToListAsync()).FirstOrDefault();
         #endregion
 
         #region crud
-
-        public virtual async Task InsertAsync(T entity)
-        {
-            await _dbSet.AddAsync(entity);
-        }
-
-        public virtual async Task InsertRangeAsync(List<T> entities)
-        {
-            await _dbSet.AddRangeAsync(entities);
-        }
+        public virtual async Task InsertAsync(T entity) => await _dbSet.AddAsync(entity);
+        public virtual async Task InsertRangeAsync(List<T> entities) => await _dbSet.AddRangeAsync(entities);
 
         public virtual async Task UpdateAsync(T entity)
         {
@@ -162,7 +143,6 @@ namespace WebApp.Core.Sqls
             return entity;
         }
 
-
         public virtual async Task DeleteAsync(T entity)
         {
             _dbSet.Remove(entity);
@@ -174,7 +154,6 @@ namespace WebApp.Core.Sqls
             _dbSet.RemoveRange(entities);
             await Task.CompletedTask;
         }
-
         #endregion
 
         #region first or default
@@ -295,20 +274,11 @@ namespace WebApp.Core.Sqls
         }
         #endregion
 
-        public virtual void Attach(T entity)
-        {
-            _dbContext.Entry(entity).State = EntityState.Added;
-        }
-
+        public virtual void Attach(T entity) => _dbContext.Entry(entity).State = EntityState.Added;
         public virtual void Detach(T entity)
         {
             if (_dbContext.Entry(entity).State != EntityState.Detached)
                 _dbContext.Entry(entity).State = EntityState.Detached;
-        }
-
-        public IQueryable<TViewModel> QueryTo<TViewModel>() where TViewModel : class
-        {
-            throw new NotImplementedException();
         }
 
         public Task<TViewModel> FirstOrDefault<TViewModel>(object id) where TViewModel : class

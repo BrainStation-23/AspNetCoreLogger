@@ -14,5 +14,4 @@ namespace WebApp.Entity.Entities.Logs
         public string AffectedColumns { get; set; }
         public string PrimaryKey { get; set; }
     }
-
 }

@@ -38,7 +38,7 @@
         Downloaded
     }
 
-    public enum MessageType : int
+    public enum MessageType : short
     {
         All = 1,
         Sms = 2,

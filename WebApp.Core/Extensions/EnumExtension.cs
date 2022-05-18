@@ -29,11 +29,11 @@ namespace WebApp.Core.Extensions
                     return data;
                 }
 
-                return null;
+                return data;
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                throw new Exception("Invalid Enum", e);
+                throw new ArgumentException("Invalid Enum", exception);
             }
         }
 
@@ -42,7 +42,7 @@ namespace WebApp.Core.Extensions
             var filedName = enumType.GetFields().FirstOrDefault(x => x.Name == name);
             if (filedName != null)
             {
-                var attr = Attribute.GetCustomAttribute(filedName, typeof(DescriptionAttribute)) as DescriptionAttribute;
+                DescriptionAttribute attr = Attribute.GetCustomAttribute(filedName, typeof(DescriptionAttribute)) as DescriptionAttribute;
                 if (attr != null)
                 {
                     return attr.Description;
@@ -76,9 +76,9 @@ namespace WebApp.Core.Extensions
                 //return value.ToString();
                 return string.Join(" ", Regex.Split(value.ToString(), @"([A-Z]?[a-z]+)").Where(str => !string.IsNullOrEmpty(str)));
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                return "Enum type not Found";
+                return $"Enum type not Found. {exception.Message}";
             }
         }
 

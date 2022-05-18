@@ -43,8 +43,8 @@ namespace WebApp.Sql
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.LogTo(Console.WriteLine);
-            optionsBuilder.LogTo(message => LoggerExtension.WriteSqlQueryLog(message));
-            optionsBuilder.UseLoggerFactory(_myLoggerFactory);
+            optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
+            optionsBuilder.UseLoggerFactory(_myLoggerFactory).EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -75,26 +75,28 @@ namespace WebApp.Sql
             base.ChangeTracker.Audit(userId);
         }
 
-        private void AuditTrail()
+        private void AuditTrailLog()
         {
             long userId = 0;
 
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
-            var auditEntries = base.ChangeTracker.AuditTrail(userId, nameof(AuditLog));
+            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));
 
             foreach (var auditEntry in auditEntries)
             {
-                var audit = new AuditLog();
-                audit.UserId = auditEntry.UserId;
-                audit.Type = auditEntry.AuditType.ToString();
-                audit.TableName = auditEntry.TableName;
-                audit.DateTime = DateTime.Now;
-                audit.PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues);
-                audit.OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues);
-                audit.NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues);
-                audit.AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames);
+                var audit = new AuditLog
+                {
+                    UserId = auditEntry.UserId,
+                    Type = auditEntry.AuditType.ToString(),
+                    TableName = auditEntry.TableName,
+                    DateTime = DateTime.Now,
+                    PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
+                    OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues),
+                    NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),
+                    AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames)
+                };
                 //var data = auditEntry.Changes.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.Changes);
 
                 AuditLogs.Add(audit);
@@ -125,14 +127,14 @@ namespace WebApp.Sql
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             Audit();
-            AuditTrail();
+            AuditTrailLog();
 
             return base.SaveChangesAsync(cancellationToken);
         }
         public override int SaveChanges()
         {
             Audit();
-            AuditTrail();
+            AuditTrailLog();
 
             return base.SaveChanges();
         }

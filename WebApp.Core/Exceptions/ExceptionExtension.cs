@@ -1,37 +1,38 @@
 ﻿using System;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace WebApp.Core.Exceptions
 {
     public static class ExceptionExtension
     {
-        public static string InnerExceptionMessage(this Exception exception)
+        public static Exception ToInnerException(this Exception exception)
         {
             while (exception.InnerException != null) exception = exception.InnerException;
 
-            return exception.Message;
+            return exception;
         }
 
-        public static string InnerExceptionMessages(this Exception exception)
+        public static string ToInnerExceptionMessage(this Exception exception)
         {
-            var sb = new StringBuilder();
-            sb.AppendLine($"Exception Detail - ");
+            while (exception.InnerException != null) exception = exception.InnerException;
 
-            int i = 1;
-            while (exception.InnerException != null)
-            {
-                exception = exception.InnerException;
-                sb.AppendLine(Environment.NewLine);
-                sb.AppendLine($"Level : { i } ");
-                sb.AppendLine(Environment.NewLine);
-                sb.AppendLine(exception.Message);
-                i++;
-            }
-
-            return sb.ToString();
+            return exception.ToInnerException().Message;
         }
 
+        public static string ToInnerExceptionMessages(this Exception exception)
+        {
+            while (exception.InnerException != null) exception = exception.InnerException;
+
+            StringBuilder s = new StringBuilder();
+            s.AppendLine("Exception type: " + exception.GetType().FullName);
+            s.AppendLine(Environment.NewLine);
+            s.AppendLine("Message       : " + exception.Message);
+            s.AppendLine(Environment.NewLine);
+            s.AppendLine("Stacktrace    : " + exception.StackTrace);
+            s.AppendLine();
+
+            return s.ToString();
+        }
 
         //public static Task ShowMessage(this Exception exception)
         //{

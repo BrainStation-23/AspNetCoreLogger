@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WebApp.Core.Collections
 {
-    public class Paging<T> : IPaging<T>// where T : class, new()
+    public class Paging<T> : PagingBase<T>// where T : class, new()
     {
         public Paging(int pageIndex, int pageSize, IList<T> data, int total)
         {
@@ -30,7 +30,7 @@ namespace WebApp.Core.Collections
             Total = total;
         }
 
-        public Paging(IPaging<T> list)
+        public Paging(PagingBase<T> list)
         {
             Data = list.Data;
             Total = list.Total;

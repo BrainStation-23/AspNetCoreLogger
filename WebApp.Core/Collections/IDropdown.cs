@@ -2,7 +2,7 @@
 
 namespace WebApp.Core.Collections
 {
-    public class IDropdown<T>
+    public interface IDropdown<T>
     {
         public IList<T> Data { get; set; }
     }

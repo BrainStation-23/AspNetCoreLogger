@@ -8,19 +8,16 @@ namespace WebApp.Core.Acls
 {
     public class SignInHelper : ISignInHelper
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public SignInHelper(IHttpContextAccessor httpContextAccessor)
+        public SignInHelper(IHttpContextAccessor _httpContextAccessor)
         {
-            _httpContextAccessor = httpContextAccessor;
             if (_httpContextAccessor?.HttpContext?.User?.Identity?.IsAuthenticated ?? false)
             {
-                var user = _httpContextAccessor.HttpContext.User;
+                var user = _httpContextAccessor?.HttpContext?.User;
                 UserId = long.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier));
                 Email = user.FindFirstValue(ClaimTypes.Email);
                 MobileNumber = user.FindFirstValue(ClaimTypes.MobilePhone);
                 Fullname = user.FindFirstValue(ClaimTypes.GivenName);
-                Username = user.Identity.Name;
+                Username = user!.Identity!.Name;
                 IsAuthenticated = user.Identity.IsAuthenticated;
                 Roles = user.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
                 JwtExpiresAt = DateTimeOffset.FromUnixTimeSeconds(long.Parse(user.FindFirstValue("exp")));
@@ -28,8 +25,8 @@ namespace WebApp.Core.Acls
 
             var request = _httpContextAccessor?.HttpContext?.Request;
 
-            AccessToken = request?.Headers["Authorization"];
-            RequestOrigin = request?.Headers["Origin"].ToString()?.Trim();
+            AccessToken = request!.Headers["Authorization"];
+            RequestOrigin = request!.Headers["Origin"].ToString()?.Trim();
             AccessToken = AccessToken != "null" ? AccessToken?.Split(" ")[1] : default;
         }
 

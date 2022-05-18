@@ -47,9 +47,9 @@ namespace WebApp.Service
             return response;
         }
 
-        public async Task<BlogModel>AddBlogDetailAsync(BlogModel blog)
+        public async Task<BlogModel>AddBlogDetailAsync(BlogModel model)
         {
-            var entity = _mapper.Map<BlogModel, BlogEntity>(blog);
+            var entity = _mapper.Map<BlogModel, BlogEntity>(model);
 
             await _unitOfWork.Repository<BlogEntity>().InsertAsync(entity);
             await _unitOfWork.CompleteAsync();
