@@ -98,6 +98,6 @@ namespace WebApp.Core
 
     public class ClientApp
     {
-        public string baseUrl { get; set; }
+        public string BaseUrl { get; set; }
     }
 }

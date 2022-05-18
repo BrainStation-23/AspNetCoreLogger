@@ -11,6 +11,9 @@ namespace WebApp.Core.Models
         public string Host { get; set; }
         public string Url { get; set; }
         public string Source { get; set; }
+        public string Form { get; set; }
+        public string Body { get; set; }
+        public string Headers { get; set; }
 
         public HttpStatusCode StatusCode { get; set; }
         public string AppStatusCode { get; set; }

@@ -11,8 +11,8 @@ namespace WebApp.Core.Mongos
 {
     public class MongoRepository<TDocument> : IMongoRepository<TDocument> where TDocument : IDocument
     {
-        private readonly IMongoCollection<TDocument> _collection;
-        private readonly IMongoDatabase _database;
+        protected readonly IMongoCollection<TDocument> _collection;
+        protected readonly IMongoDatabase _database;
 
         public MongoRepository(IMongoDbSettings settings)
         {
@@ -47,17 +47,17 @@ namespace WebApp.Core.Mongos
             return _collection.Find(filterExpression).FirstOrDefault();
         }
 
-        public virtual Task<TDocument> FindAsync(Expression<Func<TDocument, bool>> filterExpression)
-        {
-            return Task.Run(() => _collection.Find(filterExpression).FirstOrDefaultAsync());
-        }
-
         public virtual TDocument Find(string id)
         {
             var objectId = new ObjectId(id);
             var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
 
             return _collection.Find(filter).SingleOrDefault();
+        }
+
+        public virtual Task<TDocument> FindAsync(Expression<Func<TDocument, bool>> filterExpression)
+        {
+            return Task.Run(() => _collection.Find(filterExpression).FirstOrDefaultAsync());
         }
 
         public virtual Task<TDocument> FindAsync(string id)
@@ -103,6 +103,14 @@ namespace WebApp.Core.Mongos
             await _collection.FindOneAndReplaceAsync(filter, document);
         }
 
+
+        public void Delete(string id)
+        {
+            var objectId = new ObjectId(id);
+            var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
+
+            _collection.FindOneAndDelete(filter);
+        }
         public void Delete(Expression<Func<TDocument, bool>> filterExpression)
         {
             _collection.FindOneAndDelete(filterExpression);
@@ -111,14 +119,6 @@ namespace WebApp.Core.Mongos
         public Task DeleteAsync(Expression<Func<TDocument, bool>> filterExpression)
         {
             return Task.Run(() => _collection.FindOneAndDeleteAsync(filterExpression));
-        }
-
-        public void Delete(string id)
-        {
-            var objectId = new ObjectId(id);
-            var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
-
-            _collection.FindOneAndDelete(filter);
         }
 
         public Task DeleteAsync(string id)

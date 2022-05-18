@@ -2,18 +2,16 @@
 {
     public static class DefaultData
     {
-        public static string ApplicationName = "Application";
-        public static int ApplicationId = 5;
-        public static string DefaultAvatar = "/Images/Others/avatar.png";
-        public static string AvatarLocation = "/Images/Profile";
-        public static string TempLocation = "/Images/Temp";
-        public static string DefaultDateFormat = "dd-MMM-yyyy";
-        public static string AdServer = "";
+        public const string ApplicationName = "Application";
+        public const int ApplicationId = 5;
+        public const string DefaultAvatar = "/Images/Others/avatar.png";
+        public const string AvatarLocation = "/Images/Profile";
+        public const string TempLocation = "/Images/Temp";
+        public const string DefaultDateFormat = "dd-MMM-yyyy";
+        public const string AdServer = "";
         public static string AdUsername { get; set; }
         public static string AdPassword { get; set; }
 
-
-        public static int Take = 100;
-
+        public const int Take = 100;
     }
 }

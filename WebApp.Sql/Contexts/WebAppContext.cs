@@ -86,15 +86,17 @@ namespace WebApp.Sql
 
             foreach (var auditEntry in auditEntries)
             {
-                var audit = new AuditLog();
-                audit.UserId = auditEntry.UserId;
-                audit.Type = auditEntry.AuditType.ToString();
-                audit.TableName = auditEntry.TableName;
-                audit.DateTime = DateTime.Now;
-                audit.PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues);
-                audit.OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues);
-                audit.NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues);
-                audit.AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames);
+                var audit = new AuditLog
+                {
+                    UserId = auditEntry.UserId,
+                    Type = auditEntry.AuditType.ToString(),
+                    TableName = auditEntry.TableName,
+                    DateTime = DateTime.Now,
+                    PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
+                    OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues),
+                    NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),
+                    AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames)
+                };
                 //var data = auditEntry.Changes.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.Changes);
 
                 AuditLogs.Add(audit);

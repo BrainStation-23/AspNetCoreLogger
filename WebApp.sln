@@ -26,13 +26,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libraries", "libraries", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "commons", "commons", "{7FB15E90-DA6C-4F5E-BB7D-E8F16EC234C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Entity", "WebApp.Entity\WebApp.Entity.csproj", "{B1720AA6-CC5E-42B1-B614-A5BC12D7C01F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Entity", "WebApp.Entity\WebApp.Entity.csproj", "{B1720AA6-CC5E-42B1-B614-A5BC12D7C01F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Sql.Test", "WebApp.Sql.Test\WebApp.Sql.Test.csproj", "{BB9DDF87-C0CB-4AA1-9385-4BE91F06895E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Sql.Test", "WebApp.Sql.Test\WebApp.Sql.Test.csproj", "{BB9DDF87-C0CB-4AA1-9385-4BE91F06895E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Service.Test", "WebApp.Service.Test\WebApp.Service.Test.csproj", "{1061ED84-5E47-4E41-A94C-027ACC5A5F01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Service.Test", "WebApp.Service.Test\WebApp.Service.Test.csproj", "{1061ED84-5E47-4E41-A94C-027ACC5A5F01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Core.Test", "WebApp.Core.Test\WebApp.Core.Test.csproj", "{C0D5CD93-0AE6-41E6-99D5-D1ED4534C5D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Core.Test", "WebApp.Core.Test\WebApp.Core.Test.csproj", "{C0D5CD93-0AE6-41E6-99D5-D1ED4534C5D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configs", "configs", "{BB3842A5-83E2-4FFA-9449-DA576CFDFFED}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D5511B4-1EAC-4DA3-99A9-A5C9046C3977}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +98,7 @@ Global
 		{BB9DDF87-C0CB-4AA1-9385-4BE91F06895E} = {DC9027FB-6524-4BBD-8C9F-CB24B3789663}
 		{1061ED84-5E47-4E41-A94C-027ACC5A5F01} = {DC9027FB-6524-4BBD-8C9F-CB24B3789663}
 		{C0D5CD93-0AE6-41E6-99D5-D1ED4534C5D2} = {7FB15E90-DA6C-4F5E-BB7D-E8F16EC234C5}
+		{BB3842A5-83E2-4FFA-9449-DA576CFDFFED} = {172EC35C-DFEB-49BE-904F-040A43EFD3BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFCCDA0E-EADD-457B-9016-11900245AB18}

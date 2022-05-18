@@ -27,8 +27,8 @@ namespace AspCoreLog.Loggers.Serilogs.Enrichers
         ///         .Enrich.With<RemovePropertiesEnricher>()
         /// </summary>
         /// <param name="logEvent"></param>
-        /// <param name="logEventPropertyFactory"></param>
-        public void Enrich(LogEvent logEvent, ILogEventPropertyFactory logEventPropertyFactory)
+        /// <param name="propertyFactory"></param>
+        public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
         {
             logEvent.RemovePropertyIfPresent("SourceContext");
             logEvent.RemovePropertyIfPresent("RequestId");
@@ -53,8 +53,9 @@ namespace AspCoreLog.Loggers.Serilogs.Enrichers
 
     public class UtcTimestampEnricher : ILogEventEnricher
     {
-        public void Enrich(LogEvent logEvent, ILogEventPropertyFactory pf)
+        public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
         {
+            throw new NotSupportedException();
         }
     }
 

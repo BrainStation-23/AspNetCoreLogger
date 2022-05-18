@@ -6,8 +6,11 @@
 - visual studio/vs code
 - mssql server
 
-## usage
-- basic commands for project db migration
+## Run Application
+- install prerequisits
+- migrate database 
+  - changes connection string `WebApp\appsettings.json`
+  - basic commands for project db migration
 ```
 -> dotnet tool install --global dotnet-ef
 -> dotnet tool update --global dotnet-ef
@@ -23,5 +26,27 @@
 -> dotnet ef migrations add InitialCreate --project WebApp.Sql --startup-project WebApp (optional)
 -> dotnet ef database update --project WebApp.Sql --startup-project WebApp
 ```
+- build & run application
+
+## Usages
+- All methods need to implement in your `WebApp\Startup.cs` files
+- Before that you must have WebApp.Core library or you must add in your new project
+- All wrapper methods are calling from `WebApp.Core\Loggers\LoggerExtension.cs`
+
+- Audit Log
+- Request Log
+- Error Log
+```cs
+ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    ....
+    app.UseExceptionLog();
+    ...
+}
+```
+- Route Log
+- Notification Log
+- Activity Log
+
 
 

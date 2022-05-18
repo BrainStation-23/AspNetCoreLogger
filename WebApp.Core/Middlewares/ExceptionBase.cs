@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Security.Claims;
@@ -49,29 +50,26 @@ namespace WebApp.Core.Middlewares
                     break;
             }
 
-            //logger.LogError(exception.Message);
+            logger.LogError(exception.Message);
 
-            ErrorModel model = new ErrorModel();
-            model.UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null;
-            model.Source = exception.Source;
-            model.StackTrace = exception.StackTrace;
-            model.IpAddress = context.GetIpAddress();
-            model.Host = context.Request.Host.ToString();
-            model.Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
-            model.Url = $"{context.Request.Method} {model.Url}";
-            model.Message = exception.Message;
-            model.StatusCode = (HttpStatusCode)response.StatusCode;
-            model.AppStatusCode = ((HttpStatusCode)response.StatusCode).ToAppStatusCode();
-            model.Application = exception.Source;
-            model.Version = context.Request.Scheme;
+            ErrorModel model = new ErrorModel
+            {
+                UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null,
+                Source = exception.Source,
+                StackTrace = exception.StackTrace,
+                IpAddress = context.GetIpAddress(),
+                Host = context.Request.Host.ToString(),
+                Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl(),
+                Message = exception.Message,
+                StatusCode = (HttpStatusCode)response.StatusCode,
+                AppStatusCode = ((HttpStatusCode)response.StatusCode).ToAppStatusCode(),
+                Application = exception.Source,
+                Version = context.Request.Scheme,
+                Form = JsonSerializer.Serialize(context.Request.Form),
+                Headers = JsonSerializer.Serialize(context.Request.Headers)
+            };
+            model.Url = $"{context.Request.Method} {model?.Url}";
 
-            context.Request.EnableBuffering();
-            var requestReader = new StreamReader(context.Request.Body);
-            var requestContent = requestReader.ReadToEnd();
-            context.Request.Body.Position = 0;
-            //var form = JsonSerializer.Serialize(context.Request.Form);
-            //var body1 = JsonSerializer.Serialize(context.Request.Body);
-            //var headers = JsonSerializer.Serialize(context.Request.Headers);
 
             var result = JsonSerializer.Serialize(errorResponse);
             await context.Response.WriteAsync(result);

@@ -9,7 +9,7 @@ namespace WebApp.Core.Extensions
     {
         public static IList<PropertyModel> GetPropertyInfo(this object o)
         {
-            IList<PropertyModel> info = null;
+            IList<PropertyModel> info = new List<PropertyModel>();
 
             foreach (var propertyInfo in o.GetType().GetProperties())
             {

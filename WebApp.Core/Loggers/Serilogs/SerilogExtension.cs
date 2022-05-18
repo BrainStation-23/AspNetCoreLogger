@@ -104,7 +104,8 @@ namespace WebApp.Core.Loggers.Serilogs
 
         public static LoggerConfiguration UseSeq(this LoggerConfiguration loggerConfiguration)
         {
-            loggerConfiguration.WriteTo.Seq("http://localhost:5341", apiKey: "hTm23m3s89nsT6ptHfxx");
+            var path = "http://localhost:5341";
+            loggerConfiguration.WriteTo.Seq(path, apiKey: "hTm23m3s89nsT6ptHfxx");
 
             return loggerConfiguration;
         }
@@ -127,7 +128,7 @@ namespace WebApp.Core.Loggers.Serilogs
             columnOptions.LogEvent.ExcludeAdditionalProperties = false;
 
             loggerConfiguration.WriteTo.MSSqlServer(connectionString: hostBuilderContext.Configuration.GetConnectionString("DefaultConnection"),
-                sinkOptions: new SinkOptions { TableName = "LogEvents", AutoCreateSqlTable = true },
+                sinkOptions: new MSSqlServerSinkOptions { TableName = "LogEvents", AutoCreateSqlTable = true },
                 columnOptions: new ColumnOptions
                 {
                     AdditionalColumns = new Collection<SqlColumn> {

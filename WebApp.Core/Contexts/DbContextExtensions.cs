@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using WebApp.Core.Enums;
 using WebApp.Core.Models;
@@ -27,9 +28,11 @@ namespace WebApp.Core.Contexts
                     || entry.Entity.GetType().Name == ignoreEntity)
                     continue;
 
-                var auditEntry = new AuditEntry(entry);
-                auditEntry.TableName = entry.Entity.GetType().Name;
-                auditEntry.UserId = userId;
+                var auditEntry = new AuditEntry(entry)
+                {
+                    TableName = entry.Entity.GetType().Name,
+                    UserId = userId
+                };
                 auditEntries.Add(auditEntry);
                 var originalEntry = entry.GetDatabaseValues();
                 var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
@@ -76,6 +79,8 @@ namespace WebApp.Core.Contexts
             }
 
             var data = changeTracker.DebugView.LongView;
+            Debug.WriteLine(data);
+
             return auditEntries;
         }
 
@@ -125,50 +130,42 @@ namespace WebApp.Core.Contexts
         {
             DbProviderFactory dbFactory = DbProviderFactories.GetFactory(context.Database.GetDbConnection());
 
-            using (var cmd = dbFactory.CreateCommand())
+            using var cmd = dbFactory.CreateCommand();
+            cmd.Connection = context.Database.GetDbConnection();
+            cmd.CommandType = commandType;
+            cmd.CommandText = sqlQuery;
+            if (parameters != null && parameters.Any())
             {
-                cmd.Connection = context.Database.GetDbConnection();
-                cmd.CommandType = commandType;
-                cmd.CommandText = sqlQuery;
-                if (parameters != null && parameters.Any())
-                {
-                    cmd.Parameters.AddRange(parameters.ToArray());
-                }
-
-                using (DbDataAdapter adapter = dbFactory.CreateDataAdapter())
-                {
-                    adapter.SelectCommand = cmd;
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-
-                    return dt;
-                }
+                cmd.Parameters.AddRange(parameters.ToArray());
             }
+
+            using DbDataAdapter adapter = dbFactory.CreateDataAdapter();
+            adapter.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            return dt;
         }
 
         public static DataSet GetDataSet(this DbContext context, string sqlQuery, List<SqlParameter> parameters = null)
         {
             DbProviderFactory dbFactory = DbProviderFactories.GetFactory(context.Database.GetDbConnection());
 
-            using (var cmd = dbFactory.CreateCommand())
+            using var cmd = dbFactory.CreateCommand();
+            cmd.Connection = context.Database.GetDbConnection();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = sqlQuery;
+            if (parameters != null && parameters.Any())
             {
-                cmd.Connection = context.Database.GetDbConnection();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = sqlQuery;
-                if (parameters != null && parameters.Any())
-                {
-                    cmd.Parameters.AddRange(parameters.ToArray());
-                }
-                using (DbDataAdapter adapter = dbFactory.CreateDataAdapter())
-                {
-                    adapter.SelectCommand = cmd;
-
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
-
-                    return ds;
-                }
+                cmd.Parameters.AddRange(parameters.ToArray());
             }
+            using DbDataAdapter adapter = dbFactory.CreateDataAdapter();
+            adapter.SelectCommand = cmd;
+
+            DataSet ds = new DataSet();
+            adapter.Fill(ds);
+
+            return ds;
         }
     }
 }

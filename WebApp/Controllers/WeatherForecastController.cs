@@ -26,6 +26,8 @@ namespace DotnetCoreApplicationBoilerplate.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            _logger.LogInformation("Weather Forecast");
+
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
