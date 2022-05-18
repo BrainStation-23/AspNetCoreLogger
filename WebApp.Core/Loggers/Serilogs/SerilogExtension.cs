@@ -4,7 +4,6 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer;
-using Serilog.Sinks.MSSqlServer.Sinks.MSSqlServer.Options;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
 using System.Collections.ObjectModel;

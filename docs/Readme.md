@@ -18,8 +18,8 @@ https://dev.azure.com/mdtaslim/DotnetCoreLogger/_release?definitionId=1&view=min
 ** Our main goal is to create a wrapper with existing/non exisiting libraries for fastest usage in  new projects.
 
 ## References
-[Usage](usage.md)  
-[Status](status.md) 
+[Usage](Usage.md)  
+[Status](Status.md) 
 
 
 
