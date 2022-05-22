@@ -36,7 +36,7 @@ namespace WebApp.Service
             return rowAffected;
         }
 
-        public void Dispose()
+        public void Disposes()
         {
             _dbContext.Dispose();
         }

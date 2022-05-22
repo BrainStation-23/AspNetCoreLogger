@@ -1,6 +1,6 @@
 using System;
 
-namespace DotnetCoreApplicationBoilerplate
+namespace WebApp
 {
     public class WeatherForecast
     {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using WebApp.Core;
@@ -10,6 +11,7 @@ using WebApp.Service.Models.Blogs;
 
 namespace WebApp.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
     public class BlogController : GenericBaseController<BlogEntity>
@@ -47,9 +49,9 @@ namespace WebApp.Controllers
 
 
         [HttpPut("exception")]
-        public async Task<IActionResult> Exception()
+        public IActionResult Exception()
         {
-            throw new ArgumentNullException("Argument exception");
+            throw new ArgumentException("Argument exception");
         }
     }
 }

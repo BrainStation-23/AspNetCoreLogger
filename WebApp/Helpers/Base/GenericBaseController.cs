@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using WebApp.Core;
@@ -7,6 +8,7 @@ using WebApp.Services;
 
 namespace WebApp.Helpers.Base
 {
+    [AllowAnonymous]
     public class GenericBaseController<T> : UserInfoBase where T : class
     {
         protected readonly IBaseService<T> _service;

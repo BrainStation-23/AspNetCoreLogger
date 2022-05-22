@@ -5,9 +5,11 @@ using WebApp.Core.Responses;
 using WebApp.Helpers.Base;
 using WebApp.Service;
 using WebApp.Entity.Entities.Blogs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApp.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
     public class PostController : GenericBaseController<PostEntity>

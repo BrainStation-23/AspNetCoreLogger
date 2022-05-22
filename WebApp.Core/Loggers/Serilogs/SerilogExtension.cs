@@ -104,8 +104,8 @@ namespace WebApp.Core.Loggers.Serilogs
 
         public static LoggerConfiguration UseSeq(this LoggerConfiguration loggerConfiguration)
         {
-            var path = "http://localhost:5341";
-            loggerConfiguration.WriteTo.Seq(path, apiKey: "hTm23m3s89nsT6ptHfxx");
+            //var path = "http://localhost:5341";
+            //loggerConfiguration.WriteTo.Seq(path, apiKey: "hTm23m3s89nsT6ptHfxx");
 
             return loggerConfiguration;
         }

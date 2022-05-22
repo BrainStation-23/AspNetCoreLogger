@@ -9,9 +9,11 @@ namespace WebApp.Core.Acls
     public class SignInHelper : ISignInHelper
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+
         public SignInHelper(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
+        
             if (_httpContextAccessor?.HttpContext?.User?.Identity?.IsAuthenticated ?? false)
             {
                 var user = _httpContextAccessor?.HttpContext?.User;
@@ -25,8 +27,7 @@ namespace WebApp.Core.Acls
                 JwtExpiresAt = DateTimeOffset.FromUnixTimeSeconds(long.Parse(user.FindFirstValue("exp")));
             }
 
-            var request = _httpContextAccessor?.HttpContext?.Request;
-
+            //var request = _httpContextAccessor?.HttpContext?.Request;
             //AccessToken = request!.Headers["Authorization"];
             //RequestOrigin = request!.Headers["Origin"].ToString()?.Trim();
             //AccessToken = AccessToken != "null" ? AccessToken?.Split(" ")[1] : default;

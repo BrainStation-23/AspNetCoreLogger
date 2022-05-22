@@ -100,7 +100,7 @@ namespace WebApp.Core.Middlewares
             model.Url = $"{context.Request.Method} {model?.Url}";
             model.ErrorCode = exception.GetType().Name.ToShorten();
 
-            return model;
+            return await Task.FromResult(model);
         }
     }
 }

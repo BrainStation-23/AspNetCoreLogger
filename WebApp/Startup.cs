@@ -19,7 +19,7 @@ using WebApp.Core.Mongos.Configurations;
 using WebApp.Service.Configurations;
 using WebApp.Sql.Configurations;
 
-namespace DotnetCoreApplicationBoilerplate
+namespace WebApp
 {
     public class Startup
     {
@@ -74,7 +74,7 @@ namespace DotnetCoreApplicationBoilerplate
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

@@ -15,15 +15,12 @@ namespace WebApp.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public PostService(IUnitOfWork unitOfWork,
-                IMapper mapper,
-                IWebHostEnvironment webHostEnvironment) : base(unitOfWork)
+                IMapper mapper) : base(unitOfWork)
         {
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<Paging<PostModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)

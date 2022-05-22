@@ -14,7 +14,7 @@ namespace WebApp.Service
         int Complete();
         Task<int> CompleteAsync();
 
-        void Dispose();
+        void Disposes();
         Task DisposeAsync();
 
         Task<IDbContextTransaction> CreateTransactionAsync(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted);

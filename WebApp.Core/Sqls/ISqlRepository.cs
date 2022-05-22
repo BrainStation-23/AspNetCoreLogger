@@ -26,19 +26,18 @@ namespace WebApp.Core.Sqls
 
         Task<T> GetAsNoTrackingAsync(object id);
 
-        
+
         Task<T> FirstOrDefaultAsync(object id);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
-        Task<T> LastOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy);
-        Task<T> FirstOrDefaultAsync(
-            Expression<Func<T, bool>> predicate,
+        Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy,
-            params Expression<Func<T, object>>[] includes
-        );
+            params Expression<Func<T, object>>[] includes);
         Task<TViewModel> FirstOrDefaultToAsync<TViewModel>(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
         Task<TViewModel> FirstOrDefault<TViewModel>(object id) where TViewModel : class;
+
+        Task<T> LastOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy);
 
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate = null);
 

@@ -35,7 +35,7 @@ namespace WebApp.Core.Middlewares
             model.Proctocol = context.Request.Protocol;
             model.Url = $"{context.Request.Method} {model?.Url}";
 
-            return model;
+            return await Task.FromResult(model);
         }
 
         public static async Task<string> GetRequestBodyAsync(this HttpRequest request)
@@ -44,7 +44,7 @@ namespace WebApp.Core.Middlewares
 
             request.EnableBuffering();
             var buffer = new byte[Convert.ToInt32(request.ContentLength)];
-            await request.Body.ReadAsync(buffer, 0, buffer.Length);
+            await request.Body.ReadAsync(buffer.AsMemory(0, buffer.Length));
             var bodyAsText = Encoding.UTF8.GetString(buffer);
             request.Body = body;
 

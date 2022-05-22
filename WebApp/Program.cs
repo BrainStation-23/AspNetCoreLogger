@@ -5,9 +5,9 @@ using System;
 using System.Diagnostics;
 using WebApp.Core.Loggers.Serilogs;
 
-namespace DotnetCoreApplicationBoilerplate
+namespace WebApp
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {

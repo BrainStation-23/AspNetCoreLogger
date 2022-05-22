@@ -31,7 +31,7 @@ namespace WebApp.Core.Middlewares
             var requestModel = new RequestModel();
 
             //var originalBodyStream = context.Response.Body;
-            var responseBody = new MemoryStream();
+            //var responseBody = new MemoryStream();
 
             try
             {
@@ -56,11 +56,11 @@ namespace WebApp.Core.Middlewares
             }
             finally
             {
-                await responseBody.DisposeAsync();
+                //await responseBody.DisposeAsync();
             }
         }
 
-        private async Task<string> GetRequestBodyAsync(HttpRequest request)
+        public async Task<string> GetRequestBodyAsync(HttpRequest request)
         {
             var body = request.Body;
 
@@ -68,7 +68,7 @@ namespace WebApp.Core.Middlewares
 
             var buffer = new byte[Convert.ToInt32(request.ContentLength)];
 
-            await request.Body.ReadAsync(buffer, 0, buffer.Length);
+            await request.Body.ReadAsync(buffer.AsMemory(0, buffer.Length));
 
             var bodyAsText = Encoding.UTF8.GetString(buffer);
 
@@ -77,7 +77,7 @@ namespace WebApp.Core.Middlewares
             return $"{request.Scheme} {request.Host}{request.Path} {request.QueryString} {bodyAsText}";
         }
 
-        private async Task<string> GetResponseAsync(HttpResponse response)
+        public async Task<string> GetResponseAsync(HttpResponse response)
         {
             response.Body.Seek(0, SeekOrigin.Begin);
 
@@ -88,7 +88,7 @@ namespace WebApp.Core.Middlewares
             return $"{response.StatusCode}: {text}";
         }
 
-        private string ToApiResponse(ErrorModel errorModel)
+        public string ToApiResponse(ErrorModel errorModel)
         {
             var apiResponse = new ApiResponse(false);
             apiResponse.StatusCode = (int)errorModel.StatusCode;
