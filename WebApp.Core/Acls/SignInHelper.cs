@@ -8,8 +8,10 @@ namespace WebApp.Core.Acls
 {
     public class SignInHelper : ISignInHelper
     {
-        public SignInHelper(IHttpContextAccessor _httpContextAccessor)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public SignInHelper(IHttpContextAccessor httpContextAccessor)
         {
+            _httpContextAccessor = httpContextAccessor;
             if (_httpContextAccessor?.HttpContext?.User?.Identity?.IsAuthenticated ?? false)
             {
                 var user = _httpContextAccessor?.HttpContext?.User;
@@ -25,9 +27,9 @@ namespace WebApp.Core.Acls
 
             var request = _httpContextAccessor?.HttpContext?.Request;
 
-            AccessToken = request!.Headers["Authorization"];
-            RequestOrigin = request!.Headers["Origin"].ToString()?.Trim();
-            AccessToken = AccessToken != "null" ? AccessToken?.Split(" ")[1] : default;
+            //AccessToken = request!.Headers["Authorization"];
+            //RequestOrigin = request!.Headers["Origin"].ToString()?.Trim();
+            //AccessToken = AccessToken != "null" ? AccessToken?.Split(" ")[1] : default;
         }
 
         public long? UserId { get; }

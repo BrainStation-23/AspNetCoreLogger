@@ -12,22 +12,9 @@ namespace WebApp.Core.Loggers
 {
     public static class LoggerExtension
     {
-        /// <summary>
-        /// Handling all exception message globaly with custom middleware
-        /// startup.cs -> app.ExceptionLogCustom();
-        /// </summary>
-        public static void ExceptionLog(this IApplicationBuilder app)
+        public static void HttpLog(this IApplicationBuilder app)
         {
-            app.UseMiddleware<GlobalExceptionCustomMiddleware>();
-        }
-
-        /// <summary>
-        /// Handling all exception message globaly with builtin middleware
-        /// startup.cs -> app.ExceptionLog(log);
-        /// </summary>
-        public static void ExceptionLog(this IApplicationBuilder app, ILogger logger)
-        {
-            app.ConfigureExceptionHandler(logger);
+            app.UseMiddleware<HttpRequestMiddleware>();
         }
 
         /// <summary>

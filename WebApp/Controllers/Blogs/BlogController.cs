@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Core.Responses;
@@ -42,6 +43,13 @@ namespace WebApp.Controllers
             var res = await _blogService.UpdateBlogDetailAsync(blogId, model);
 
             return new OkResponse(res);
+        }
+
+
+        [HttpPut("exception")]
+        public async Task<IActionResult> Exception()
+        {
+            throw new ArgumentNullException("Argument exception");
         }
     }
 }

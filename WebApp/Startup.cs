@@ -12,6 +12,7 @@ using Serilog;
 using Serilog.Events;
 using System.Linq;
 using WebApp.Core;
+using WebApp.Core.Hostings;
 using WebApp.Core.Loggers;
 using WebApp.Core.Middlewares;
 using WebApp.Core.Mongos.Configurations;
@@ -34,7 +35,9 @@ namespace DotnetCoreApplicationBoilerplate
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers().AddNewtonsoftJson(options => {
+            services.AddHostedService<ApplicationHostedService>();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
@@ -46,6 +49,7 @@ namespace DotnetCoreApplicationBoilerplate
             services.AddDbContextDependencies(Configuration);
             services.AddServiceDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddHealthChecks();
 
             services.AddHttpContextAccessor();
             services.ConfigureModelBindingExceptionHandling();
@@ -75,8 +79,13 @@ namespace DotnetCoreApplicationBoilerplate
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //app.UseDatabaseErrorPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotnetCoreLogger v1"));
+            }
+            else
+            {
+                //app.UseHsts();
             }
 
             app.UseSerilogRequestLogging(options =>
@@ -90,16 +99,21 @@ namespace DotnetCoreApplicationBoilerplate
                     diagnosticContext.Set("RequestScheme", httpContext.Request.Scheme);
                 };
             });
+            //app.UseResponseCaching();
             app.UseCors(WebAppCorsPolicy);
             app.UseHttpsRedirection();
-            
-
+            //app.UseStaticFiles();
+            //app.UseCookiePolicy();
             app.UseRouting();
-            app.ExceptionLog(logger);
+            //app.UseAuthentication();
+            //app.ExceptionLog();
             app.UseAuthorization();
+            //app.UseSession();
+            app.HttpLog();
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapHealthChecks("/health");
                 //endpoints.MapControllers();
                 endpoints.MapControllerRoute(
                         name: "default",

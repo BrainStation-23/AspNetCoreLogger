@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace WebApp.Core.Middlewares
 {
-    public static  class ModelBindingError
+    public static class ModelBindingExceptionMiddleware
     {
         public static void ConfigureModelBindingExceptionHandling(this IServiceCollection services)
         {
@@ -16,11 +16,6 @@ namespace WebApp.Core.Middlewares
                         .Where(e => e.Value.Errors.Count > 0)
                         .Select(e => new ValidationProblemDetails(actionContext.ModelState)).FirstOrDefault();
 
-                    // Here you can add logging to you log file or to your Application Insights.
-                    // For example, using Serilog:
-                    // Log.Error($"{{@RequestPath}} received invalid message format: {{@Exception}}", 
-                    //   actionContext.HttpContext.Request.Path.Value, 
-                    //   error.Errors.Values);
                     return new BadRequestObjectResult(error);
                 };
             });

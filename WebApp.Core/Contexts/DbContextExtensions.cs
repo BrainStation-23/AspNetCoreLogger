@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -166,6 +168,18 @@ namespace WebApp.Core.Contexts
             adapter.Fill(ds);
 
             return ds;
+        }
+
+        public static object GetDatabaseInfo(this IConfiguration configuration)
+        {
+            string connectionString = configuration.GetConnectionString("WebAppConnection");
+            var builder = new SqlConnectionStringBuilder(connectionString);
+
+            return new
+            {
+                server = builder.DataSource,
+                catalog = builder.InitialCatalog
+            };
         }
     }
 }

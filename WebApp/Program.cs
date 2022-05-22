@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
+using System.Diagnostics;
+using WebApp.Core.Loggers.Serilogs;
 
 namespace DotnetCoreApplicationBoilerplate
 {
@@ -9,14 +11,12 @@ namespace DotnetCoreApplicationBoilerplate
     {
         public static void Main(string[] args)
         {
-            //Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));      // If the console is not available
-            //                                                                    // Serilog.Debugging.SelfLog.Enable(Console.Error);
-            //SerilogExtension.SelfLog();
-            //Log.Logger = SerilogExtension.CreateBootstrap();
+            Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine("msg"));
+            Log.Logger = SerilogExtension.CreateBootstrap();
 
             try
             {
-                //Log.Information("Starting web host");
+                Log.Information("Starting Web Application");
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
@@ -25,9 +25,8 @@ namespace DotnetCoreApplicationBoilerplate
             }
             finally
             {
-                //SerilogExtension.Clear();
+                SerilogExtension.Clear();
             }
-
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

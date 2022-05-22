@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 
 namespace WebApp.Core.Models
 {
-    public class ErrorModel
+    public class RequestModel
     {
         public long? UserId { get; set; }
         public string Application { get; set; }
@@ -17,16 +16,23 @@ namespace WebApp.Core.Models
         public string Response { get; set; }
         public string RequestHeaders { get; set; }
         public string ResponseHeaders { get; set; }
-        public string ErrorCode { get; set; }
         public string Scheme { get; set; }
         public string TraceId { get; set; }
         public string Proctocol { get; set; }
-        public IEnumerable<string> Errors { get; set; }
+        public string Area { get; set; }
+        public string ControllerName { get; set; }
+        public string ActionName { get; set; }
+        public string RoleId { get; set; }
+        public string LanguageId { get; set; }
+        public string IsFirstLogin { get; set; }
+        public string LoggedInDateTimeUtc { get; set; }
+        public string LoggedOutDateTimeUtc { get; set; }
+        public string LoginStatus { get; set; }
+        public string PageAccessed { get; set; }
+        public string SessionId { get; set; }
+        public string UrlReferrer { get; set; }
 
         public HttpStatusCode StatusCode { get; set; }
         public string AppStatusCode { get; set; }
-        public string Message { get; set; }
-        public string MessageDetails { get; set; }
-        public string StackTrace { get; set; }
     }
 }

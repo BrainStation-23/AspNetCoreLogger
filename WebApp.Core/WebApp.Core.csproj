@@ -62,6 +62,7 @@
 
   <ItemGroup>
     <Compile Include="DataType\ObjectExtension.cs" />
+    <Compile Include="DataType\StringExtention.cs" />
     <Compile Include="Extensions\HttpExtension.cs" />
     <Compile Include="Extensions\EnumExtension.cs" />
     <Compile Include="Extensions\ClassExtension.cs" />
@@ -98,6 +99,9 @@
     <PackageReference Include="StackExchange.Redis.Extensions.AspNetCore" Version="7.0.0" />
     <PackageReference Include="StackExchange.Redis.Extensions.Newtonsoft" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.1" />
+
+
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
 
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
