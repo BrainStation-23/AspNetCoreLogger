@@ -123,7 +123,6 @@
 
   <ItemGroup>
     <Folder Include="Loggers\Serilogs\Sinks\" />
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>
