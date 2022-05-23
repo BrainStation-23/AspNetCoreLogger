@@ -1,1 +1,5812 @@
-{}
+{
+  "WebApp.Core.dll": {
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Loggers\\Serilogs\\Enrichers\\SerilogEnricher.cs": {
+      "AspCoreLog.Loggers.Serilogs.Enrichers.SerilogContextEnricher": {
+        "System.Void AspCoreLog.Loggers.Serilogs.Enrichers.SerilogContextEnricher::Enrich(Serilog.Events.LogEvent,Serilog.Core.ILogEventPropertyFactory)": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0
+          },
+          "Branches": []
+        }
+      },
+      "AspCoreLog.Loggers.Serilogs.Enrichers.RemovePropertiesEnricher": {
+        "System.Void AspCoreLog.Loggers.Serilogs.Enrichers.RemovePropertiesEnricher::Enrich(Serilog.Events.LogEvent,Serilog.Core.ILogEventPropertyFactory)": {
+          "Lines": {
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0
+          },
+          "Branches": []
+        }
+      },
+      "AspCoreLog.Loggers.Serilogs.Enrichers.ThreadIdEnricher": {
+        "System.Void AspCoreLog.Loggers.Serilogs.Enrichers.ThreadIdEnricher::Enrich(Serilog.Events.LogEvent,Serilog.Core.ILogEventPropertyFactory)": {
+          "Lines": {
+            "49": 0,
+            "50": 0,
+            "51": 0
+          },
+          "Branches": []
+        }
+      },
+      "AspCoreLog.Loggers.Serilogs.Enrichers.UtcTimestampEnricher": {
+        "System.Void AspCoreLog.Loggers.Serilogs.Enrichers.UtcTimestampEnricher::Enrich(Serilog.Events.LogEvent,Serilog.Core.ILogEventPropertyFactory)": {
+          "Lines": {
+            "57": 0,
+            "58": 0
+          },
+          "Branches": []
+        }
+      },
+      "AspCoreLog.Loggers.Serilogs.Enrichers.SerilogEnrichExtensions": {
+        "Serilog.LoggerConfiguration AspCoreLog.Loggers.Serilogs.Enrichers.SerilogEnrichExtensions::WithUtcTimestamp(Serilog.Configuration.LoggerEnrichmentConfiguration)": {
+          "Lines": {
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "69": 0,
+            "70": 0
+          },
+          "Branches": [
+            {
+              "Line": 66,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 66,
+              "Offset": 7,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Serialize\\DictionarySerializeExtentions.cs": {
+      "WebApp.Common.Serialize.DictionarySerializeExtentions": {
+        "System.Collections.Generic.Dictionary`2<System.String,System.Object> WebApp.Common.Serialize.DictionarySerializeExtentions::ToDictionary(System.Object)": {
+          "Lines": {
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Serialize\\JsonSerializeExtentions.cs": {
+      "WebApp.Common.Serialize.JsonSerializeExtentions": {
+        "System.String WebApp.Common.Serialize.JsonSerializeExtentions::ToJson(System.Object)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0
+          },
+          "Branches": [
+            {
+              "Line": 11,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 11,
+              "Offset": 7,
+              "EndOffset": 13,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Object WebApp.Common.Serialize.JsonSerializeExtentions::FromJson(System.String)": {
+          "Lines": {
+            "24": 0,
+            "25": 0,
+            "26": 0
+          },
+          "Branches": []
+        },
+        "T WebApp.Common.Serialize.JsonSerializeExtentions::FromJson(System.String)": {
+          "Lines": {
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0
+          },
+          "Branches": []
+        },
+        "T WebApp.Common.Serialize.JsonSerializeExtentions::ToModel(System.String)": {
+          "Lines": {
+            "37": 0,
+            "38": 0,
+            "39": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Common.Serialize.JsonSerializeExtentions::IsValidJson(System.String)": {
+          "Lines": {
+            "42": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "52": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Attributes\\RouteFilterAttribute.cs": {
+      "WebApp.Helpers.Attributes.RouteFilterAttribute": {
+        "System.Void WebApp.Helpers.Attributes.RouteFilterAttribute::OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "34": 0,
+            "35": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "51": 0
+          },
+          "Branches": [
+            {
+              "Line": 25,
+              "Offset": 103,
+              "EndOffset": 105,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 28,
+              "Offset": 128,
+              "EndOffset": 130,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 28,
+              "Offset": 128,
+              "EndOffset": 146,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 25,
+              "Offset": 103,
+              "EndOffset": 147,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 409,
+              "EndOffset": 411,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 409,
+              "EndOffset": 415,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 47,
+              "Offset": 444,
+              "EndOffset": 446,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 47,
+              "Offset": 444,
+              "EndOffset": 479,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void WebApp.Helpers.Attributes.RouteFilterAttribute::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Attributes\\RouteLogModel.cs": {
+      "WebApp.Helpers.Attributes.RouteLogModel": {
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_Area()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_ControllerName()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_ActionName()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_RoleId()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_LanguageId()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_IpAddress()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_IsFirstLogin()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_LoggedInDateTimeUtc()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_LoggedOutDateTimeUtc()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_LoginStatus()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_PageAccessed()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_SessionId()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_UrlReferrer()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Helpers.Attributes.RouteLogModel::get_UserId()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\AppSettings.cs": {
+      "WebApp.Core.AppSettings": {
+        "WebApp.Core.Domain WebApp.Core.AppSettings::get_Domain()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.Jwt WebApp.Core.AppSettings::get_Jwt()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.CacheConfig WebApp.Core.AppSettings::get_CacheConfig()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.Cms WebApp.Core.AppSettings::get_Cms()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.RabbitMqConnection WebApp.Core.AppSettings::get_RabbitMq()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.EmailSetting WebApp.Core.AppSettings::get_EmailSetting()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.SmsSetting WebApp.Core.AppSettings::get_SmsSetting()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.ClientApp WebApp.Core.AppSettings::get_ClientApp()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Domain": {
+        "System.Collections.Generic.List`1<System.String> WebApp.Core.Domain::get_Client1()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> WebApp.Core.Domain::get_Client2()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> WebApp.Core.Domain::get_All()": {
+          "Lines": {
+            "21": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Domain::get_DomainName()": {
+          "Lines": {
+            "22": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.RabbitMqConnection": {
+        "System.String WebApp.Core.RabbitMqConnection::get_Host()": {
+          "Lines": {
+            "35": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.RabbitMqConnection::get_VirtualHost()": {
+          "Lines": {
+            "36": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.RabbitMqConnection::get_UserName()": {
+          "Lines": {
+            "37": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.RabbitMqConnection::get_Password()": {
+          "Lines": {
+            "38": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.RabbitMqConnection::get_QName()": {
+          "Lines": {
+            "39": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 WebApp.Core.RabbitMqConnection::get_PrefetchCount()": {
+          "Lines": {
+            "40": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Jwt": {
+        "System.String WebApp.Core.Jwt::get_Audience()": {
+          "Lines": {
+            "45": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Jwt::get_Issuer()": {
+          "Lines": {
+            "46": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Jwt::get_SecretKey()": {
+          "Lines": {
+            "47": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Jwt::get_Alg()": {
+          "Lines": {
+            "48": 0
+          },
+          "Branches": []
+        },
+        "System.UInt32 WebApp.Core.Jwt::get_ValidForInMinitues()": {
+          "Lines": {
+            "49": 0
+          },
+          "Branches": []
+        },
+        "System.UInt32 WebApp.Core.Jwt::get_RefreshTokenValidForInDays()": {
+          "Lines": {
+            "50": 0
+          },
+          "Branches": []
+        },
+        "System.UInt32 WebApp.Core.Jwt::get_LockUserJwtInMinitues()": {
+          "Lines": {
+            "51": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.Jwt::get_IsValidateIssuer()": {
+          "Lines": {
+            "52": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.Jwt::get_IsValidateAudience()": {
+          "Lines": {
+            "53": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.Jwt::get_IsValidateIssuerSigningKey()": {
+          "Lines": {
+            "54": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.Jwt::get_IsRequireExpirationTime()": {
+          "Lines": {
+            "55": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.Jwt::get_IsValidateLifetime()": {
+          "Lines": {
+            "56": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Jwt::get_AuthenticationScheme()": {
+          "Lines": {
+            "57": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Jwt::get_TokenType()": {
+          "Lines": {
+            "58": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.CacheConfig": {
+        "System.UInt32 WebApp.Core.CacheConfig::get_BaseControllerCacheDuration()": {
+          "Lines": {
+            "63": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.CacheKeyDuration WebApp.Core.CacheConfig::get_HoldingQueuePaged()": {
+          "Lines": {
+            "64": 0
+          },
+          "Branches": []
+        },
+        "System.UInt32 WebApp.Core.CacheConfig::get_LifeLineSyncDurationInMinute()": {
+          "Lines": {
+            "65": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Cms": {
+        "System.String WebApp.Core.Cms::get_Api()": {
+          "Lines": {
+            "70": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.CacheKeyDuration": {
+        "System.String WebApp.Core.CacheKeyDuration::get_CacheKey()": {
+          "Lines": {
+            "75": 0
+          },
+          "Branches": []
+        },
+        "System.UInt32 WebApp.Core.CacheKeyDuration::get_Duration()": {
+          "Lines": {
+            "76": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.EmailSetting": {
+        "System.String WebApp.Core.EmailSetting::get_SenderEmail()": {
+          "Lines": {
+            "81": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.EmailSetting::get_HostServer()": {
+          "Lines": {
+            "82": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 WebApp.Core.EmailSetting::get_SmtpPort()": {
+          "Lines": {
+            "83": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.EmailSetting::get_UserName()": {
+          "Lines": {
+            "84": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.EmailSetting::get_Password()": {
+          "Lines": {
+            "85": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.EmailSetting::get_IsSSL()": {
+          "Lines": {
+            "86": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.EmailSetting::get_IsAsync()": {
+          "Lines": {
+            "87": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 WebApp.Core.EmailSetting::get_TryLimit()": {
+          "Lines": {
+            "88": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.SmsSetting": {
+        "System.String WebApp.Core.SmsSetting::get_Url()": {
+          "Lines": {
+            "93": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.SmsSetting::get_UserName()": {
+          "Lines": {
+            "94": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.SmsSetting::get_Password()": {
+          "Lines": {
+            "95": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 WebApp.Core.SmsSetting::get_TryLimit()": {
+          "Lines": {
+            "96": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.ClientApp": {
+        "System.String WebApp.Core.ClientApp::get_BaseUrl()": {
+          "Lines": {
+            "101": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\DataType\\ObjectExtension.cs": {
+      "WebApp.Core.ObjectExtension": {
+        "System.Object WebApp.Core.ObjectExtension::GetPropValue(System.Object,System.String)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IDictionary`2<System.String,System.String> WebApp.Core.ObjectExtension::ToDictionary(Microsoft.AspNetCore.Http.IFormCollection)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0,
+            "28": 0
+          },
+          "Branches": [
+            {
+              "Line": 22,
+              "Offset": 57,
+              "EndOffset": 22,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 22,
+              "Offset": 57,
+              "EndOffset": 59,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.String WebApp.Core.ObjectExtension::ReadStream(System.IO.Stream)": {
+          "Lines": {
+            "31": 0,
+            "32": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "39": 0,
+            "40": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.ObjectExtension::ReadRequestBody(Microsoft.AspNetCore.Http.HttpRequest)": {
+          "Lines": {
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "48": 0,
+            "49": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.ObjectExtension/<GetBody1Async>d__5": {
+        "System.Void WebApp.Core.ObjectExtension/<GetBody1Async>d__5::MoveNext()": {
+          "Lines": {
+            "78": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "89": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.ObjectExtension/<GetBodyAsync>d__4": {
+        "System.Void WebApp.Core.ObjectExtension/<GetBodyAsync>d__4::MoveNext()": {
+          "Lines": {
+            "61": 0,
+            "62": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "70": 0,
+            "72": 0,
+            "75": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.ObjectExtension/<GetReponseAsync>d__6": {
+        "System.Void WebApp.Core.ObjectExtension/<GetReponseAsync>d__6::MoveNext()": {
+          "Lines": {
+            "92": 0,
+            "93": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "100": 0,
+            "102": 0,
+            "103": 0,
+            "105": 0,
+            "107": 0,
+            "108": 0,
+            "110": 0,
+            "111": 0,
+            "113": 0,
+            "114": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Extensions\\HttpExtension.cs": {
+      "WebApp.Core.Extensions.HttpExtension": {
+        "System.String WebApp.Core.Extensions.HttpExtension::ToAppStatusCode(System.Net.HttpStatusCode)": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "15": 0,
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Extensions.HttpExtension::GetIpAddress(Microsoft.AspNetCore.Http.HttpContext)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0,
+            "33": 0
+          },
+          "Branches": [
+            {
+              "Line": 22,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 25,
+              "Offset": 62,
+              "EndOffset": 64,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 25,
+              "Offset": 62,
+              "EndOffset": 76,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 22,
+              "Offset": 26,
+              "EndOffset": 77,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 29,
+              "Offset": 83,
+              "EndOffset": 85,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 29,
+              "Offset": 83,
+              "EndOffset": 104,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 29,
+              "Offset": 109,
+              "EndOffset": 111,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 29,
+              "Offset": 109,
+              "EndOffset": 128,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Extensions\\EnumExtension.cs": {
+      "WebApp.Core.Extensions.EnumExtension": {
+        "System.Collections.Generic.List`1<WebApp.Core.Extensions.EnumExtension/EnumProperty> WebApp.Core.Extensions.EnumExtension::GetKeyValues(System.Type)": {
+          "Lines": {
+            "13": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "32": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "38": 0
+          },
+          "Branches": [
+            {
+              "Line": 17,
+              "Offset": 16,
+              "EndOffset": 21,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 166,
+              "EndOffset": 37,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 82,
+              "EndOffset": 84,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 82,
+              "EndOffset": 147,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 166,
+              "EndOffset": 171,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 16,
+              "EndOffset": 199,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.String WebApp.Core.Extensions.EnumExtension::GetDescription(System.Type,System.String)": {
+          "Lines": {
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "51": 0,
+            "52": 0,
+            "56": 0,
+            "57": 0,
+            "59": 0
+          },
+          "Branches": [
+            {
+              "Line": 43,
+              "Offset": 47,
+              "EndOffset": 49,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 80,
+              "EndOffset": 82,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 80,
+              "EndOffset": 93,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 47,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.String WebApp.Core.Extensions.EnumExtension::GetEnumDescription(System.Enum)": {
+          "Lines": {
+            "62": 0,
+            "64": 0,
+            "65": 0,
+            "67": 0,
+            "69": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "77": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "83": 0
+          },
+          "Branches": [
+            {
+              "Line": 67,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 67,
+              "Offset": 29,
+              "EndOffset": 42,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 66,
+              "EndOffset": 68,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 66,
+              "EndOffset": 76,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 81,
+              "EndOffset": 83,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 81,
+              "EndOffset": 98,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Int32 WebApp.Core.Extensions.EnumExtension::ParseEnum(System.String)": {
+          "Lines": {
+            "116": 0,
+            "117": 0,
+            "118": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<System.String> WebApp.Core.Extensions.EnumExtension::GetDescriptions(System.Type)": {
+          "Lines": {
+            "127": 0,
+            "128": 0,
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "134": 0,
+            "135": 0,
+            "136": 0,
+            "137": 0,
+            "138": 0,
+            "139": 0,
+            "140": 0
+          },
+          "Branches": [
+            {
+              "Line": 130,
+              "Offset": 118,
+              "EndOffset": 21,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 134,
+              "Offset": 107,
+              "EndOffset": 67,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 134,
+              "Offset": 107,
+              "EndOffset": 109,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 130,
+              "Offset": 118,
+              "EndOffset": 120,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Collections.Generic.List`1<System.Int32> WebApp.Core.Extensions.EnumExtension::GetValuesFromDescription(System.String)": {
+          "Lines": {
+            "143": 0,
+            "144": 0,
+            "145": 0,
+            "147": 0,
+            "148": 0,
+            "150": 0,
+            "151": 0,
+            "152": 0,
+            "153": 0,
+            "155": 0,
+            "156": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "160": 0,
+            "161": 0,
+            "162": 0,
+            "163": 0,
+            "164": 0,
+            "166": 0,
+            "167": 0,
+            "168": 0,
+            "169": 0,
+            "170": 0,
+            "171": 0,
+            "172": 0,
+            "173": 0,
+            "174": 0,
+            "175": 0,
+            "176": 0,
+            "177": 0
+          },
+          "Branches": [
+            {
+              "Line": 147,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 147,
+              "Offset": 29,
+              "EndOffset": 37,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 150,
+              "Offset": 352,
+              "EndOffset": 53,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 0
+            },
+            {
+              "Line": 152,
+              "Offset": 86,
+              "EndOffset": 93,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 156,
+              "Offset": 126,
+              "EndOffset": 128,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 158,
+              "Offset": 156,
+              "EndOffset": 158,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 158,
+              "Offset": 156,
+              "EndOffset": 198,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 156,
+              "Offset": 126,
+              "EndOffset": 204,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 167,
+              "Offset": 238,
+              "EndOffset": 240,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 167,
+              "Offset": 238,
+              "EndOffset": 263,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 168,
+              "Offset": 297,
+              "EndOffset": 299,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 168,
+              "Offset": 297,
+              "EndOffset": 339,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 0
+            },
+            {
+              "Line": 152,
+              "Offset": 86,
+              "EndOffset": 341,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 150,
+              "Offset": 352,
+              "EndOffset": 357,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Extensions.EnumExtension/EnumProperty": {
+        "System.Int32 WebApp.Core.Extensions.EnumExtension/EnumProperty::get_Id()": {
+          "Lines": {
+            "122": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Extensions.EnumExtension/EnumProperty::get_Value()": {
+          "Lines": {
+            "123": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Extensions\\ObjectExtension.cs": {
+      "WebApp.Core.Extensions.ObjectExtension": {
+        "System.Collections.Generic.IList`1<WebApp.Core.Models.PropertyModel> WebApp.Core.Extensions.ObjectExtension::GetPropertyInfo(System.Object)": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": [
+            {
+              "Line": 14,
+              "Offset": 87,
+              "EndOffset": 24,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 16,
+              "Offset": 43,
+              "EndOffset": 45,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 16,
+              "Offset": 43,
+              "EndOffset": 78,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 14,
+              "Offset": 87,
+              "EndOffset": 89,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Collections.Generic.IList`1<System.String> WebApp.Core.Extensions.ObjectExtension::GetPropertyNames(System.Object)": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "28": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Sqls\\BaseEntity.cs": {
+      "WebApp.Core.Sqls.BaseEntity": {
+        "System.Int64 WebApp.Core.Sqls.BaseEntity::get_CreatedBy()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.DateTimeOffset WebApp.Core.Sqls.BaseEntity::get_CreatedDateUtc()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int64> WebApp.Core.Sqls.BaseEntity::get_UpdatedBy()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.DateTimeOffset> WebApp.Core.Sqls.BaseEntity::get_UpdatedDateUtc()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Sqls\\MasterEntity.cs": {
+      "WebApp.Core.Sqls.MasterEntity": {
+        "System.Int64 WebApp.Core.Sqls.MasterEntity::get_Id()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Sqls\\SqlRepository.cs": {
+      "WebApp.Core.Sqls.SqlRepository`1": {
+        "System.Linq.IQueryable`1<T> WebApp.Core.Sqls.SqlRepository`1::Query()": {
+          "Lines": {
+            "26": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Sqls.SqlRepository`1::Attach(T)": {
+          "Lines": {
+            "277": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Sqls.SqlRepository`1::Detach(T)": {
+          "Lines": {
+            "279": 0,
+            "280": 0,
+            "281": 0,
+            "282": 0
+          },
+          "Branches": [
+            {
+              "Line": 280,
+              "Offset": 23,
+              "EndOffset": 25,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 280,
+              "Offset": 23,
+              "EndOffset": 44,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Threading.Tasks.Task`1<TViewModel> WebApp.Core.Sqls.SqlRepository`1::FirstOrDefault(System.Object)": {
+          "Lines": {
+            "285": 0,
+            "286": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task`1<TViewModel> WebApp.Core.Sqls.SqlRepository`1::FirstOrDefaultToAsync(System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>>,System.Func`2<System.Linq.IQueryable`1<T>,System.Linq.IOrderedQueryable`1<T>>)": {
+          "Lines": {
+            "290": 0,
+            "291": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task`1<System.Collections.Generic.List`1<TViewModel>> WebApp.Core.Sqls.SqlRepository`1::GetAllToAsync(System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>>)": {
+          "Lines": {
+            "295": 0,
+            "296": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Sqls.SqlRepository`1::.ctor(Microsoft.EntityFrameworkCore.DbContext)": {
+          "Lines": {
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0
+          },
+          "Branches": [
+            {
+              "Line": 19,
+              "Offset": 14,
+              "EndOffset": 16,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 14,
+              "EndOffset": 27,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<>c": {
+        "System.Linq.IQueryable`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c::<GetPageAsync>b__6_0(System.Linq.IQueryable`1<T>,System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "45": 0
+          },
+          "Branches": []
+        },
+        "System.Linq.IQueryable`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c::<GetPageAsync>b__7_0(System.Linq.IQueryable`1<T>,System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "57": 0
+          },
+          "Branches": []
+        },
+        "System.Linq.IQueryable`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c::<FirstOrDefaultAsync>b__29_0(System.Linq.IQueryable`1<T>,System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "205": 0
+          },
+          "Branches": []
+        },
+        "System.Linq.IQueryable`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c::<FirstOrDefaultAsync>b__30_0(System.Linq.IQueryable`1<T>,System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "215": 0
+          },
+          "Branches": []
+        },
+        "System.Linq.IQueryable`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c::<GetAllAsync>b__35_0(System.Linq.IQueryable`1<T>,System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "257": 0
+          },
+          "Branches": []
+        },
+        "System.Linq.IQueryable`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c::<GetAllAsync>b__36_0(System.Linq.IQueryable`1<T>,System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "270": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<>c__8`1": {
+        "System.Linq.IQueryable`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c__8`1::<GetPageAsync>b__8_0(System.Linq.IQueryable`1<T>,System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "69": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<>c__DisplayClass29_0": {
+        "System.Threading.Tasks.Task`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c__DisplayClass29_0::<FirstOrDefaultAsync>b__1(System.Linq.IQueryable`1<T>)": {
+          "Lines": {
+            "206": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<>c__DisplayClass30_0": {
+        "System.Threading.Tasks.Task`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c__DisplayClass30_0::<FirstOrDefaultAsync>b__1(System.Linq.IQueryable`1<T>)": {
+          "Lines": {
+            "216": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<>c__DisplayClass35_0": {
+        "System.Linq.IQueryable`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c__DisplayClass35_0::<GetAllAsync>b__1(System.Linq.IQueryable`1<T>)": {
+          "Lines": {
+            "258": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<>c__DisplayClass36_0": {
+        "System.Linq.IQueryable`1<T> WebApp.Core.Sqls.SqlRepository`1/<>c__DisplayClass36_0::<GetAllAsync>b__1(System.Linq.IQueryable`1<T>)": {
+          "Lines": {
+            "271": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<AnyAsync>d__11": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<AnyAsync>d__11::MoveNext()": {
+          "Lines": {
+            "97": 0,
+            "98": 0,
+            "100": 0,
+            "101": 0,
+            "103": 0,
+            "104": 0
+          },
+          "Branches": [
+            {
+              "Line": 100,
+              "Offset": 54,
+              "EndOffset": 59,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 100,
+              "Offset": 54,
+              "EndOffset": 194,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<DeleteAsync>d__22": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<DeleteAsync>d__22::MoveNext()": {
+          "Lines": {
+            "135": 0,
+            "136": 0,
+            "138": 0,
+            "139": 0,
+            "141": 0,
+            "143": 0,
+            "144": 0
+          },
+          "Branches": [
+            {
+              "Line": 138,
+              "Offset": 169,
+              "EndOffset": 171,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 138,
+              "Offset": 169,
+              "EndOffset": 182,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<DeleteAsync>d__23": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<DeleteAsync>d__23::MoveNext()": {
+          "Lines": {
+            "147": 0,
+            "148": 0,
+            "149": 0,
+            "150": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<DeleteRangeAsync>d__24": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<DeleteRangeAsync>d__24::MoveNext()": {
+          "Lines": {
+            "153": 0,
+            "154": 0,
+            "155": 0,
+            "156": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<FirstOrDefaultAsync>d__26": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<FirstOrDefaultAsync>d__26::MoveNext()": {
+          "Lines": {
+            "169": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<FirstOrDefaultAsync>d__27": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<FirstOrDefaultAsync>d__27::MoveNext()": {
+          "Lines": {
+            "193": 0,
+            "194": 0,
+            "195": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<FirstOrDefaultAsync>d__28": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<FirstOrDefaultAsync>d__28::MoveNext()": {
+          "Lines": {
+            "198": 0,
+            "199": 0,
+            "200": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<FirstOrDefaultAsync>d__29": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<FirstOrDefaultAsync>d__29::MoveNext()": {
+          "Lines": {
+            "203": 0,
+            "204": 0,
+            "207": 0,
+            "208": 0
+          },
+          "Branches": [
+            {
+              "Line": 204,
+              "Offset": 79,
+              "EndOffset": 81,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 204,
+              "Offset": 79,
+              "EndOffset": 104,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<FirstOrDefaultAsync>d__30": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<FirstOrDefaultAsync>d__30::MoveNext()": {
+          "Lines": {
+            "213": 0,
+            "214": 0,
+            "217": 0
+          },
+          "Branches": [
+            {
+              "Line": 214,
+              "Offset": 90,
+              "EndOffset": 92,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 214,
+              "Offset": 90,
+              "EndOffset": 115,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetAllAsync>d__32": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetAllAsync>d__32::MoveNext()": {
+          "Lines": {
+            "227": 0,
+            "228": 0,
+            "229": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetAllAsync>d__33": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetAllAsync>d__33::MoveNext()": {
+          "Lines": {
+            "240": 0,
+            "241": 0,
+            "242": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetAllAsync>d__34": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetAllAsync>d__34::MoveNext()": {
+          "Lines": {
+            "246": 0,
+            "247": 0,
+            "248": 0,
+            "249": 0,
+            "250": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetAllAsync>d__35": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetAllAsync>d__35::MoveNext()": {
+          "Lines": {
+            "254": 0,
+            "255": 0,
+            "256": 0,
+            "259": 0,
+            "260": 0,
+            "261": 0
+          },
+          "Branches": [
+            {
+              "Line": 255,
+              "Offset": 79,
+              "EndOffset": 81,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 255,
+              "Offset": 79,
+              "EndOffset": 104,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetAllAsync>d__36": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetAllAsync>d__36::MoveNext()": {
+          "Lines": {
+            "266": 0,
+            "267": 0,
+            "268": 0,
+            "269": 0,
+            "272": 0,
+            "273": 0,
+            "274": 0
+          },
+          "Branches": [
+            {
+              "Line": 267,
+              "Offset": 85,
+              "EndOffset": 87,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 267,
+              "Offset": 85,
+              "EndOffset": 110,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetAsNoTrackingAsync>d__25": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetAsNoTrackingAsync>d__25::MoveNext()": {
+          "Lines": {
+            "161": 0,
+            "162": 0,
+            "164": 0,
+            "166": 0,
+            "167": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetDropdownAsync>d__10`1": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetDropdownAsync>d__10`1::MoveNext()": {
+          "Lines": {
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "90": 0,
+            "91": 0
+          },
+          "Branches": [
+            {
+              "Line": 87,
+              "Offset": 62,
+              "EndOffset": 64,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 87,
+              "Offset": 62,
+              "EndOffset": 87,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetDropdownAsync>d__9": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetDropdownAsync>d__9::MoveNext()": {
+          "Lines": {
+            "77": 0,
+            "78": 0,
+            "79": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetPageAsync>d__4": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetPageAsync>d__4::MoveNext()": {
+          "Lines": {
+            "30": 0,
+            "31": 0,
+            "32": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetPageAsync>d__5": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetPageAsync>d__5::MoveNext()": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetPageAsync>d__6": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetPageAsync>d__6::MoveNext()": {
+          "Lines": {
+            "43": 0,
+            "44": 0,
+            "46": 0,
+            "47": 0
+          },
+          "Branches": [
+            {
+              "Line": 44,
+              "Offset": 57,
+              "EndOffset": 59,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 44,
+              "Offset": 57,
+              "EndOffset": 82,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetPageAsync>d__7": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetPageAsync>d__7::MoveNext()": {
+          "Lines": {
+            "54": 0,
+            "56": 0,
+            "58": 0,
+            "59": 0
+          },
+          "Branches": [
+            {
+              "Line": 56,
+              "Offset": 85,
+              "EndOffset": 87,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 56,
+              "Offset": 85,
+              "EndOffset": 110,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<GetPageAsync>d__8`1": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<GetPageAsync>d__8`1::MoveNext()": {
+          "Lines": {
+            "67": 0,
+            "68": 0,
+            "70": 0,
+            "71": 0
+          },
+          "Branches": [
+            {
+              "Line": 68,
+              "Offset": 85,
+              "EndOffset": 87,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 68,
+              "Offset": 85,
+              "EndOffset": 110,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<InsertAsync>d__18": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<InsertAsync>d__18::MoveNext()": {
+          "Lines": {
+            "119": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<InsertRangeAsync>d__19": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<InsertRangeAsync>d__19::MoveNext()": {
+          "Lines": {
+            "120": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<LastOrDefaultAsync>d__31": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<LastOrDefaultAsync>d__31::MoveNext()": {
+          "Lines": {
+            "220": 0,
+            "221": 0,
+            "222": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<RawSqlAsync>d__12": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<RawSqlAsync>d__12::MoveNext()": {
+          "Lines": {
+            "108": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<RawSqlAsync>d__13": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<RawSqlAsync>d__13::MoveNext()": {
+          "Lines": {
+            "109": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<RawSqlFirstOrDefaultAsync>d__16": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<RawSqlFirstOrDefaultAsync>d__16::MoveNext()": {
+          "Lines": {
+            "114": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<RawSqlFirstOrDefaultAsync>d__17": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<RawSqlFirstOrDefaultAsync>d__17::MoveNext()": {
+          "Lines": {
+            "115": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<RawSqlListAsync>d__14": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<RawSqlListAsync>d__14::MoveNext()": {
+          "Lines": {
+            "111": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<RawSqlListAsync>d__15": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<RawSqlListAsync>d__15::MoveNext()": {
+          "Lines": {
+            "112": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<UpdateAsync>d__20": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<UpdateAsync>d__20::MoveNext()": {
+          "Lines": {
+            "123": 0,
+            "124": 0,
+            "125": 0,
+            "126": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Sqls.SqlRepository`1/<UpdateRangeAsync>d__21": {
+        "System.Void WebApp.Core.Sqls.SqlRepository`1/<UpdateRangeAsync>d__21::MoveNext()": {
+          "Lines": {
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Serialize\\DatatableSerializeExtension.cs": {
+      "WebApp.Core.Serialize.DatatableSerializeExtension": {
+        "System.Data.DataTable WebApp.Core.Serialize.DatatableSerializeExtension::ToDataTable(System.Collections.Generic.IList`1<T>)": {
+          "Lines": {
+            "12": 0,
+            "13": 0,
+            "15": 0,
+            "17": 0,
+            "18": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "28": 0,
+            "29": 0
+          },
+          "Branches": [
+            {
+              "Line": 17,
+              "Offset": 90,
+              "EndOffset": 33,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 18,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 18,
+              "Offset": 69,
+              "EndOffset": 78,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 90,
+              "EndOffset": 92,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 20,
+              "Offset": 265,
+              "EndOffset": 129,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 217,
+              "EndOffset": 158,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 196,
+              "EndOffset": 198,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 196,
+              "EndOffset": 204,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 217,
+              "EndOffset": 219,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 20,
+              "Offset": 265,
+              "EndOffset": 270,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Responses\\ApiResponse.cs": {
+      "WebApp.Core.Responses.ApiResponse": {
+        "System.Int32 WebApp.Core.Responses.ApiResponse::get_StatusCode()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.Responses.ApiResponse::get_IsSuccess()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Responses.ApiResponse::get_Message()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Object WebApp.Core.Responses.ApiResponse::get_Data()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<System.String> WebApp.Core.Responses.ApiResponse::get_Errors()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.Responses.ApiResponse::Success(System.Object)": {
+          "Lines": {
+            "56": 0,
+            "57": 0,
+            "58": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Responses.ApiResponse::ToString()": {
+          "Lines": {
+            "61": 0,
+            "62": 0,
+            "64": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Responses.ApiResponse::.ctor()": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Responses.ApiResponse::.ctor(System.Boolean)": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Responses.ApiResponse::.ctor(System.Int32,System.String,System.Collections.Generic.IEnumerable`1<System.String>)": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Responses.ApiResponse::.ctor(System.Object)": {
+          "Lines": {
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Responses.ApiResponse::.ctor(System.Int32,System.Object)": {
+          "Lines": {
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Responses.ApiResponse::.ctor(System.Int32,System.String,System.Object)": {
+          "Lines": {
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Responses\\OkResponse.cs": {
+      "WebApp.Core.Responses.OkResponse": {
+        "System.Void WebApp.Core.Responses.OkResponse::.ctor(System.Object)": {
+          "Lines": {
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Responses.OkResponse/<ExecuteResultAsync>d__2": {
+        "System.Void WebApp.Core.Responses.OkResponse/<ExecuteResultAsync>d__2::MoveNext()": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0,
+            "33": 0
+          },
+          "Branches": [
+            {
+              "Line": 19,
+              "Offset": 30,
+              "EndOffset": 32,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 30,
+              "EndOffset": 36,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 68,
+              "EndOffset": 70,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 68,
+              "EndOffset": 173,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Mongos\\MongoRepository.cs": {
+      "WebApp.Core.Mongos.MongoRepository`1": {
+        "System.String WebApp.Core.Mongos.MongoRepository`1::GetCollectionName(System.Type)": {
+          "Lines": {
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": [
+            {
+              "Line": 25,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 25,
+              "Offset": 29,
+              "EndOffset": 35,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Linq.IQueryable`1<TDocument> WebApp.Core.Mongos.MongoRepository`1::AsQueryable()": {
+          "Lines": {
+            "30": 0,
+            "31": 0,
+            "32": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<TDocument> WebApp.Core.Mongos.MongoRepository`1::Filter(System.Linq.Expressions.Expression`1<System.Func`2<TDocument,System.Boolean>>)": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<TProjected> WebApp.Core.Mongos.MongoRepository`1::Filter(System.Linq.Expressions.Expression`1<System.Func`2<TDocument,System.Boolean>>,System.Linq.Expressions.Expression`1<System.Func`2<TDocument,TProjected>>)": {
+          "Lines": {
+            "41": 0,
+            "42": 0,
+            "43": 0
+          },
+          "Branches": []
+        },
+        "TDocument WebApp.Core.Mongos.MongoRepository`1::Find(System.Linq.Expressions.Expression`1<System.Func`2<TDocument,System.Boolean>>)": {
+          "Lines": {
+            "46": 0,
+            "47": 0,
+            "48": 0
+          },
+          "Branches": []
+        },
+        "TDocument WebApp.Core.Mongos.MongoRepository`1::Find(System.String)": {
+          "Lines": {
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "55": 0,
+            "56": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task`1<TDocument> WebApp.Core.Mongos.MongoRepository`1::FindAsync(System.Linq.Expressions.Expression`1<System.Func`2<TDocument,System.Boolean>>)": {
+          "Lines": {
+            "59": 0,
+            "60": 0,
+            "61": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task`1<TDocument> WebApp.Core.Mongos.MongoRepository`1::FindAsync(System.String)": {
+          "Lines": {
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Mongos.MongoRepository`1::Insert(TDocument)": {
+          "Lines": {
+            "75": 0,
+            "76": 0,
+            "77": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task WebApp.Core.Mongos.MongoRepository`1::InsertAsync(TDocument)": {
+          "Lines": {
+            "80": 0,
+            "81": 0,
+            "82": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Mongos.MongoRepository`1::InsertMany(System.Collections.Generic.ICollection`1<TDocument>)": {
+          "Lines": {
+            "85": 0,
+            "86": 0,
+            "87": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Mongos.MongoRepository`1::Replace(TDocument)": {
+          "Lines": {
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Mongos.MongoRepository`1::Delete(System.String)": {
+          "Lines": {
+            "108": 0,
+            "109": 0,
+            "110": 0,
+            "112": 0,
+            "113": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Mongos.MongoRepository`1::Delete(System.Linq.Expressions.Expression`1<System.Func`2<TDocument,System.Boolean>>)": {
+          "Lines": {
+            "115": 0,
+            "116": 0,
+            "117": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task WebApp.Core.Mongos.MongoRepository`1::DeleteAsync(System.Linq.Expressions.Expression`1<System.Func`2<TDocument,System.Boolean>>)": {
+          "Lines": {
+            "120": 0,
+            "121": 0,
+            "122": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task WebApp.Core.Mongos.MongoRepository`1::DeleteAsync(System.String)": {
+          "Lines": {
+            "125": 0,
+            "126": 0,
+            "127": 0,
+            "128": 0,
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Mongos.MongoRepository`1::DeleteMany(System.Linq.Expressions.Expression`1<System.Func`2<TDocument,System.Boolean>>)": {
+          "Lines": {
+            "136": 0,
+            "137": 0,
+            "138": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task WebApp.Core.Mongos.MongoRepository`1::DeleteManyAsync(System.Linq.Expressions.Expression`1<System.Func`2<TDocument,System.Boolean>>)": {
+          "Lines": {
+            "141": 0,
+            "142": 0,
+            "143": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Mongos.MongoRepository`1::.ctor(WebApp.Core.IMongoDbSettings)": {
+          "Lines": {
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Mongos.MongoRepository`1/<InsertManyAsync>d__14": {
+        "System.Void WebApp.Core.Mongos.MongoRepository`1/<InsertManyAsync>d__14::MoveNext()": {
+          "Lines": {
+            "90": 0,
+            "91": 0,
+            "92": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Mongos.MongoRepository`1/<ReplaceAsync>d__16": {
+        "System.Void WebApp.Core.Mongos.MongoRepository`1/<ReplaceAsync>d__16::MoveNext()": {
+          "Lines": {
+            "101": 0,
+            "102": 0,
+            "103": 0,
+            "104": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Mongos\\Configurations\\MongoDependency.cs": {
+      "WebApp.Core.Mongos.Configurations.MongoDependency": {
+        "System.Void WebApp.Core.Mongos.Configurations.MongoDependency::AddMongoDb(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Mongos.Configurations.MongoDbSettings": {
+        "System.String WebApp.Core.Mongos.Configurations.MongoDbSettings::get_DatabaseName()": {
+          "Lines": {
+            "28": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Mongos.Configurations.MongoDbSettings::get_ConnectionString()": {
+          "Lines": {
+            "29": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Mongos.Configurations.Document": {
+        "MongoDB.Bson.ObjectId WebApp.Core.Mongos.Configurations.Document::get_Id()": {
+          "Lines": {
+            "43": 0
+          },
+          "Branches": []
+        },
+        "System.DateTime WebApp.Core.Mongos.Configurations.Document::get_CreatedAt()": {
+          "Lines": {
+            "45": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Mongos.Configurations.BsonCollectionAttribute": {
+        "System.String WebApp.Core.Mongos.Configurations.BsonCollectionAttribute::get_CollectionName()": {
+          "Lines": {
+            "51": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Mongos.Configurations.BsonCollectionAttribute::.ctor(System.String)": {
+          "Lines": {
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Mongos.Configurations.Person": {
+        "System.String WebApp.Core.Mongos.Configurations.Person::get_FirstName()": {
+          "Lines": {
+            "62": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Mongos.Configurations.Person::get_LastName()": {
+          "Lines": {
+            "63": 0
+          },
+          "Branches": []
+        },
+        "System.DateTime WebApp.Core.Mongos.Configurations.Person::get_BirthDate()": {
+          "Lines": {
+            "64": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Models\\AuditEntry.cs": {
+      "WebApp.Core.Models.AuditEntry": {
+        "Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry WebApp.Core.Models.AuditEntry::get_Entry()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Int64 WebApp.Core.Models.AuditEntry::get_UserId()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.AuditEntry::get_TableName()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.Dictionary`2<System.String,System.Object> WebApp.Core.Models.AuditEntry::get_KeyValues()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.Dictionary`2<System.String,System.Object> WebApp.Core.Models.AuditEntry::get_OldValues()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.Dictionary`2<System.String,System.Object> WebApp.Core.Models.AuditEntry::get_NewValues()": {
+          "Lines": {
+            "21": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.Enums.AuditType WebApp.Core.Models.AuditEntry::get_AuditType()": {
+          "Lines": {
+            "22": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> WebApp.Core.Models.AuditEntry::get_ChangedColumnNames()": {
+          "Lines": {
+            "23": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IDictionary`2<System.String,System.Object> WebApp.Core.Models.AuditEntry::get_Changes()": {
+          "Lines": {
+            "24": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Models.AuditEntry::.ctor(Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry)": {
+          "Lines": {
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Models\\ErrorModel.cs": {
+      "WebApp.Core.Models.ErrorModel": {
+        "System.Nullable`1<System.Int64> WebApp.Core.Models.ErrorModel::get_UserId()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Application()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_IpAddress()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Version()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Host()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Url()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Source()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Form()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Body()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Response()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_RequestHeaders()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_ResponseHeaders()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_ErrorCode()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Scheme()": {
+          "Lines": {
+            "21": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_TraceId()": {
+          "Lines": {
+            "22": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Proctocol()": {
+          "Lines": {
+            "23": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<System.String> WebApp.Core.Models.ErrorModel::get_Errors()": {
+          "Lines": {
+            "24": 0
+          },
+          "Branches": []
+        },
+        "System.Net.HttpStatusCode WebApp.Core.Models.ErrorModel::get_StatusCode()": {
+          "Lines": {
+            "26": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_AppStatusCode()": {
+          "Lines": {
+            "27": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_Message()": {
+          "Lines": {
+            "28": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_MessageDetails()": {
+          "Lines": {
+            "29": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.ErrorModel::get_StackTrace()": {
+          "Lines": {
+            "30": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Models\\ObjectModel.cs": {
+      "WebApp.Core.Models.ObjectModel": {
+        "System.String WebApp.Core.Models.ObjectModel::get_Name()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Models\\PropertyModel.cs": {
+      "WebApp.Core.Models.PropertyModel": {
+        "System.String WebApp.Core.Models.PropertyModel::get_Name()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Object WebApp.Core.Models.PropertyModel::get_Value()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Type WebApp.Core.Models.PropertyModel::get_Type()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Models.PropertyModel::.ctor(System.String,System.Object,System.Type)": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Models\\RequestModel.cs": {
+      "WebApp.Core.Models.RequestModel": {
+        "System.Nullable`1<System.Int64> WebApp.Core.Models.RequestModel::get_UserId()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Application()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_IpAddress()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Version()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Host()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Url()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Source()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Form()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Body()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Response()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_RequestHeaders()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_ResponseHeaders()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Scheme()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_TraceId()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Proctocol()": {
+          "Lines": {
+            "21": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_Area()": {
+          "Lines": {
+            "22": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_ControllerName()": {
+          "Lines": {
+            "23": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_ActionName()": {
+          "Lines": {
+            "24": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_RoleId()": {
+          "Lines": {
+            "25": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_LanguageId()": {
+          "Lines": {
+            "26": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_IsFirstLogin()": {
+          "Lines": {
+            "27": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_LoggedInDateTimeUtc()": {
+          "Lines": {
+            "28": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_LoggedOutDateTimeUtc()": {
+          "Lines": {
+            "29": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_LoginStatus()": {
+          "Lines": {
+            "30": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_PageAccessed()": {
+          "Lines": {
+            "31": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_SessionId()": {
+          "Lines": {
+            "32": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_UrlReferrer()": {
+          "Lines": {
+            "33": 0
+          },
+          "Branches": []
+        },
+        "System.Net.HttpStatusCode WebApp.Core.Models.RequestModel::get_StatusCode()": {
+          "Lines": {
+            "35": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Models.RequestModel::get_AppStatusCode()": {
+          "Lines": {
+            "36": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Middlewares\\ExceptionBase.cs": {
+      "WebApp.Core.Middlewares.ExceptionBase/<ErrorAsync>d__1": {
+        "System.Void WebApp.Core.Middlewares.ExceptionBase/<ErrorAsync>d__1::MoveNext()": {
+          "Lines": {
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0,
+            "34": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "42": 0,
+            "45": 0,
+            "46": 0,
+            "48": 0,
+            "51": 0,
+            "52": 0,
+            "54": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "61": 0,
+            "64": 0,
+            "65": 0,
+            "67": 0,
+            "70": 0,
+            "72": 0,
+            "74": 0,
+            "75": 0
+          },
+          "Branches": [
+            {
+              "Line": 34,
+              "Offset": 219,
+              "EndOffset": 221,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 34,
+              "Offset": 244,
+              "EndOffset": 249,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 34,
+              "Offset": 219,
+              "EndOffset": 284,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 37,
+              "Offset": 309,
+              "EndOffset": 311,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 37,
+              "Offset": 309,
+              "EndOffset": 357,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 34,
+              "Offset": 244,
+              "EndOffset": 404,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 34,
+              "Offset": 272,
+              "EndOffset": 448,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 34,
+              "Offset": 272,
+              "EndOffset": 518,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Middlewares.ExceptionBase/<ToErrorModel>d__2": {
+        "System.Void WebApp.Core.Middlewares.ExceptionBase/<ToErrorModel>d__2::MoveNext()": {
+          "Lines": {
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "95": 0,
+            "96": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "103": 0,
+            "104": 0
+          },
+          "Branches": [
+            {
+              "Line": 80,
+              "Offset": 52,
+              "EndOffset": 54,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 80,
+              "Offset": 52,
+              "EndOffset": 58,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 80,
+              "Offset": 63,
+              "EndOffset": 65,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 80,
+              "Offset": 63,
+              "EndOffset": 76,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 85,
+              "Offset": 247,
+              "EndOffset": 249,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 85,
+              "Offset": 247,
+              "EndOffset": 266,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 91,
+              "Offset": 396,
+              "EndOffset": 398,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 91,
+              "Offset": 396,
+              "EndOffset": 405,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 100,
+              "Offset": 636,
+              "EndOffset": 638,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 100,
+              "Offset": 636,
+              "EndOffset": 642,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Middlewares.ExceptionBase/<ToList>d__0": {
+        "System.Boolean WebApp.Core.Middlewares.ExceptionBase/<ToList>d__0::MoveNext()": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0
+          },
+          "Branches": [
+            {
+              "Line": 21,
+              "Offset": 143,
+              "EndOffset": 65,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 21,
+              "Offset": 143,
+              "EndOffset": 145,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Middlewares\\HttpExtension.cs": {
+      "WebApp.Core.Middlewares.HttpExtension/<FormatResponse>d__2": {
+        "System.Void WebApp.Core.Middlewares.HttpExtension/<FormatResponse>d__2::MoveNext()": {
+          "Lines": {
+            "55": 0,
+            "56": 0,
+            "58": 0,
+            "60": 0,
+            "62": 0,
+            "63": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Middlewares.HttpExtension/<GetRequestBodyAsync>d__1": {
+        "System.Void WebApp.Core.Middlewares.HttpExtension/<GetRequestBodyAsync>d__1::MoveNext()": {
+          "Lines": {
+            "42": 0,
+            "43": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "51": 0,
+            "52": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Middlewares.HttpExtension/<ToModelAsync>d__0": {
+        "System.Void WebApp.Core.Middlewares.HttpExtension/<ToModelAsync>d__0::MoveNext()": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "31": 0,
+            "32": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "38": 0,
+            "39": 0
+          },
+          "Branches": [
+            {
+              "Line": 20,
+              "Offset": 52,
+              "EndOffset": 54,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 20,
+              "Offset": 52,
+              "EndOffset": 58,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 20,
+              "Offset": 63,
+              "EndOffset": 65,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 20,
+              "Offset": 63,
+              "EndOffset": 76,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 201,
+              "EndOffset": 203,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 201,
+              "EndOffset": 220,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 27,
+              "Offset": 337,
+              "EndOffset": 339,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 27,
+              "Offset": 337,
+              "EndOffset": 346,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 577,
+              "EndOffset": 579,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 577,
+              "EndOffset": 583,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Middlewares\\HttpRequestMiddleware.cs": {
+      "WebApp.Core.Middlewares.HttpRequestMiddleware": {
+        "System.String WebApp.Core.Middlewares.HttpRequestMiddleware::ToApiResponse(WebApp.Core.Models.ErrorModel)": {
+          "Lines": {
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "98": 0,
+            "99": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Middlewares.HttpRequestMiddleware::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger`1<WebApp.Core.Middlewares.HttpRequestMiddleware>)": {
+          "Lines": {
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Middlewares.HttpRequestMiddleware/<GetRequestBodyAsync>d__4": {
+        "System.Void WebApp.Core.Middlewares.HttpRequestMiddleware/<GetRequestBodyAsync>d__4::MoveNext()": {
+          "Lines": {
+            "64": 0,
+            "65": 0,
+            "67": 0,
+            "69": 0,
+            "71": 0,
+            "73": 0,
+            "75": 0,
+            "77": 0,
+            "78": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Middlewares.HttpRequestMiddleware/<GetResponseAsync>d__5": {
+        "System.Void WebApp.Core.Middlewares.HttpRequestMiddleware/<GetResponseAsync>d__5::MoveNext()": {
+          "Lines": {
+            "81": 0,
+            "82": 0,
+            "84": 0,
+            "86": 0,
+            "88": 0,
+            "89": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Middlewares.HttpRequestMiddleware/<Invoke>d__3": {
+        "System.Void WebApp.Core.Middlewares.HttpRequestMiddleware/<Invoke>d__3::MoveNext()": {
+          "Lines": {
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "37": 0,
+            "38": 0,
+            "43": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "58": 0,
+            "60": 0,
+            "61": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Middlewares\\ModelBindingExceptionMiddleware.cs": {
+      "WebApp.Core.Middlewares.ModelBindingExceptionMiddleware": {
+        "System.Void WebApp.Core.Middlewares.ModelBindingExceptionMiddleware::ConfigureModelBindingExceptionHandling(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Loggers\\LoggerExtension.cs": {
+      "WebApp.Core.Loggers.LoggerExtension": {
+        "System.Void WebApp.Core.Loggers.LoggerExtension::HttpLog(Microsoft.AspNetCore.Builder.IApplicationBuilder)": {
+          "Lines": {
+            "16": 0,
+            "17": 0,
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IList`1<WebApp.Core.Models.AuditEntry> WebApp.Core.Loggers.LoggerExtension::AuditTrailLog(Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker,System.Int64,System.String)": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Loggers.LoggerExtension::SqlQueryLog(System.String,WebApp.Core.Enums.LogStoreType)": {
+          "Lines": {
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "47": 0,
+            "64": 0
+          },
+          "Branches": [
+            {
+              "Line": 35,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 35,
+              "Offset": 7,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 39,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 39,
+              "Offset": 26,
+              "EndOffset": 32,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 38,
+              "EndOffset": 40,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 38,
+              "EndOffset": 42,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Loggers\\Serilogs\\SerilogExtension.cs": {
+      "WebApp.Core.Loggers.Serilogs.SerilogExtension": {
+        "Serilog.ILogger WebApp.Core.Loggers.Serilogs.SerilogExtension::CreateBootstrap()": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Loggers.Serilogs.SerilogExtension::SelfLog()": {
+          "Lines": {
+            "29": 0,
+            "30": 0,
+            "32": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Loggers.Serilogs.SerilogExtension::Clear()": {
+          "Lines": {
+            "34": 0
+          },
+          "Branches": []
+        },
+        "Serilog.LoggerConfiguration WebApp.Core.Loggers.Serilogs.SerilogExtension::UseEnricher(Serilog.LoggerConfiguration)": {
+          "Lines": {
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "57": 0,
+            "58": 0
+          },
+          "Branches": []
+        },
+        "Serilog.LoggerConfiguration WebApp.Core.Loggers.Serilogs.SerilogExtension::UseConsole(Serilog.LoggerConfiguration)": {
+          "Lines": {
+            "61": 0,
+            "64": 0,
+            "65": 0,
+            "67": 0,
+            "68": 0
+          },
+          "Branches": []
+        },
+        "Serilog.LoggerConfiguration WebApp.Core.Loggers.Serilogs.SerilogExtension::UseDebug(Serilog.LoggerConfiguration)": {
+          "Lines": {
+            "71": 0,
+            "72": 0,
+            "74": 0,
+            "75": 0
+          },
+          "Branches": []
+        },
+        "Serilog.LoggerConfiguration WebApp.Core.Loggers.Serilogs.SerilogExtension::UseFile(Serilog.LoggerConfiguration)": {
+          "Lines": {
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "88": 0,
+            "89": 0
+          },
+          "Branches": []
+        },
+        "Serilog.LoggerConfiguration WebApp.Core.Loggers.Serilogs.SerilogExtension::UseAsync(Serilog.LoggerConfiguration)": {
+          "Lines": {
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "102": 0,
+            "103": 0
+          },
+          "Branches": []
+        },
+        "Serilog.LoggerConfiguration WebApp.Core.Loggers.Serilogs.SerilogExtension::UseSeq(Serilog.LoggerConfiguration)": {
+          "Lines": {
+            "106": 0,
+            "110": 0,
+            "111": 0
+          },
+          "Branches": []
+        },
+        "Serilog.LoggerConfiguration WebApp.Core.Loggers.Serilogs.SerilogExtension::UseMsSql(Serilog.LoggerConfiguration,Microsoft.Extensions.Hosting.HostBuilderContext)": {
+          "Lines": {
+            "114": 0,
+            "115": 0,
+            "116": 0,
+            "117": 0,
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "121": 0,
+            "122": 0,
+            "123": 0,
+            "124": 0,
+            "125": 0,
+            "126": 0,
+            "127": 0,
+            "128": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "134": 0,
+            "135": 0,
+            "136": 0,
+            "137": 0,
+            "138": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "142": 0,
+            "143": 0,
+            "145": 0,
+            "146": 0
+          },
+          "Branches": []
+        },
+        "System.IDisposable WebApp.Core.Loggers.Serilogs.SerilogExtension::BeginPropertyScope(Microsoft.Extensions.Logging.ILogger,System.ValueTuple`2<System.String,System.Object>[])": {
+          "Lines": {
+            "149": 0,
+            "150": 0,
+            "151": 0,
+            "152": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Hostings\\ApplicationHostedService.cs": {
+      "WebApp.Core.Hostings.ApplicationHostedService": {
+        "System.Threading.Tasks.Task WebApp.Core.Hostings.ApplicationHostedService::StartAsync(System.Threading.CancellationToken)": {
+          "Lines": {
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task WebApp.Core.Hostings.ApplicationHostedService::StopAsync(System.Threading.CancellationToken)": {
+          "Lines": {
+            "30": 0,
+            "31": 0,
+            "32": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Hostings.ApplicationHostedService::OnStarted()": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Hostings.ApplicationHostedService::OnStopping()": {
+          "Lines": {
+            "40": 0,
+            "41": 0,
+            "42": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Hostings.ApplicationHostedService::OnStopped()": {
+          "Lines": {
+            "45": 0,
+            "46": 0,
+            "47": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Hostings.ApplicationHostedService::.ctor(Microsoft.Extensions.Logging.ILogger`1<WebApp.Core.Hostings.ApplicationHostedService>,Microsoft.Extensions.Hosting.IHostApplicationLifetime)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Exceptions\\AppException.cs": {
+      "WebApp.Core.Exceptions.AppException": {
+        "System.Void WebApp.Core.Exceptions.AppException::.ctor()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Exceptions.AppException::.ctor(System.String)": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Exceptions.AppException::.ctor(System.String,System.Object[])": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Exceptions.AppException::.ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Exceptions\\BadRequestException.cs": {
+      "WebApp.Core.Exceptions.BadRequestException": {
+        "System.Void WebApp.Core.Exceptions.BadRequestException::.ctor(System.String)": {
+          "Lines": {
+            "9": 0,
+            "10": 0,
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Exceptions.BadRequestException::.ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Exceptions\\EmptyQueryException.cs": {
+      "WebApp.Core.Exceptions.EmptyQueryException": {
+        "System.Void WebApp.Core.Exceptions.EmptyQueryException::.ctor(System.String)": {
+          "Lines": {
+            "9": 0,
+            "10": 0,
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Exceptions.EmptyQueryException::.ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Exceptions\\ExceptionExtension.cs": {
+      "WebApp.Core.Exceptions.ExceptionExtension": {
+        "System.Exception WebApp.Core.Exceptions.ExceptionExtension::ToInnerException(System.Exception)": {
+          "Lines": {
+            "9": 0,
+            "10": 0,
+            "12": 0,
+            "13": 0
+          },
+          "Branches": [
+            {
+              "Line": 10,
+              "Offset": 22,
+              "EndOffset": 3,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 10,
+              "Offset": 22,
+              "EndOffset": 24,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.String WebApp.Core.Exceptions.ExceptionExtension::ToInnerExceptionMessage(System.Exception)": {
+          "Lines": {
+            "16": 0,
+            "17": 0,
+            "19": 0,
+            "20": 0
+          },
+          "Branches": [
+            {
+              "Line": 17,
+              "Offset": 22,
+              "EndOffset": 3,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 22,
+              "EndOffset": 24,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.String WebApp.Core.Exceptions.ExceptionExtension::ToInnerExceptionMessages(System.Exception)": {
+          "Lines": {
+            "23": 0,
+            "24": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "34": 0,
+            "35": 0
+          },
+          "Branches": [
+            {
+              "Line": 24,
+              "Offset": 22,
+              "EndOffset": 3,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 22,
+              "EndOffset": 24,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Exceptions\\NotFoundException.cs": {
+      "WebApp.Core.Exceptions.NotFoundException": {
+        "System.Void WebApp.Core.Exceptions.NotFoundException::.ctor(System.String)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Exceptions.NotFoundException::.ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)": {
+          "Lines": {
+            "16": 0,
+            "17": 0,
+            "18": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Defaults\\DefaultData.cs": {
+      "WebApp.Core.DataType.DefaultData": {
+        "System.String WebApp.Core.DataType.DefaultData::get_AdUsername()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.DataType.DefaultData::get_AdPassword()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\DataType\\StringExtension.cs": {
+      "WebApp.Core.DataType.StringExtension": {
+        "System.String WebApp.Core.DataType.StringExtension::ToString(System.Object)": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": [
+            {
+              "Line": 19,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 7,
+              "EndOffset": 25,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.String WebApp.Core.DataType.StringExtension::ToNullString(System.Object)": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "30": 0,
+            "31": 0
+          },
+          "Branches": [
+            {
+              "Line": 27,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 27,
+              "Offset": 7,
+              "EndOffset": 17,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Boolean WebApp.Core.DataType.StringExtension::IsNotNullOrEmpty(System.String)": {
+          "Lines": {
+            "34": 1,
+            "35": 1,
+            "36": 1
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.DataType.StringExtension::IsNotNullOrWhiteSpace(System.String)": {
+          "Lines": {
+            "39": 0,
+            "40": 0,
+            "41": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> WebApp.Core.DataType.StringExtension::ToSeperateList(System.String,System.Char)": {
+          "Lines": {
+            "44": 0,
+            "45": 0,
+            "46": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.DataType.StringExtension::ToConcat(System.Collections.Generic.IEnumerable`1<System.Char>)": {
+          "Lines": {
+            "49": 0,
+            "50": 0,
+            "51": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.DataType.StringExtension::ToShorten(System.String)": {
+          "Lines": {
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "59": 0,
+            "60": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.DataType.StringExtension::ToSentence(System.String)": {
+          "Lines": {
+            "63": 0,
+            "64": 0,
+            "65": 0
+          },
+          "Branches": [
+            {
+              "Line": 64,
+              "Offset": 2,
+              "EndOffset": 4,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 64,
+              "Offset": 2,
+              "EndOffset": 12,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 64,
+              "Offset": 10,
+              "EndOffset": 12,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 64,
+              "Offset": 10,
+              "EndOffset": 24,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.String WebApp.Core.DataType.StringExtension::SplitCamelCase(System.String)": {
+          "Lines": {
+            "68": 0,
+            "73": 0,
+            "74": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.DataType.StringExtension::AddSpacesToSentence(System.String)": {
+          "Lines": {
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "81": 0,
+            "82": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "91": 0,
+            "92": 0
+          },
+          "Branches": [
+            {
+              "Line": 78,
+              "Offset": 9,
+              "EndOffset": 11,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 78,
+              "Offset": 9,
+              "EndOffset": 19,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 84,
+              "Offset": 132,
+              "EndOffset": 51,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 86,
+              "Offset": 64,
+              "EndOffset": 66,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 86,
+              "Offset": 64,
+              "EndOffset": 84,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 86,
+              "Offset": 89,
+              "EndOffset": 91,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 86,
+              "Offset": 89,
+              "EndOffset": 100,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 84,
+              "Offset": 132,
+              "EndOffset": 134,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.String WebApp.Core.DataType.StringExtension::StandardizeUrl(System.String)": {
+          "Lines": {
+            "95": 0,
+            "96": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "103": 0,
+            "104": 0
+          },
+          "Branches": [
+            {
+              "Line": 98,
+              "Offset": 25,
+              "EndOffset": 27,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 98,
+              "Offset": 25,
+              "EndOffset": 42,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Contexts\\DbContextExtensions.cs": {
+      "WebApp.Core.Contexts.DbContextExtensions": {
+        "System.Collections.Generic.IList`1<WebApp.Core.Models.AuditEntry> WebApp.Core.Contexts.DbContextExtensions::AuditTrail(Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker,System.Int64,System.String)": {
+          "Lines": {
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "50": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "67": 0,
+            "68": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "80": 0,
+            "81": 0,
+            "83": 0,
+            "84": 0,
+            "86": 0,
+            "87": 0
+          },
+          "Branches": [
+            {
+              "Line": 24,
+              "Offset": 626,
+              "EndOffset": 32,
+              "Path": 1,
+              "Ordinal": 25,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 46,
+              "EndOffset": 48,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 55,
+              "EndOffset": 57,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 46,
+              "EndOffset": 81,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 55,
+              "EndOffset": 81,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 86,
+              "EndOffset": 93,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 42,
+              "Offset": 599,
+              "EndOffset": 226,
+              "Path": 1,
+              "Ordinal": 23,
+              "Hits": 0
+            },
+            {
+              "Line": 45,
+              "Offset": 266,
+              "EndOffset": 268,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 45,
+              "Offset": 266,
+              "EndOffset": 296,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 50,
+              "Offset": 312,
+              "EndOffset": 334,
+              "Path": 3,
+              "Ordinal": 11,
+              "Hits": 0
+            },
+            {
+              "Line": 50,
+              "Offset": 312,
+              "EndOffset": 370,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 50,
+              "Offset": 312,
+              "EndOffset": 406,
+              "Path": 2,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 61,
+              "Offset": 417,
+              "EndOffset": 422,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 0
+            },
+            {
+              "Line": 67,
+              "Offset": 491,
+              "EndOffset": 495,
+              "Path": 1,
+              "Ordinal": 15,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 503,
+              "EndOffset": 505,
+              "Path": 0,
+              "Ordinal": 16,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 503,
+              "EndOffset": 509,
+              "Path": 1,
+              "Ordinal": 17,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 526,
+              "EndOffset": 528,
+              "Path": 0,
+              "Ordinal": 18,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 526,
+              "EndOffset": 532,
+              "Path": 1,
+              "Ordinal": 19,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 552,
+              "EndOffset": 554,
+              "Path": 0,
+              "Ordinal": 20,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 552,
+              "EndOffset": 588,
+              "Path": 1,
+              "Ordinal": 21,
+              "Hits": 0
+            },
+            {
+              "Line": 50,
+              "Offset": 312,
+              "EndOffset": 591,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 61,
+              "Offset": 417,
+              "EndOffset": 591,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 0
+            },
+            {
+              "Line": 67,
+              "Offset": 491,
+              "EndOffset": 592,
+              "Path": 0,
+              "Ordinal": 14,
+              "Hits": 0
+            },
+            {
+              "Line": 42,
+              "Offset": 599,
+              "EndOffset": 604,
+              "Path": 0,
+              "Ordinal": 22,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 86,
+              "EndOffset": 620,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 626,
+              "EndOffset": 631,
+              "Path": 0,
+              "Ordinal": 24,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void WebApp.Core.Contexts.DbContextExtensions::Audit(Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker,System.Int64)": {
+          "Lines": {
+            "90": 0,
+            "91": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "103": 0,
+            "104": 0,
+            "105": 0,
+            "106": 0,
+            "107": 0,
+            "108": 0
+          },
+          "Branches": [
+            {
+              "Line": 93,
+              "Offset": 302,
+              "EndOffset": 61,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 0
+            },
+            {
+              "Line": 97,
+              "Offset": 83,
+              "EndOffset": 85,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 99,
+              "Offset": 119,
+              "EndOffset": 121,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 99,
+              "Offset": 119,
+              "EndOffset": 144,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 100,
+              "Offset": 177,
+              "EndOffset": 179,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 100,
+              "Offset": 177,
+              "EndOffset": 202,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 97,
+              "Offset": 83,
+              "EndOffset": 205,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 104,
+              "Offset": 223,
+              "EndOffset": 225,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 104,
+              "Offset": 223,
+              "EndOffset": 228,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 105,
+              "Offset": 272,
+              "EndOffset": 274,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 105,
+              "Offset": 272,
+              "EndOffset": 287,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 93,
+              "Offset": 302,
+              "EndOffset": 307,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 94,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 94,
+              "Offset": 7,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void WebApp.Core.Contexts.DbContextExtensions::RevertChanges(Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker)": {
+          "Lines": {
+            "111": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0,
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "122": 0,
+            "123": 0,
+            "125": 0,
+            "126": 0
+          },
+          "Branches": [
+            {
+              "Line": 112,
+              "Offset": 125,
+              "EndOffset": 57,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 114,
+              "Offset": 79,
+              "EndOffset": 83,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 114,
+              "Offset": 79,
+              "EndOffset": 89,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 114,
+              "Offset": 85,
+              "EndOffset": 107,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 114,
+              "Offset": 85,
+              "EndOffset": 117,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 112,
+              "Offset": 125,
+              "EndOffset": 127,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Data.DataTable WebApp.Core.Contexts.DbContextExtensions::GetDataTable(Microsoft.EntityFrameworkCore.DbContext,System.String,System.Collections.Generic.List`1<System.Data.SqlClient.SqlParameter>,System.Data.CommandType)": {
+          "Lines": {
+            "132": 0,
+            "133": 0,
+            "135": 0,
+            "136": 0,
+            "137": 0,
+            "138": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "142": 0,
+            "144": 0,
+            "145": 0,
+            "146": 0,
+            "147": 0,
+            "149": 0,
+            "150": 0
+          },
+          "Branches": [
+            {
+              "Line": 139,
+              "Offset": 60,
+              "EndOffset": 62,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 139,
+              "Offset": 60,
+              "EndOffset": 70,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 139,
+              "Offset": 75,
+              "EndOffset": 77,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 139,
+              "Offset": 75,
+              "EndOffset": 97,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Data.DataSet WebApp.Core.Contexts.DbContextExtensions::GetDataSet(Microsoft.EntityFrameworkCore.DbContext,System.String,System.Collections.Generic.List`1<System.Data.SqlClient.SqlParameter>)": {
+          "Lines": {
+            "153": 0,
+            "154": 0,
+            "156": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "160": 0,
+            "161": 0,
+            "162": 0,
+            "163": 0,
+            "164": 0,
+            "165": 0,
+            "167": 0,
+            "168": 0,
+            "170": 0,
+            "171": 0
+          },
+          "Branches": [
+            {
+              "Line": 160,
+              "Offset": 60,
+              "EndOffset": 62,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 160,
+              "Offset": 60,
+              "EndOffset": 70,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 160,
+              "Offset": 75,
+              "EndOffset": 77,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 160,
+              "Offset": 75,
+              "EndOffset": 97,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Object WebApp.Core.Contexts.DbContextExtensions::GetDatabaseInfo(Microsoft.Extensions.Configuration.IConfiguration)": {
+          "Lines": {
+            "174": 0,
+            "175": 0,
+            "176": 0,
+            "178": 0,
+            "179": 0,
+            "180": 0,
+            "181": 0,
+            "182": 0,
+            "183": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Contexts\\ModelBuilderExtension.cs": {
+      "WebApp.Core.Contexts.ModelBuilderExtension": {
+        "System.Collections.Generic.IEnumerable`1<Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType> WebApp.Core.Contexts.ModelBuilderExtension::EntityTypes(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "12": 0,
+            "13": 0,
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IEnumerable`1<Microsoft.EntityFrameworkCore.Metadata.IMutableProperty> WebApp.Core.Contexts.ModelBuilderExtension::Properties(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0
+          },
+          "Branches": [
+            {
+              "Line": 23,
+              "Offset": 13,
+              "EndOffset": 15,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 13,
+              "EndOffset": 38,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void WebApp.Core.Contexts.ModelBuilderExtension::Configure(System.Collections.Generic.IEnumerable`1<Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType>,System.Action`1<Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType>)": {
+          "Lines": {
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0
+          },
+          "Branches": [
+            {
+              "Line": 28,
+              "Offset": 34,
+              "EndOffset": 11,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 28,
+              "Offset": 34,
+              "EndOffset": 36,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void WebApp.Core.Contexts.ModelBuilderExtension::Configure(System.Collections.Generic.IEnumerable`1<Microsoft.EntityFrameworkCore.Metadata.IMutableProperty>,System.Action`1<Microsoft.EntityFrameworkCore.Metadata.IMutableProperty>)": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0
+          },
+          "Branches": [
+            {
+              "Line": 36,
+              "Offset": 34,
+              "EndOffset": 11,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 34,
+              "EndOffset": 36,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void WebApp.Core.Contexts.ModelBuilderExtension::DateTimeConvention(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "44": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0
+          },
+          "Branches": [
+            {
+              "Line": 58,
+              "Offset": 21,
+              "EndOffset": 23,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 58,
+              "Offset": 21,
+              "EndOffset": 46,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void WebApp.Core.Contexts.ModelBuilderExtension::DecimalConvention(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0
+          },
+          "Branches": [
+            {
+              "Line": 71,
+              "Offset": 21,
+              "EndOffset": 23,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 21,
+              "EndOffset": 46,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 76,
+              "Offset": 20,
+              "EndOffset": 22,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 76,
+              "Offset": 20,
+              "EndOffset": 36,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 78,
+              "Offset": 55,
+              "EndOffset": 57,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 78,
+              "Offset": 55,
+              "EndOffset": 70,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void WebApp.Core.Contexts.ModelBuilderExtension::RelationConvetion(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Contexts.ModelBuilderExtension::PluralzseTableNameConventions(Microsoft.EntityFrameworkCore.ModelBuilder,System.Boolean)": {
+          "Lines": {
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0
+          },
+          "Branches": [
+            {
+              "Line": 94,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 94,
+              "Offset": 7,
+              "EndOffset": 52,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Collections\\Dropdown.cs": {
+      "WebApp.Core.Collections.Dropdown`1": {
+        "System.Collections.Generic.IList`1<T> WebApp.Core.Collections.Dropdown`1::get_Data()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 WebApp.Core.Collections.Dropdown`1::get_Size()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Collections.Dropdown`1::.ctor(System.Collections.Generic.IList`1<T>,System.Int32)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Collections.Dropdown`1::.ctor()": {
+          "Lines": {
+            "16": 0,
+            "17": 0,
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Collections.Dropdown`1::.ctor(WebApp.Core.Collections.IDropdown`1<T>)": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Collections\\DropdownExtension.cs": {
+      "WebApp.Core.Collections.DropdownExtension": {
+        "WebApp.Core.Collections.Dropdown`1<TDestination> WebApp.Core.Collections.DropdownExtension::ToDropdownModel(WebApp.Core.Collections.Dropdown`1<TSource>,AutoMapper.IMapper)": {
+          "Lines": {
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "36": 0,
+            "37": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.Collections.Paging`1<TDestination> WebApp.Core.Collections.DropdownExtension::ToDropdownModel(WebApp.Core.Collections.Dropdown`1<System.Object>,AutoMapper.IMapper)": {
+          "Lines": {
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Collections.DropdownExtension/<DropdownAsync>d__0`1": {
+        "System.Void WebApp.Core.Collections.DropdownExtension/<DropdownAsync>d__0`1::MoveNext()": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "17": 0,
+            "18": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Collections.DropdownExtension/<DropdownAsync>d__1`2": {
+        "System.Void WebApp.Core.Collections.DropdownExtension/<DropdownAsync>d__1`2::MoveNext()": {
+          "Lines": {
+            "21": 0,
+            "22": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Collections\\Paging.cs": {
+      "WebApp.Core.Collections.Paging`1": {
+        "System.Void WebApp.Core.Collections.Paging`1::.ctor(System.Int32,System.Int32,System.Collections.Generic.IList`1<T>,System.Int32)": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0
+          },
+          "Branches": [
+            {
+              "Line": 10,
+              "Offset": 14,
+              "EndOffset": 16,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 10,
+              "Offset": 14,
+              "EndOffset": 27,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 63,
+              "EndOffset": 65,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 63,
+              "EndOffset": 70,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void WebApp.Core.Collections.Paging`1::.ctor()": {
+          "Lines": {
+            "23": 0,
+            "24": 0,
+            "25": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Collections.Paging`1::.ctor(System.Collections.Generic.IList`1<T>,System.Int32)": {
+          "Lines": {
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Collections.Paging`1::.ctor(WebApp.Core.Collections.PagingBase`1<T>)": {
+          "Lines": {
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Collections\\PagingBase.cs": {
+      "WebApp.Core.Collections.PagingBase`1": {
+        "System.Collections.Generic.IList`1<T> WebApp.Core.Collections.PagingBase`1::get_Data()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 WebApp.Core.Collections.PagingBase`1::get_Total()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 WebApp.Core.Collections.PagingBase`1::get_PageIndex()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 WebApp.Core.Collections.PagingBase`1::get_PageSize()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 WebApp.Core.Collections.PagingBase`1::get_CurrentPage()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 WebApp.Core.Collections.PagingBase`1::get_TotalPage()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.Collections.PagingBase`1::get_HasPreviousPage()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.Collections.PagingBase`1::get_HasNextPage()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Collections\\PagingExtention.cs": {
+      "WebApp.Core.Collections.PagingExtention": {
+        "WebApp.Core.Collections.Paging`1<T> WebApp.Core.Collections.PagingExtention::Paging(System.Linq.IQueryable`1<T>,System.Int32,System.Int32)": {
+          "Lines": {
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "49": 0,
+            "51": 0,
+            "52": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.Collections.Paging`1<TResult> WebApp.Core.Collections.PagingExtention::Paging(System.Collections.Generic.List`1<T>,System.Linq.Expressions.Expression`1<System.Func`2<T,TResult>>,System.Int32,System.Int32)": {
+          "Lines": {
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0
+          },
+          "Branches": [
+            {
+              "Line": 57,
+              "Offset": 19,
+              "EndOffset": 21,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 57,
+              "Offset": 19,
+              "EndOffset": 24,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 60,
+              "Offset": 39,
+              "EndOffset": 41,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 60,
+              "Offset": 39,
+              "EndOffset": 71,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "WebApp.Core.Collections.Paging`1<TDestination> WebApp.Core.Collections.PagingExtention::ToPagingModel(WebApp.Core.Collections.Paging`1<TSource>,AutoMapper.IMapper)": {
+          "Lines": {
+            "73": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0
+          },
+          "Branches": []
+        },
+        "WebApp.Core.Collections.Paging`1<TDestination> WebApp.Core.Collections.PagingExtention::ToPagingModel(WebApp.Core.Collections.Paging`1<System.Object>,AutoMapper.IMapper)": {
+          "Lines": {
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0
+          },
+          "Branches": []
+        }
+      },
+      "WebApp.Core.Collections.PagingExtention/<PagingAsync>d__0`1": {
+        "System.Void WebApp.Core.Collections.PagingExtention/<PagingAsync>d__0`1::MoveNext()": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "23": 0,
+            "24": 0
+          },
+          "Branches": [
+            {
+              "Line": 17,
+              "Offset": 186,
+              "EndOffset": 188,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 186,
+              "EndOffset": 196,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 20,
+              "Offset": 226,
+              "EndOffset": 231,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 20,
+              "Offset": 226,
+              "EndOffset": 391,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "WebApp.Core.Collections.PagingExtention/<PagingAsync>d__1`2": {
+        "System.Void WebApp.Core.Collections.PagingExtention/<PagingAsync>d__1`2::MoveNext()": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0
+          },
+          "Branches": [
+            {
+              "Line": 29,
+              "Offset": 186,
+              "EndOffset": 188,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 29,
+              "Offset": 186,
+              "EndOffset": 196,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 32,
+              "Offset": 226,
+              "EndOffset": 231,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 32,
+              "Offset": 226,
+              "EndOffset": 402,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Projects\\Documents\\github\\webapp\\WebApp.Core\\Acls\\SignInHelper.cs": {
+      "WebApp.Core.Acls.SignInHelper": {
+        "System.Nullable`1<System.Int64> WebApp.Core.Acls.SignInHelper::get_UserId()": {
+          "Lines": {
+            "36": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Acls.SignInHelper::get_Email()": {
+          "Lines": {
+            "37": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Acls.SignInHelper::get_Fullname()": {
+          "Lines": {
+            "38": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Acls.SignInHelper::get_MobileNumber()": {
+          "Lines": {
+            "39": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Acls.SignInHelper::get_Username()": {
+          "Lines": {
+            "40": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> WebApp.Core.Acls.SignInHelper::get_Roles()": {
+          "Lines": {
+            "42": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean WebApp.Core.Acls.SignInHelper::get_IsAuthenticated()": {
+          "Lines": {
+            "44": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Acls.SignInHelper::get_AccessToken()": {
+          "Lines": {
+            "45": 0
+          },
+          "Branches": []
+        },
+        "System.DateTimeOffset WebApp.Core.Acls.SignInHelper::get_JwtExpiresAt()": {
+          "Lines": {
+            "46": 0
+          },
+          "Branches": []
+        },
+        "System.String WebApp.Core.Acls.SignInHelper::get_RequestOrigin()": {
+          "Lines": {
+            "47": 0
+          },
+          "Branches": []
+        },
+        "System.Void WebApp.Core.Acls.SignInHelper::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "34": 0
+          },
+          "Branches": [
+            {
+              "Line": 17,
+              "Offset": 22,
+              "EndOffset": 24,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 22,
+              "EndOffset": 36,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 42,
+              "EndOffset": 44,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 42,
+              "EndOffset": 56,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 62,
+              "EndOffset": 64,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 62,
+              "EndOffset": 76,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 82,
+              "EndOffset": 84,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 82,
+              "EndOffset": 96,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 116,
+              "EndOffset": 121,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 129,
+              "EndOffset": 131,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 129,
+              "EndOffset": 135,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 141,
+              "EndOffset": 143,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 0
+            },
+            {
+              "Line": 19,
+              "Offset": 141,
+              "EndOffset": 147,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 116,
+              "EndOffset": 382,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    }
+  }
+}

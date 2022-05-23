@@ -62,7 +62,7 @@
 
   <ItemGroup>
     <Compile Include="DataType\ObjectExtension.cs" />
-    <Compile Include="DataType\StringExtention.cs" />
+    <Compile Include="DataType\StringExtension.cs" />
     <Compile Include="Extensions\HttpExtension.cs" />
     <Compile Include="Extensions\EnumExtension.cs" />
     <Compile Include="Extensions\ClassExtension.cs" />

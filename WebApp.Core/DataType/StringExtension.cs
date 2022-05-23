@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 
 namespace WebApp.Core.DataType
 {
-    public static class StringExtention
+    public static class StringExtension
     {
         public static string ToString(this object value)
         {

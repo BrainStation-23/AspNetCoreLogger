@@ -3,6 +3,7 @@ trigger:
     include:
       - main
       - master
+      - develop
 
 pool:
   vmImage: 'windows-latest'
@@ -11,6 +12,8 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  # disable.coverage.autogenerate: 'true'
 
 steps:
 - script: echo Directories - $(Build.SourcesDirectory) - $(Agent.TempDirectory)
@@ -18,6 +21,7 @@ steps:
 
 - task: SonarQubePrepare@5
   displayName: 'SonarQube Preapare'
+  condition: eq(variables.isMaster, 'true')
   inputs:
     SonarQube: 'Azure 2023 VM SonarQube'
     scannerMode: 'MSBuild'
@@ -54,6 +58,18 @@ steps:
       /p:ThresholdType=line
       /p:Exclude="[WebApp.Sql]*%2c[WebApp.Service]*"
     '
+- script: |
+    cd $(Build.SourcesDirectory)
+    dir
+# - task: reportgenerator@5
+#   inputs:
+#     reports: $(Build.SourcesDirectory)\**\TestResults\coverage.cobertura.xml
+#     targetdir: $(Build.SourcesDirectory)\coveragereport
+#     reporttypes: 'HTML;HtmlInline_AzurePipelines;Badges;Cobertura'
+#     assemblyfilters: '-*tests*'
+#     title: 'Dotnet Logger Report'
+#     tag: '$(build.buildnumber)_#$(build.buildid)'
+
 - task: PublishCodeCoverageResults@1
   displayName: 'Dotnet Test Publish Code Coverage'
   inputs:
@@ -62,8 +78,18 @@ steps:
     reportDirectory: $(Build.SourcesDirectory)/coveragereport
     failIfCoverageEmpty: false
 
+# - task: PublishCodeCoverageResults@1
+#   displayName: 'Dotnet Test Publish Code Coverage'
+#   inputs:
+#     codeCoverageTool: 'cobertura'
+#     summaryFileLocation: $(Build.SourcesDirectory)\coveragereport\Cobertura.xml
+#     reportDirectory: $(Build.SourcesDirectory)\coveragereport
+#     failIfCoverageEmpty: false
+
 - task: SonarQubeAnalyze@5
+  condition: eq(variables.isMaster, 'true')
 - task: SonarQubePublish@5
+  condition: eq(variables.isMaster, 'true')
   inputs:
     pollingTimeoutSec: '300'
 
