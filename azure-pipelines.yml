@@ -16,18 +16,21 @@ variables:
 steps:
 - script: echo Directories - $(Build.SourcesDirectory) - $(Agent.TempDirectory)
 - script: printenv
+
+- task: SonarQubePrepare@5
+  displayName: 'SonarQube Preapare''
+  inputs:
+    SonarQube: 'Azure 2023 VM SonarQube'
+    scannerMode: 'MSBuild'
+    projectKey: 'DotnetCoreLogger'
+    projectName: 'DotnetCoreLogger'
+
 - task: DotNetCoreCLI@2
   displayName: Restore
   inputs:
     command: 'restore'
     projects: "**/*.csproj"
 
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'Azure 2023 VM SonarQube'
-    scannerMode: 'MSBuild'
-    projectKey: 'DotnetCoreLogger'
-    projectName: 'DotnetCoreLogger'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
