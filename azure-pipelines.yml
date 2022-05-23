@@ -18,7 +18,7 @@ steps:
 - script: printenv
 
 - task: SonarQubePrepare@5
-  displayName: 'SonarQube Preapare''
+  displayName: 'SonarQube Preapare'
   inputs:
     SonarQube: 'Azure 2023 VM SonarQube'
     scannerMode: 'MSBuild'
