@@ -19,7 +19,8 @@ namespace WebApp.Core.Middlewares
         private readonly RequestDelegate _next;
         private readonly ILogger<HttpRequestMiddleware> _logger;
 
-        public HttpRequestMiddleware(RequestDelegate next, ILogger<HttpRequestMiddleware> logger)
+        public HttpRequestMiddleware(RequestDelegate next,
+            ILogger<HttpRequestMiddleware> logger)
         {
             _next = next;
             _logger = logger;
@@ -30,35 +31,38 @@ namespace WebApp.Core.Middlewares
             var errorModel = new ErrorModel();
             var requestModel = new RequestModel();
 
-            //var originalBodyStream = context.Response.Body;
-            //var responseBody = new MemoryStream();
+            var originalBodyStream = context.Response.Body;
+            var responseBody = new MemoryStream();
 
             try
             {
                 requestModel = await context.ToModelAsync();
-                //requestModel.Body = await context.Request.GetRequestBodyAsync();
+                requestModel.Body = await GetRequestBodyAsync(context.Request);
 
-                //context.Response.Body = responseBody;
+                context.Response.Body = responseBody;
 
                 await _next(context);
 
-                //requestModel.Response = await GetResponseAsync(context.Response);
+                requestModel.Response = await GetResponseAsync(context.Response);
 
-                //await responseBody.CopyToAsync(originalBodyStream);
-                //context.Response.Body = originalBodyStream;
+                await responseBody.CopyToAsync(originalBodyStream);
+                context.Response.Body = originalBodyStream;
             }
             catch (Exception exception)
             {
-                //context.Response.Body = originalBodyStream;
+                context.Response.Body = originalBodyStream;
                 errorModel = await exception.ErrorAsync(context, _logger);
                 var apiResponse = ToApiResponse(errorModel);
                 await context.Response.WriteAsync(apiResponse);
             }
             finally
             {
-                //await responseBody.DisposeAsync();
+                await responseBody.DisposeAsync();
             }
         }
+
+
+
 
         public async Task<string> GetRequestBodyAsync(HttpRequest request)
         {
@@ -71,10 +75,11 @@ namespace WebApp.Core.Middlewares
             await request.Body.ReadAsync(buffer.AsMemory(0, buffer.Length));
 
             var bodyAsText = Encoding.UTF8.GetString(buffer);
+            request.Body.Position = 0;
 
-            request.Body = body;
+            //request.Body = body;
 
-            return $"{request.Scheme} {request.Host}{request.Path} {request.QueryString} {bodyAsText}";
+            return bodyAsText;
         }
 
         public async Task<string> GetResponseAsync(HttpResponse response)

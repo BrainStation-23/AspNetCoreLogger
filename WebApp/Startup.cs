@@ -16,6 +16,7 @@ using WebApp.Core.Hostings;
 using WebApp.Core.Loggers;
 using WebApp.Core.Middlewares;
 using WebApp.Core.Mongos.Configurations;
+using WebApp.Helpers.Attributes;
 using WebApp.Service.Configurations;
 using WebApp.Sql.Configurations;
 
@@ -36,16 +37,24 @@ namespace WebApp
         {
 
             services.AddHostedService<ApplicationHostedService>();
-            services.AddControllers().AddNewtonsoftJson(options =>
+
+            services.AddSession();
+            services.AddDistributedMemoryCache();
+            services.AddControllers(
+                //options => {
+                //    options.Filters.Add<RouteFilterAttribute>();
+                //}
+                ).AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
+            
             //services.AddControllersWithViews(options =>
             //{
             //    options.Filters.Add<RouteFilterAttribute>();
             //});
-            //services.AddScoped<RouteFilterAttribute>();            
+            //services.AddScoped<RouteFilterAttribute>();
             services.AddDbContextDependencies(Configuration);
             services.AddServiceDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -110,6 +119,7 @@ namespace WebApp
             app.UseAuthorization();
             //app.UseSession();
             app.HttpLog();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

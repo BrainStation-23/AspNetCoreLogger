@@ -46,10 +46,13 @@ namespace WebApp.Core.Middlewares
             var buffer = new byte[Convert.ToInt32(request.ContentLength)];
             await request.Body.ReadAsync(buffer.AsMemory(0, buffer.Length));
             var bodyAsText = Encoding.UTF8.GetString(buffer);
+            request.Body.Position = 0;
             request.Body = body;
 
             return bodyAsText;
         }
+
+      
 
         public static async Task<string> FormatResponse(this HttpResponse response)
         {
