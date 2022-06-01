@@ -49,7 +49,7 @@ namespace WebApp
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
-            
+
             //services.AddControllersWithViews(options =>
             //{
             //    options.Filters.Add<RouteFilterAttribute>();
@@ -58,6 +58,7 @@ namespace WebApp
             services.AddDbContextDependencies(Configuration);
             services.AddServiceDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddDapper();
             //services.AddHealthChecks();
 
             services.AddHttpContextAccessor();
@@ -118,6 +119,7 @@ namespace WebApp
             //app.ExceptionLog();
             app.UseAuthorization();
             //app.UseSession();
+            app.ExceptionLog();
             app.HttpLog();
             app.UseSession();
 

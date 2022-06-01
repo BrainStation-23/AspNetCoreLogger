@@ -38,12 +38,6 @@ namespace WebApp.Helpers.Attributes
             var request = context.HttpContext.Request;
             RequestHeaders header = request.GetTypedHeaders();
 
-            //route.LanguageId = Convert.ToString(context.HttpContext.Session.GetInt32(AllSessionKeys.LangId));
-            //route.UserId = Convert.ToString(context.HttpContext.Session.GetInt32(AllSessionKeys.UserId));
-            //route.RoleId = Convert.ToString(context.HttpContext.Session.GetInt32(AllSessionKeys.RoleId));
-            //route.IsFirstLogin = Convert.ToString(context.HttpContext.Session.GetString(AllSessionKeys.IsFirstLogin));
-            route.PageAccessed = Convert.ToString(context.HttpContext.Request.Path);
-            route.LoginStatus = "A";
             route.ControllerName = controllerName;
             route.ActionName = actionName;
             //route.SessionId = context.HttpContext.Session.Id;
@@ -51,20 +45,8 @@ namespace WebApp.Helpers.Attributes
             if (_httpContextAccessor.HttpContext != null)
                 route.IpAddress = Convert.ToString(_httpContextAccessor.HttpContext.Connection.RemoteIpAddress);
 
-            var route1 = request.Path.HasValue ? request.Path.Value : "";
-            //var requestHeader = request.Headers.Aggregate("", (current, header) => current + $"{header.Key}: {header.Value}{Environment.NewLine}");
-            var body1 =await BodyToString(context.HttpContext?.Request);
-            var requestBody = "";
-            //request.EnableBuffering();
-            //using (var stream = new StreamReader(request.Body))
-            //{
-            //    stream.BaseStream.Position = 0;
-            //    requestBody = await stream.ReadToEndAsync();
-            //}
-
             await next();
 
-            var body = requestBody;
             // _auditRepository.InsertAuditLogs(objaudit);
         }
 
@@ -90,17 +72,5 @@ namespace WebApp.Helpers.Attributes
 
             return body;
         }
-    }
-
-
-
-
-    public static class AllSessionKeys
-    {
-        public const string RoleId = "Portal.RoleId";
-        public const string UserName = "Portal.UserName";
-        public const string LangId = "Portal.LangId";
-        public const string UserId = "Portal.UserId";
-        public const string IsFirstLogin = "Portal.IsFirstLogin";
     }
 }

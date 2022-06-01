@@ -44,6 +44,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipelines", "pipelines", "{
 		azure-pipelines.yml = azure-pipelines.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scrips", "Scrips", "{6530F204-DF52-4DF9-AD99-4672F4FDFE9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{965B855A-00EB-4290-B955-3BA8F21240F6}"
+	ProjectSection(SolutionItems) = preProject
+		ExceptionLogs_Table.sql = ExceptionLogs_Table.sql
+		RouteLogs_Table.sql = RouteLogs_Table.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +106,7 @@ Global
 		{BB9DDF87-C0CB-4AA1-9385-4BE91F06895E} = {DC9027FB-6524-4BBD-8C9F-CB24B3789663}
 		{1061ED84-5E47-4E41-A94C-027ACC5A5F01} = {DC9027FB-6524-4BBD-8C9F-CB24B3789663}
 		{C0D5CD93-0AE6-41E6-99D5-D1ED4534C5D2} = {7FB15E90-DA6C-4F5E-BB7D-E8F16EC234C5}
+		{965B855A-00EB-4290-B955-3BA8F21240F6} = {6530F204-DF52-4DF9-AD99-4672F4FDFE9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFCCDA0E-EADD-457B-9016-11900245AB18}

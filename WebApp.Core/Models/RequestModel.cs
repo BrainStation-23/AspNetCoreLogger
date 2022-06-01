@@ -22,6 +22,7 @@ namespace WebApp.Core.Models
         public string Area { get; set; }
         public string ControllerName { get; set; }
         public string ActionName { get; set; }
+        public double ExecutionDuration { get; set; }
         public string RoleId { get; set; }
         public string LanguageId { get; set; }
         public string IsFirstLogin { get; set; }
