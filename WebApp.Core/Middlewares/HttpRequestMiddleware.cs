@@ -16,18 +16,15 @@ namespace WebApp.Core.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<HttpRequestMiddleware> _logger;
-        private readonly IRouteLogRepository _routeLogRepository;
 
         public HttpRequestMiddleware(RequestDelegate next,
-            ILogger<HttpRequestMiddleware> logger,
-            IRouteLogRepository routeLogRepository)
+            ILogger<HttpRequestMiddleware> logger)
         {
             _next = next;
             _logger = logger;
-            _routeLogRepository = routeLogRepository;
         }
 
-        public async Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context, IRouteLogRepository routeLogRepository)
         {
             var requestModel = new RequestModel();
 
@@ -48,7 +45,7 @@ namespace WebApp.Core.Middlewares
 
             await responseBody.DisposeAsync();
 
-            await _routeLogRepository.AddAsync(requestModel);
+            await routeLogRepository.AddAsync(requestModel);
         }
     }
 }

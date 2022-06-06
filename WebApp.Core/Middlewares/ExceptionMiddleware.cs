@@ -17,18 +17,15 @@ namespace WebApp.Core.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
-        private readonly IExceptionLogRepository _exceptionLogRepository;
 
         public ExceptionMiddleware(RequestDelegate next,
-            ILogger<ExceptionMiddleware> logger,
-            IExceptionLogRepository exceptionLogRepository)
+            ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
             _logger = logger;
-            _exceptionLogRepository = exceptionLogRepository;
         }
 
-        public async Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context, IExceptionLogRepository exceptionLogRepository)
         {
             var errorModel = new ErrorModel();
             var requestModel = new RequestModel();
@@ -56,7 +53,7 @@ namespace WebApp.Core.Middlewares
                 context.Response.Body = originalBodyStream;
                 var apiResponse = errorModel.ToApiResponse();
                 await context.Response.WriteAsync(apiResponse);
-                await _exceptionLogRepository.AddAsync(errorModel);
+                await exceptionLogRepository.AddAsync(errorModel);
             }
             finally
             {

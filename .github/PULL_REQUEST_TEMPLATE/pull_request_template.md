@@ -5,15 +5,15 @@ Dotnet logger wrapper for fastest usage - accepts pull request from any dotnet l
 
 ## Agreement
 
-Before create pull request please know the workflow, theck tick below checklist
+- Before create pull request please know the workflow, theck tick below checklist
 ```
 Create New Branch -> Made Changes -> Test -> Push -> Pull request 
 -> Review -> 
 Pull Request Accepted & Merge -> Azure CICD with Code Quality -> Deployment 
 ```
-- [ ] I thereby agree & read all the checklists & I am fully responsible for any incidents. 
-- [ ] I am following the guidelines in the contributing document
-- [ ] I am aware of the checklist below and I am ticking the valid points.
+- I thereby agree & read all the checklists & I am fully responsible for any incidents. 
+- I am following the guidelines in the contributing document
+- I am aware of the checklist below and I am ticking the valid points.
 
 ## Type of change Done!
 
