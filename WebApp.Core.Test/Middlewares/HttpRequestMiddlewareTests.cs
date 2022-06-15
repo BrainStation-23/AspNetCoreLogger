@@ -48,8 +48,8 @@ namespace WebApp.Core.Test.Middlewares
             });
 
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, mockRouteLogRepository.Object);
-            await middleware.InvokeAsync(defaultContext);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
 
             // Assert
@@ -70,8 +70,8 @@ namespace WebApp.Core.Test.Middlewares
             });
 
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, mockRouteLogRepository.Object);
-            await middleware.InvokeAsync(defaultContext);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
             var responeBody = await defaultContext.Response.GetResponseAsync();
 
             // Assert
@@ -98,8 +98,8 @@ namespace WebApp.Core.Test.Middlewares
             });
 
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, mockRouteLogRepository.Object);
-            await middleware.InvokeAsync(defaultContext);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
 
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
             var responseBody = await defaultContext.Response.GetResponseAsync();
@@ -141,8 +141,8 @@ namespace WebApp.Core.Test.Middlewares
             //}, logger: mockLogger.Object);
 
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, mockRouteLogRepository.Object);
-            await middleware.InvokeAsync(defaultContext);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
 
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
             var responseBody = await defaultContext.Response.GetResponseAsync();

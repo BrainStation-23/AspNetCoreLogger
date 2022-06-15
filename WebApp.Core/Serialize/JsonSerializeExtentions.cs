@@ -1,11 +1,33 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
+using System.Data;
+using System.Text.RegularExpressions;
 
 namespace WebApp.Common.Serialize
 {
     public static class JsonSerializeExtentions
     {
+        public static string ToJsonSerialize(this DataSet ds)
+        {
+            return JsonConvert.SerializeObject(ds, Formatting.None, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+
+            //return ds.Tables[0].ToJsonSerializer();
+        }
+
+        public static string ToJsonSerialize(this DataTable dt)
+        {
+            return JsonConvert.SerializeObject(dt, Formatting.None, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+        }
+
         public static string ToJson(this object value)
         {
             if (value == null)
@@ -49,6 +71,29 @@ namespace WebApp.Common.Serialize
             {
                 return false;
             }
+        }
+
+        public static string JsonUnescaping(this string value)
+        {
+            var remover = new Dictionary<string, string> {
+                { "\\", ""},
+                { "\"[", "["},
+                { "]\"", "]"},
+                { "\\\t", "\t" },
+                { "\\\n", "\n"},
+                { "\\\r", "\r"},
+                { "\"{", "{"},
+                { "}\"", "}"}
+            };
+
+            foreach (var remove in remover)
+            {
+                value = value.Replace(remove.Key, remove.Value);
+            }
+
+            value = Regex.Unescape(value);
+
+            return value;
         }
     }
 }
