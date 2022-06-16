@@ -6,17 +6,19 @@ using WebApp.Helpers.Base;
 using WebApp.Service;
 using WebApp.Entity.Entities.Blogs;
 using Microsoft.AspNetCore.Authorization;
+using WebApp.Service.Contract.Models;
+using AutoMapper;
 
 namespace WebApp.Controllers
 {
     [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
-    public class PostController : GenericBaseController<PostEntity>
+    public class PostController : GenericBaseController<PostEntity, PostDto>
     {
         private readonly IPostService _postService;
 
-        public PostController(IPostService postService) : base(postService)
+        public PostController(IPostService postService, IMapper mapper) : base(postService, mapper)
         {
             _postService = postService;
         }

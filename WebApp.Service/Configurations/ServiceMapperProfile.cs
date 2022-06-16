@@ -5,6 +5,7 @@ using WebApp.Service.Models.Blogs;
 using WebApp.Service.Models.Users;
 using WebApp.Entity.Entities.Blogs;
 using static WebApp.Entity.Entities.Identities.IdentityModel;
+using WebApp.Service.Contract.Models;
 
 namespace WebApp.Service.Configurations
 {
@@ -20,6 +21,9 @@ namespace WebApp.Service.Configurations
 
             CreateMap<BlogEntity, BlogModel>().ReverseMap();
             CreateMap<PostEntity, PostModel>().ReverseMap();
+
+            CreateMap<BlogEntity, BlogDto>().ReverseMap();
+            CreateMap<PostEntity, PostDto>().ReverseMap();
         }
     }
 }

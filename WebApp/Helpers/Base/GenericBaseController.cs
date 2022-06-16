@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -9,12 +10,14 @@ using WebApp.Services;
 namespace WebApp.Helpers.Base
 {
     [AllowAnonymous]
-    public class GenericBaseController<T> : UserInfoBase where T : class
+    public class GenericBaseController<TEntity, TDto> : UserInfoBase where TEntity : class where TDto : class
     {
-        protected readonly IBaseService<T> _service;
+        protected readonly IBaseService<TEntity, TDto> _service;
+        protected readonly IMapper _mapper;
 
-        public GenericBaseController(IBaseService<T> service)
+        public GenericBaseController(IBaseService<TEntity, TDto> service, IMapper mapper)
         {
+            _mapper = mapper;
             _service = service;
         }
 
@@ -34,16 +37,16 @@ namespace WebApp.Helpers.Base
 
 
         [HttpPost("add")]
-        public virtual async Task<IActionResult> AddAsync(T entity)
+        public virtual async Task<IActionResult> AddAsync(TDto model)
         {
-            var res = await _service.InsertAsync(entity);
+            var res = await _service.InsertAsync(model);
             return Created("", res);
         }
 
         [HttpPut("edit/{id}")]
-        public virtual async Task<IActionResult> EditAsync(long id, T entity)
+        public virtual async Task<IActionResult> EditAsync(long id, TDto model)
         {
-            var res = await _service.UpdateAsync(id, entity);
+            var res = await _service.UpdateAsync(id, model);
             return Ok(res);
         }
 
@@ -55,10 +58,10 @@ namespace WebApp.Helpers.Base
         }
 
         [HttpPost("delete")]
-        public virtual async Task<IActionResult> DeleteAsync(T entity)
+        public virtual async Task<IActionResult> DeleteAsync(TDto model)
         {
-            Type type = entity.GetType();
-            long Id = (long)type.GetProperty("Id").GetValue(entity);
+            Type type = model.GetType();
+            long Id = (long)type.GetProperty("Id").GetValue(model);
             await _service.DeleteAsync(Id);
             return NoContent();
         }

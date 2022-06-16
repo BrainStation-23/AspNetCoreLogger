@@ -7,16 +7,17 @@ using WebApp.Core.Collections;
 using WebApp.Service.Models.Blogs;
 using WebApp.Services;
 using WebApp.Entity.Entities.Blogs;
+using WebApp.Service.Contract.Models;
 
 namespace WebApp.Service
 {
-    public class BlogService : BaseService<BlogEntity>, IBlogService
+    public class BlogService : BaseService<BlogEntity, BlogDto>, IBlogService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public BlogService(IUnitOfWork unitOfWork,
-                IMapper mapper) : base(unitOfWork)
+                IMapper mapper) : base(unitOfWork, mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

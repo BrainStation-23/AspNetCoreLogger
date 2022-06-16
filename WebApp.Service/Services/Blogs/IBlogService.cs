@@ -5,10 +5,11 @@ using WebApp.Service.Models.Blogs;
 using WebApp.Services;
 using WebApp.Entity.Entities.Blogs;
 using Microsoft.AspNetCore.Mvc;
+using WebApp.Service.Contract.Models;
 
 namespace WebApp.Service
 {
-    public interface IBlogService : IBaseService<BlogEntity>
+    public interface IBlogService : IBaseService<BlogEntity, BlogDto>
     {
         Task<Paging<BlogModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<BlogModel> AddBlogDetailAsync(BlogModel model);

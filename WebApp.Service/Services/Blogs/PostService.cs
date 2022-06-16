@@ -8,16 +8,17 @@ using WebApp.Core.Collections;
 using WebApp.Service.Models.Blogs;
 using WebApp.Services;
 using WebApp.Entity.Entities.Blogs;
+using WebApp.Service.Contract.Models;
 
 namespace WebApp.Service
 {
-    public class PostService : BaseService<PostEntity>, IPostService
+    public class PostService : BaseService<PostEntity, PostDto>, IPostService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public PostService(IUnitOfWork unitOfWork,
-                IMapper mapper) : base(unitOfWork)
+                IMapper mapper) : base(unitOfWork, mapper)
         {
             this._unitOfWork = unitOfWork;
             _mapper = mapper;

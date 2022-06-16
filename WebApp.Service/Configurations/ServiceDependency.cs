@@ -14,7 +14,7 @@ namespace WebApp.Service.Configurations
             services.AddRepositoryDependency();
             services.AddAutoMapper(typeof(ServiceMapperProfile));
 
-            services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>));
+            services.AddTransient(typeof(IBaseService<,>), typeof(BaseService<,>));
             
             services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
             

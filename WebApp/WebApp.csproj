@@ -55,6 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebApp.Service.Contract\WebApp.Service.Contract.csproj" />
     <ProjectReference Include="..\WebApp.Service\WebApp.Service.csproj" />
   </ItemGroup>
 

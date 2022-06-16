@@ -19,6 +19,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\WebApp.Core\WebApp.Core.csproj" />
+    <ProjectReference Include="..\WebApp.Service.Contract\WebApp.Service.Contract.csproj" />
     <ProjectReference Include="..\WebApp.Sql\WebApp.Sql.csproj" />
   </ItemGroup>
 

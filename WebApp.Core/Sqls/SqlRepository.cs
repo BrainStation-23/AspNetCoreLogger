@@ -116,19 +116,31 @@ namespace WebApp.Core.Sqls
         #endregion
 
         #region crud
-        public virtual async Task InsertAsync(T entity) => await _dbSet.AddAsync(entity);
-        public virtual async Task InsertRangeAsync(List<T> entities) => await _dbSet.AddRangeAsync(entities);
-
-        public virtual async Task UpdateAsync(T entity)
+        public virtual async Task<T> InsertAsync(T entity)
         {
-            _dbSet.Update(entity);
-            await Task.CompletedTask;
+
+            var added = await _dbSet.AddAsync(entity);
+
+            return added.Entity;
         }
 
-        public virtual async Task UpdateRangeAsync(List<T> entities)
+        public virtual async Task<List<T>> InsertRangeAsync(List<T> entities)
+        {
+            await _dbSet.AddRangeAsync(entities);
+
+            return entities;
+        }
+
+        public virtual async Task<T> UpdateAsync(T entity)
+        {
+            _dbSet.Update(entity);
+            return await Task.FromResult(entity);
+        }
+
+        public virtual async Task<List<T>> UpdateRangeAsync(List<T> entities)
         {
             _dbSet.UpdateRange(entities);
-            await Task.CompletedTask;
+            return await Task.FromResult(entities);
         }
 
         public virtual async Task<T> DeleteAsync(object id)
@@ -143,16 +155,16 @@ namespace WebApp.Core.Sqls
             return entity;
         }
 
-        public virtual async Task DeleteAsync(T entity)
+        public virtual async Task<T> DeleteAsync(T entity)
         {
             _dbSet.Remove(entity);
-            await Task.CompletedTask;
+            return await Task.FromResult(entity);
         }
 
-        public virtual async Task DeleteRangeAsync(List<T> entities)
+        public virtual async Task<List<T>> DeleteRangeAsync(List<T> entities)
         {
             _dbSet.RemoveRange(entities);
-            await Task.CompletedTask;
+            return await Task.FromResult(entities);
         }
         #endregion
 
