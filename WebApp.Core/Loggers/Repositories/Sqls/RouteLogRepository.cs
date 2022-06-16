@@ -2,8 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Text.Json;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WebApp.Common.Serialize;
 using WebApp.Core.Contexts;
@@ -113,13 +111,13 @@ namespace WebApp.Core.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
+                _logger.LogError(nameof(RouteLogRepository), exception);
             }
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
-            dynamic data;
+            dynamic routeLogs;
             var query = @"SELECT * FROM [dbo].[RouteLogs]
                             ORDER BY [Id] DESC
                             OFFSET @Offset ROWS 
@@ -129,38 +127,18 @@ namespace WebApp.Core.Loggers.Repositories
             {
                 using (var connection = _dapper.CreateConnection())
                 {
-                    var response = await connection.QueryAsync(query, pager);
-                    var responseString = response.ToJson().JsonUnescaping();
-                    data = JArray.Parse(responseString);
-                    //data = response;
+                    var routeLogsEntities = await connection.QueryAsync(query, pager);
+                    var routeLogUnescapeString = routeLogsEntities.ToJson().JsonUnescaping();
+                    routeLogs = JArray.Parse(routeLogUnescapeString);
                 }
 
-                return data;
+                return routeLogs;
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
+                _logger.LogError(nameof(RouteLogRepository), exception);
                 throw;
             }
         }
-    }
-
-    public class DapperPager
-    {
-        public int Page { get; set; }
-        public int PageSize { get; set; }
-
-        public int Offset { get; set; }
-        public int Next { get; set; }
-
-        public DapperPager(int page = 0, int pageSize = 10)
-        {
-            Page = page < 1 ? 1 : page;
-            PageSize = pageSize < 1 ? 10 : pageSize;
-
-            Next = pageSize;
-            Offset = (Page - 1) * Next;
-        }
-
     }
 }

@@ -21,6 +21,7 @@ namespace WebApp.Core.Loggers
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
             services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
             services.AddScoped<IRouteLogRepository, RouteLogRepository>();
+            services.AddScoped<IAuditLogRepository, AuditLogRepository>();
         }
 
         public static void HttpLog(this IApplicationBuilder app)

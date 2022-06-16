@@ -1,8 +1,10 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
+using WebApp.Common.Serialize;
 using WebApp.Core.Contexts;
 using WebApp.Core.Models;
 
@@ -107,6 +109,32 @@ namespace WebApp.Core.Loggers.Repositories
             catch (Exception exception)
             {
                 _logger.LogError(nameof(ExceptionLogRepository), exception);
+            }
+        }
+
+        public async Task<dynamic> GetPageAsync(DapperPager pager)
+        {
+            dynamic exceptionLogs;
+            var query = @"SELECT * FROM [dbo].[ExceptionLogs]
+                            ORDER BY [Id] DESC
+                            OFFSET @Offset ROWS 
+                            FETCH NEXT @Next ROWS ONLY";
+
+            try
+            {
+                using (var connection = _dapper.CreateConnection())
+                {
+                    var exceptionLogEntities = await connection.QueryAsync(query, pager);
+                    var exceptionLogUnescapeString = exceptionLogEntities.ToJson().JsonUnescaping();
+                    exceptionLogs = JArray.Parse(exceptionLogUnescapeString);
+                }
+
+                return exceptionLogs;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(nameof(ExceptionLogRepository), exception);
+                throw;
             }
         }
     }

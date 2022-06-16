@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using WebApp.Core.Contexts;
 using WebApp.Core.Models;
 
 namespace WebApp.Core.Loggers.Repositories
