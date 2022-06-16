@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using WebApp.Common.Serialize;
+using WebApp.Core.Extensions;
 
 namespace WebApp.Core.Responses
 {
     public class ApiResponse
     {
         public int StatusCode { get; set; }
+        public string AppStatusCode { get; set; }
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
         public object Data { get; set; }
@@ -25,6 +27,7 @@ namespace WebApp.Core.Responses
         public ApiResponse(int statusCode, string message, IEnumerable<string> errors = null)
         {
             StatusCode = statusCode;
+            AppStatusCode = ((HttpStatusCode)statusCode).ToAppStatusCode();
             Message = message;
             IsSuccess = Success(statusCode);
             Errors = errors;
@@ -34,12 +37,14 @@ namespace WebApp.Core.Responses
         {
             Data = data;
             StatusCode = (int)HttpStatusCode.OK;
+            AppStatusCode = ((HttpStatusCode)(int)HttpStatusCode.OK).ToAppStatusCode();
             IsSuccess = true;
         }
 
         public ApiResponse(int statusCode, object data)
         {
             StatusCode = statusCode;
+            AppStatusCode = ((HttpStatusCode)statusCode).ToAppStatusCode();
             Data = data;
             IsSuccess = Success(statusCode);
         }
@@ -47,6 +52,7 @@ namespace WebApp.Core.Responses
         public ApiResponse(int statusCode, string message, object data)
         {
             StatusCode = statusCode;
+            AppStatusCode = ((HttpStatusCode)statusCode).ToAppStatusCode();
             Message = message;
             Data = data;
             IsSuccess = Success(statusCode);

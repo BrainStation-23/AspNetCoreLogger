@@ -105,7 +105,7 @@ namespace WebApp.Core.Middlewares
         public string ToApiResponse(ErrorModel errorModel)
         {
             var apiResponse = new ApiResponse(false);
-            apiResponse.StatusCode = (int)errorModel.StatusCode;
+            apiResponse.AppStatusCode = errorModel.AppStatusCode;
             apiResponse.Errors = errorModel.Errors;
             var result = JsonSerializer.Serialize(apiResponse);
 

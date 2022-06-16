@@ -22,7 +22,9 @@ namespace WebApp.Core.Middlewares
         {
             var apiResponse = new ApiResponse(false);
             apiResponse.StatusCode = (int)errorModel.StatusCode;
+            apiResponse.AppStatusCode = errorModel.AppStatusCode;
             apiResponse.Errors = errorModel.Errors;
+            apiResponse.Message = errorModel.Message;
 
             return JsonSerializer.Serialize(apiResponse);
         }
@@ -59,7 +61,36 @@ namespace WebApp.Core.Middlewares
             return await Task.FromResult(model);
         }
 
-        public static async Task<ErrorModel> ToErrorModelAsync(this HttpContext context)
+        private static async Task<ErrorModel> ToErrorModelAsync(this HttpContext context, Exception exception)
+        {
+            var model = new ErrorModel();
+            model.UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null;
+            model.Source = exception.Source;
+            model.StackTrace = exception.StackTrace;
+            model.IpAddress = context.GetIpAddress();
+            model.Host = context.Request.Host.ToString();
+            model.Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
+            model.Message = exception.Message;
+            model.StatusCode = (HttpStatusCode)context.Response.StatusCode;
+            model.AppStatusCode = ((HttpStatusCode)context.Response.StatusCode).ToAppStatusCode();
+            model.Application = exception.Source;
+            model.Version = context.Request.Scheme;
+            model.Form = context.Request.HasFormContentType ? JsonSerializer.Serialize(context.Request.Form.ToDictionary()) : string.Empty;
+            model.RequestHeaders = JsonSerializer.Serialize(context.Request.Headers);
+            model.ResponseHeaders = JsonSerializer.Serialize(context.Request.Headers);
+            model.Body = await context.Request.GetRequestBodyAsync();
+            //model.Response = await context.Response.GetResponseAsync();
+            model.TraceId = context.TraceIdentifier;
+            //model.Version = context.Features.HttpVersion;
+            model.Scheme = context.Request.Scheme;
+            model.Proctocol = context.Request.Protocol;
+            model.Url = $"{context.Request.Method} {model?.Url}";
+            model.ErrorCode = exception.GetType().Name.ToShorten();
+
+            return await Task.FromResult(model);
+        }
+
+        public static async Task<ErrorModel> ToErrorModelsAsync(this HttpContext context)
         {
             var model = new ErrorModel();
             model.UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null;
@@ -83,13 +114,12 @@ namespace WebApp.Core.Middlewares
             return await Task.FromResult(model);
         }
 
-
         public static async Task<ErrorModel> ErrorAsync(this Exception exception, HttpContext context, ILogger logger)
         {
             var response = context.Response;
             response.ContentType = "application/json";
 
-            var errorModel = await context.ToErrorModel(exception);
+            var errorModel = await context.ToErrorModelAsync(exception);
 
             switch (exception)
             {
@@ -144,46 +174,17 @@ namespace WebApp.Core.Middlewares
                     break;
 
                 default:
-                    errorModel.StatusCode = HttpStatusCode.InternalServerError;
+                    //errorModel.StatusCode = HttpStatusCode.InternalServerError;
                     errorModel.Message = "Internal Server errors. Check Logs!";
 
                     break;
             }
 
-            errorModel.AppStatusCode = ((HttpStatusCode)response.StatusCode).ToAppStatusCode();
+            errorModel.AppStatusCode = ((HttpStatusCode)errorModel.StatusCode).ToAppStatusCode();
 
             logger.LogError(exception.Message);
 
             return errorModel;
-        }
-
-        private static async Task<ErrorModel> ToErrorModel(this HttpContext context, Exception exception)
-        {
-            var model = new ErrorModel();
-            model.UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null;
-            model.Source = exception.Source;
-            model.StackTrace = exception.StackTrace;
-            model.IpAddress = context.GetIpAddress();
-            model.Host = context.Request.Host.ToString();
-            model.Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
-            model.Message = exception.Message;
-            model.StatusCode = (HttpStatusCode)context.Response.StatusCode;
-            //model.AppStatusCode = ((HttpStatusCode)context.Response.StatusCode).ToAppStatusCode();
-            model.Application = exception.Source;
-            model.Version = context.Request.Scheme;
-            model.Form = context.Request.HasFormContentType ? JsonSerializer.Serialize(context.Request.Form.ToDictionary()) : string.Empty;
-            model.RequestHeaders = JsonSerializer.Serialize(context.Request.Headers);
-            model.ResponseHeaders = JsonSerializer.Serialize(context.Request.Headers);
-            model.Body = await context.Request.GetRequestBodyAsync();
-            //model.Response = await context.Response.GetResponseAsync();
-            model.TraceId = context.TraceIdentifier;
-            //model.Version = context.Features.HttpVersion;
-            model.Scheme = context.Request.Scheme;
-            model.Proctocol = context.Request.Protocol;
-            model.Url = $"{context.Request.Method} {model?.Url}";
-            model.ErrorCode = exception.GetType().Name.ToShorten();
-
-            return await Task.FromResult(model);
         }
     }
 }

@@ -51,7 +51,7 @@ namespace WebApp.Controllers
         [HttpPut("exception")]
         public IActionResult Exception()
         {
-            throw new ArgumentException("Argument exception");
+            throw new ArgumentException("My data not found in data store.");
         }
     }
 }

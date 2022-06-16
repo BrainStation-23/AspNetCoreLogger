@@ -39,7 +39,7 @@ namespace WebApp.Core.Extensions
         public static string ToAppStatusCode(this HttpStatusCode httpStatusCode)
         {
             int statusCode = (int)httpStatusCode;
-            string appStatusCode = $"AP{statusCode + 1000}E";
+            string appStatusCode = $"AP{statusCode + 1100}E";
 
             return appStatusCode;
         }
