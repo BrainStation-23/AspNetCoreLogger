@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Core;
 using WebApp.Core.Acls;
+using WebApp.Service.Services.Accounts;
 using WebApp.Services;
 using WebApp.Sql.Configurations;
 
@@ -21,6 +22,7 @@ namespace WebApp.Service.Configurations
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<ISignInHelper, SignInHelper>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBlogService, BlogService>();
             services.AddScoped<IPostService, PostService>();
         }

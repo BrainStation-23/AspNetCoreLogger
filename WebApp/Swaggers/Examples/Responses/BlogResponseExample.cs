@@ -1,7 +1,7 @@
 ﻿using Swashbuckle.AspNetCore.Filters;
 using WebApp.Service.Contract.Models;
 
-namespace WebApp.Examples.Responses
+namespace WebApp.Swaggers.Examples.Responses
 {
     public class BlogResponseExample : IExamplesProvider<BlogDto>
     {
