@@ -17,9 +17,9 @@ using WebApp.Core.Auths;
 using WebApp.Core.Hostings;
 using WebApp.Core.Loggers;
 using WebApp.Core.Middlewares;
-using WebApp.Helpers.swaggers;
 using WebApp.Service.Configurations;
 using WebApp.Sql.Configurations;
+using WebApp.Swaggers;
 
 namespace WebApp
 {
