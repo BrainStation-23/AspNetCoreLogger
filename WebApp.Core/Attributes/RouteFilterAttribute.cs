@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WebApp.Helpers.Attributes
 {
@@ -15,7 +19,7 @@ namespace WebApp.Helpers.Attributes
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public override void OnActionExecuting(ActionExecutingContext context)
+        public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var route = new RouteLogModel();
             var controllerName = ((ControllerBase)context.Controller).ControllerContext.ActionDescriptor.ControllerName;
@@ -34,29 +38,39 @@ namespace WebApp.Helpers.Attributes
             var request = context.HttpContext.Request;
             RequestHeaders header = request.GetTypedHeaders();
 
-            route.LanguageId = Convert.ToString(context.HttpContext.Session.GetInt32(AllSessionKeys.LangId));
-            route.UserId = Convert.ToString(context.HttpContext.Session.GetInt32(AllSessionKeys.UserId));
-            route.RoleId = Convert.ToString(context.HttpContext.Session.GetInt32(AllSessionKeys.RoleId));
-            route.IsFirstLogin = Convert.ToString(context.HttpContext.Session.GetString(AllSessionKeys.IsFirstLogin));
-            route.PageAccessed = Convert.ToString(context.HttpContext.Request.Path);
-            route.LoginStatus = "A";
             route.ControllerName = controllerName;
             route.ActionName = actionName;
-            route.SessionId = context.HttpContext.Session.Id;
+            //route.SessionId = context.HttpContext.Session.Id;
             route.UrlReferrer = header.Referer?.AbsoluteUri;
             if (_httpContextAccessor.HttpContext != null)
                 route.IpAddress = Convert.ToString(_httpContextAccessor.HttpContext.Connection.RemoteIpAddress);
 
+            await next();
+
             // _auditRepository.InsertAuditLogs(objaudit);
         }
-    }
 
-    public static class AllSessionKeys
-    {
-        public const string RoleId = "Portal.RoleId";
-        public const string UserName = "Portal.UserName";
-        public const string LangId = "Portal.LangId";
-        public const string UserId = "Portal.UserId";
-        public const string IsFirstLogin = "Portal.IsFirstLogin";
+        public async Task<string> BodyToString(HttpRequest request)
+        {
+            string body = string.Empty;
+            request.EnableBuffering();
+
+            // Leave the body open so the next middleware can read it.
+            using (var reader = new StreamReader(
+                request.Body,
+                encoding: Encoding.UTF8,
+                detectEncodingFromByteOrderMarks: false,
+                bufferSize: 1024,
+                leaveOpen: true))
+            {
+                body = await reader.ReadToEndAsync();
+                // Do some processing with body…
+
+                // Reset the request body stream position so the next middleware can read it
+                request.Body.Position = 0;
+            }
+
+            return body;
+        }
     }
 }
