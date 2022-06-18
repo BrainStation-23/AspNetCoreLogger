@@ -1,4 +1,4 @@
-﻿namespace WebApp.Service.Models
+﻿namespace WebApp.Service.Contract.Models
 {
     public class MasterModel
     {

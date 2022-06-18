@@ -118,10 +118,9 @@ namespace WebApp.Core.Sqls
         #region crud
         public virtual async Task<T> InsertAsync(T entity)
         {
+            var inserted = await _dbSet.AddAsync(entity);
 
-            var added = await _dbSet.AddAsync(entity);
-
-            return added.Entity;
+            return inserted.Entity;
         }
 
         public virtual async Task<List<T>> InsertRangeAsync(List<T> entities)
@@ -133,13 +132,15 @@ namespace WebApp.Core.Sqls
 
         public virtual async Task<T> UpdateAsync(T entity)
         {
-            _dbSet.Update(entity);
-            return await Task.FromResult(entity);
+            var updated = _dbSet.Update(entity);
+
+            return await Task.FromResult(updated.Entity);
         }
 
         public virtual async Task<List<T>> UpdateRangeAsync(List<T> entities)
         {
             _dbSet.UpdateRange(entities);
+
             return await Task.FromResult(entities);
         }
 
@@ -148,7 +149,7 @@ namespace WebApp.Core.Sqls
             var entity = await FirstOrDefaultAsync(id);
 
             if (entity is null)
-                throw new NotFoundException("Entity");
+                throw new AppException($"{typeof(T).Name} Entity data not found {id}");
 
             _dbSet.Remove(entity);
 
@@ -157,13 +158,15 @@ namespace WebApp.Core.Sqls
 
         public virtual async Task<T> DeleteAsync(T entity)
         {
-            _dbSet.Remove(entity);
-            return await Task.FromResult(entity);
+            var removed = _dbSet.Remove(entity);
+
+            return await Task.FromResult(removed.Entity);
         }
 
         public virtual async Task<List<T>> DeleteRangeAsync(List<T> entities)
         {
             _dbSet.RemoveRange(entities);
+
             return await Task.FromResult(entities);
         }
         #endregion

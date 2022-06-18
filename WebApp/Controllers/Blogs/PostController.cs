@@ -1,20 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Core.Responses;
+using WebApp.Entity.Entities.Blogs;
 using WebApp.Helpers.Base;
 using WebApp.Service;
-using WebApp.Entity.Entities.Blogs;
-using Microsoft.AspNetCore.Authorization;
-using WebApp.Service.Contract.Models;
-using AutoMapper;
+using WebApp.Service.Contract.Models.Blogs;
 
 namespace WebApp.Controllers
 {
     [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
-    public class PostController : GenericBaseController<PostEntity, PostDto>
+    public class PostController : GenericBaseController<PostEntity, PostModel>
     {
         private readonly IPostService _postService;
 

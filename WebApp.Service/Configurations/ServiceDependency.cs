@@ -21,6 +21,7 @@ namespace WebApp.Service.Configurations
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<ISignInHelper, SignInHelper>();
+            //services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBlogService, BlogService>();
             services.AddScoped<IPostService, PostService>();
         }

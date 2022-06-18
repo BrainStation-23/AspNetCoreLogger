@@ -1,13 +1,13 @@
 ﻿using Swashbuckle.AspNetCore.Filters;
-using WebApp.Service.Contract.Models;
+using WebApp.Service.Contract.Models.Blogs;
 
-namespace WebApp.Examples.Responses
+namespace WebApp.Examples.Responses.Blogs
 {
-    public class BlogResponse404Example : IExamplesProvider<BlogDto>
+    public class BlogResponse404Example : IExamplesProvider<BlogModel>
     {
-        public BlogDto GetExamples()
+        public BlogModel GetExamples()
         {
-            return new BlogDto
+            return new BlogModel
             {
                 Name = "My Blog Response 404",
                 Description = "My blog description",

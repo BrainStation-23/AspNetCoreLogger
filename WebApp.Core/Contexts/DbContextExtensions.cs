@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using WebApp.Core.Enums;
+using WebApp.Core.Exceptions;
 using WebApp.Core.Models;
 using WebApp.Core.Sqls;
 
@@ -60,6 +61,10 @@ namespace WebApp.Core.Contexts
                         case EntityState.Modified:
                             if (property.IsModified)
                             {
+                                var tableName = entry.Metadata.ClrType.Name;
+
+                                if (originalEntry == null) throw new AppException($"{tableName} Entry data not found");
+
                                 auditEntry.AuditType = AuditType.Update;
                                 auditEntry.OldValues[propertyName] = originalEntry[propertyName];
                                 auditEntry.NewValues[propertyName] = property.CurrentValue;
@@ -181,5 +186,6 @@ namespace WebApp.Core.Contexts
                 catalog = builder.InitialCatalog
             };
         }
+
     }
 }

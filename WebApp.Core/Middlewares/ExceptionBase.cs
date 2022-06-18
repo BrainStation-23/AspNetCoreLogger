@@ -13,6 +13,7 @@ using WebApp.Core.DataType;
 using WebApp.Core.Extensions;
 using WebApp.Core.Models;
 using WebApp.Core.Responses;
+using WebApp.Core.Exceptions;
 
 namespace WebApp.Core.Middlewares
 {
@@ -25,6 +26,7 @@ namespace WebApp.Core.Middlewares
             apiResponse.AppStatusCode = errorModel.AppStatusCode;
             apiResponse.Errors = errorModel.Errors;
             apiResponse.Message = errorModel.Message;
+            apiResponse.MessageDetails = errorModel.MessageDetails;
 
             return JsonSerializer.Serialize(apiResponse);
         }
@@ -120,6 +122,7 @@ namespace WebApp.Core.Middlewares
             response.ContentType = "application/json";
 
             var errorModel = await context.ToErrorModelAsync(exception);
+            errorModel.MessageDetails = exception.ToInnerExceptionMessage();
 
             switch (exception)
             {
@@ -175,7 +178,7 @@ namespace WebApp.Core.Middlewares
 
                 default:
                     //errorModel.StatusCode = HttpStatusCode.InternalServerError;
-                    errorModel.Message = "Internal Server errors. Check Logs!";
+                    errorModel.Message = exception.Message ?? "Internal Server errors. Check Logs!";
 
                     break;
             }
