@@ -1,17 +1,16 @@
-
 # Description
 
-Dotnet logger wrapper for fastest usage - accepts pull request from any dotnet lover who want to contribute.
+Dotnet logger wrapper for fastest usage - accepts pull requests from any DOTNET lover who wants to contribute.
 
 ## Agreement
 
-- Before create pull request please know the workflow, theck tick below checklist
+- Before creating a pull request please know the workflow, check the tick below the checklist
 ```
 Create New Branch -> Made Changes -> Test -> Push -> Pull request 
 -> Review -> 
 Pull Request Accepted & Merge -> Azure CICD with Code Quality -> Deployment 
 ```
-- I thereby agree & read all the checklists & I am fully responsible for any incidents. 
+- I hereby agree & read all the checklists & I am fully responsible for any incidents. 
 - I am following the guidelines in the contributing document
 - I am aware of the checklist below and I am ticking the valid points.
 
@@ -34,7 +33,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] My code follows the style guidelines of this project
 - [ ] The commit message follows our guidelines
 - [ ] I have performed a self-review of my own code
-- [ ] I have lint my code localy prior to submission using sonarlint
+- [ ] I have lint my code locally prior to submission using sonarlint
 - [ ] I have made corresponding changes to the documentation
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] My changes generate no new warnings
