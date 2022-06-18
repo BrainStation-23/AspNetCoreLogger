@@ -1,6 +1,9 @@
-﻿namespace WebApp.Sql.Repositories
+﻿using WebApp.Core.Sqls;
+using WebApp.Entity.Entities.Blogs;
+
+namespace WebApp.Sql.Repositories
 {
-    public interface IPostRepository
+    public interface IPostRepository : ISqlRepository<PostEntity>
     {
     }
 }

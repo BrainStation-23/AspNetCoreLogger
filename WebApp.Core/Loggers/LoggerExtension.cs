@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Diagnostics;
 using WebApp.Core.Contexts;
 using WebApp.Core.Enums;
+using WebApp.Core.Loggers.Repositories;
 using WebApp.Core.Middlewares;
 using WebApp.Core.Models;
 
@@ -12,10 +16,28 @@ namespace WebApp.Core.Loggers
 {
     public static class LoggerExtension
     {
+        public static void AddDapper(this IServiceCollection services)
+        {
+            services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
+            services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
+            services.AddScoped<IRouteLogRepository, RouteLogRepository>();
+            services.AddScoped<IAuditLogRepository, AuditLogRepository>();
+        }
+
         public static void HttpLog(this IApplicationBuilder app)
         {
             app.UseMiddleware<HttpRequestMiddleware>();
         }
+
+        public static void ExceptionLog(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<ExceptionMiddleware>();
+        }
+
+        //public static void HeaderLog(this IApplicationBuilder app)
+        //{
+        //    app.UseMiddleware<HttpRequestMiddleware>();
+        //}
 
         /// <summary>
         /// Handling all changes in database
