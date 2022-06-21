@@ -1,4 +1,4 @@
-﻿namespace WebApp.Service.Models.Users
+﻿namespace WebApp.Service.Contract.Models.Users
 {
     public class UserModel
     {

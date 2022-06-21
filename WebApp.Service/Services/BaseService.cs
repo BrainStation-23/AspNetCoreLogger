@@ -5,10 +5,11 @@ using WebApp.Core;
 using WebApp.Core.Collections;
 using WebApp.Core.Sqls;
 using WebApp.Service;
+using WebApp.Service.Contract.Models;
 
 namespace WebApp.Services
 {
-    public class BaseService<TEntity, TDto> : IBaseService<TEntity, TDto> where TEntity : MasterEntity, new() where TDto : class
+    public class BaseService<TEntity, TModel> : IBaseService<TEntity, TModel> where TEntity : MasterEntity, new() where TModel : MasterModel
     {
         private readonly SqlRepository<TEntity> _repository;
         private readonly IUnitOfWork _unitOfWork;
@@ -21,127 +22,132 @@ namespace WebApp.Services
             _mapper = mapper;
         }
 
-        public async Task<Paging<TDto>> GetPageAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize)
+        public async Task<Paging<TModel>> GetPageAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize)
         {
             var pageEntities = await _unitOfWork.Repository<TEntity>().GetPageAsync(pageIndex, pageSize);
             //var data = _mapper.Map<Paging<TDto>>(pageEntities);
 
-            var data = pageEntities.ToPagingModel<TEntity, TDto>(_mapper);
+            var data = pageEntities.ToPagingModel<TEntity, TModel>(_mapper);
 
             return data;
         }
 
-        public virtual async Task<List<TDto>> GetAllAsync()
+        public virtual async Task<List<TModel>> GetAllAsync()
         {
             var entities = await _repository.GetAllAsync();
-            var data = _mapper.Map<List<TDto>>(entities);
+
+            var data = _mapper.Map<List<TModel>>(entities);
 
             return data;
 
         }
 
-        public async Task<TDto> FindAsync(long Id)
+        public async Task<TModel> FindAsync(long Id)
         {
             var entity = await _repository.FirstOrDefaultAsync(Id);
-            var data = _mapper.Map<TDto>(entity);
+
+            var data = _mapper.Map<TModel>(entity);
 
             return data;
         }
 
-        public virtual async Task<TDto> FirstOrDefaultAsync(long id)
+        public virtual async Task<TModel> FirstOrDefaultAsync(long id)
         {
             var entity = await _repository.FirstOrDefaultAsync(id);
-            var data = _mapper.Map<TDto>(entity);
+
+            var data = _mapper.Map<TModel>(entity);
 
             return data;
         }
 
-        public virtual async Task<TDto> InsertAsync(TDto model)
+        public virtual async Task<TModel> InsertAsync(TModel model)
         {
             var entity = _mapper.Map<TEntity>(model);
 
             var added = await _repository.InsertAsync(entity);
             await _unitOfWork.CompleteAsync();
 
-            var data = _mapper.Map<TDto>(added);
+            var data = _mapper.Map<TModel>(added);
 
             return data;
         }
 
-        public virtual async Task<List<TDto>> InsertRangeAsync(List<TDto> models)
+        public virtual async Task<List<TModel>> InsertRangeAsync(List<TModel> models)
         {
             var entities = _mapper.Map<List<TEntity>>(models);
 
             var addeds = await _repository.InsertRangeAsync(entities);
             await _unitOfWork.CompleteAsync();
 
-            var data = _mapper.Map<List<TDto>>(addeds);
+            var data = _mapper.Map<List<TModel>>(addeds);
 
             return data;
         }
 
-        public virtual async Task<TDto> UpdateAsync(long id, TDto model)
+        public virtual async Task<TModel> UpdateAsync(long id, TModel model)
+        {
+            model.Id = id;
+
+            var entity = _mapper.Map<TEntity>(model);
+
+            var updated = await _repository.UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            var data = _mapper.Map<TModel>(updated);
+            return data;
+        }
+
+        public virtual async Task<TModel> UpdateAsync(TModel model)
         {
             var entity = _mapper.Map<TEntity>(model);
 
             var updated = await _repository.UpdateAsync(entity);
             await _unitOfWork.CompleteAsync();
 
-            var data = _mapper.Map<TDto>(updated);
+            var data = _mapper.Map<TModel>(updated);
             return data;
         }
 
-        public virtual async Task<TDto> UpdateAsync(TDto model)
-        {
-            var entity = _mapper.Map<TEntity>(model);
-
-            var updated = await _repository.UpdateAsync(entity);
-            await _unitOfWork.CompleteAsync();
-
-            var data = _mapper.Map<TDto>(updated);
-            return data;
-        }
-
-        public virtual async Task<List<TDto>> UpdateRangeAsync(List<TDto> models)
+        public virtual async Task<List<TModel>> UpdateRangeAsync(List<TModel> models)
         {
             var entities = _mapper.Map<List<TEntity>>(models);
 
             var updateds = await _repository.UpdateRangeAsync(entities);
             await _unitOfWork.CompleteAsync();
 
-            var data = _mapper.Map<List<TDto>>(updateds);
+            var data = _mapper.Map<List<TModel>>(updateds);
 
             return data;
         }
 
-        public virtual async Task<TDto> DeleteAsync(long id)
+        public virtual async Task<TModel> DeleteAsync(long id)
         {
             var deleted = await _repository.DeleteAsync(id);
             await _unitOfWork.CompleteAsync();
 
-            var data = _mapper.Map<TDto>(deleted);
+            var data = _mapper.Map<TModel>(deleted);
             return data;
         }
 
-        public virtual async Task<TDto> DeleteAsync(TDto model)
+        public virtual async Task<TModel> DeleteAsync(TModel model)
         {
             var entity = _mapper.Map<TEntity>(model);
 
             var deleted = await _repository.DeleteAsync(entity);
             await _unitOfWork.CompleteAsync();
 
-            var data = _mapper.Map<TDto>(deleted);
+            var data = _mapper.Map<TModel>(deleted);
 
             return data;
         }
 
-        public virtual async Task<List<TDto>> DeleteRangeAsync(List<TDto> models)
+        public virtual async Task<List<TModel>> DeleteRangeAsync(List<TModel> models)
         {
             var entities = _mapper.Map<List<TEntity>>(models);
             var deleteds = await _repository.DeleteRangeAsync(entities);
             await _unitOfWork.CompleteAsync();
 
-            var data = _mapper.Map<List<TDto>>(deleteds);
+            var data = _mapper.Map<List<TModel>>(deleteds);
             return data;
         }
     }

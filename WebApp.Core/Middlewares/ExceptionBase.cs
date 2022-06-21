@@ -13,6 +13,7 @@ using WebApp.Core.DataType;
 using WebApp.Core.Extensions;
 using WebApp.Core.Models;
 using WebApp.Core.Responses;
+using WebApp.Core.Exceptions;
 
 namespace WebApp.Core.Middlewares
 {
@@ -24,7 +25,24 @@ namespace WebApp.Core.Middlewares
             apiResponse.StatusCode = (int)errorModel.StatusCode;
             apiResponse.AppStatusCode = errorModel.AppStatusCode;
             apiResponse.Errors = errorModel.Errors;
-            apiResponse.Message = errorModel.Message;
+            apiResponse.Message = errorModel.MessageDetails ?? errorModel.Message;
+
+            return JsonSerializer.Serialize(apiResponse);
+        }
+
+        public static string ToApiDevelopmentResponse(this ErrorModel errorModel)
+        {
+            var apiResponse = new
+            {
+                IsSuccess = false,
+                StatusCode = (int)errorModel.StatusCode,
+                AppStatusCode = errorModel.AppStatusCode,
+                Errors = errorModel.Errors,
+                Message = errorModel.Message,
+                MessageDetails = errorModel.MessageDetails,
+                StackTrace = errorModel.StackTrace,
+                TraceId = errorModel.TraceId
+            };
 
             return JsonSerializer.Serialize(apiResponse);
         }
@@ -120,6 +138,7 @@ namespace WebApp.Core.Middlewares
             response.ContentType = "application/json";
 
             var errorModel = await context.ToErrorModelAsync(exception);
+            errorModel.MessageDetails = exception.ToInnerExceptionMessage();
 
             switch (exception)
             {
@@ -175,14 +194,14 @@ namespace WebApp.Core.Middlewares
 
                 default:
                     //errorModel.StatusCode = HttpStatusCode.InternalServerError;
-                    errorModel.Message = "Internal Server errors. Check Logs!";
+                    errorModel.Message = exception.Message ?? "Internal Server errors. Check Logs!";
 
                     break;
             }
 
             errorModel.AppStatusCode = ((HttpStatusCode)errorModel.StatusCode).ToAppStatusCode();
 
-            logger.LogError(exception.Message);
+            logger.LogError(exception, exception.Message);
 
             return errorModel;
         }

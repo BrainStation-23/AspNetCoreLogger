@@ -1,15 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Core.Collections;
-using WebApp.Service.Models.Blogs;
-using WebApp.Services;
 using WebApp.Entity.Entities.Blogs;
-using Microsoft.AspNetCore.Mvc;
-using WebApp.Service.Contract.Models;
+using WebApp.Service.Contract.Models.Blogs;
+using WebApp.Services;
 
 namespace WebApp.Service
 {
-    public interface IBlogService : IBaseService<BlogEntity, BlogDto>
+    public interface IBlogService : IBaseService<BlogEntity, BlogModel>
     {
         Task<Paging<BlogModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<BlogModel> AddBlogDetailAsync(BlogModel model);

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WebApp.Service.Models.Blogs
+namespace WebApp.Service.Contract.Models.Blogs
 {
     public class BlogModel : MasterModel
     {

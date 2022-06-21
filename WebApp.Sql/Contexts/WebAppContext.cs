@@ -75,7 +75,7 @@ namespace WebApp.Sql
             base.ChangeTracker.Audit(userId);
         }
 
-        private void AuditTrailLog()
+        private bool AuditTrailLog()
         {
             long userId = 0;
 
@@ -84,23 +84,28 @@ namespace WebApp.Sql
 
             var auditEntries = base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));
 
-            foreach (var auditEntry in auditEntries)
+            if (auditEntries.Any())
             {
-                var audit = new AuditLog
+                foreach (var auditEntry in auditEntries)
                 {
-                    UserId = auditEntry.UserId,
-                    Type = auditEntry.AuditType.ToString(),
-                    TableName = auditEntry.TableName,
-                    DateTime = DateTime.Now,
-                    PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
-                    OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues),
-                    NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),
-                    AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames)
-                };
-                //var data = auditEntry.Changes.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.Changes);
+                    var audit = new AuditLog
+                    {
+                        UserId = auditEntry.UserId,
+                        Type = auditEntry.AuditType.ToString(),
+                        TableName = auditEntry.TableName,
+                        DateTime = DateTime.Now,
+                        PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
+                        OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues),
+                        NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),
+                        AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames)
+                    };
+                    //var data = auditEntry.Changes.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.Changes);
 
-                AuditLogs.Add(audit);
+                    AuditLogs.Add(audit);
+                }
             }
+
+            return auditEntries.Any();
         }
         #endregion
 
@@ -127,9 +132,11 @@ namespace WebApp.Sql
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             Audit();
-            AuditTrailLog();
+            var hasAuditData = AuditTrailLog();
+            if (hasAuditData)
+                return base.SaveChangesAsync(cancellationToken);
 
-            return base.SaveChangesAsync(cancellationToken);
+            return Task.FromResult(0);
         }
         public override int SaveChanges()
         {
