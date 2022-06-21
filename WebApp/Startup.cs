@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -14,13 +13,13 @@ using Swashbuckle.AspNetCore.Filters;
 using System.Linq;
 using System.Reflection;
 using WebApp.Core;
+using WebApp.Core.Auths;
 using WebApp.Core.Hostings;
 using WebApp.Core.Loggers;
 using WebApp.Core.Middlewares;
-using WebApp.Core.Mongos.Configurations;
-using WebApp.Helpers.Attributes;
 using WebApp.Service.Configurations;
 using WebApp.Sql.Configurations;
+using WebApp.Swaggers;
 
 namespace WebApp
 {
@@ -37,7 +36,6 @@ namespace WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddHostedService<ApplicationHostedService>();
 
             services.AddSession();
@@ -46,7 +44,7 @@ namespace WebApp
                 //options => {
                 //    options.Filters.Add<RouteFilterAttribute>();
                 //}
-                ).AddNewtonsoftJson(options =>
+            ).AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -62,7 +60,7 @@ namespace WebApp
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDapper();
             //services.AddHealthChecks();
-
+            services.Configure<JwtOption>(Configuration.GetSection("Jwt"));
             services.AddHttpContextAccessor();
             services.ConfigureModelBindingExceptionHandling();
             //services.AddMongoDb(Configuration);
@@ -82,10 +80,11 @@ namespace WebApp
 
             services.AddSwaggerExamples();
             services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
+            services.AddJwtTokenAuthentication(Configuration);
             services.AddSwaggerGen(c =>
             {
-                c.ExampleFilters();
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DotnetCoreLogger", Version = "v1" });
+                c.SwaggerGenConfiguration();
             });
         }
 
@@ -124,7 +123,7 @@ namespace WebApp
             //app.UseStaticFiles();
             //app.UseCookiePolicy();
             app.UseRouting();
-            //app.UseAuthentication();
+            app.UseAuthentication();
             //app.ExceptionLog();
             app.UseAuthorization();
             //app.UseSession();

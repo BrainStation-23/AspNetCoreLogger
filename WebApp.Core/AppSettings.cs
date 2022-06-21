@@ -5,7 +5,7 @@ namespace WebApp.Core
     public class AppSettings
     {
         public Domain Domain { get; set; }
-        public Jwt Jwt { get; set; }
+        public JwtOption JwtOption { get; set; }
         public CacheConfig CacheConfig { get; set; }
         public Cms Cms { get; set; }
         public RabbitMqConnection RabbitMq { get; set; }
@@ -40,7 +40,7 @@ namespace WebApp.Core
         public int PrefetchCount { get; set; }
     }
 
-    public class Jwt
+    public class JwtOption
     {
         public string Audience { get; set; }
         public string Issuer { get; set; }
@@ -49,11 +49,11 @@ namespace WebApp.Core
         public uint ValidForInMinitues { get; set; }
         public uint RefreshTokenValidForInDays { get; set; }
         public uint LockUserJwtInMinitues { get; set; }
-        public bool IsValidateIssuer { get; set; }
-        public bool IsValidateAudience { get; set; }
-        public bool IsValidateIssuerSigningKey { get; set; }
-        public bool IsRequireExpirationTime { get; set; }
-        public bool IsValidateLifetime { get; set; }
+        public bool ValidateIssuer { get; set; }
+        public bool ValidateAudience { get; set; }
+        public bool ValidateIssuerSigningKey { get; set; }
+        public bool RequireExpirationTime { get; set; }
+        public bool ValidateLifetime { get; set; }
         public string AuthenticationScheme { get; set; }
         public string TokenType { get; set; }
     }

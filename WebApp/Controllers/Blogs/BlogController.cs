@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Core.Responses;
 using WebApp.Entity.Entities.Blogs;
-using WebApp.Examples.Requests.Blogs;
-using WebApp.Examples.Responses.Blogs;
 using WebApp.Helpers.Base;
 using WebApp.Service;
 using WebApp.Service.Contract.Models.Blogs;
+using WebApp.Swaggers.Examples.Requests.Blogs;
+using WebApp.Swaggers.Examples.Responses.Blogs;
 
 namespace WebApp.Controllers
 {

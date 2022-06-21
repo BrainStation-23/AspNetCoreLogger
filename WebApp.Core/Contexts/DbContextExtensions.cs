@@ -143,20 +143,30 @@ namespace WebApp.Core.Contexts
         public static void Audit(this ChangeTracker changeTracker, long userId)
         {
             var now = DateTimeOffset.UtcNow;
+            var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
 
-            foreach (var entry in changeTracker.Entries<BaseEntity>()
-               .Where(e => e.State == EntityState.Added
-                        || e.State == EntityState.Modified))
+
+            foreach (var entry in changeTracker.Entries<BaseEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
             {
-                if (entry.State != EntityState.Added)
+                foreach (var property in entry.Properties)
                 {
-                    entry.Entity.UpdatedDateUtc ??= now;
-                    entry.Entity.UpdatedBy ??= userId;
+                    string propertyName = property.Metadata.Name;
+                    if (ignorePropertyName.Contains(propertyName))
+                        entry.Property(propertyName).IsModified = false;
+
                 }
-                else
+
+                if (entry.State == EntityState.Added)
                 {
                     entry.Entity.CreatedBy = entry.Entity.CreatedBy != 0 ? entry.Entity.CreatedBy : userId;
                     entry.Entity.CreatedDateUtc = entry.Entity.CreatedDateUtc == DateTimeOffset.MinValue ? now : entry.Entity.CreatedDateUtc;
+                    entry.Entity.UpdatedBy = 0;
+                    entry.Entity.UpdatedDateUtc = null;
+                }
+                else
+                {
+                    entry.Entity.UpdatedDateUtc ??= now;
+                    entry.Entity.UpdatedBy ??= userId;
                 }
             }
         }

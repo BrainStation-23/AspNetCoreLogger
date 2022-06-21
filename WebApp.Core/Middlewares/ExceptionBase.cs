@@ -169,7 +169,7 @@ namespace WebApp.Core.Middlewares
 
                     break;
 
-                case DirectoryNotFoundException e:
+                case DirectoryNotFoundException:
                 case DivideByZeroException:
                 case DriveNotFoundException:
                 case FileNotFoundException:
