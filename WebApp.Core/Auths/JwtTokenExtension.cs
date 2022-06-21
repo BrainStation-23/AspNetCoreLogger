@@ -57,7 +57,7 @@ namespace WebApp.Core.Auths
                         {
                             var authenticationException = context.AuthenticateFailure as SecurityTokenExpiredException;
                             context.Response.Headers.Add("x-token-expired", authenticationException.Expires.ToString("o"));
-                            context.ErrorDescription = $"The token expired on {authenticationException.Expires.ToString("o")}";
+                            context.ErrorDescription = $"The token expired on {authenticationException.Expires:o}";
                         }
 
                         return context.Response.WriteAsync(JsonSerializer.Serialize(new

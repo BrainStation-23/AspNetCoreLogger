@@ -2,12 +2,11 @@
 
 namespace WebApp.Core.Attributes
 {
-    public class ErrorHandlingFilter : ExceptionFilterAttribute
+    public class ErrorHandlingFilterAttribute : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext context)
         {
-            var exception = context.Exception;
-            //log your exception here
+            // var exception = context.Exception;
 
             context.ExceptionHandled = true; //optional 
         }
