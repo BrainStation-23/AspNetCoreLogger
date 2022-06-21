@@ -25,8 +25,24 @@ namespace WebApp.Core.Middlewares
             apiResponse.StatusCode = (int)errorModel.StatusCode;
             apiResponse.AppStatusCode = errorModel.AppStatusCode;
             apiResponse.Errors = errorModel.Errors;
-            apiResponse.Message = errorModel.Message;
-            apiResponse.MessageDetails = errorModel.MessageDetails;
+            apiResponse.Message = errorModel.MessageDetails ?? errorModel.Message;
+
+            return JsonSerializer.Serialize(apiResponse);
+        }
+
+        public static string ToApiDevelopmentResponse(this ErrorModel errorModel)
+        {
+            var apiResponse = new
+            {
+                IsSuccess = false,
+                StatusCode = (int)errorModel.StatusCode,
+                AppStatusCode = errorModel.AppStatusCode,
+                Errors = errorModel.Errors,
+                Message = errorModel.Message,
+                MessageDetails = errorModel.MessageDetails,
+                StackTrace = errorModel.StackTrace,
+                TraceId = errorModel.TraceId
+            };
 
             return JsonSerializer.Serialize(apiResponse);
         }
@@ -185,7 +201,7 @@ namespace WebApp.Core.Middlewares
 
             errorModel.AppStatusCode = ((HttpStatusCode)errorModel.StatusCode).ToAppStatusCode();
 
-            logger.LogError(exception.Message);
+            logger.LogError(exception, exception.Message);
 
             return errorModel;
         }

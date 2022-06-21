@@ -11,7 +11,6 @@ namespace WebApp.Core.Responses
         public string AppStatusCode { get; set; }
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
-        public string MessageDetails{ get; set; }
         public object Data { get; set; }
         public IEnumerable<string> Errors { get; set; }
 

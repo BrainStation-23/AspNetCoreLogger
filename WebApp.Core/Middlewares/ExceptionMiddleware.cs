@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using WebApp.Core.Extensions;
 using WebApp.Core.Loggers.Repositories;
 using WebApp.Core.Models;
+using Microsoft.Extensions.Hosting;
 
 namespace WebApp.Core.Middlewares
 {
@@ -17,12 +19,15 @@ namespace WebApp.Core.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
+        private readonly IHostEnvironment _webHostEnvironment;
 
         public ExceptionMiddleware(RequestDelegate next,
-            ILogger<ExceptionMiddleware> logger)
+            ILogger<ExceptionMiddleware> logger,
+            IHostEnvironment webHostEnvironment)
         {
             _next = next;
             _logger = logger;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task InvokeAsync(HttpContext context, IExceptionLogRepository exceptionLogRepository)
@@ -51,7 +56,8 @@ namespace WebApp.Core.Middlewares
             {
                 errorModel = await exception.ErrorAsync(context, _logger);
                 context.Response.Body = originalBodyStream;
-                var apiResponse = errorModel.ToApiResponse();
+
+                var apiResponse = _webHostEnvironment.IsDevelopment() ? errorModel.ToApiDevelopmentResponse(): errorModel.ToApiResponse();
                 await context.Response.WriteAsync(apiResponse);
                 await exceptionLogRepository.AddAsync(errorModel);
             }
