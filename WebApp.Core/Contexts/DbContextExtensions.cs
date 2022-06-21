@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using WebApp.Core.Enums;
+using WebApp.Core.Exceptions;
 using WebApp.Core.Models;
 using WebApp.Core.Sqls;
 
@@ -17,6 +17,52 @@ namespace WebApp.Core.Contexts
 {
     public static class DbContextExtensions
     {
+        private static bool HasChanges(PropertyValues originalEntry, EntityEntry currentValues)
+        {
+            bool isChanges = false;
+            var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
+
+            foreach (var property in currentValues.Properties)
+            {
+                string propertyName = property.Metadata.Name;
+
+                switch (currentValues.State)
+                {
+                    case EntityState.Added:
+                        if (originalEntry is null && property.CurrentValue is not null)
+                        {
+                            isChanges = true;
+                            break;
+                        }
+                        break;
+                    case EntityState.Deleted:
+                        if (originalEntry is not null)
+                        {
+                            isChanges = true;
+                            break;
+                        }
+                        break;
+                    case EntityState.Modified:
+                        if (property.IsModified)
+                        {
+                            if (ignorePropertyName.Contains(propertyName))
+                                continue;
+
+                            var currentValue = property.CurrentValue?.ToString();
+                            var originalValue = originalEntry[propertyName]?.ToString();
+                            if (currentValue != originalValue)
+                            {
+                                isChanges = true;
+                                break;
+                            }
+                        }
+                        break;
+                }
+            }
+
+            return isChanges;
+        }
+
         public static IList<AuditEntry> AuditTrail(this ChangeTracker changeTracker, long userId, string ignoreEntity)
         {
             changeTracker.DetectChanges();
@@ -30,13 +76,17 @@ namespace WebApp.Core.Contexts
                     || entry.Entity.GetType().Name == ignoreEntity)
                     continue;
 
+                var originalEntry = entry.GetDatabaseValues();
+                var hasChanges = HasChanges(originalEntry, entry);
+                if (!hasChanges) continue;
+
                 var auditEntry = new AuditEntry(entry)
                 {
                     TableName = entry.Entity.GetType().Name,
                     UserId = userId
                 };
                 auditEntries.Add(auditEntry);
-                var originalEntry = entry.GetDatabaseValues();
+
                 var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
 
                 foreach (var property in entry.Properties)
@@ -60,6 +110,10 @@ namespace WebApp.Core.Contexts
                         case EntityState.Modified:
                             if (property.IsModified)
                             {
+                                var tableName = entry.Metadata.ClrType.Name;
+
+                                if (originalEntry == null) throw new AppException($"{tableName} Entry data not found");
+
                                 auditEntry.AuditType = AuditType.Update;
                                 auditEntry.OldValues[propertyName] = originalEntry[propertyName];
                                 auditEntry.NewValues[propertyName] = property.CurrentValue;
@@ -181,5 +235,6 @@ namespace WebApp.Core.Contexts
                 catalog = builder.InitialCatalog
             };
         }
+
     }
 }

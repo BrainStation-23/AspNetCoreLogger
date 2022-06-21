@@ -10,7 +10,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 using Serilog.Events;
+using Swashbuckle.AspNetCore.Filters;
 using System.Linq;
+using System.Reflection;
 using WebApp.Core;
 using WebApp.Core.Hostings;
 using WebApp.Core.Loggers;
@@ -78,8 +80,11 @@ namespace WebApp
                     .AllowCredentials());
             });
 
+            services.AddSwaggerExamples();
+            services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
             services.AddSwaggerGen(c =>
             {
+                c.ExampleFilters();
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DotnetCoreLogger", Version = "v1" });
             });
         }
@@ -91,7 +96,11 @@ namespace WebApp
                 app.UseDeveloperExceptionPage();
                 //app.UseDatabaseErrorPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotnetCoreLogger v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.DefaultModelsExpandDepth(-1);
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotnetCoreLogger v1");
+                });
             }
             else
             {

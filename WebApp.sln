@@ -52,6 +52,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{965B
 		RouteLogs_Table.sql = RouteLogs_Table.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Service.Contract", "WebApp.Service.Contract\WebApp.Service.Contract.csproj", "{79081174-B032-4F5E-8514-8A30C02803DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,10 @@ Global
 		{C0D5CD93-0AE6-41E6-99D5-D1ED4534C5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0D5CD93-0AE6-41E6-99D5-D1ED4534C5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0D5CD93-0AE6-41E6-99D5-D1ED4534C5D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79081174-B032-4F5E-8514-8A30C02803DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79081174-B032-4F5E-8514-8A30C02803DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79081174-B032-4F5E-8514-8A30C02803DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79081174-B032-4F5E-8514-8A30C02803DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{1061ED84-5E47-4E41-A94C-027ACC5A5F01} = {DC9027FB-6524-4BBD-8C9F-CB24B3789663}
 		{C0D5CD93-0AE6-41E6-99D5-D1ED4534C5D2} = {7FB15E90-DA6C-4F5E-BB7D-E8F16EC234C5}
 		{965B855A-00EB-4290-B955-3BA8F21240F6} = {6530F204-DF52-4DF9-AD99-4672F4FDFE9A}
+		{79081174-B032-4F5E-8514-8A30C02803DF} = {DC9027FB-6524-4BBD-8C9F-CB24B3789663}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFCCDA0E-EADD-457B-9016-11900245AB18}

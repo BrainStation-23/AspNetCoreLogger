@@ -4,19 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Core.Collections;
-using WebApp.Service.Models.Blogs;
-using WebApp.Services;
 using WebApp.Entity.Entities.Blogs;
+using WebApp.Service.Contract.Models.Blogs;
+using WebApp.Services;
 
 namespace WebApp.Service
 {
-    public class BlogService : BaseService<BlogEntity>, IBlogService
+    public class BlogService : BaseService<BlogEntity, BlogModel>, IBlogService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public BlogService(IUnitOfWork unitOfWork,
-                IMapper mapper) : base(unitOfWork)
+                IMapper mapper) : base(unitOfWork, mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -51,10 +51,12 @@ namespace WebApp.Service
         {
             var entity = _mapper.Map<BlogModel, BlogEntity>(model);
 
-            await _unitOfWork.Repository<BlogEntity>().InsertAsync(entity);
+            var inserted = await _unitOfWork.Repository<BlogEntity>().InsertAsync(entity);
             await _unitOfWork.CompleteAsync();
+            
+            var insertedModel = _mapper.Map<BlogEntity, BlogModel>(inserted);
 
-            return new BlogModel();
+            return insertedModel;
         }
 
         public async Task<BlogModel> UpdateBlogDetailAsync(long blogId, BlogModel model)
@@ -62,10 +64,12 @@ namespace WebApp.Service
             var entity = _mapper.Map<BlogModel, BlogEntity>(model);
             entity.Id = blogId;
 
-            await _unitOfWork.Repository<BlogEntity>().UpdateAsync(entity);
+            var updated = await _unitOfWork.Repository<BlogEntity>().UpdateAsync(entity);
             await _unitOfWork.CompleteAsync();
 
-            return new BlogModel();
+            var updateModel = _mapper.Map<BlogEntity, BlogModel>(updated);
+
+            return updateModel;
         }
     }
 }

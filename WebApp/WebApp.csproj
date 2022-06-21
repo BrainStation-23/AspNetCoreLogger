@@ -14,15 +14,15 @@
   <ItemGroup>
 
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-    
+
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="5.0.3" />
-		<PackageReference Include="AspNetCore.HealthChecks.UI" Version="5.0.1" />
-		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
-		<PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="5.0.1" />
-		<PackageReference Include="AspNetCore.HealthChecks.UI.SqlServer.Storage" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.SqlServer.Storage" Version="5.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.16" />
-    
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.16" />
+
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.16" />
@@ -33,14 +33,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-		
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.16" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.1" />
+
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    
+
     <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.5.0" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="4.2.0" />
@@ -52,9 +52,12 @@
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.7.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="5.1.1" />
     <PackageReference Include="Seq.Extensions.Logging" Version="4.0.2" />
+    <PackageReference Include="Serilog.Exceptions" Version="8.2.0" />
+    <PackageReference Include="Serilog.Enrichers.Demystifier" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebApp.Service.Contract\WebApp.Service.Contract.csproj" />
     <ProjectReference Include="..\WebApp.Service\WebApp.Service.csproj" />
   </ItemGroup>
 

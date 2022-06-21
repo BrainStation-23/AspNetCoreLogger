@@ -14,13 +14,14 @@ namespace WebApp.Service.Configurations
             services.AddRepositoryDependency();
             services.AddAutoMapper(typeof(ServiceMapperProfile));
 
-            services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>));
+            services.AddTransient(typeof(IBaseService<,>), typeof(BaseService<,>));
             
             services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
             
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<ISignInHelper, SignInHelper>();
+            //services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBlogService, BlogService>();
             services.AddScoped<IPostService, PostService>();
         }
