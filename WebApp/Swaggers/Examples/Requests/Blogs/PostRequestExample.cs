@@ -2,7 +2,7 @@
 using System;
 using WebApp.Service.Contract.Models.Blogs;
 
-namespace WebApp.Examples.Requests.Blogs
+namespace WebApp.Swaggers.Examples.Requests.Blogs
 {
     public class PostRequestExample : IExamplesProvider<PostModel>
     {
