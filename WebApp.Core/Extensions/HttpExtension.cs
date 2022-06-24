@@ -13,6 +13,8 @@ namespace WebApp.Core.Extensions
     {
         public static async Task<string> GetRequestBodyAsync(this HttpRequest request)
         {
+            if (request.HasFormContentType) return null;
+
             request.EnableBuffering();
 
             var buffer = new byte[Convert.ToInt32(request.ContentLength)];
@@ -35,7 +37,7 @@ namespace WebApp.Core.Extensions
 
             return text;
         }
-     
+
         public static string ToAppStatusCode(this HttpStatusCode httpStatusCode)
         {
             int statusCode = (int)httpStatusCode;

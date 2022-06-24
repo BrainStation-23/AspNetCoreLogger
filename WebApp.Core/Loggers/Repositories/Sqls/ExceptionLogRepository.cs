@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Text.Json;
 using System.Threading.Tasks;
 using WebApp.Common.Serialize;
 using WebApp.Core.Contexts;
@@ -24,6 +24,9 @@ namespace WebApp.Core.Loggers.Repositories
 
         public async Task AddAsync(ErrorModel errorModel)
         {
+            if (errorModel.Url.Contains("/Log/"))
+                return;
+
             var createdDateUtc = DateTime.UtcNow.ToString();
             var query = @"INSERT INTO [dbo].[ExceptionLogs]
                                ([UserId]
@@ -96,7 +99,7 @@ namespace WebApp.Core.Loggers.Repositories
                         Scheme = errorModel.Scheme,
                         TraceId = errorModel.TraceId,
                         Protocol = errorModel.Proctocol,
-                        Errors = JsonSerializer.Serialize(errorModel.Errors),
+                        Errors = JsonConvert.SerializeObject(errorModel.Errors),
                         StatusCode = ((int)errorModel.StatusCode).ToString(),
                         AppStatusCode = errorModel.AppStatusCode,
                         Message = errorModel.Message,
@@ -120,14 +123,17 @@ namespace WebApp.Core.Loggers.Repositories
                             OFFSET @Offset ROWS 
                             FETCH NEXT @Next ROWS ONLY";
 
+            var exceptionLogUnescapeString = string.Empty;
             try
             {
                 using (var connection = _dapper.CreateConnection())
                 {
                     var exceptionLogEntities = await connection.QueryAsync(query, pager);
-                    var exceptionLogUnescapeString = exceptionLogEntities.ToJson().JsonUnescaping();
-                    exceptionLogs = JArray.Parse(exceptionLogUnescapeString);
+                    exceptionLogUnescapeString = exceptionLogEntities.ToJson();
+                        var unescape = exceptionLogUnescapeString.JsonUnescaping();
+                    exceptionLogs = JArray.Parse(unescape);
                 }
+
 
                 return exceptionLogs;
             }
