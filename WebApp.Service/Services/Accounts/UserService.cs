@@ -89,7 +89,7 @@ namespace WebApp.Service.Services.Accounts
                 return user;
             }
 
-            return result;
+            throw new AppException($"User already exists with name {user.UserName}", result.Errors);
         }
 
         public async Task<object> AddRoleAsync(Role role)
@@ -105,7 +105,7 @@ namespace WebApp.Service.Services.Accounts
             if (result.Succeeded)
                 return role;
 
-            return null;
+            throw new AppException($"Role already exists with name {role.Name}", result.Errors);
         }
 
         public async Task<object> AssignRoleAsync(string username, string role)

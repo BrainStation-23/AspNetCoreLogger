@@ -12,7 +12,7 @@ namespace WebApp.Core.Responses
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
         public object Data { get; set; }
-        public IEnumerable<string> Errors { get; set; }
+        public IEnumerable<object> Errors { get; set; }
 
         public ApiResponse()
         {
