@@ -6,17 +6,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 using Serilog.Events;
 using Swashbuckle.AspNetCore.Filters;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using WebApp.Core;
 using WebApp.Core.Auths;
 using WebApp.Core.Hostings;
 using WebApp.Core.Loggers;
 using WebApp.Core.Middlewares;
+using WebApp.Helpers;
 using WebApp.Service.Configurations;
 using WebApp.Sql.Configurations;
 using WebApp.Swaggers;
@@ -41,7 +44,8 @@ namespace WebApp
             services.AddSession();
             services.AddDistributedMemoryCache();
             services.AddControllers(
-                //options => {
+                //options =>
+                //{
                 //    options.Filters.Add<RouteFilterAttribute>();
                 //}
             ).AddNewtonsoftJson(options =>
@@ -56,7 +60,7 @@ namespace WebApp
             //});
             //services.AddScoped<RouteFilterAttribute>();
             services.AddDbContextDependencies(Configuration);
-            services.AddServiceDependency(Configuration);
+            services.AddWebAppDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDapper();
             //services.AddHealthChecks();

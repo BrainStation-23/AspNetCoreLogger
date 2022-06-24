@@ -192,6 +192,12 @@ namespace WebApp.Core.Middlewares
                     errorModel.Message = exception.Message;
                     break;
 
+                case AppException ae:
+                    errorModel.StatusCode = HttpStatusCode.OK;
+                    errorModel.Message = ae.Message;
+                    errorModel.Errors = ae.Errors;
+                    break;
+
                 default:
                     //errorModel.StatusCode = HttpStatusCode.InternalServerError;
                     errorModel.Message = exception.Message ?? "Internal Server errors. Check Logs!";

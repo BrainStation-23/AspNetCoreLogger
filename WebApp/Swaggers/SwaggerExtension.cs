@@ -16,6 +16,7 @@ namespace WebApp.Swaggers
             options.EnableAnnotations();
 
             options.ExampleFilters();
+            
 
             #region bearer
             //options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -51,7 +52,7 @@ namespace WebApp.Swaggers
                 {
                     Password = new OpenApiOAuthFlow
                     {
-                        TokenUrl = new Uri("/api/token", UriKind.Relative),
+                        TokenUrl = new Uri("/api/token/generate", UriKind.Relative),
 
                     }
                 },
