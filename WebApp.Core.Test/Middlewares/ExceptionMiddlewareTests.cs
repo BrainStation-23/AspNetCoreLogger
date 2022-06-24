@@ -146,7 +146,7 @@ namespace WebApp.Core.Test.Middlewares
             var errors = responseData.Errors.ToList();
             errors.Should().NotBeEmpty();
             errors.Count.Should().BeGreaterThanOrEqualTo(1);
-            errors.FirstOrDefault().Should().Contain("Microsoft.Data.SqlClient.SqlError");
+            errors.FirstOrDefault().Should().ToString().Contains("Microsoft.Data.SqlClient.SqlError");
         }
     }
 }
