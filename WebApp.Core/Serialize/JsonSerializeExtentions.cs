@@ -85,7 +85,7 @@ namespace WebApp.Common.Serialize
                 { "\\\r", "\r"},
                 { "\"{", "{"},
                 { "}\"", "}"},
-                { "\\\"", "\""},
+                { "\\\"", "\""}
             };
 
             foreach (var remove in remover)
