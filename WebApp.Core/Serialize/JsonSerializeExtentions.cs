@@ -38,7 +38,7 @@ namespace WebApp.Common.Serialize
                 // Ignore null values while serializing
                 NullValueHandling = NullValueHandling.Ignore,
                 // No formatting
-                Formatting = Formatting.None
+                Formatting = Formatting.Indented
             });
         }
 
@@ -76,7 +76,8 @@ namespace WebApp.Common.Serialize
         public static string JsonUnescaping(this string value)
         {
             var remover = new Dictionary<string, string> {
-                { "\\", ""},
+                { "\"\\\"", "\""},
+                { "\\\"\"", "\""},
                 { "\"[", "["},
                 { "]\"", "]"},
                 { "\\\t", "\t" },
