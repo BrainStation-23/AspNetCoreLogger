@@ -21,7 +21,7 @@ namespace WebApp.Core.Models
         public string Scheme { get; set; }
         public string TraceId { get; set; }
         public string Proctocol { get; set; }
-        public IEnumerable<string> Errors { get; set; }
+        public IEnumerable<object> Errors { get; set; }
 
         public HttpStatusCode StatusCode { get; set; }
         public string AppStatusCode { get; set; }

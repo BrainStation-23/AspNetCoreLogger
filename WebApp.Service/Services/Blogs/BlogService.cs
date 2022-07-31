@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Core;
@@ -47,13 +50,13 @@ namespace WebApp.Service
             return response;
         }
 
-        public async Task<BlogModel>AddBlogDetailAsync(BlogModel model)
+        public async Task<BlogModel> AddBlogDetailAsync(BlogModel model)
         {
             var entity = _mapper.Map<BlogModel, BlogEntity>(model);
 
             var inserted = await _unitOfWork.Repository<BlogEntity>().InsertAsync(entity);
             await _unitOfWork.CompleteAsync();
-            
+
             var insertedModel = _mapper.Map<BlogEntity, BlogModel>(inserted);
 
             return insertedModel;
@@ -70,6 +73,23 @@ namespace WebApp.Service
             var updateModel = _mapper.Map<BlogEntity, BlogModel>(updated);
 
             return updateModel;
+        }
+
+        public async Task<List<BlogModel>> GetBlogsSpAsync()
+        {
+            var searchText = string.Empty;
+            List<SqlParameter> parametes = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName = "@search", SqlDbType = SqlDbType.NVarChar, Value = searchText?? (object) DBNull.Value},
+                new SqlParameter() {ParameterName = "@pageIndex", SqlDbType = SqlDbType.Int, Value = 0},
+                new SqlParameter() {ParameterName = "@pageSize", SqlDbType = SqlDbType.Int, Value = 10}
+            };
+
+            var data = await _unitOfWork.Repository<BlogEntity>().RawSqlListAsync("EXEC dbo.usp_GetBlogs @search, @pageIndex, @pageSize", parametes.ToArray());
+
+            var response = _mapper.Map<List<BlogModel>>(data);
+
+            return response;
         }
     }
 }

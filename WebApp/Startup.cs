@@ -17,7 +17,7 @@ using WebApp.Core.Auths;
 using WebApp.Core.Hostings;
 using WebApp.Core.Loggers;
 using WebApp.Core.Middlewares;
-using WebApp.Service.Configurations;
+using WebApp.Helpers;
 using WebApp.Sql.Configurations;
 using WebApp.Swaggers;
 
@@ -41,7 +41,8 @@ namespace WebApp
             services.AddSession();
             services.AddDistributedMemoryCache();
             services.AddControllers(
-                //options => {
+                //options =>
+                //{
                 //    options.Filters.Add<RouteFilterAttribute>();
                 //}
             ).AddNewtonsoftJson(options =>
@@ -56,7 +57,7 @@ namespace WebApp
             //});
             //services.AddScoped<RouteFilterAttribute>();
             services.AddDbContextDependencies(Configuration);
-            services.AddServiceDependency(Configuration);
+            services.AddWebAppDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDapper();
             //services.AddHealthChecks();

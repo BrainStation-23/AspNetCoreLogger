@@ -35,10 +35,9 @@ namespace WebApp.Common.Serialize
 
             return JsonConvert.SerializeObject(value, new JsonSerializerSettings
             {
-                // Ignore null values while serializing
                 NullValueHandling = NullValueHandling.Ignore,
-                // No formatting
-                Formatting = Formatting.None
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                Formatting = Formatting.Indented
             });
         }
 
@@ -76,14 +75,20 @@ namespace WebApp.Common.Serialize
         public static string JsonUnescaping(this string value)
         {
             var remover = new Dictionary<string, string> {
-                { "\\", ""},
-                { "\"[", "["},
-                { "]\"", "]"},
-                { "\\\t", "\t" },
-                { "\\\n", "\n"},
-                { "\\\r", "\r"},
-                { "\"{", "{"},
-                { "}\"", "}"}
+                { "\"{", "{"},          //  "{      -   {
+                { "}\"", "}"},           //  }"      -   }
+                { "\"[", "["},          //  "[      -   [
+                { "]\"", "]"},          //  ]"      -   ]
+                { "\\\"\\\"", "\"\""},  //  \"\"     -   "" 
+                { "\"\\\"", "\""},      //  "\"     -   " 
+                { "\\\"\"", "\""},      //  \""     -   "
+                { "\\\"", "\""},        //  \"      -   "
+                
+                
+                //{ "\\\t", "\t" },       //  \t      -   t
+                //{ "\\\n", "\n"},        //  \n      -   n
+                //{ "\\\r", "\r"},        //  \r      -   r
+                
             };
 
             foreach (var remove in remover)

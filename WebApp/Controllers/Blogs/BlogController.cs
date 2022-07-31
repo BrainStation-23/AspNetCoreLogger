@@ -59,12 +59,5 @@ namespace WebApp.Controllers
 
             return new OkResponse(res);
         }
-
-
-        [HttpPut("exception")]
-        public IActionResult Exception()
-        {
-            throw new ArgumentException("My data not found in data store.");
-        }
     }
 }

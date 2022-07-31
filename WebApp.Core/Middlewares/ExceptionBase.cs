@@ -96,8 +96,8 @@ namespace WebApp.Core.Middlewares
             model.Form = context.Request.HasFormContentType ? JsonSerializer.Serialize(context.Request.Form.ToDictionary()) : string.Empty;
             model.RequestHeaders = JsonSerializer.Serialize(context.Request.Headers);
             model.ResponseHeaders = JsonSerializer.Serialize(context.Request.Headers);
-            model.Body = await context.Request.GetRequestBodyAsync();
-            //model.Response = await context.Response.GetResponseAsync();
+            //model.Body = await context.Request.GetRequestBodyAsync();
+            model.Response = await context.Response.GetResponseAsync();
             model.TraceId = context.TraceIdentifier;
             //model.Version = context.Features.HttpVersion;
             model.Scheme = context.Request.Scheme;
@@ -190,6 +190,12 @@ namespace WebApp.Core.Middlewares
                 case ArgumentException:
                     errorModel.StatusCode = HttpStatusCode.NotFound;
                     errorModel.Message = exception.Message;
+                    break;
+
+                case AppException ae:
+                    errorModel.StatusCode = HttpStatusCode.OK;
+                    errorModel.Message = ae.Message;
+                    errorModel.Errors = ae.Errors;
                     break;
 
                 default:

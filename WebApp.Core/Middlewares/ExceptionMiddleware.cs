@@ -55,6 +55,7 @@ namespace WebApp.Core.Middlewares
             catch (Exception exception)
             {
                 errorModel = await exception.ErrorAsync(context, _logger);
+                errorModel.Body = requestModel.Body;
                 context.Response.Body = originalBodyStream;
 
                 var apiResponse = _webHostEnvironment.IsDevelopment() ? errorModel.ToApiDevelopmentResponse(): errorModel.ToApiResponse();

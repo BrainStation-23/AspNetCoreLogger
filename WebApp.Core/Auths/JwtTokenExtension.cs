@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System.Security.Claims;
 using System.Text;
-using System.Text.Json;
 
 namespace WebApp.Core.Auths
 {
@@ -60,7 +60,7 @@ namespace WebApp.Core.Auths
                             context.ErrorDescription = $"The token expired on {authenticationException.Expires:o}";
                         }
 
-                        return context.Response.WriteAsync(JsonSerializer.Serialize(new
+                        return context.Response.WriteAsync(JsonConvert.SerializeObject(new
                         {
                             error = context.Error,
                             error_description = context.ErrorDescription

@@ -3,12 +3,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using WebApp.Core.Responses;
 using WebApp.Service.Services.Accounts;
 using WebApp.ViewModels;
 using static WebApp.Entity.Entities.Identities.IdentityModel;
 
 namespace WebApp.Controllers.Auths
 {
+    /// <summary>
+    /// Account controller with user activity
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -47,7 +51,7 @@ namespace WebApp.Controllers.Auths
             var user = _mapper.Map<User>(model);
             var response = await _userService.AddUserAsync(user, model.Password);
 
-            return Ok(response);
+            return new OkResponse(response);
         }
 
         [AllowAnonymous]
@@ -60,7 +64,7 @@ namespace WebApp.Controllers.Auths
             var role = _mapper.Map<Role>(model);
             var response = await _userService.AddRoleAsync(role);
 
-            return Ok(response);
+            return new OkResponse(response);
         }
 
         [AllowAnonymous]
@@ -72,7 +76,7 @@ namespace WebApp.Controllers.Auths
 
             var response = await _userService.AssignRoleAsync(model.Username, model.RoleName);
 
-            return Ok(response);
+            return new OkResponse(response);
         }
     }
 }

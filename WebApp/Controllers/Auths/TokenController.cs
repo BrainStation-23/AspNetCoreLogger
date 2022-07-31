@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using WebApp.Core.Responses;
 using WebApp.Service.Services.Accounts;
 using WebApp.ViewModels;
 
@@ -19,17 +20,17 @@ namespace WebApp.Controllers.Auths
             _userService = userService;
         }
 
-        [HttpPost("generate")]
+        [HttpPost()]
         public async Task<IActionResult> GenerateTokenFromBody([FromBody] LoginVm model)
         {
             var token = await _userService.LoginGenerateJwtTokenAsync(model.UserName, model.Password);
             if (token == null)
                 throw new ArgumentException("can't generate token.");
 
-            return Ok(token);
+            return new OkResponse(token);
         }
 
-        [HttpPost]
+        [HttpPost("generate")]
         public async Task<IActionResult> GenerateTokenFromForm([FromForm] LoginVm model)
         {
             var token = await _userService.LoginGenerateJwtTokenAsync(model.UserName, model.Password);
