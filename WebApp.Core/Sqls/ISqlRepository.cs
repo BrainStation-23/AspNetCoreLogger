@@ -46,15 +46,15 @@ namespace WebApp.Core.Sqls
         Task<T> RawSqlFirstOrDefaultAsync(FormattableString sql);
         Task<T> RawSqlFirstOrDefaultAsync(string sql, params object[] parameters);
 
-        Task InsertAsync(T entity);
-        Task InsertRangeAsync(List<T> entities);
+        Task<T> InsertAsync(T entity);
+        Task<List<T>> InsertRangeAsync(List<T> entities);
 
-        Task UpdateAsync(T entity);
-        Task UpdateRangeAsync(List<T> entities);
+        Task<T> UpdateAsync(T entity);
+        Task<List<T>> UpdateRangeAsync(List<T> entities);
 
         Task<T> DeleteAsync(object id);
-        Task DeleteAsync(T entity);
-        Task DeleteRangeAsync(List<T> entities);
+        Task<T> DeleteAsync(T entity);
+        Task<List<T>> DeleteRangeAsync(List<T> entities);
 
         void Attach(T entity);
         void Detach(T entity);

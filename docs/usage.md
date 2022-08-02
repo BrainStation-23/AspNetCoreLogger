@@ -34,7 +34,21 @@
 - All wrapper methods are calling from `WebApp.Core\Loggers\LoggerExtension.cs`
 
 - Audit Log
+```cs
+public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+{
+    AuditTrailLog();
+}
+```
 - Request Log
+```cs
+ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    ....
+    app.HttpLog();
+    ...
+}
+```
 - Error Log
 ```cs
  public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -44,7 +58,7 @@
     ...
 }
 ```
-- Route Log
+- DB Queries log
 - Notification Log
 - Activity Log
 

@@ -1,22 +1,25 @@
 ﻿using AutoMapper;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Core.Collections;
-using WebApp.Service.Models.Blogs;
-using WebApp.Services;
 using WebApp.Entity.Entities.Blogs;
+using WebApp.Service.Contract.Models.Blogs;
+using WebApp.Services;
 
 namespace WebApp.Service
 {
-    public class BlogService : BaseService<BlogEntity>, IBlogService
+    public class BlogService : BaseService<BlogEntity, BlogModel>, IBlogService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public BlogService(IUnitOfWork unitOfWork,
-                IMapper mapper) : base(unitOfWork)
+                IMapper mapper) : base(unitOfWork, mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -47,14 +50,16 @@ namespace WebApp.Service
             return response;
         }
 
-        public async Task<BlogModel>AddBlogDetailAsync(BlogModel model)
+        public async Task<BlogModel> AddBlogDetailAsync(BlogModel model)
         {
             var entity = _mapper.Map<BlogModel, BlogEntity>(model);
 
-            await _unitOfWork.Repository<BlogEntity>().InsertAsync(entity);
+            var inserted = await _unitOfWork.Repository<BlogEntity>().InsertAsync(entity);
             await _unitOfWork.CompleteAsync();
 
-            return new BlogModel();
+            var insertedModel = _mapper.Map<BlogEntity, BlogModel>(inserted);
+
+            return insertedModel;
         }
 
         public async Task<BlogModel> UpdateBlogDetailAsync(long blogId, BlogModel model)
@@ -62,10 +67,29 @@ namespace WebApp.Service
             var entity = _mapper.Map<BlogModel, BlogEntity>(model);
             entity.Id = blogId;
 
-            await _unitOfWork.Repository<BlogEntity>().UpdateAsync(entity);
+            var updated = await _unitOfWork.Repository<BlogEntity>().UpdateAsync(entity);
             await _unitOfWork.CompleteAsync();
 
-            return new BlogModel();
+            var updateModel = _mapper.Map<BlogEntity, BlogModel>(updated);
+
+            return updateModel;
+        }
+
+        public async Task<List<BlogModel>> GetBlogsSpAsync()
+        {
+            var searchText = string.Empty;
+            List<SqlParameter> parametes = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName = "@search", SqlDbType = SqlDbType.NVarChar, Value = searchText?? (object) DBNull.Value},
+                new SqlParameter() {ParameterName = "@pageIndex", SqlDbType = SqlDbType.Int, Value = 0},
+                new SqlParameter() {ParameterName = "@pageSize", SqlDbType = SqlDbType.Int, Value = 10}
+            };
+
+            var data = await _unitOfWork.Repository<BlogEntity>().RawSqlListAsync("EXEC dbo.usp_GetBlogs @search, @pageIndex, @pageSize", parametes.ToArray());
+
+            var response = _mapper.Map<List<BlogModel>>(data);
+
+            return response;
         }
     }
 }

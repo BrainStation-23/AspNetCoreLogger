@@ -5,19 +5,19 @@ using WebApp.Core.Collections;
 
 namespace WebApp.Services
 {
-    public interface IBaseService<T> where T : class
+    public interface IBaseService<TEntity, TModel> where TEntity : class where TModel: class
     {
-        Task<Paging<T>> GetPageAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize);
-        Task<List<T>> GetAllAsync();
-        Task<T> FindAsync(long Id);
-        Task<T> FirstOrDefaultAsync(long id);
-        Task<T> InsertAsync(T entity);
-        Task<List<T>> InsertRangeAsync(List<T> entities);
-        Task<T> UpdateAsync(long id, T entity);
-        Task<T> UpdateAsync(T entity);
-        Task<List<T>> UpdateRangeAsync(List<T> entities);
-        Task DeleteAsync(long id);
-        Task DeleteAsync(T entity);
-        Task DeleteRangeAsync(List<T> entities);
+        Task<Paging<TModel>> GetPageAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize);
+        Task<List<TModel>> GetAllAsync();
+        Task<TModel> FindAsync(long Id);
+        Task<TModel> FirstOrDefaultAsync(long id);
+        Task<TModel> InsertAsync(TModel model);
+        Task<List<TModel>> InsertRangeAsync(List<TModel> models);
+        Task<TModel> UpdateAsync(long id, TModel model);
+        Task<TModel> UpdateAsync(TModel model);
+        Task<List<TModel>> UpdateRangeAsync(List<TModel> models);
+        Task<TModel> DeleteAsync(long id);
+        Task<TModel> DeleteAsync(TModel model);
+        Task<List<TModel>> DeleteRangeAsync(List<TModel> models);
     }
 }

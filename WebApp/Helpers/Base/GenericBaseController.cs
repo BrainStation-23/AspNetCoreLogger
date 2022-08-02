@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -9,12 +10,14 @@ using WebApp.Services;
 namespace WebApp.Helpers.Base
 {
     [AllowAnonymous]
-    public class GenericBaseController<T> : UserInfoBase where T : class
+    public class GenericBaseController<TEntity, TModel> : UserInfoBase where TEntity : class where TModel : class
     {
-        protected readonly IBaseService<T> _service;
+        protected readonly IBaseService<TEntity, TModel> _service;
+        protected readonly IMapper _mapper;
 
-        public GenericBaseController(IBaseService<T> service)
+        public GenericBaseController(IBaseService<TEntity, TModel> service, IMapper mapper)
         {
+            _mapper = mapper;
             _service = service;
         }
 
@@ -29,38 +32,45 @@ namespace WebApp.Helpers.Base
         [HttpGet("find/{id}")]
         public async Task<IActionResult> FindAsync(long id)
         {
-            return Ok(await _service.FindAsync(id));
+            var data = await _service.FindAsync(id);
+
+            return new OkResponse(data);
         }
 
 
         [HttpPost("add")]
-        public virtual async Task<IActionResult> AddAsync(T entity)
+        public virtual async Task<IActionResult> AddAsync(TModel model)
         {
-            var res = await _service.InsertAsync(entity);
-            return Created("", res);
+            var added = await _service.InsertAsync(model);
+
+            return new OkResponse(added);
         }
 
         [HttpPut("edit/{id}")]
-        public virtual async Task<IActionResult> EditAsync(long id, T entity)
+        public virtual async Task<IActionResult> EditAsync(long id, TModel model)
         {
-            var res = await _service.UpdateAsync(id, entity);
-            return Ok(res);
+            var updated = await _service.UpdateAsync(id, model);
+
+            return new OkResponse(updated);
         }
 
         [HttpDelete("delete/{id}")]
         public virtual async Task<IActionResult> DeleteAsync(long id)
         {
-            await _service.DeleteAsync(id);
-            return NoContent();
+            var deleted = await _service.DeleteAsync(id);
+
+            return new OkResponse(deleted);
         }
 
         [HttpPost("delete")]
-        public virtual async Task<IActionResult> DeleteAsync(T entity)
+        public virtual async Task<IActionResult> DeleteAsync(TModel model)
         {
-            Type type = entity.GetType();
-            long Id = (long)type.GetProperty("Id").GetValue(entity);
-            await _service.DeleteAsync(Id);
-            return NoContent();
+            Type type = model.GetType();
+            long Id = (long)type.GetProperty("Id").GetValue(model);
+
+            var deleted = await _service.DeleteAsync(Id);
+
+            return new OkResponse(deleted);
         }
     }
 }

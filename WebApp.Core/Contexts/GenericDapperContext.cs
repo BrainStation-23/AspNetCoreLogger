@@ -13,7 +13,7 @@ namespace Dapper_ORM.Services
     public class GenericDapperContext : IGenericDapperContext
     {
         private readonly IConfiguration _config;
-        private string Connectionstring = "DefaultConnection";
+        private readonly string Connectionstring = "DefaultConnection";
 
         public GenericDapperContext(IConfiguration config)
         {
@@ -65,7 +65,7 @@ namespace Dapper_ORM.Services
                 catch (Exception ex)
                 {
                     tran.Rollback();
-                    throw ex;
+                    throw;
                 }
             }
             catch (Exception ex)

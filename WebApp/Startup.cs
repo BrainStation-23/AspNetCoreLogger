@@ -4,21 +4,22 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 using Serilog.Events;
+using Swashbuckle.AspNetCore.Filters;
 using System.Linq;
+using System.Reflection;
 using WebApp.Core;
+using WebApp.Core.Auths;
 using WebApp.Core.Hostings;
 using WebApp.Core.Loggers;
 using WebApp.Core.Middlewares;
-using WebApp.Core.Mongos.Configurations;
-using WebApp.Helpers.Attributes;
-using WebApp.Service.Configurations;
+using WebApp.Helpers;
 using WebApp.Sql.Configurations;
+using WebApp.Swaggers;
 
 namespace WebApp
 {
@@ -35,16 +36,16 @@ namespace WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddHostedService<ApplicationHostedService>();
 
             services.AddSession();
             services.AddDistributedMemoryCache();
             services.AddControllers(
-                //options => {
+                //options =>
+                //{
                 //    options.Filters.Add<RouteFilterAttribute>();
                 //}
-                ).AddNewtonsoftJson(options =>
+            ).AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -56,11 +57,11 @@ namespace WebApp
             //});
             //services.AddScoped<RouteFilterAttribute>();
             services.AddDbContextDependencies(Configuration);
-            services.AddServiceDependency(Configuration);
+            services.AddWebAppDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDapper();
             //services.AddHealthChecks();
-
+            services.Configure<JwtOption>(Configuration.GetSection("Jwt"));
             services.AddHttpContextAccessor();
             services.ConfigureModelBindingExceptionHandling();
             //services.AddMongoDb(Configuration);
@@ -78,9 +79,13 @@ namespace WebApp
                     .AllowCredentials());
             });
 
+            services.AddSwaggerExamples();
+            services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
+            services.AddJwtTokenAuthentication(Configuration);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DotnetCoreLogger", Version = "v1" });
+                c.SwaggerGenConfiguration();
             });
         }
 
@@ -91,7 +96,11 @@ namespace WebApp
                 app.UseDeveloperExceptionPage();
                 //app.UseDatabaseErrorPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotnetCoreLogger v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.DefaultModelsExpandDepth(-1);
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotnetCoreLogger v1");
+                });
             }
             else
             {
@@ -115,7 +124,7 @@ namespace WebApp
             //app.UseStaticFiles();
             //app.UseCookiePolicy();
             app.UseRouting();
-            //app.UseAuthentication();
+            app.UseAuthentication();
             //app.ExceptionLog();
             app.UseAuthorization();
             //app.UseSession();

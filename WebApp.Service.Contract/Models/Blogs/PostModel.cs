@@ -1,7 +1,6 @@
 ﻿using System;
-using WebApp.Entity.Entities.Blogs;
 
-namespace WebApp.Service.Models.Blogs
+namespace WebApp.Service.Contract.Models.Blogs
 {
     public class PostModel : MasterModel
     {
@@ -12,6 +11,6 @@ namespace WebApp.Service.Models.Blogs
         public bool IsPublished { get; set; }
         public DateTime? PublishedFromDateUtc { get; set; }
 
-        public BlogEntity Blog { get; set; }
+        public BlogModel Blog { get; set; }
     }
 }

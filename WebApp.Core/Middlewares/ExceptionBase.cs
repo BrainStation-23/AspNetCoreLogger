@@ -13,6 +13,7 @@ using WebApp.Core.DataType;
 using WebApp.Core.Extensions;
 using WebApp.Core.Models;
 using WebApp.Core.Responses;
+using WebApp.Core.Exceptions;
 
 namespace WebApp.Core.Middlewares
 {
@@ -24,7 +25,24 @@ namespace WebApp.Core.Middlewares
             apiResponse.StatusCode = (int)errorModel.StatusCode;
             apiResponse.AppStatusCode = errorModel.AppStatusCode;
             apiResponse.Errors = errorModel.Errors;
-            apiResponse.Message = errorModel.Message;
+            apiResponse.Message = errorModel.MessageDetails ?? errorModel.Message;
+
+            return JsonSerializer.Serialize(apiResponse);
+        }
+
+        public static string ToApiDevelopmentResponse(this ErrorModel errorModel)
+        {
+            var apiResponse = new
+            {
+                IsSuccess = false,
+                StatusCode = (int)errorModel.StatusCode,
+                AppStatusCode = errorModel.AppStatusCode,
+                Errors = errorModel.Errors,
+                Message = errorModel.Message,
+                MessageDetails = errorModel.MessageDetails,
+                StackTrace = errorModel.StackTrace,
+                TraceId = errorModel.TraceId
+            };
 
             return JsonSerializer.Serialize(apiResponse);
         }
@@ -78,8 +96,8 @@ namespace WebApp.Core.Middlewares
             model.Form = context.Request.HasFormContentType ? JsonSerializer.Serialize(context.Request.Form.ToDictionary()) : string.Empty;
             model.RequestHeaders = JsonSerializer.Serialize(context.Request.Headers);
             model.ResponseHeaders = JsonSerializer.Serialize(context.Request.Headers);
-            model.Body = await context.Request.GetRequestBodyAsync();
-            //model.Response = await context.Response.GetResponseAsync();
+            //model.Body = await context.Request.GetRequestBodyAsync();
+            model.Response = await context.Response.GetResponseAsync();
             model.TraceId = context.TraceIdentifier;
             //model.Version = context.Features.HttpVersion;
             model.Scheme = context.Request.Scheme;
@@ -120,6 +138,7 @@ namespace WebApp.Core.Middlewares
             response.ContentType = "application/json";
 
             var errorModel = await context.ToErrorModelAsync(exception);
+            errorModel.MessageDetails = exception.ToInnerExceptionMessage();
 
             switch (exception)
             {
@@ -150,7 +169,7 @@ namespace WebApp.Core.Middlewares
 
                     break;
 
-                case DirectoryNotFoundException e:
+                case DirectoryNotFoundException:
                 case DivideByZeroException:
                 case DriveNotFoundException:
                 case FileNotFoundException:
@@ -173,16 +192,22 @@ namespace WebApp.Core.Middlewares
                     errorModel.Message = exception.Message;
                     break;
 
+                case AppException ae:
+                    errorModel.StatusCode = HttpStatusCode.OK;
+                    errorModel.Message = ae.Message;
+                    errorModel.Errors = ae.Errors;
+                    break;
+
                 default:
                     //errorModel.StatusCode = HttpStatusCode.InternalServerError;
-                    errorModel.Message = "Internal Server errors. Check Logs!";
+                    errorModel.Message = exception.Message ?? "Internal Server errors. Check Logs!";
 
                     break;
             }
 
             errorModel.AppStatusCode = ((HttpStatusCode)errorModel.StatusCode).ToAppStatusCode();
 
-            logger.LogError(exception.Message);
+            logger.LogError(exception, exception.Message);
 
             return errorModel;
         }

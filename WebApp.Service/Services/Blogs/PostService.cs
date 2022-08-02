@@ -1,25 +1,24 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Core.Collections;
-using WebApp.Service.Models.Blogs;
-using WebApp.Services;
 using WebApp.Entity.Entities.Blogs;
+using WebApp.Service.Contract.Models.Blogs;
+using WebApp.Services;
 
 namespace WebApp.Service
 {
-    public class PostService : BaseService<PostEntity>, IPostService
+    public class PostService : BaseService<PostEntity, PostModel>, IPostService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public PostService(IUnitOfWork unitOfWork,
-                IMapper mapper) : base(unitOfWork)
+                IMapper mapper) : base(unitOfWork, mapper)
         {
-            this._unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 

@@ -56,7 +56,7 @@ namespace WebApp.Core.Test.Extensions
             Assert.AreEqual(value, value);
         }
 
-        [Ignore]
+        [Ignore("Ignore Check")]
         [TestMethod]
         public void TestMethod1()
         {

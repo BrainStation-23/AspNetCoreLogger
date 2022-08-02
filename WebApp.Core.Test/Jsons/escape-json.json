@@ -5,7 +5,7 @@
   "data": [
     {
       "Body": "{\"name\":\"My Blog\",\"description\":\"My blog description\",\"motto\":\"number one blog\"}",
-      "Response": "{\"statusCode\":200,\"isSuccess\":true,\"message\":null,\"data\":{\"name\":\"My Blog\",\"description\":\"My blog description\",\"motto\":\"number one blog\",\\\"id\":10},\"errors\":null}"
+      "Response": "{\"statusCode\":200,\"isSuccess\":true,\"message\":null,\"data\":{\"name\":\"My Blog\",\"description\":\"My blog description\",\"motto\":\"number one blog\",\"id\":10},\"errors\":null}"
     }
   ],
   "errors": null

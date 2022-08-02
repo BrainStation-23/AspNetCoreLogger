@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -23,6 +24,7 @@ namespace WebApp.Core.Test.Middlewares
     {
         DefaultHttpContext defaultContext;
         Mock<ILogger<ExceptionMiddleware>> mockLogger;
+        Mock<IHostEnvironment> hostEnvironment;
         Mock<IExceptionLogRepository> mockExceptionLogRepository;
 
         [TestInitialize]
@@ -30,6 +32,7 @@ namespace WebApp.Core.Test.Middlewares
         {
             defaultContext = new DefaultHttpContext();
             mockLogger = new Mock<ILogger<ExceptionMiddleware>>();
+            hostEnvironment = new Mock<IHostEnvironment>();
             mockExceptionLogRepository = new Mock<IExceptionLogRepository>();
         }
 
@@ -49,7 +52,7 @@ namespace WebApp.Core.Test.Middlewares
             });
 
             // Act
-            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object);
             await middleware.InvokeAsync(defaultContext, mockExceptionLogRepository.Object);
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
 
@@ -71,7 +74,7 @@ namespace WebApp.Core.Test.Middlewares
             });
 
             // Act
-            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object);
             await middleware.InvokeAsync(defaultContext, mockExceptionLogRepository.Object);
             var responeBody = await defaultContext.Response.GetResponseAsync();
 
@@ -99,7 +102,7 @@ namespace WebApp.Core.Test.Middlewares
             });
 
             // Act
-            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object);
             await middleware.InvokeAsync(defaultContext, mockExceptionLogRepository.Object);
 
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
@@ -134,7 +137,7 @@ namespace WebApp.Core.Test.Middlewares
             defaultContext.Response.Body = new MemoryStream();
 
             // Act
-            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object);
             await middleware.InvokeAsync(defaultContext, mockExceptionLogRepository.Object);
             var responeBody = await defaultContext.Response.GetResponseAsync();
             var responseData = JsonSerializer.Deserialize<ErrorModel>(responeBody);
@@ -143,7 +146,7 @@ namespace WebApp.Core.Test.Middlewares
             var errors = responseData.Errors.ToList();
             errors.Should().NotBeEmpty();
             errors.Count.Should().BeGreaterThanOrEqualTo(1);
-            errors.FirstOrDefault().Should().Contain("Microsoft.Data.SqlClient.SqlError");
+            errors.FirstOrDefault().Should().ToString().Contains("Microsoft.Data.SqlClient.SqlError");
         }
     }
 }

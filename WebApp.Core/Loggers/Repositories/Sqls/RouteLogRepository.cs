@@ -79,35 +79,33 @@ namespace WebApp.Core.Loggers.Repositories
 
             try
             {
-                using (var connection = _dapper.CreateConnection())
+                using var connection = _dapper.CreateConnection();
+                await connection.ExecuteAsync(query, new
                 {
-                    await connection.ExecuteAsync(query, new
-                    {
-                        UserId = requestModel.UserId,
-                        ApplicationName = requestModel.Application,
-                        IpAddress = requestModel.IpAddress,
-                        Version = requestModel.Version,
-                        Host = requestModel.Host,
-                        Url = requestModel.Url,
-                        Source = requestModel.Source,
-                        Form = requestModel.Form,
-                        Body = requestModel.Body,
-                        Response = requestModel.Response,
-                        RequestHeaders = requestModel.RequestHeaders,
-                        ResponseHeaders = requestModel.ResponseHeaders,
-                        Scheme = requestModel.Scheme,
-                        TraceId = requestModel.TraceId,
-                        Protocol = requestModel.Proctocol,
-                        UrlReferrer = requestModel.UrlReferrer,
-                        Area = requestModel.Area,
-                        ControllerName = requestModel.ControllerName,
-                        ActionName = requestModel.ActionName,
-                        ExecutionDuration = requestModel.ExecutionDuration,
-                        StatusCode = ((int)requestModel.StatusCode).ToString(),
-                        AppStatusCode = requestModel.AppStatusCode,
-                        CreatedDateUtc = createdDateUtc
-                    });
-                }
+                    UserId = requestModel.UserId,
+                    ApplicationName = requestModel.Application,
+                    IpAddress = requestModel.IpAddress,
+                    Version = requestModel.Version,
+                    Host = requestModel.Host,
+                    Url = requestModel.Url,
+                    Source = requestModel.Source,
+                    Form = requestModel.Form,
+                    Body = requestModel.Body,
+                    Response = requestModel.Response,
+                    RequestHeaders = requestModel.RequestHeaders,
+                    ResponseHeaders = requestModel.ResponseHeaders,
+                    Scheme = requestModel.Scheme,
+                    TraceId = requestModel.TraceId,
+                    Protocol = requestModel.Proctocol,
+                    UrlReferrer = requestModel.UrlReferrer,
+                    Area = requestModel.Area,
+                    ControllerName = requestModel.ControllerName,
+                    ActionName = requestModel.ActionName,
+                    ExecutionDuration = requestModel.ExecutionDuration,
+                    StatusCode = ((int)requestModel.StatusCode).ToString(),
+                    AppStatusCode = requestModel.AppStatusCode,
+                    CreatedDateUtc = createdDateUtc
+                });
             }
             catch (Exception exception)
             {
