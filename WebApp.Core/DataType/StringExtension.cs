@@ -22,19 +22,6 @@ namespace WebApp.Core.DataType
             return value.ToString();
         }
 
-        public static string ToNullString(this object value)
-        {
-            if (value == null)
-                return string.Empty;
-
-            return value.ToString();
-        }
-
-        public static bool IsNotNullOrEmpty(this string value)
-        {
-            return !string.IsNullOrEmpty(value);
-        }
-
         public static bool IsNotNullOrWhiteSpace(this string value)
         {
             return !string.IsNullOrWhiteSpace(value);
@@ -43,20 +30,6 @@ namespace WebApp.Core.DataType
         public static List<string> ToSeperateList(this string value, char delimeter = ',')
         {
             return value.Split(delimeter).Select(e => e.Trim()).ToList();
-        }
-
-        public static string ToConcat(this IEnumerable<char> values)
-        {
-            return string.Concat(values);
-        }
-
-        public static string ToShorten(this string value)
-        {
-            var letters = new Regex("([A-Z]+[^A-Z]+)").Matches(value)
-                             .Cast<Match>()
-                             .Select(match => match.Value[0]);
-
-            return letters.ToConcat();
         }
 
         public static string ToSentence(this string input)

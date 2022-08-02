@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using WebApp.Common.Exceptions;
 using WebApp.Core.Auths;
-using WebApp.Core.Exceptions;
 using WebApp.Core.Models;
 using static WebApp.Entity.Entities.Identities.IdentityModel;
 

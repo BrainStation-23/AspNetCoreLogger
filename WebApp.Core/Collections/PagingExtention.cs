@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using WebApp.Common.Collections;
 
 namespace WebApp.Core.Collections
 {

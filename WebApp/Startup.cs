@@ -14,10 +14,10 @@ using System.Linq;
 using System.Reflection;
 using WebApp.Core;
 using WebApp.Core.Auths;
-using WebApp.Core.Hostings;
-using WebApp.Core.Loggers;
-using WebApp.Core.Middlewares;
 using WebApp.Helpers;
+using WebApp.Logger.Hostings;
+using WebApp.Logger.Loggers;
+using WebApp.Logger.Middlewares;
 using WebApp.Sql.Configurations;
 using WebApp.Swaggers;
 

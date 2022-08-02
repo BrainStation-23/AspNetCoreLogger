@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApp.Core;
-using WebApp.Core.Collections;
+using WebApp.Common.Collections;
 
 namespace WebApp.Services
 {

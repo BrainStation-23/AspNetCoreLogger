@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-using WebApp.Core.Responses;
+using WebApp.Common.Responses;
 using WebApp.Service.Services.Accounts;
 using WebApp.ViewModels;
 

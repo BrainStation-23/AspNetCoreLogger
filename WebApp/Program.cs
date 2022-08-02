@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
 using System.Diagnostics;
-using WebApp.Core.Loggers.Serilogs;
+using WebApp.Logger.Loggers.Serilogs;
 
 namespace WebApp
 {

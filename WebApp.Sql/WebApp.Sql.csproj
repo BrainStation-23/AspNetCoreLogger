@@ -28,5 +28,6 @@
   <ItemGroup>
     <ProjectReference Include="..\WebApp.Core\WebApp.Core.csproj" />
     <ProjectReference Include="..\WebApp.Entity\WebApp.Entity.csproj" />
+    <ProjectReference Include="..\WebApp.Logger\WebApp.Logger.csproj" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using WebApp.Core.Sqls;
+using WebApp.Common.Sqls;
 
 namespace WebApp.Entity.Entities.Logs
 {

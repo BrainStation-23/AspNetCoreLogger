@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using WebApp.Core.Sqls;
+using WebApp.Common.Sqls;
 using WebApp.Entity.Entities.Blogs;
 using WebApp.Service.Contract.Models;
 using WebApp.Service.Contract.Models.Blogs;

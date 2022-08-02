@@ -2,6 +2,7 @@
 using WebApp.Core.Models;
 using System.Linq;
 using WebApp.Core.Sqls;
+using WebApp.Common.Models;
 
 namespace WebApp.Core.Extensions
 {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WebApp.Common.Responses;
 using WebApp.Core;
-using WebApp.Core.Contexts;
-using WebApp.Core.Loggers.Repositories;
-using WebApp.Core.Responses;
+using WebApp.Logger.Loggers.Repositories;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Controllers.Logs
 {

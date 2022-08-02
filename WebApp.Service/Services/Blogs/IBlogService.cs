@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApp.Core;
-using WebApp.Core.Collections;
+using WebApp.Common.Collections;
 using WebApp.Entity.Entities.Blogs;
 using WebApp.Service.Contract.Models.Blogs;
 using WebApp.Services;

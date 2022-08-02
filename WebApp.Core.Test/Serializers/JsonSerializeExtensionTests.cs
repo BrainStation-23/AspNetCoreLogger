@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using WebApp.Common.Files;
 using WebApp.Common.Serialize;
-using WebApp.Core.Files;
 
 namespace WebApp.Core.Test.Serializers
 {

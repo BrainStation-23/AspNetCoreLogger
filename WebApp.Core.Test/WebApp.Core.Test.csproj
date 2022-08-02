@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebApp.Common\WebApp.Common.csproj" />
     <ProjectReference Include="..\WebApp.Core\WebApp.Core.csproj" />
+    <ProjectReference Include="..\WebApp.Logger\WebApp.Logger.csproj" />
   </ItemGroup>
 
   <ItemGroup>
