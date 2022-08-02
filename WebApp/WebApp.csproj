@@ -64,6 +64,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebApp.Logger\WebApp.Logger.csproj" />
     <ProjectReference Include="..\WebApp.Service.Contract\WebApp.Service.Contract.csproj" />
     <ProjectReference Include="..\WebApp.Service\WebApp.Service.csproj" />
   </ItemGroup>

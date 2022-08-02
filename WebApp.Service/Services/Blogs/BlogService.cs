@@ -6,10 +6,11 @@ using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Core;
-using WebApp.Core.Collections;
+using WebApp.Common.Collections;
 using WebApp.Entity.Entities.Blogs;
 using WebApp.Service.Contract.Models.Blogs;
 using WebApp.Services;
+using WebApp.Core.Collections;
 
 namespace WebApp.Service
 {

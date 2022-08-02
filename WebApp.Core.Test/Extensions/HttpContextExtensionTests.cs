@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Threading.Tasks;
-using WebApp.Core.Extensions;
-using WebApp.Core.Middlewares;
+using WebApp.Logger.Extensions;
 
 namespace WebApp.Core.Test.Extensions
 {

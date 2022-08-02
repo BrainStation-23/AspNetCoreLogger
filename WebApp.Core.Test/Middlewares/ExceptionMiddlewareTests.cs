@@ -11,11 +11,11 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using WebApp.Core.Extensions;
-using WebApp.Core.Loggers.Repositories;
-using WebApp.Core.Middlewares;
-using WebApp.Core.Models;
-using WebApp.Core.Responses;
+using WebApp.Common.Responses;
+using WebApp.Logger.Extensions;
+using WebApp.Logger.Loggers.Repositories;
+using WebApp.Logger.Middlewares;
+using WebApp.Logger.Models;
 
 namespace WebApp.Core.Test.Middlewares
 {

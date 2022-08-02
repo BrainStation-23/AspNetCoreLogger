@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
+using WebApp.Common.Collections;
 using WebApp.Core;
-using WebApp.Core.Collections;
 using WebApp.Entity.Entities.Blogs;
 using WebApp.Service.Contract.Models.Blogs;
 using WebApp.Services;
