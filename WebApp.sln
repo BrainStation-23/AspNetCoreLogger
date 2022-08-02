@@ -50,6 +50,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "schemas", "schemas", "{965B
 	ProjectSection(SolutionItems) = preProject
 		ExceptionLogs_Table.sql = ExceptionLogs_Table.sql
 		RouteLogs_Table.sql = RouteLogs_Table.sql
+		scripts\schemas\SqlLogs_Table.sql = scripts\schemas\SqlLogs_Table.sql
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Service.Contract", "WebApp.Service.Contract\WebApp.Service.Contract.csproj", "{79081174-B032-4F5E-8514-8A30C02803DF}"

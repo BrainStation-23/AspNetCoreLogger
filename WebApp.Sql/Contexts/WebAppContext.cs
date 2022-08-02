@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -14,6 +15,7 @@ using WebApp.Entity.Entities.Blogs;
 using WebApp.Entity.Entities.Identities;
 using WebApp.Entity.Entities.Logs;
 using WebApp.Entity.Entities.Settings;
+using WebApp.Logger.Interceptors;
 using WebApp.Logger.Loggers;
 using static WebApp.Entity.Entities.Identities.IdentityModel;
 
@@ -31,16 +33,21 @@ namespace WebApp.Sql
         public string Schema { get; set; }
 
         public readonly ISignInHelper SignInHelper;
+        public readonly IHttpContextAccessor HttpContextAccessor;
 
-        public WebAppContext(DbContextOptions<WebAppContext> options, ISignInHelper signInHelper) : base(options)
+        public WebAppContext(DbContextOptions<WebAppContext> options,
+            ISignInHelper signInHelper,
+            IHttpContextAccessor httpContextAccessor) : base(options)
         {
             SignInHelper = signInHelper;
+            HttpContextAccessor = httpContextAccessor;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.LogTo(Console.WriteLine);
             optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
+            //optionsBuilder.AddInterceptors(new SqlQueryInterceptor(HttpContextAccessor));
             optionsBuilder.UseLoggerFactory(_myLoggerFactory).EnableSensitiveDataLogging();
         }
 

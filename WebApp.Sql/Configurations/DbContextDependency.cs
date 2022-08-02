@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using WebApp.Logger.Interceptors;
 using static WebApp.Entity.Entities.Identities.IdentityModel;
 
 namespace WebApp.Sql.Configurations
@@ -11,12 +12,15 @@ namespace WebApp.Sql.Configurations
     {
         public static void AddDbContextDependencies(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddTransient<SqlQueryInterceptor>();
+
             var connectionString = configuration.GetConnectionString("WebAppConnection");
-            services.AddDbContext<WebAppContext>(options =>
+            services.AddDbContext<WebAppContext>((provider, options) =>
             {
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                 options.LogTo(Console.WriteLine);
                 options.UseSqlServer(connectionString);
+                options.AddInterceptors(provider.GetRequiredService<SqlQueryInterceptor>());
             });
             services.AddDatabaseDeveloperPageExceptionFilter();
             services

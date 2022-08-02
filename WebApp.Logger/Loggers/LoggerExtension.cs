@@ -22,6 +22,7 @@ namespace WebApp.Logger.Loggers
             services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
             services.AddScoped<IRouteLogRepository, RouteLogRepository>();
             services.AddScoped<IAuditLogRepository, AuditLogRepository>();
+            services.AddScoped<ISqlLogRepository, SqlLogRepository>();
         }
 
         public static void HttpLog(this IApplicationBuilder app)
