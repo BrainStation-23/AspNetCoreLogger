@@ -59,7 +59,7 @@ namespace WebApp
             services.AddDbContextDependencies(Configuration);
             services.AddWebAppDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddDapper();
+            services.AddDapper(Configuration);
             //services.AddHealthChecks();
             services.Configure<JwtOption>(Configuration.GetSection("Jwt"));
             services.AddHttpContextAccessor();
@@ -80,6 +80,7 @@ namespace WebApp
             });
 
             services.AddSwaggerExamples();
+            services.AddLogConfig(Configuration);
             services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
             services.AddJwtTokenAuthentication(Configuration);
             services.AddSwaggerGen(c =>

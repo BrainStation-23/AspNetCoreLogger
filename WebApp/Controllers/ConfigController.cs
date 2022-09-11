@@ -9,6 +9,8 @@ using System.Security.AccessControl;
 using WebApp.Core.Contexts;
 using WebApp.Common.Responses;
 using WebApp.Common.Contexts;
+using WebApp.Logger.Loggers;
+using Microsoft.Extensions.Options;
 
 namespace WebApp.Controllers
 {
@@ -19,12 +21,22 @@ namespace WebApp.Controllers
     {
         private readonly IConfiguration Configuration;
         private readonly IWebHostEnvironment WebHostEnvironment;
+        private readonly LogOption _logOption;
 
         public ConfigController(IConfiguration _configuration,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            IOptions<LogOption> logOption)
         {
             Configuration = _configuration;
             WebHostEnvironment = webHostEnvironment;
+            _logOption = logOption.Value;
+        }
+
+        [HttpGet]
+        [Route("log")]
+        public IActionResult GetLogOption()
+        {
+            return new OkResponse(_logOption);
         }
 
         [HttpGet]

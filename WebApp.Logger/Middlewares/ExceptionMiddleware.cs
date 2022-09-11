@@ -8,6 +8,9 @@ using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Models;
 using Microsoft.Extensions.Hosting;
+using WebApp.Logger.Loggers;
+using Microsoft.Extensions.Options;
+using System.Linq;
 
 namespace WebApp.Logger.Middlewares
 {
@@ -20,14 +23,20 @@ namespace WebApp.Logger.Middlewares
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
         private readonly IHostEnvironment _webHostEnvironment;
+        private readonly IServiceProvider _serviceProvider;
+        private readonly LogOption _logOptions;
 
         public ExceptionMiddleware(RequestDelegate next,
             ILogger<ExceptionMiddleware> logger,
-            IHostEnvironment webHostEnvironment)
+            IHostEnvironment webHostEnvironment,
+            IServiceProvider serviceProvider,
+            IOptions<LogOption> logOptions)
         {
             _next = next;
             _logger = logger;
             _webHostEnvironment = webHostEnvironment;
+            _serviceProvider = serviceProvider;
+            _logOptions = logOptions.Value;
         }
 
         public async Task InvokeAsync(HttpContext context, IExceptionLogRepository exceptionLogRepository)
@@ -60,7 +69,14 @@ namespace WebApp.Logger.Middlewares
 
                 var apiResponse = _webHostEnvironment.IsDevelopment() ? errorModel.ToApiDevelopmentResponse(): errorModel.ToApiResponse();
                 await context.Response.WriteAsync(apiResponse);
-                await exceptionLogRepository.AddAsync(errorModel);
+
+                var factory = new ProviderFactory(_serviceProvider);
+                var providerType = _logOptions.ProviderType.ToProviderTypeEnums().FirstOrDefault();
+                ILog loggerWrapper = factory.Build(providerType);
+
+                await loggerWrapper.Error.AddAsync(errorModel);
+
+                //await exceptionLogRepository.AddAsync(errorModel);
             }
             finally
             {

@@ -71,10 +71,14 @@ namespace WebApp.Common.Contexts
             {
                 if (entry.State == EntityState.Detached
                     || entry.State == EntityState.Unchanged
-                    //|| entry.Entity is BaseEntity
-                    //|| entry.Entity is AuditLog
-                    || entry.Entity.GetType().Name == ignoreEntity)
+                //|| entry.Entity is BaseEntity
+                //|| entry.Entity is AuditLog
+                )
                     continue;
+
+                if (!string.IsNullOrEmpty(ignoreEntity))
+                    if (entry.Entity.GetType().Name == ignoreEntity)
+                        continue;
 
                 var originalEntry = entry.GetDatabaseValues();
                 var hasChanges = HasChanges(originalEntry, entry);

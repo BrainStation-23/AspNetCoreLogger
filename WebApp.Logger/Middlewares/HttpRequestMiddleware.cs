@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Logger.Extensions;
+using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Models;
 
@@ -16,15 +20,19 @@ namespace WebApp.Logger.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<HttpRequestMiddleware> _logger;
+        private readonly LogOption _logOptions;
 
         public HttpRequestMiddleware(RequestDelegate next,
-            ILogger<HttpRequestMiddleware> logger)
+            ILogger<HttpRequestMiddleware> logger,
+            IOptions<LogOption> logOptions)
         {
             _next = next;
             _logger = logger;
+            _logOptions = logOptions.Value;
         }
 
-        public async Task InvokeAsync(HttpContext context, IRouteLogRepository routeLogRepository)
+        public async Task InvokeAsync(HttpContext context,
+            IServiceProvider _serviceProvider)
         {
             var requestModel = new RequestModel();
 
@@ -45,7 +53,13 @@ namespace WebApp.Logger.Middlewares
 
             await responseBody.DisposeAsync();
 
-            await routeLogRepository.AddAsync(requestModel);
+            var factory = new ProviderFactory(_serviceProvider);
+            var providerType = _logOptions.ProviderType.ToProviderTypeEnums().FirstOrDefault();
+            ILog loggerWrapper = factory.Build(providerType);
+
+            await loggerWrapper.Request.AddAsync(requestModel);
+
+            //await routeLogRepository.AddAsync(requestModel);
         }
     }
 }

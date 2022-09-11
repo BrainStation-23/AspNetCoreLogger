@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Options;
 using System.Data.Common;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using WebApp.Common.Extensions;
 using WebApp.Common.Serialize;
+using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Models;
 
@@ -16,12 +18,15 @@ namespace WebApp.Logger.Interceptors
     {
         private readonly IHttpContextAccessor Context;
         private readonly ISqlLogRepository SqlLogRepository;
+        private readonly LogOption _logOption;
 
         public SqlQueryInterceptor(IHttpContextAccessor context,
-            ISqlLogRepository sqlLogRepository)
+            ISqlLogRepository sqlLogRepository,
+            IOptions<LogOption> logOption)
         {
             Context = context;
             SqlLogRepository = sqlLogRepository;
+            _logOption = logOption.Value;
         }
 
         public override DbDataReader ReaderExecuted(DbCommand command,
@@ -64,6 +69,9 @@ namespace WebApp.Logger.Interceptors
 
         private async Task ManipulateCommandAsync(DbCommand command, CommandExecutedEventData commandExecutedEventData)
         {
+            if (_logOption.LogType.Contains("Sql"))
+                return;
+
             var context = Context.HttpContext;
             var model = new SqlModel
             {

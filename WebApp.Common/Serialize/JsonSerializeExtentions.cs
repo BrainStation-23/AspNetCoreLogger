@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace WebApp.Common.Serialize
@@ -74,6 +76,9 @@ namespace WebApp.Common.Serialize
 
         public static string JsonUnescaping(this string value)
         {
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
+
             var remover = new Dictionary<string, string> {
                 { "\"{", "{"},          //  "{      -   {
                 { "}\"", "}"},           //  }"      -   }
@@ -99,6 +104,20 @@ namespace WebApp.Common.Serialize
             value = Regex.Unescape(value);
 
             return value;
+        }
+
+        public static string ToEncodeBase64(this string value)
+        {
+            if (string.IsNullOrEmpty(value)) return null;
+
+            return WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(value));
+        }
+
+        public static string ToDecodeBase64(this string base64Value)
+        {
+            if (string.IsNullOrEmpty(base64Value)) return null;
+
+            return Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(base64Value));
         }
     }
 }

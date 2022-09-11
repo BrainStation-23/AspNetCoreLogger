@@ -1,8 +1,10 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -10,6 +12,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using WebApp.Common.Responses;
 using WebApp.Logger.Extensions;
+using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Middlewares;
 
@@ -47,8 +50,10 @@ namespace WebApp.Core.Test.Middlewares
                 return Task.CompletedTask;
             });
 
+            var someOptions = Options.Create(new LogOption());
+            var serviceProvider = new Mock<IServiceProvider>();
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions, serviceProvider.Object);
             await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
 
@@ -68,9 +73,10 @@ namespace WebApp.Core.Test.Middlewares
                 innerHttpContext.Response.WriteAsync(exptected);
                 return Task.CompletedTask;
             });
-
+            var someOptions = Options.Create(new LogOption());
+            var serviceProvider = new Mock<IServiceProvider>();
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions, serviceProvider.Object);
             await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
             var responeBody = await defaultContext.Response.GetResponseAsync();
 
@@ -96,9 +102,11 @@ namespace WebApp.Core.Test.Middlewares
                 httpContext.Response.WriteAsync(responseExpected);
                 return Task.CompletedTask;
             });
+            var someOptions = Options.Create(new LogOption());
+            var serviceProvider = new Mock<IServiceProvider>();
 
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions, serviceProvider.Object);
             await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
 
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
@@ -139,9 +147,10 @@ namespace WebApp.Core.Test.Middlewares
             //    innerHttpContext.Response.WriteAsync(expectedOutput);
             //    return Task.CompletedTask;
             //}, logger: mockLogger.Object);
-
+            var someOptions = Options.Create(new LogOption());
+            var serviceProvider = new Mock<IServiceProvider>();
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions, serviceProvider.Object);
             await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
 
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();

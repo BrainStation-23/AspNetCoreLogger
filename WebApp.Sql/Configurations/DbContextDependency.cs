@@ -20,6 +20,7 @@ namespace WebApp.Sql.Configurations
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                 options.LogTo(Console.WriteLine);
                 options.UseSqlServer(connectionString);
+
                 options.AddInterceptors(provider.GetRequiredService<SqlQueryInterceptor>());
             });
             services.AddDatabaseDeveloperPageExceptionFilter();

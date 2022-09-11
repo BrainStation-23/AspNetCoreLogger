@@ -1,0 +1,239 @@
+{
+  "statusCode": 200,
+  "appStatusCode": "AP1300E",
+  "isSuccess": true,
+  "message": null,
+  "data": [
+    {
+      "id": 40202,
+      "userId": null,
+      "applicationName": null,
+      "ipAddress": "::1",
+      "version": "https",
+      "host": "localhost:44373",
+      "url": "GET https://localhost:44373/api/Blog/search?pageSize=10",
+      "source": null,
+      "form": "",
+      "body": "",
+      "requestHeaders": {
+        "Accept": [
+          "*/*"
+        ],
+        "Accept-Encoding": [
+          "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+          "en-US,en;q=0.9"
+        ],
+        "Connection": [
+          "close"
+        ],
+        "Cookie": [
+          "Seq-Session=hxuO1vA7BOhSCzeB6bebViBZzHy79OEd1ufATCU7"
+        ],
+        "Host": [
+          "localhost:44373"
+        ],
+        "Referer": [
+          "https://localhost:44373/swagger/index.html"
+        ],
+        "User-Agent": [
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36"
+        ],
+        "sec-ch-ua": [
+          "\"Chromium\";v=\"104\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"104\""
+        ],
+        "sec-ch-ua-mobile": [
+          "?0"
+        ],
+        "sec-ch-ua-platform": [
+          "\"Windows\""
+        ],
+        "sec-fetch-site": [
+          "same-origin"
+        ],
+        "sec-fetch-mode": [
+          "cors"
+        ],
+        "sec-fetch-dest": [
+          "empty"
+        ]
+      },
+      "responseHeaders": {
+        "Accept": [
+          "*/*"
+        ],
+        "Accept-Encoding": [
+          "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+          "en-US,en;q=0.9"
+        ],
+        "Connection": [
+          "close"
+        ],
+        "Cookie": [
+          "Seq-Session=hxuO1vA7BOhSCzeB6bebViBZzHy79OEd1ufATCU7"
+        ],
+        "Host": [
+          "localhost:44373"
+        ],
+        "Referer": [
+          "https://localhost:44373/swagger/index.html"
+        ],
+        "User-Agent": [
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36"
+        ],
+        "sec-ch-ua": [
+          "\"Chromium\";v=\"104\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"104\""
+        ],
+        "sec-ch-ua-mobile": [
+          "?0"
+        ],
+        "sec-ch-ua-platform": [
+          "\"Windows\""
+        ],
+        "sec-fetch-site": [
+          "same-origin"
+        ],
+        "sec-fetch-mode": [
+          "cors"
+        ],
+        "sec-fetch-dest": [
+          "empty"
+        ]
+      },
+      "scheme": "https",
+      "traceId": "80000040-0005-f600-b63f-84710c7967bb",
+      "protocol": "HTTP/2",
+      "urlReferrer": null,
+      "area": null,
+      "controllerName": null,
+      "actionName": null,
+      "executionDuration": 0,
+      "statusCode": "200",
+      "appStatusCode": "AP1300E",
+      "createdDateUtc": "2022-08-28T15:12:58"
+    },
+    {
+      "id": 30217,
+      "userId": null,
+      "applicationName": null,
+      "ipAddress": "::1",
+      "version": "https",
+      "requestHeaders": {
+        "Accept": [
+          "*/*"
+        ],
+        "Accept-Encoding": [
+          "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+          "en-US,en;q=0.9"
+        ],
+        "Authorization": [
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnaXZlbl9uYW1lIjoiTWQgVGFzbGltICIsInVuaXF1ZV9uYW1lIjoidGFzbGltIiwiZW1haWwiOiJ0YXNsaW1AZW1haWwuY29tIiwibmFtZWlkIjoiMSIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY1OTQ3MTA2MCwiZXhwIjoxNjU5NDc0NjU5LCJpYXQiOjE2NTk0NzEwNjAsImlzcyI6Im1lIiwiYXVkIjoibXktZG90bmV0LWxvZ2dlci1hcGkifQ.ie1PYPv0afwfa6zFKhLFKeo4_to3co71HXJf10NPees"
+        ]
+      },
+      "responseHeaders": {
+        "Accept": [
+          "*/*"
+        ],
+        "Accept-Encoding": [
+          "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+          "en-US,en;q=0.9"
+        ],
+        "Authorization": [
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnaXZlbl9uYW1lIjoiTWQgVGFzbGltICIsInVuaXF1ZV9uYW1lIjoidGFzbGltIiwiZW1haWwiOiJ0YXNsaW1AZW1haWwuY29tIiwibmFtZWlkIjoiMSIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY1OTQ3MTA2MCwiZXhwIjoxNjU5NDc0NjU5LCJpYXQiOjE2NTk0NzEwNjAsImlzcyI6Im1lIiwiYXVkIjoibXktZG90bmV0LWxvZ2dlci1hcGkifQ.ie1PYPv0afwfa6zFKhLFKeo4_to3co71HXJf10NPees"
+        ]
+      },
+
+      "createdDateUtc": "2022-08-02T22:08:26"
+    },
+    {
+      "id": 30216,
+      "userId": null,
+      "applicationName": null,
+      "ipAddress": "::1",
+      "version": "https",
+      "host": "localhost:44373",
+      "url": "GET https://localhost:44373/api/Blog/search?pageSize=10",
+      "source": null,
+      "form": "",
+      "body": "",
+      "requestHeaders": {
+        "Accept": [
+          "*/*"
+        ],
+        "Accept-Encoding": [
+          "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+          "en-US,en;q=0.9"
+        ],
+        "Authorization": [
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnaXZlbl9uYW1lIjoiTWQgVGFzbGltICIsInVuaXF1ZV9uYW1lIjoidGFzbGltIiwiZW1haWwiOiJ0YXNsaW1AZW1haWwuY29tIiwibmFtZWlkIjoiMSIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY1OTQ3MTA2MCwiZXhwIjoxNjU5NDc0NjU5LCJpYXQiOjE2NTk0NzEwNjAsImlzcyI6Im1lIiwiYXVkIjoibXktZG90bmV0LWxvZ2dlci1hcGkifQ.ie1PYPv0afwfa6zFKhLFKeo4_to3co71HXJf10NPees"
+        ]
+      },
+      "responseHeaders": {
+        "Accept": [
+          "*/*"
+        ],
+        "Accept-Encoding": [
+          "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+          "en-US,en;q=0.9"
+        ],
+        "Authorization": [
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnaXZlbl9uYW1lIjoiTWQgVGFzbGltICIsInVuaXF1ZV9uYW1lIjoidGFzbGltIiwiZW1haWwiOiJ0YXNsaW1AZW1haWwuY29tIiwibmFtZWlkIjoiMSIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY1OTQ3MTA2MCwiZXhwIjoxNjU5NDc0NjU5LCJpYXQiOjE2NTk0NzEwNjAsImlzcyI6Im1lIiwiYXVkIjoibXktZG90bmV0LWxvZ2dlci1hcGkifQ.ie1PYPv0afwfa6zFKhLFKeo4_to3co71HXJf10NPees"
+        ]
+      },
+      "createdDateUtc": "2022-08-02T22:05:07"
+    },
+    {
+      "id": 30215,
+      "userId": null,
+      "applicationName": null,
+      "ipAddress": "::1",
+      "version": "https",
+      "requestHeaders": {
+        "Accept": [
+          "*/*"
+        ],
+        "Accept-Encoding": [
+          "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+          "en-US,en;q=0.9"
+        ],
+        "Authorization": [
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnaXZlbl9uYW1lIjoiTWQgVGFzbGltICIsInVuaXF1ZV9uYW1lIjoidGFzbGltIiwiZW1haWwiOiJ0YXNsaW1AZW1haWwuY29tIiwibmFtZWlkIjoiMSIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY1OTQ3MTA2MCwiZXhwIjoxNjU5NDc0NjU5LCJpYXQiOjE2NTk0NzEwNjAsImlzcyI6Im1lIiwiYXVkIjoibXktZG90bmV0LWxvZ2dlci1hcGkifQ.ie1PYPv0afwfa6zFKhLFKeo4_to3co71HXJf10NPees"
+        ]
+      },
+      "responseHeaders": {
+        "Accept": [
+          "*/*"
+        ],
+        "Accept-Encoding": [
+          "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+          "en-US,en;q=0.9"
+        ],
+        "Authorization": [
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnaXZlbl9uYW1lIjoiTWQgVGFzbGltICIsInVuaXF1ZV9uYW1lIjoidGFzbGltIiwiZW1haWwiOiJ0YXNsaW1AZW1haWwuY29tIiwibmFtZWlkIjoiMSIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY1OTQ3MTA2MCwiZXhwIjoxNjU5NDc0NjU5LCJpYXQiOjE2NTk0NzEwNjAsImlzcyI6Im1lIiwiYXVkIjoibXktZG90bmV0LWxvZ2dlci1hcGkifQ.ie1PYPv0afwfa6zFKhLFKeo4_to3co71HXJf10NPees"
+        ],
+        "Connection": [
+          "close"
+        ]
+
+      },
+
+      "createdDateUtc": "2022-08-02T22:03:41"
+    }
+  ],
+  "errors": null
+}
