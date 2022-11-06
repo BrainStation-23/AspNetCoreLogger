@@ -23,7 +23,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(SqlModel sqlModel)
         {
-            if (sqlModel.Url.Contains("/Log/"))
+            if (sqlModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
                 return;
 
             var createdDateUtc = DateTime.UtcNow.ToString();

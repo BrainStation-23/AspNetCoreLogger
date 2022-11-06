@@ -6,7 +6,7 @@ namespace WebApp.Logger.Loggers
     {
         public const string Name = "LoggerWrapper";
 
-        public List<string> ProviderType { get; set; }
+        public string ProviderType { get; set; }
         public List<string> LogType { get; set; }
         public string Mode { get; set; }
         public bool EnableMask { get; set; }
@@ -27,24 +27,39 @@ namespace WebApp.Logger.Loggers
 
     public class Audit
     {
+        public string Mode { get; set; }
+        public bool EnableMask { get; set; }
+        public bool EnableIgnore { get; set; }
         public List<string> IgnoreColumns { get; set; }
         public List<string> MaskColumns { get; set; }
     }
 
     public class Request
     {
+        public string Mode { get; set; }
+        public List<string> HttpVerbs { get; set; }
+        public List<string> IgnoreRequests { get; set; }
+        public bool EnableMask { get; set; }
+        public bool EnableIgnore { get; set; }
         public List<string> IgnoreColumns { get; set; }
         public List<string> MaskColumns { get; set; }
     }
 
     public class Sql
     {
+        public string Mode { get; set; }
+        public bool EnableMask { get; set; }
+        public bool EnableIgnore { get; set; }
         public List<string> IgnoreColumns { get; set; }
         public List<string> MaskColumns { get; set; }
     }
 
     public class Error
     {
+        public string Mode { get; set; }
+        public List<string> HttpVerbs { get; set; }
+        public bool EnableMask { get; set; }
+        public bool EnableIgnore { get; set; }
         public List<string> IgnoreColumns { get; set; }
         public List<string> MaskColumns { get; set; }
     }
@@ -52,8 +67,6 @@ namespace WebApp.Logger.Loggers
     public class CosmosDb
     {
         public List<string> LogType { get; set; }
-        public string Mode { get; set; }
-        public bool Mask { get; set; }
         public string AccountUrl { get; set; }
         public string Key { get; set; }
         public string DatabaseName { get; set; }
@@ -64,8 +77,6 @@ namespace WebApp.Logger.Loggers
     public class File
     {
         public List<string> LogType { get; set; }
-        public string Mode { get; set; }
-        public bool Mask { get; set; }
         public string Retention { get; set; }
         public string FileSize { get; set; }
         public string Path { get; set; }
@@ -76,8 +87,6 @@ namespace WebApp.Logger.Loggers
     public class Mongo
     {
         public List<string> LogType { get; set; }
-        public string Version { get; set; }
-        public bool Mode { get; set; }
         public string Retention { get; set; }
         public string ConnectionString { get; set; }
         public string Server { get; set; }
@@ -94,8 +103,6 @@ namespace WebApp.Logger.Loggers
     public class MSSql
     {
         public List<string> LogType { get; set; }
-        public string Mode { get; set; }
-        public bool Mask { get; set; }
         public string Retention { get; set; }
         public string Server { get; set; }
         public string Username { get; set; }

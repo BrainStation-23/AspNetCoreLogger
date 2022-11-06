@@ -148,9 +148,16 @@ namespace WebApp.Logger.Providers.Mongos
             return response.Resource;
         }
 
+        public async Task<string> GetPartitionKey(Container container)
+        {
+            ContainerProperties cproperties = await _container.ReadContainerAsync();
+
+            return cproperties.PartitionKeyPath;
+        }
+
         public async Task<TItem> InsertAsync(TItem item)
         {
-            var response = await _container.CreateItemAsync<TItem>(item, new PartitionKey(item.Id));
+            var response = await _container.CreateItemAsync<TItem>(item);
 
             return response.Resource;
         }

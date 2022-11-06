@@ -26,7 +26,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(ErrorModel errorModel)
         {
-            if (errorModel.Url.Contains("/Log/"))
+            if (errorModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
                 return;
 
             var createdDateUtc = DateTime.UtcNow.ToString();

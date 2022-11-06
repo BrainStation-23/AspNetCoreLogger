@@ -34,6 +34,13 @@ namespace WebApp.Logger.Middlewares
         public async Task InvokeAsync(HttpContext context,
             IServiceProvider _serviceProvider)
         {
+            var isSkipable = LogOptionExtension.SkipRequest(context, _logOptions);
+            if (isSkipable)
+            {
+                await _next(context);
+                return;
+            }
+
             var requestModel = new RequestModel();
 
             var originalBodyStream = context.Response.Body;
@@ -54,8 +61,8 @@ namespace WebApp.Logger.Middlewares
             await responseBody.DisposeAsync();
 
             var factory = new ProviderFactory(_serviceProvider);
-            var providerType = _logOptions.ProviderType.ToProviderTypeEnums().FirstOrDefault();
-            ILog loggerWrapper = factory.Build(providerType);
+            //var providerType = _logOptions.ProviderType.ToProviderTypeEnums().FirstOrDefault();
+            ILog loggerWrapper = factory.Build(_logOptions.ProviderType);
 
             await loggerWrapper.Request.AddAsync(requestModel);
 

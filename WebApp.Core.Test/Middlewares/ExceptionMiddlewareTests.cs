@@ -59,8 +59,8 @@ namespace WebApp.Core.Test.Middlewares
             });
 
             // Act
-            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object, serviceProvider.Object, logOption.Object);
-            await middleware.InvokeAsync(defaultContext, mockExceptionLogRepository.Object);
+            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object, logOption.Object);
+            await middleware.InvokeAsync(defaultContext, serviceProvider.Object);
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
 
             // Assert
@@ -81,8 +81,8 @@ namespace WebApp.Core.Test.Middlewares
             });
 
             // Act
-            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object, serviceProvider.Object, logOption.Object);
-            await middleware.InvokeAsync(defaultContext, mockExceptionLogRepository.Object);
+            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object, logOption.Object);
+            await middleware.InvokeAsync(defaultContext, serviceProvider.Object);
             var responeBody = await defaultContext.Response.GetResponseAsync();
 
             // Assert
@@ -109,8 +109,8 @@ namespace WebApp.Core.Test.Middlewares
             });
 
             // Act
-            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object, serviceProvider.Object, logOption.Object);
-            await middleware.InvokeAsync(defaultContext, mockExceptionLogRepository.Object);
+            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object, logOption.Object);
+            await middleware.InvokeAsync(defaultContext, serviceProvider.Object);
 
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
             var responseBody = await defaultContext.Response.GetResponseAsync();
@@ -144,8 +144,8 @@ namespace WebApp.Core.Test.Middlewares
             defaultContext.Response.Body = new MemoryStream();
 
             // Act
-            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object, serviceProvider.Object, logOption.Object); 
-            await middleware.InvokeAsync(defaultContext, mockExceptionLogRepository.Object);
+            var middleware = new ExceptionMiddleware(next: requestDelegate, logger: mockLogger.Object, hostEnvironment.Object, logOption.Object);
+            await middleware.InvokeAsync(defaultContext, serviceProvider.Object);
             var responeBody = await defaultContext.Response.GetResponseAsync();
             var responseData = JsonSerializer.Deserialize<ErrorModel>(responeBody);
 

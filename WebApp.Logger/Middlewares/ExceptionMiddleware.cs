@@ -23,23 +23,20 @@ namespace WebApp.Logger.Middlewares
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
         private readonly IHostEnvironment _webHostEnvironment;
-        private readonly IServiceProvider _serviceProvider;
         private readonly LogOption _logOptions;
 
         public ExceptionMiddleware(RequestDelegate next,
             ILogger<ExceptionMiddleware> logger,
             IHostEnvironment webHostEnvironment,
-            IServiceProvider serviceProvider,
             IOptions<LogOption> logOptions)
         {
             _next = next;
             _logger = logger;
             _webHostEnvironment = webHostEnvironment;
-            _serviceProvider = serviceProvider;
             _logOptions = logOptions.Value;
         }
 
-        public async Task InvokeAsync(HttpContext context, IExceptionLogRepository exceptionLogRepository)
+        public async Task InvokeAsync(HttpContext context, IServiceProvider _serviceProvider)
         {
             var errorModel = new ErrorModel();
             var requestModel = new RequestModel();
@@ -63,6 +60,7 @@ namespace WebApp.Logger.Middlewares
             }
             catch (Exception exception)
             {
+                
                 errorModel = await exception.ErrorAsync(context, _logger);
                 errorModel.Body = requestModel.Body;
                 context.Response.Body = originalBodyStream;
@@ -71,7 +69,7 @@ namespace WebApp.Logger.Middlewares
                 await context.Response.WriteAsync(apiResponse);
 
                 var factory = new ProviderFactory(_serviceProvider);
-                var providerType = _logOptions.ProviderType.ToProviderTypeEnums().FirstOrDefault();
+                var providerType = _logOptions.ProviderType;
                 ILog loggerWrapper = factory.Build(providerType);
 
                 await loggerWrapper.Error.AddAsync(errorModel);

@@ -24,7 +24,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(RequestModel requestModel)
         {
-            if (requestModel.Url.Contains("/Log/"))
+            if (requestModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
                 return;
 
             var createdDateUtc = DateTime.UtcNow.ToString();
@@ -125,9 +125,9 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 using (var connection = _dapper.CreateConnection())
                 {
-                    var routeLogsEntities = await connection.QueryAsync(query, pager);
-                    var routeLogUnescapeString = routeLogsEntities.ToJson().JsonUnescaping();
-                    routeLogs = JArray.Parse(routeLogUnescapeString);
+                     routeLogs = await connection.QueryAsync(query, pager);
+                    //var routeLogUnescapeString = routeLogsEntities.ToJson().JsonUnescaping();
+                    //routeLogs = JArray.Parse(routeLogUnescapeString);
                 }
 
                 return routeLogs;

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Options;
+using System;
 using System.Data.Common;
 using System.Security.Claims;
 using System.Threading;
@@ -14,13 +16,13 @@ using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Interceptors
 {
-    public class SqlQueryInterceptor : DbCommandInterceptor
+    public class SqlConnectionInterceptor : DbConnectionInterceptor
     {
         private readonly IHttpContextAccessor Context;
         private readonly ISqlLogRepository SqlLogRepository;
         private readonly LogOption _logOption;
 
-        public SqlQueryInterceptor(IHttpContextAccessor context,
+        public SqlConnectionInterceptor(IHttpContextAccessor context,
             ISqlLogRepository sqlLogRepository,
             IOptions<LogOption> logOption)
         {
@@ -29,53 +31,24 @@ namespace WebApp.Logger.Interceptors
             _logOption = logOption.Value;
         }
 
-        public override DbDataReader ReaderExecuted(DbCommand command,
-           CommandExecutedEventData eventData,
-           DbDataReader result)
+        public override InterceptionResult ConnectionOpening(DbConnection connection,
+            ConnectionEventData eventData,
+            InterceptionResult result)
+            => throw new InvalidOperationException("Open connections asynchronously when using AAD authentication.");
+
+        public override async ValueTask<InterceptionResult> ConnectionOpeningAsync(DbConnection connection,
+            ConnectionEventData eventData,
+            InterceptionResult result,
+            CancellationToken cancellationToken = default)
         {
-            Task.Run(async () => await ManipulateCommandAsync(command, eventData));
+            var sqlConnection = (SqlConnection)connection;
+
+            await ManipulateCommandAsync(sqlConnection, eventData);
 
             return result;
         }
 
-        public override ValueTask<InterceptionResult<DbDataReader>> ReaderExecutingAsync(DbCommand command,
-            CommandEventData eventData,
-            InterceptionResult<DbDataReader> result,
-            CancellationToken cancellationToken = default)
-        {
-            return new ValueTask<InterceptionResult<DbDataReader>>(result);
-        }
-
-        public override async ValueTask<DbDataReader> ReaderExecutedAsync(DbCommand command,
-            CommandExecutedEventData eventData,
-            DbDataReader result,
-            CancellationToken cancellationToken = default)
-        {
-            await ManipulateCommandAsync(command, eventData);
-
-            return result;
-        }
-
-        //public override InterceptionResult<DbDataReader> ReaderExecuting(DbCommand command,
-        //    CommandEventData eventData,
-        //    InterceptionResult<DbDataReader> result)
-        //{
-        //    ManipulateCommand(command);
-
-        //    return result;
-        //}
-
-        //public override ValueTask<InterceptionResult<DbDataReader>> ReaderExecutingAsync(DbCommand command,
-        //    CommandEventData eventData,
-        //    InterceptionResult<DbDataReader> result,
-        //    CancellationToken cancellationToken = default)
-        //{
-        //    ManipulateCommand(command, eventData);
-
-        //    return new ValueTask<InterceptionResult<DbDataReader>>(result);
-        //}
-
-        private async Task ManipulateCommandAsync(DbCommand command, CommandExecutedEventData commandExecutedEventData)
+        private async Task ManipulateCommandAsync(SqlConnection connection, ConnectionEventData commandExecutedEventData)
         {
             if (_logOption.LogType.Contains(LogType.Sql.ToString()))
                 return;
@@ -98,10 +71,9 @@ namespace WebApp.Logger.Interceptors
                 ActionName = "",
                 ClassName = "",
                 MethodName = "",
-
-                Query = command.CommandText,
-                QueryType = command.CommandType.ToString(),
-                Duration = commandExecutedEventData.Duration.TotalMilliseconds,
+                Query = "",
+                QueryType = "",
+                Duration = 0,
                 //Response = commandExecutedEventData.Result.ToJson(),
                 Connection = new
                 {
@@ -114,8 +86,8 @@ namespace WebApp.Logger.Interceptors
                 }.ToJson(),
                 Command = new
                 {
-                    CommandTimeout = ((Microsoft.Data.SqlClient.SqlCommand)commandExecutedEventData.Command).CommandTimeout,
-                    CommandType = command.CommandType.ToString(),
+                    CommandTimeout = 0,
+                    CommandType = "",
                 }.ToJson(),
                 Event = new
                 {

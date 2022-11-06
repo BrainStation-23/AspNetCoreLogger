@@ -21,6 +21,7 @@ namespace WebApp.Controllers.Logs
         private readonly IAuditLogRepository _auditLogRepository;
         private readonly IServiceProvider _serviceProvider;
         private readonly LogOption _logOption;
+        private readonly ILog _loggerWrapper;
 
         public LogController(IRouteLogRepository routeLogRepository,
             IExceptionLogRepository exceptionLogRepository,
@@ -33,12 +34,17 @@ namespace WebApp.Controllers.Logs
             _auditLogRepository = auditLogRepository;
             _serviceProvider = serviceProvider;
             _logOption = options.Value;
+
+            var factory = new ProviderFactory(_serviceProvider);
+
+            var providerType = _logOption.ProviderType;
+            _loggerWrapper = factory.Build(providerType);
         }
 
         [HttpGet("routes")]
         public async Task<IActionResult> GetRouteLogsAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
-            var res = await _routeLogRepository.GetPageAsync(new DapperPager(pageIndex, pageSize));
+            var res = await _loggerWrapper.Request.GetPageAsync(new DapperPager(pageIndex, pageSize));
 
             return new OkResponse(res);
         }
@@ -49,13 +55,7 @@ namespace WebApp.Controllers.Logs
             string continuationToken = null,
             string searchText = null)
         {
-
-            var factory = new ProviderFactory(_serviceProvider);
-
-            var providerType = _logOption.ProviderType.ToProviderTypeEnums().FirstOrDefault();
-            ILog loggerWrapper = factory.Build(providerType);
-
-            var res = await loggerWrapper.Audit.GetPageAsync(new DapperPager(pageIndex, continuationToken, pageSize));
+            var res = await _loggerWrapper.Audit.GetPageAsync(new DapperPager(pageIndex, continuationToken, pageSize));
 
             return new OkResponse(res);
         }
@@ -63,7 +63,15 @@ namespace WebApp.Controllers.Logs
         [HttpGet("exceptions")]
         public async Task<IActionResult> GetExceptionLogssAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
-            var res = await _exceptionLogRepository.GetPageAsync(new DapperPager(pageIndex, pageSize));
+            var res = await _loggerWrapper.Error.GetPageAsync(new DapperPager(pageIndex, pageSize));
+
+            return new OkResponse(res);
+        }
+
+        [HttpGet("sqls")]
+        public async Task<IActionResult> GetSqlLogssAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var res = await _loggerWrapper.Sql.GetPageAsync(new DapperPager(pageIndex, pageSize));
 
             return new OkResponse(res);
         }

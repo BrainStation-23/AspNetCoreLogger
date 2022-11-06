@@ -93,7 +93,7 @@ namespace WebApp.Sql
             {
                 var factory = new ProviderFactory(_serviceProvider);
 
-                var providerType = _logOption.ProviderType.ToProviderTypeEnums().FirstOrDefault();
+                var providerType = _logOption.ProviderType;
                 ILog loggerWrapper = factory.Build(providerType);
 
                 await loggerWrapper.Audit.AddAsync(auditEntries.ToList());

@@ -1,16 +1,12 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Win32;
-using System;
-using System.Security.AccessControl;
-using WebApp.Core.Contexts;
-using WebApp.Common.Responses;
-using WebApp.Common.Contexts;
-using WebApp.Logger.Loggers;
 using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using WebApp.Common.Contexts;
+using WebApp.Common.Responses;
+using WebApp.Logger.Loggers;
 
 namespace WebApp.Controllers
 {
@@ -37,6 +33,15 @@ namespace WebApp.Controllers
         public IActionResult GetLogOption()
         {
             return new OkResponse(_logOption);
+        }
+
+        [HttpGet]
+        [Route("log/valid")]
+        public IActionResult Validate()
+        {
+            (bool valid, string errors) = LogOptionExtension.Valid(Configuration);
+
+            return new OkResponse(new { valid, errors });
         }
 
         [HttpGet]

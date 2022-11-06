@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.CosmosDbs;
 

@@ -53,8 +53,8 @@ namespace WebApp.Core.Test.Middlewares
             var someOptions = Options.Create(new LogOption());
             var serviceProvider = new Mock<IServiceProvider>();
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions, serviceProvider.Object);
-            await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
+            await middleware.InvokeAsync(defaultContext, serviceProvider.Object);
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
 
             // Assert
@@ -76,8 +76,8 @@ namespace WebApp.Core.Test.Middlewares
             var someOptions = Options.Create(new LogOption());
             var serviceProvider = new Mock<IServiceProvider>();
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions, serviceProvider.Object);
-            await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
+            await middleware.InvokeAsync(defaultContext, serviceProvider.Object);
             var responeBody = await defaultContext.Response.GetResponseAsync();
 
             // Assert
@@ -106,8 +106,8 @@ namespace WebApp.Core.Test.Middlewares
             var serviceProvider = new Mock<IServiceProvider>();
 
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions, serviceProvider.Object);
-            await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
+            await middleware.InvokeAsync(defaultContext, serviceProvider.Object);
 
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
             var responseBody = await defaultContext.Response.GetResponseAsync();
@@ -150,8 +150,8 @@ namespace WebApp.Core.Test.Middlewares
             var someOptions = Options.Create(new LogOption());
             var serviceProvider = new Mock<IServiceProvider>();
             // Act
-            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions, serviceProvider.Object);
-            await middleware.InvokeAsync(defaultContext, mockRouteLogRepository.Object);
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
+            await middleware.InvokeAsync(defaultContext, serviceProvider.Object);
 
             var requestBody = await defaultContext.Request.GetRequestBodyAsync();
             var responseBody = await defaultContext.Response.GetResponseAsync();
