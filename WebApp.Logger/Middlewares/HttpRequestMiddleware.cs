@@ -64,7 +64,8 @@ namespace WebApp.Logger.Middlewares
             //var providerType = _logOptions.ProviderType.ToProviderTypeEnums().FirstOrDefault();
             ILog loggerWrapper = factory.Build(_logOptions.ProviderType);
 
-            await loggerWrapper.Request.AddAsync(requestModel);
+            var request = requestModel.ToFilter<RequestModel>(_logOptions.Log.Request.IgnoreColumns.ToArray(), _logOptions.Log.Request.MaskColumns.ToArray());
+            await loggerWrapper.Request.AddAsync(request);
 
             //await routeLogRepository.AddAsync(requestModel);
         }

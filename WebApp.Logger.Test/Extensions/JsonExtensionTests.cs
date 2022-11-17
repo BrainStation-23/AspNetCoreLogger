@@ -23,7 +23,7 @@ namespace WebApp.Logger.Test.Extensions
             var json = JsonExtension.ReadJson(path);
             var removeProperties = new string[] { "Authorization", "createdDateUtc" };
 
-            JsonExtension.ReadJsonProperties(json, removeProperties);
+            JsonExtension.SkipIt(json, removeProperties);
 
 
             Assert.IsNotNull(json);
@@ -36,7 +36,7 @@ namespace WebApp.Logger.Test.Extensions
             var json = JsonExtension.ReadJson(path);
             var maskProperties = new string[] { "Authorization", "createdDateUtc" };
 
-            JsonExtension.MaskJsonProperties(json, maskProperties);
+            JsonExtension.MaskIt(json, maskProperties);
 
 
             Assert.IsNotNull(json);

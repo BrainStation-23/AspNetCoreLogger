@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,6 +22,22 @@ namespace WebApp.Logger.Extensions
             return json;
         }
 
+        public static string ToJson(this object obj)
+        {
+            return JsonConvert.SerializeObject(obj, Formatting.None, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+        }
+
+        public static T ToModel<T>(this string str)
+        {
+            return JsonConvert.DeserializeObject<T>(str, new JsonSerializerSettings
+            {
+                DateParseHandling = DateParseHandling.None
+            });
+        }
+
         public static List<JProperty> SelectJsonProperties(JObject json, string[] selectProperties)
         {
             var select = json.Descendants()
@@ -30,7 +48,7 @@ namespace WebApp.Logger.Extensions
             return select;
         }
 
-        public static string ReadJsonProperties(string jsonText, string[] ignoreProperties)
+        public static string SkipIt(this string jsonText, string[] ignoreProperties)
         {
             JObject jObject = JObject.Parse(jsonText);
             var toRemove = SelectJsonProperties(jObject, ignoreProperties);
@@ -43,10 +61,10 @@ namespace WebApp.Logger.Extensions
             return json;
         }
 
-        public static string MaskJsonProperties(string jsonText, string[] mastProperties)
+        public static string MaskIt(this string jsonText, string[] maskProperties)
         {
             JObject jObject = JObject.Parse(jsonText);
-            var toMask = SelectJsonProperties(jObject, mastProperties);
+            var toMask = SelectJsonProperties(jObject, maskProperties);
 
             foreach (var prop in toMask)
                 prop.Value = "*****";
@@ -54,6 +72,17 @@ namespace WebApp.Logger.Extensions
             var json = jObject.ToString();
 
             return json;
+        }
+
+        public static T ToFilter<T>(this object obj, string[] skipColumns, string[] maskColumns)
+        {
+            if (obj == null)
+                return default(T);
+
+            return obj.ToJson()
+                .SkipIt(skipColumns)
+                .MaskIt(maskColumns)
+                .ToModel<T>();
         }
     }
 }

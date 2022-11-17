@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using WebApp.Common.Contexts;
 using WebApp.Common.Responses;
+using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
 
 namespace WebApp.Controllers
@@ -32,7 +33,10 @@ namespace WebApp.Controllers
         [Route("log")]
         public IActionResult GetLogOption()
         {
-            return new OkResponse(_logOption);
+            var logOption = _logOption.ToJson().ToModel<LogOption>();
+            logOption.Provider.CosmosDb.Key = logOption.Provider.CosmosDb.Key.MaskMe();
+
+            return new OkResponse(logOption);
         }
 
         [HttpGet]

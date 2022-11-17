@@ -65,11 +65,18 @@ namespace WebApp.Logger.Loggers
             return Tuple.Create(valid, string.Join(", ", sb));
         }
 
+        /// <summary>
+        /// Log Options - Log - Request - HttpVerbs listed verbs will execute, not listed will be skip
+        /// Log Options - Log - Request - Ignoreable columns list will be skip
+        /// </summary>
+        /// <param name="context">HttpContext</param>
+        /// <param name="logOptions">LogOption</param>
+        /// <returns></returns>
         public static bool SkipRequest(HttpContext context, LogOption logOptions)
         {
             bool skip = false;
 
-            if (logOptions.Log.Request.HttpVerbs.Contains(context.Request.Method))
+            if (logOptions.Log.Request.HttpVerbs.NotContains(context.Request.Method))
                 return true;
 
             var url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
@@ -79,6 +86,12 @@ namespace WebApp.Logger.Loggers
             return skip;
         }
 
+        /// <summary>
+        /// passing contain list items must be available in source list 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="contain"></param>
+        /// <returns></returns>
         public static bool MustContain(this List<string> source, List<string> contain)
         {
             if (contain == null)
