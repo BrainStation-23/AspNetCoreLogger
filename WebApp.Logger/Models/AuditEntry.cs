@@ -44,7 +44,7 @@ namespace WebApp.Logger.Models
                     NewValues = auditEntry.NewValues,
                     AffectedColumns = auditEntry.ChangedColumnNames,
                     CreatedBy = 0,
-                    //CreatedDateUtc = DateTime.UtcNow,
+                    CreatedDateUtc = DateTime.UtcNow,
                     TraceId = auditEntry.TraceId
                 };
 
@@ -59,7 +59,7 @@ namespace WebApp.Logger.Models
                 NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),
                 AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames),
                 CreatedBy = 0,
-                //CreatedDateUtc = DateTime.UtcNow,
+                CreatedDateUtc = DateTime.UtcNow,
                 TraceId = auditEntry.TraceId
             };
         }

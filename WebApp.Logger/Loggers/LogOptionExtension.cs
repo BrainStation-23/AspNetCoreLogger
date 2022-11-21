@@ -80,7 +80,7 @@ namespace WebApp.Logger.Loggers
                 return true;
 
             var url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
-            if (logOptions.Log.Request.IgnoreRequests.Any(r => url.Contains(r)))
+            if (logOptions.Log.Request.IgnoreRequests.Any(r => url.ToLower().Contains(r.ToLower())))
                 return true;
 
             return skip;

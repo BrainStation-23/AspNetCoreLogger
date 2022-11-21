@@ -14,7 +14,7 @@ namespace WebApp.Logger.Models
         public object NewValues { get; set; }
         public object AffectedColumns { get; set; }
         public long CreatedBy { get; set; }
-        //public DateTime? CreatedDateUtc { get; set; }
+        public DateTime? CreatedDateUtc { get; set; }
         public long UpdatedBy { get; set; }
         public DateTime? UpdatedDateUtc { get; set; }
     }
