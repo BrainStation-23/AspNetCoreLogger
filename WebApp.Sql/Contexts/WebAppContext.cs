@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -19,28 +20,34 @@ using static WebApp.Entity.Entities.Identities.IdentityModel;
 
 namespace WebApp.Sql
 {
-    public class WebAppContext : IdentityDbContext<User,
-        Role, long,
-        UserClaim,
-        UserRole,
-        UserLogin,
-        RoleClaim,
-        UserToken>
+    public class WebAppContext : AuditLogContext<User,
+         Role, long,
+         UserClaim,
+         UserRole,
+         UserLogin,
+         RoleClaim,
+         UserToken>
     {
         public const string DefaultSchemaName = "dbo";
         public string Schema { get; set; }
 
         public readonly ISignInHelper SignInHelper;
+        public readonly IConfiguration Configuration;
 
-        public WebAppContext(DbContextOptions<WebAppContext> options, ISignInHelper signInHelper) : base(options)
+        public WebAppContext(DbContextOptions<WebAppContext> options,
+            ISignInHelper signInHelper,
+            IConfiguration configuration,
+            IServiceProvider serviceProvider) : base(options, configuration, serviceProvider)
         {
             SignInHelper = signInHelper;
+            Configuration = configuration;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.LogTo(Console.WriteLine);
             optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
+            //optionsBuilder.AddInterceptors(new SqlQueryInterceptor(HttpContextAccessor));
             optionsBuilder.UseLoggerFactory(_myLoggerFactory).EnableSensitiveDataLogging();
         }
 
@@ -129,16 +136,13 @@ namespace WebApp.Sql
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             Audit();
-            var hasAuditData = AuditTrailLog();
-            if (hasAuditData)
-                return base.SaveChangesAsync(cancellationToken);
 
-            return Task.FromResult(0);
+            return base.SaveChangesAsync(cancellationToken);
         }
+
         public override int SaveChanges()
         {
             Audit();
-            AuditTrailLog();
 
             return base.SaveChanges();
         }

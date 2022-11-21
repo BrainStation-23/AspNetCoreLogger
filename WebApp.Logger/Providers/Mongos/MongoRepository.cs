@@ -1,11 +1,14 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using WebApp.Logger.Loggers;
 using WebApp.Logger.Providers.Mongos.Configurations;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Providers.Mongos
 {
@@ -13,10 +16,29 @@ namespace WebApp.Logger.Providers.Mongos
     {
         protected readonly IMongoCollection<TDocument> _collection;
         protected readonly IMongoDatabase _database;
+        protected readonly IMongoClient _client;
+        private readonly LogOption _logOption;
+        private readonly Mongo _mongoOptions;
 
-        public MongoRepository(IMongoDbSettings settings)
+        public MongoRepository(IOptions<LogOption> options)
         {
-            _database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
+            _logOption = options.Value;
+            _mongoOptions = _logOption.Provider.Mongo;
+
+            // connection string: mongodb://[username:password@]hostname[:port][/[database][?options]]
+            _client = new MongoClient(_mongoOptions.ConnectionString);
+
+            //_client = new MongoClient(new MongoClientSettings
+            //{
+            //    Server = new MongoServerAddress(_mongoOptions.Server, _mongoOptions.Port),
+            //    Credential = MongoCredential.CreateCredential(_mongoOptions.DatabaseName, _mongoOptions.Username, _mongoOptions.Password),
+            //    SslSettings = new SslSettings
+            //    {
+            //        CheckCertificateRevocation = false
+            //    }
+            //});
+
+            _database = _client.GetDatabase(_mongoOptions.DatabaseName);
             _collection = _database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
         }
 
@@ -34,6 +56,27 @@ namespace WebApp.Logger.Providers.Mongos
         public virtual IEnumerable<TDocument> Filter(Expression<Func<TDocument, bool>> filterExpression)
         {
             return _collection.Find(filterExpression).ToEnumerable();
+        }
+
+        public async Task<IList<TDocument>> GetPageAsync(DapperPager pager)
+        {
+            return await _collection.Find(x => true)
+                .SortByDescending(x => x.CreatedDateUtc)
+                .Skip((pager.PageIndex - 1) * pager.PageSize)
+                .Limit(pager.PageSize)
+                .ToListAsync();
+
+        }
+
+        public async Task<IList<TDocument>> GetPageAsync(Expression<Func<TDocument, bool>> filterExpression, DapperPager pager)
+        {
+            var d = await _collection.Find(filterExpression)
+                .SortByDescending(x => x.CreatedDateUtc)
+                .Skip((pager.PageIndex - 1) * pager.PageSize)
+               .Limit(pager.PageSize)
+               .ToListAsync();
+
+            return d;
         }
 
         public virtual IEnumerable<TProjected> Filter<TProjected>(Expression<Func<TDocument, bool>> filterExpression,
@@ -81,12 +124,12 @@ namespace WebApp.Logger.Providers.Mongos
             return Task.Run(() => _collection.InsertOneAsync(document));
         }
 
-        public void InsertMany(ICollection<TDocument> documents)
+        public void InsertMany(IEnumerable<TDocument> documents)
         {
             _collection.InsertMany(documents);
         }
 
-        public virtual async Task InsertManyAsync(ICollection<TDocument> documents)
+        public virtual async Task InsertManyAsync(IEnumerable<TDocument> documents)
         {
             await _collection.InsertManyAsync(documents);
         }

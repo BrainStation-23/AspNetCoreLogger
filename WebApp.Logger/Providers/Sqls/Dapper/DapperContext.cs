@@ -13,7 +13,7 @@ namespace WebApp.Logger.Providers.Sqls
         public DapperContext(IConfiguration configuration)
         {
             _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("SqlConnection");
+            _connectionString = _configuration.GetConnectionString("WebAppConnection");
         }
 
         public DapperContext(IConfiguration configuration, string connectionStringName)

@@ -11,17 +11,24 @@ using WebApp.Logger.Enums;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Middlewares;
 using WebApp.Logger.Models;
+using WebApp.Logger.Providers.Mongos.Configurations;
 
 namespace WebApp.Logger.Loggers
 {
     public static class LoggerExtension
     {
-        public static void AddDapper(this IServiceCollection services)
+        public static void AddDapper(this IServiceCollection services, IConfiguration configuration)
         {
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
             services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
             services.AddScoped<IRouteLogRepository, RouteLogRepository>();
             services.AddScoped<IAuditLogRepository, AuditLogRepository>();
+            services.AddScoped<ISqlLogRepository, SqlLogRepository>();
+
+            services.AddMongoDb(configuration);
+            services.AddCosmosDb(configuration);
+
+         
         }
 
         public static void HttpLog(this IApplicationBuilder app)
@@ -43,7 +50,7 @@ namespace WebApp.Logger.Loggers
         /// Handling all changes in database
         /// WebAppDbContext] -> SaveChanges() -> base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));;
         /// </summary>
-        public static IList<AuditEntry> AuditTrailLog(this ChangeTracker changeTracker, long userId, string ignoreEntity)
+        public static IList<AuditEntry> AuditTrailLog(this ChangeTracker changeTracker, long userId, string ignoreEntity = null)
         {
             return changeTracker.AuditTrail(userId, ignoreEntity);
         }
@@ -83,6 +90,11 @@ namespace WebApp.Logger.Loggers
 
             // https://docs.microsoft.com/en-us/ef/ef6/fundamentals/logging-and-interception?redirectedfrom=MSDN
             // https://stackoverflow.com/questions/1412863/how-do-i-view-the-sql-generated-by-the-entity-framework
+        }
+
+        public static void AddLogConfig(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<LogOption>(configuration.GetSection(LogOption.Name));
         }
     }
 }

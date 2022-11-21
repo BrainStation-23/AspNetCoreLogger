@@ -8,6 +8,9 @@ using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Models;
 using Microsoft.Extensions.Hosting;
+using WebApp.Logger.Loggers;
+using Microsoft.Extensions.Options;
+using System.Linq;
 
 namespace WebApp.Logger.Middlewares
 {
@@ -20,17 +23,20 @@ namespace WebApp.Logger.Middlewares
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
         private readonly IHostEnvironment _webHostEnvironment;
+        private readonly LogOption _logOptions;
 
         public ExceptionMiddleware(RequestDelegate next,
             ILogger<ExceptionMiddleware> logger,
-            IHostEnvironment webHostEnvironment)
+            IHostEnvironment webHostEnvironment,
+            IOptions<LogOption> logOptions)
         {
             _next = next;
             _logger = logger;
             _webHostEnvironment = webHostEnvironment;
+            _logOptions = logOptions.Value;
         }
 
-        public async Task InvokeAsync(HttpContext context, IExceptionLogRepository exceptionLogRepository)
+        public async Task InvokeAsync(HttpContext context, IServiceProvider _serviceProvider)
         {
             var errorModel = new ErrorModel();
             var requestModel = new RequestModel();
@@ -54,13 +60,21 @@ namespace WebApp.Logger.Middlewares
             }
             catch (Exception exception)
             {
+                
                 errorModel = await exception.ErrorAsync(context, _logger);
                 errorModel.Body = requestModel.Body;
                 context.Response.Body = originalBodyStream;
 
                 var apiResponse = _webHostEnvironment.IsDevelopment() ? errorModel.ToApiDevelopmentResponse(): errorModel.ToApiResponse();
                 await context.Response.WriteAsync(apiResponse);
-                await exceptionLogRepository.AddAsync(errorModel);
+
+                var factory = new ProviderFactory(_serviceProvider);
+                var providerType = _logOptions.ProviderType;
+                ILog loggerWrapper = factory.Build(providerType);
+
+                await loggerWrapper.Error.AddAsync(errorModel);
+
+                //await exceptionLogRepository.AddAsync(errorModel);
             }
             finally
             {

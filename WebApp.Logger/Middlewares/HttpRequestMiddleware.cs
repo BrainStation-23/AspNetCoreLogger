@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Logger.Extensions;
+using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Models;
 
@@ -16,16 +20,27 @@ namespace WebApp.Logger.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<HttpRequestMiddleware> _logger;
+        private readonly LogOption _logOptions;
 
         public HttpRequestMiddleware(RequestDelegate next,
-            ILogger<HttpRequestMiddleware> logger)
+            ILogger<HttpRequestMiddleware> logger,
+            IOptions<LogOption> logOptions)
         {
             _next = next;
             _logger = logger;
+            _logOptions = logOptions.Value;
         }
 
-        public async Task InvokeAsync(HttpContext context, IRouteLogRepository routeLogRepository)
+        public async Task InvokeAsync(HttpContext context,
+            IServiceProvider _serviceProvider)
         {
+            var isSkipable = LogOptionExtension.SkipRequest(context, _logOptions);
+            if (isSkipable)
+            {
+                await _next(context);
+                return;
+            }
+
             var requestModel = new RequestModel();
 
             var originalBodyStream = context.Response.Body;
@@ -45,7 +60,14 @@ namespace WebApp.Logger.Middlewares
 
             await responseBody.DisposeAsync();
 
-            await routeLogRepository.AddAsync(requestModel);
+            var factory = new ProviderFactory(_serviceProvider);
+            //var providerType = _logOptions.ProviderType.ToProviderTypeEnums().FirstOrDefault();
+            ILog loggerWrapper = factory.Build(_logOptions.ProviderType);
+
+            var request = requestModel.ToFilter<RequestModel>(_logOptions.Log.Request.IgnoreColumns.ToArray(), _logOptions.Log.Request.MaskColumns.ToArray());
+            await loggerWrapper.Request.AddAsync(request);
+
+            //await routeLogRepository.AddAsync(requestModel);
         }
     }
 }
