@@ -78,6 +78,7 @@ namespace WebApp.Logger.Extensions
         {
             if (obj == null)
                 return default(T);
+            var a=obj.ToJson();
 
             return obj.ToJson()
                 .SkipIt(skipColumns)

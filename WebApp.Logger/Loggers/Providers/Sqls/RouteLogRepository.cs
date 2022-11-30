@@ -51,7 +51,7 @@ namespace WebApp.Logger.Loggers.Repositories
                                ,[ExecutionDuration]
                                ,[StatusCode]
                                ,[AppStatusCode]
-                               ,[CreatedDateUtc] )
+                                )
                          VALUES
                                ( @UserId
                                , @ApplicationName
@@ -75,7 +75,7 @@ namespace WebApp.Logger.Loggers.Repositories
                                , @ExecutionDuration
                                , @StatusCode
                                , @AppStatusCode
-                               , @CreatedDateUtc)";
+                               )";
 
             try
             {
@@ -104,7 +104,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     ExecutionDuration = requestModel.ExecutionDuration,
                     StatusCode = ((int)requestModel.StatusCode).ToString(),
                     AppStatusCode = requestModel.AppStatusCode,
-                    CreatedDateUtc = createdDateUtc
+                    CreatedDateUtc = ""
                 });
             }
             catch (Exception exception)
