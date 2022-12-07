@@ -10,7 +10,7 @@ namespace WebApp.Logger.Test.Extensions
         [TestMethod]
         public void EnumExtension_ToProviderTypeEnums()
         {
-            var enums = new List<string> { "file", "MSSql", "cosmos" };
+            var enums = new List<string> { "fiyyle", "MSuuSql", "cosiimos" };
 
             var providerTypes = enums.ToProviderTypeEnums();
 
