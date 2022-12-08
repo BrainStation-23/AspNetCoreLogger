@@ -15,6 +15,7 @@ namespace WebApp.Logger.Loggers
 {
     public static class LogOptionExtension
     {
+        public static LogOption LogOptionProvider { get; set; }=new LogOption();
         public static Tuple<bool, string> Valid(this IApplicationBuilder app, IConfiguration configuration)
         {
             var valid = Valid(configuration);
@@ -24,7 +25,7 @@ namespace WebApp.Logger.Loggers
 
             return valid;
         }
-
+        
         public static Tuple<bool, string> Valid(IConfiguration configuration)
         {
             List<string> sb = new List<string>();
@@ -35,6 +36,8 @@ namespace WebApp.Logger.Loggers
             var modes = EnumExtension.EnumList<Mode>();
             var providerTypes = EnumExtension.EnumList<ProviderType>();
             var httpVerbs = EnumExtension.EnumList<HttpVerb>();
+
+            LogOptionExtension.LogOptionProvider = logOption; //for further usage in auditLog and sqlLog
 
             var logTypeValid = logTypes.MustContain(logOption.LogType);
             if (logTypeValid == false) sb.Add($"Global Log type is not valid. Available Items - {logTypes.PrintList()} Current Items - {logOption.LogType.PrintList()} ");
@@ -134,7 +137,10 @@ namespace WebApp.Logger.Loggers
 
             return source.All(c => contain.Select(s => s.ToLower()).Contains(c.ToLower()));
         }
-
+        public static bool ContainAnyCase(this List<string> source, string contain)
+        {
+            return source.Select(s => s.ToUpper()).Contains(contain.ToUpper());
+        }
         public static string PrintList<T>(this List<T> list)
         {
             string outPutString = "";
