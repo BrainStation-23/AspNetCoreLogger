@@ -45,8 +45,13 @@ namespace WebApp.Common.Contexts
                     case EntityState.Modified:
                         if (property.IsModified)
                         {
-                            if (ignorePropertyName.Contains(propertyName))
+                            var a= ignorePropertyName.Select(x=>x.ToLower()).ToList();
+                            var b = propertyName.ToLower();
+                            if (a.Contains(b))
                                 continue;
+
+                            //if (ignorePropertyName.Contains(propertyName))
+                            //    continue;
 
                             var currentValue = property.CurrentValue?.ToString();
                             var originalValue = originalEntry[propertyName]?.ToString();
@@ -147,7 +152,7 @@ namespace WebApp.Common.Contexts
         public static void Audit(this ChangeTracker changeTracker, long userId)
         {
             var now = DateTimeOffset.UtcNow;
-            var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
+            var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name.ToUpper()).ToList();
 
 
             foreach (var entry in changeTracker.Entries<BaseEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
@@ -155,7 +160,7 @@ namespace WebApp.Common.Contexts
                 foreach (var property in entry.Properties)
                 {
                     string propertyName = property.Metadata.Name;
-                    if (ignorePropertyName.Contains(propertyName))
+                    if (ignorePropertyName.Contains(propertyName.ToUpper()))
                         entry.Property(propertyName).IsModified = false;
 
                 }
