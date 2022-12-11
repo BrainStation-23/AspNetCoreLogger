@@ -75,7 +75,7 @@ namespace WebApp.Logger.Loggers
             var mongoLogTypeValid = logTypes.MustContain(logOption.Provider.Mongo.LogType);
             if (mongoLogTypeValid == false) sb.Add($"Mongo Log type is not valid. Available Items - {logTypes.PrintList()} Current Items - {logOption.Provider.Mongo.LogType.PrintList()} ");
 
-            var providerIsValid = logOption.ProviderIsValid();
+            var providerIsValid = logOption.IsProviderConfigValid();
             if (providerIsValid == false) sb.Add($"ProviderType is {logOption.ProviderType}. But {logOption.ProviderType} configuration is not valid., ");
 
             if (logTypeValid
@@ -135,7 +135,9 @@ namespace WebApp.Logger.Loggers
             if (contain.Count == 0)
                 return true;
 
-            return source.All(c => contain.Select(s => s.ToLower()).Contains(c.ToLower()));
+            //return source.All(c => contain.Select(s => s.ToLower()).Contains(c.ToLower()));
+
+            return contain.All(c => source.Select(s => s.ToLower()).Contains(c.ToLower()));
         }
         public static bool ContainAnyCase(this List<string> source, string contain)
         {
@@ -148,7 +150,7 @@ namespace WebApp.Logger.Loggers
             return outPutString;
         }
 
-        public static bool ProviderIsValid(this LogOption logOption)
+        public static bool IsProviderConfigValid(this LogOption logOption)
         {
             if (logOption.ProviderType == "MSSql")
             {
