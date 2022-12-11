@@ -98,7 +98,7 @@ namespace WebApp.Common.Contexts
                 //var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
 
                 var ignorePropertyName = LogOptionExtension.LogOptionProvider.Log.Audit.IgnoreColumns.ToList();
-                //var maskPropertyName = LogOptionExtension.LogOptionProvider.Log.Audit.MaskColumns.ToList();
+                var maskPropertyName = LogOptionExtension.LogOptionProvider.Log.Audit.MaskColumns.ToList();
 
                 foreach (var property in entry.Properties)
                 {
@@ -113,18 +113,17 @@ namespace WebApp.Common.Contexts
                         case EntityState.Added:
                             auditEntry.AuditType = AuditType.Create;
                             auditEntry.NewValues[propertyName] = property.CurrentValue;
-                            //if (maskPropertyName.ContainAnyCase(propertyName))
-                            //{
-                            //    auditEntry.NewValues[propertyName] = "****";
-                            //    property.CurrentValue = "****";
-                            //}
-                                
+                            if (maskPropertyName.ContainAnyCase(propertyName))
+                            {
+                                auditEntry.NewValues[propertyName] = "****";
+                            }
+
                             break;
                         case EntityState.Deleted:
                             auditEntry.AuditType = AuditType.Delete;
                             auditEntry.OldValues[propertyName] = property.OriginalValue;
-                            //if (maskPropertyName.ContainAnyCase(propertyName))
-                            //    auditEntry.OldValues[propertyName] = "****";
+                            if (maskPropertyName.ContainAnyCase(propertyName))
+                                auditEntry.OldValues[propertyName] = "****";
                                 break;
                         case EntityState.Modified:
                             if (property.IsModified)
@@ -142,14 +141,19 @@ namespace WebApp.Common.Contexts
 
                                 var currentValue = property.CurrentValue?.ToString();
                                 var originalValue = originalEntry[propertyName]?.ToString();
-                                //if (maskPropertyName.ContainAnyCase(propertyName))
-                                //    currentValue = "****";
+                                
                                 if (currentValue != originalValue)
                                 {
                                     auditEntry.ChangedColumnNames.Add(propertyName);
                                     auditEntry.Changes[propertyName] = currentValue;
                                 }
-                                
+                                if (maskPropertyName.ContainAnyCase(propertyName))
+                                {
+                                    auditEntry.OldValues[propertyName] = "****";
+                                    auditEntry.NewValues[propertyName] = "****";
+                                }
+
+
                             }
                             break;
                     }
