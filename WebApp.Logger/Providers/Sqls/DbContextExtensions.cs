@@ -97,8 +97,8 @@ namespace WebApp.Common.Contexts
 
                 //var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
 
-                var ignorePropertyName = LogOptionExtension.LogOptionProvider.Log.Audit.IgnoreColumns.ToList();
-                var maskPropertyName = LogOptionExtension.LogOptionProvider.Log.Audit.MaskColumns.ToList();
+                var ignorePropertyName = LogOptionExtension.LogOptionProvider.Log.Audit.EnableIgnore==true? LogOptionExtension.LogOptionProvider.Log.Audit.IgnoreColumns.ToList():new List<string> { };
+                var maskPropertyName = LogOptionExtension.LogOptionProvider.Log.Audit.EnableMask == true ? LogOptionExtension.LogOptionProvider.Log.Audit.MaskColumns.ToList() : new List<string> { };
 
                 foreach (var property in entry.Properties)
                 {
