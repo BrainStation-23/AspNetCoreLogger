@@ -139,6 +139,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     });
                     exceptionLogUnescapeString = exceptionLogs.ToJson();
                     var unescape = exceptionLogUnescapeString.JsonUnescaping();
+               
                     logs = JArray.Parse(unescape);
                 }
 

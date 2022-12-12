@@ -59,7 +59,7 @@ namespace WebApp.Logger.Loggers
         /// All db generated sql queries log
         /// WebAppDbContext.cs -> OnConfiguring(DbContextOptionsBuilder optionsBuilder) -> optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));;
         /// </summary>
-        public static void SqlQueryLog(string query, LogStoreType storeType = LogStoreType.Output)
+        public static void SqlQueryLog(string query, LogStoreType storeType = LogStoreType.Db)
         {
             if (storeType == LogStoreType.Output)
             {
@@ -67,7 +67,7 @@ namespace WebApp.Logger.Loggers
             }
             else if (storeType == LogStoreType.Db)
             {
-                // store in db
+                Debug.WriteLine(query);
             }
             else if (storeType == LogStoreType.File)
             {
