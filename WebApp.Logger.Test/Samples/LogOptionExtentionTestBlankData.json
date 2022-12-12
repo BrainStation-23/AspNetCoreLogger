@@ -1,0 +1,75 @@
+﻿{
+  "ProviderType": "MSSql",
+  "LogType": [ "Sql", "Error", "Request", "Audit" ],
+  "Mode": "Full",
+  "EnableMask": true,
+  "EnableIgnore": true,
+  "Retention": "3d",
+  "Log": {
+    "Sql": {
+      "Mode": "Min",
+      "EnableMask": true,
+      "EnableIgnore": true,
+      "IgnoreColumns": [ "Id", "CreateDateUtc" ],
+      "MaskColumns": [ "Password" ]
+    },
+    "Error": {
+      "Mode": "Min",
+      "EnableMask": true,
+      "EnableIgnore": true,
+      "IgnoreColumns": [ "Id", "CreateDateUtc" ],
+      "MaskColumns": [ "Password" ]
+    },
+    "Request": {
+      "Mode": "Min",
+      "HttpVerbs": [ "POST", "GET", "PUT", "PATCH", "DELETE" ],
+      "IgnoreRequests": [ "password", "token", "config", "/log" ],
+      "EnableMask": true,
+      "EnableIgnore": true,
+      "IgnoreColumns": [ "Id", "CreateDateUtc", "response" ],
+      "MaskColumns": [ "Password", "appStatusCode" ]
+    },
+    "Audit": {
+      "Mode": "Min",
+      "EnableMask": true,
+      "EnableIgnore": true,
+      "IgnoreColumns": [ "Id", "CreateDateUtc" ],
+      "MaskColumns": [ "Password" ]
+    }
+  },
+  "Provider": {
+    "MSSql": {
+      "LogType": [ "Sql", "Error", "Request", "Audit" ],
+      "Retention": "",
+      "Server": "",
+      "Username": "",
+      "Password": "",
+      "Port": 0
+    },
+    "File": {
+      "LogType": [ "Sql", "Error", "Request", "Audit" ],
+      "Retention": "",
+      "FileSize": "5MB",
+      "Path": "MyLogs/Logs",
+      "Filename": ""
+    },
+    "Mongo": {
+      "LogType": [ "Sql", "Error", "Request", "Audit" ],
+      "Retention": "",
+      "Server": "",
+      "Port": 0,
+      "Username": "",
+      "Password": "",
+      "DatabaseName": "",
+      "DatabaseName1": "",
+      "ConnectionString": ""
+    },
+    "CosmosDb": {
+      "LogType": [ "Sql", "Error", "Request", "Audit" ],
+      "Retention": "",
+      "AccountUrl": "",
+      "Key": "",
+      "DatabaseName": ""
+    }
+  }
+}

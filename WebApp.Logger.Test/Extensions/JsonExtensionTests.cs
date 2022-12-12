@@ -21,12 +21,12 @@ namespace WebApp.Logger.Test.Extensions
         {
             var path = "./Samples/JsonRemoveKey.json";
             var json = JsonExtension.ReadJson(path);
-            var removeProperties = new string[] { "Authorization", "createdDateUtc" };
+            var removeProperties = new string[] { "Id", "Authorization", "createdDateUtc" };
 
-            JsonExtension.SkipIt(json, removeProperties);
+            var skippedJson = JsonExtension.SkipIt(json, removeProperties);
 
 
-            Assert.IsNotNull(json);
+            Assert.IsNotNull(skippedJson);
         }
 
         [TestMethod]
