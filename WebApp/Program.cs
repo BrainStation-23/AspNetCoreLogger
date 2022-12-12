@@ -21,6 +21,9 @@ namespace WebApp
             }
             catch (Exception ex)
             {
+                Debug.WriteLine("```````````````````````````````````````````````````");
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine("```````````````````````````````````````````````````");
                 Log.Fatal(ex, "Host terminated unexpectedly");
             }
             finally

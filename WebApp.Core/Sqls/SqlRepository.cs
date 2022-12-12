@@ -22,6 +22,7 @@ namespace WebApp.Core.Sqls
                 throw new ArgumentNullException(nameof(dbContext));
 
             _dbSet = dbContext.Set<T>();
+
             _dbContext = dbContext;
         }
 

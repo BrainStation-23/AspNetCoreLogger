@@ -83,13 +83,12 @@ namespace WebApp.Common.Serialize
                 { "\"{", "{"},          //  "{      -   {
                 { "}\"", "}"},           //  }"      -   }
                 { "\"[", "["},          //  "[      -   [
-                { "]\"", "]"},          //  ]"      -   ]
+                { "]\"", "]"},         //  ]"      -   ]
                 { "\\\"\\\"", "\"\""},  //  \"\"     -   "" 
                 { "\"\\\"", "\""},      //  "\"     -   " 
                 { "\\\"\"", "\""},      //  \""     -   "
                 { "\\\"", "\""},        //  \"      -   "
-                
-                
+               
                 //{ "\\\t", "\t" },       //  \t      -   t
                 //{ "\\\n", "\n"},        //  \n      -   n
                 //{ "\\\r", "\r"},        //  \r      -   r
@@ -100,7 +99,7 @@ namespace WebApp.Common.Serialize
             {
                 value = value.Replace(remove.Key, remove.Value);
             }
-
+           
             value = Regex.Unescape(value);
 
             return value;

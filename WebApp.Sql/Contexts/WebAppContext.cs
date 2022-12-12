@@ -15,6 +15,7 @@ using WebApp.Entity.Entities.Blogs;
 using WebApp.Entity.Entities.Identities;
 using WebApp.Entity.Entities.Logs;
 using WebApp.Entity.Entities.Settings;
+using WebApp.Logger.Interceptors;
 using WebApp.Logger.Loggers;
 using static WebApp.Entity.Entities.Identities.IdentityModel;
 
