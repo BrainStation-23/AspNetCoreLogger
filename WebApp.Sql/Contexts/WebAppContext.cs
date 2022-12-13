@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
@@ -15,7 +16,9 @@ using WebApp.Entity.Entities.Blogs;
 using WebApp.Entity.Entities.Identities;
 using WebApp.Entity.Entities.Logs;
 using WebApp.Entity.Entities.Settings;
+using WebApp.Logger.Interceptors;
 using WebApp.Logger.Loggers;
+using WebApp.Logger.Loggers.Repositories;
 using static WebApp.Entity.Entities.Identities.IdentityModel;
 
 namespace WebApp.Sql
@@ -33,21 +36,33 @@ namespace WebApp.Sql
 
         public readonly ISignInHelper SignInHelper;
         public readonly IConfiguration Configuration;
+        public readonly IHttpContextAccessor HttpContextAccessor;
+        public readonly ISqlLogRepository SqlLogRepository;
+        public readonly IOptions<LogOption> LogOption;
 
         public WebAppContext(DbContextOptions<WebAppContext> options,
             ISignInHelper signInHelper,
             IConfiguration configuration,
+            IHttpContextAccessor context,
+            ISqlLogRepository sqlLogRepository,
+            IOptions<LogOption>logOption,
             IServiceProvider serviceProvider) : base(options, configuration, serviceProvider)
         {
             SignInHelper = signInHelper;
             Configuration = configuration;
+            SqlLogRepository = sqlLogRepository;
+            LogOption = logOption;
+            HttpContextAccessor = context;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.LogTo(Console.WriteLine);
-            optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
-            //optionsBuilder.AddInterceptors(new SqlQueryInterceptor(HttpContextAccessor));
+            //optionsBuilder.LogTo(Console.WriteLine);
+            //optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
+            //optionsBuilder.AddInterceptors(new SqlConnectionInterceptor(HttpContextAccessor, SqlLogRepository, LogOption));
+            optionsBuilder.AddInterceptors(new SqlQueryInterceptor(HttpContextAccessor,SqlLogRepository, LogOption));
+            optionsBuilder.AddInterceptors(new SqlSaveChangesInterceptor(HttpContextAccessor, SqlLogRepository, LogOption));
+            optionsBuilder.AddInterceptors(new SqlTransactionInterceptor(HttpContextAccessor, SqlLogRepository, LogOption));
             optionsBuilder.UseLoggerFactory(_myLoggerFactory).EnableSensitiveDataLogging();
         }
 

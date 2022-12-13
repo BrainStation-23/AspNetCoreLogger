@@ -25,8 +25,9 @@ namespace WebApp.Logger.Loggers
             services.AddScoped<IAuditLogRepository, AuditLogRepository>();
             services.AddScoped<ISqlLogRepository, SqlLogRepository>();
 
-            services.AddMongoDb(configuration);
-            services.AddCosmosDb(configuration);
+            //was throwing error before commenting
+            //services.AddMongoDb(configuration);
+            //services.AddCosmosDb(configuration);
 
          
         }
