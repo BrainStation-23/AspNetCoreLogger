@@ -45,7 +45,7 @@ namespace WebApp.Sql
             HttpContextAccessor = _serviceProvider.GetService<IHttpContextAccessor>();
             UserId = _signInHelper.UserId;
 
-            var logOption = new LogOption();
+            //var logOption = new LogOption();
             _logOption = _configuration.GetSection(LogOption.Name).Get<LogOption>();
         }
 
@@ -76,7 +76,7 @@ namespace WebApp.Sql
             if (_signInHelper.IsAuthenticated)
                 UserId = _signInHelper.UserId;
 
-            base.ChangeTracker.Audit(UserId.Value);
+            base.ChangeTracker.Audit(UserId.Value, _logOption);
         }
 
         private async Task<bool> AuditTrailLog()
@@ -86,7 +86,7 @@ namespace WebApp.Sql
             if (_signInHelper.IsAuthenticated)
                 userId = (long)_signInHelper.UserId;
 
-            var auditEntries = base.ChangeTracker.AuditTrailLog(userId);
+            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, _logOption);
             auditEntries.ToList().ForEach(x => x.TraceId = HttpContextAccessor.HttpContext.TraceIdentifier);
 
             if (auditEntries.Any())

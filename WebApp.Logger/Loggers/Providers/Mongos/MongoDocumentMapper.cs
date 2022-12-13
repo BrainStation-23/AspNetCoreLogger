@@ -11,7 +11,7 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 UserId = model.UserId,
                 Type = model.Type,
                 TableName = model.TableName,
-                DateTimes = model.DateTimes,
+                DateTime = model.DateTime,
                 PrimaryKey = model.PrimaryKey,
                 OldValues = model.OldValues,
                 NewValues = model.NewValues,
