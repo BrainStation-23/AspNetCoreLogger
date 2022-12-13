@@ -11,7 +11,6 @@ namespace WebApp.Logger.Loggers
 {
     public static class LogOptionExtension
     {
-        public static LogOption LogOptionProvider { get; set; }=new LogOption(); //to access app settings 
         public static Tuple<bool, string> Valid(IConfiguration configuration)
         {
             List<string> sb = new List<string>();
@@ -24,7 +23,6 @@ namespace WebApp.Logger.Loggers
             var providerTypes = EnumExtension.EnumList<ProviderType>();
             var httpVerbs = EnumExtension.EnumList<HttpVerb>();
 
-            LogOptionExtension.LogOptionProvider = logOption;
 
             var logTypeValid = logTypes.MustContain(logOption.LogType);
             if (logTypeValid == false) sb.Add($"Global Log type is not valid. Available Items - {logTypes.PrintList()} Current Items - {logOption.LogType.PrintList()} ");
