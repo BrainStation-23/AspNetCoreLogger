@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Castle.Core.Internal;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -10,6 +11,7 @@ namespace WebApp.Logger.Loggers
 {
     public static class LogOptionExtension
     {
+        public static LogOption LogOptionProvider { get; set; }=new LogOption(); //to access app settings 
         public static Tuple<bool, string> Valid(IConfiguration configuration)
         {
             List<string> sb = new List<string>();
@@ -22,36 +24,46 @@ namespace WebApp.Logger.Loggers
             var providerTypes = EnumExtension.EnumList<ProviderType>();
             var httpVerbs = EnumExtension.EnumList<HttpVerb>();
 
+            LogOptionExtension.LogOptionProvider = logOption;
 
             var logTypeValid = logTypes.MustContain(logOption.LogType);
-            if (logTypeValid == false) sb.Append($"Global Log type is not valid. Available Items - {logTypes}, Current Items - {logOption.LogType}, ").Append(Environment.NewLine);
+            if (logTypeValid == false) sb.Add($"Global Log type is not valid. Available Items - {logTypes.PrintList()} Current Items - {logOption.LogType.PrintList()} ");
 
             var providerTypeValid = providerTypes.Select(s => s.ToLower()).Contains(logOption.ProviderType.ToLower());
-            if (providerTypeValid == false) sb.Append($"Provider type is not valid. Available Items - {providerTypes}, Current Items - {logOption.ProviderType}, ").Append(Environment.NewLine);
+            if (providerTypeValid == false) sb.Add($"Provider type is not valid. Available Items - {providerTypes.PrintList()} Current Items - {logOption.ProviderType}, ");
 
             var modeValid = modes.Select(s => s.ToLower()).Contains(logOption.Mode.ToLower());
-            if (modeValid == false) sb.Append($"Global Log type is not valid. Available Items - {modes}, Current Items - {logOption.Mode}, ").Append(Environment.NewLine);
+            if (modeValid == false) sb.Add($"Global Log type is not valid. Available Items - {modes.PrintList()} Current Items - {logOption.Mode}, ");
 
             var isValidRetention = logOption.Retention.IsValidRetention();
-            if (isValidRetention == false) sb.Append($"Global Retention is not valid. Current Items - {logOption.Retention}, ").Append(Environment.NewLine);
+            if (isValidRetention == false) sb.Add($"Global Retention is not valid. Current Items - {logOption.Retention}, ");
 
-            var requestHttpVerb = httpVerbs.MustContain(logOption.Log.Request.HttpVerbs);
-            if (requestHttpVerb == false) sb.Append($"Log.Request.HttpVerbs is not valid. Available Items - {httpVerbs}, Current Items - {logOption.Log.Request.HttpVerbs}, ").Append(Environment.NewLine);
+            var requestHttpVerbValid = httpVerbs.MustContain(logOption.Log.Request.HttpVerbs);
+            if (requestHttpVerbValid == false) sb.Add($"Log.Request.HttpVerbs is not valid. Available Items - {httpVerbs.PrintList()} Current Items - {logOption.Log.Request.HttpVerbs.PrintList()} ");
 
-            var errorHttpVerb = httpVerbs.MustContain(logOption.Log.Error.HttpVerbs);
-            if (errorHttpVerb == false) sb.Append($"Log.Error.HttpVerbs is not valid. Available Items - {httpVerbs}, Current Items - {logOption.Log.Error.HttpVerbs}, ").Append(Environment.NewLine);
+            var requestModeValid = modes.Select(s => s.ToLower()).Contains(logOption.Log.Request.Mode.ToLower());
+            if (requestModeValid == false) sb.Add($"Request mode type is not valid. Available Items - {modes.PrintList()} Current Items - {logOption.Log.Request.Mode}, ");
+
+            var sqlModeValid = modes.Select(s => s.ToLower()).Contains(logOption.Log.Sql.Mode.ToLower());
+            if (sqlModeValid == false) sb.Add($"Sql mode type is not valid. Available Items - {modes.PrintList()} Current Items - {logOption.Log.Sql.Mode}, ");
+
+            var errorHttpVerbValid = httpVerbs.MustContain(logOption.Log.Error.HttpVerbs);
+            if (errorHttpVerbValid == false) sb.Add($"Log.Error.HttpVerbs is not valid. Available Items - {httpVerbs.PrintList()} Current Items - {logOption.Log.Error.HttpVerbs.PrintList()}");
 
             var mssqlLogTypeValid = logTypes.MustContain(logOption.Provider.MSSql.LogType);
-            if (mssqlLogTypeValid == false) sb.Append($"MSSql Log type is not valid. Available Items - {logTypes}, Current Items - {logOption.Provider.MSSql.LogType}, ").Append(Environment.NewLine);
+            if (mssqlLogTypeValid == false) sb.Add($"MSSql Log type is not valid. Available Items - {logTypes.PrintList()} Current Items - {logOption.Provider.MSSql.LogType.PrintList()} ");
 
             var cosmosDbLogTypeValid = logTypes.MustContain(logOption.Provider.CosmosDb.LogType);
-            if (cosmosDbLogTypeValid == false) sb.Append($"CosmosDb Log type is not valid. Available Items - {logTypes}, Current Items - {logOption.Provider.CosmosDb.LogType}, ").Append(Environment.NewLine);
+            if (cosmosDbLogTypeValid == false) sb.Add($"CosmosDb Log type is not valid. Available Items - {logTypes.PrintList()}Current Items - {logOption.Provider.CosmosDb.LogType.PrintList()} ");
 
             var fileLogTypeValid = logTypes.MustContain(logOption.Provider.File.LogType);
-            if (fileLogTypeValid == false) sb.Append($"File Log type is not valid. Available Items - {logTypes}, Current Items - {logOption.Provider.File.LogType}, ").Append(Environment.NewLine);
+            if (fileLogTypeValid == false) sb.Add($"File Log type is not valid. Available Items - {logTypes.PrintList()} Current Items - {logOption.Provider.File.LogType.PrintList()} ");
 
             var mongoLogTypeValid = logTypes.MustContain(logOption.Provider.Mongo.LogType);
-            if (mongoLogTypeValid == false) sb.Append($"Mongo Log type is not valid. Available Items - {logTypes}, Current Items - {logOption.Provider.Mongo.LogType}, ").Append(Environment.NewLine);
+            if (mongoLogTypeValid == false) sb.Add($"Mongo Log type is not valid. Available Items - {logTypes.PrintList()} Current Items - {logOption.Provider.Mongo.LogType.PrintList()} ");
+
+            var providerIsValid = logOption.IsProviderConfigValid();
+            if (providerIsValid == false) sb.Add($"ProviderType is {logOption.ProviderType}. But {logOption.ProviderType} configuration is not valid., ");
 
             if (logTypeValid
                 && providerTypeValid
@@ -59,7 +71,12 @@ namespace WebApp.Logger.Loggers
                 && mssqlLogTypeValid
                 && cosmosDbLogTypeValid
                 && fileLogTypeValid
-                && mongoLogTypeValid)
+                && mongoLogTypeValid
+                && providerIsValid
+                && sqlModeValid
+                && requestHttpVerbValid
+                && requestModeValid
+                && errorHttpVerbValid)
                 valid = true;
 
             return Tuple.Create(valid, string.Join(", ", sb));
@@ -106,7 +123,71 @@ namespace WebApp.Logger.Loggers
             if (contain.Count == 0)
                 return true;
 
-            return source.All(c => contain.Select(s => s.ToLower()).Contains(c.ToLower()));
+            return contain.All(c => source.Select(s => s.ToLower()).Contains(c.ToLower()));
+        }
+        /// <summary>
+        /// passing contain string must be available in source list
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="contain"></param>
+        /// <returns></returns>
+        public static bool MustContain(this List<string> source, string contain)
+        {
+            if (contain == null)
+                return true;
+
+            if ((source == null | source.Count == 0))
+                return false;
+
+
+            return source.Select(s => s.ToLower()).Contains(contain.ToLower());
+        }
+        public static string PrintList<T>(this List<T> list)
+        {
+            string outPutString = "";
+            foreach (var a in list) { outPutString += a.ToString() + ","; }
+            return outPutString;
+        }
+
+        /// <summary>
+        ///check validity of given provider type in our app configuration
+        /// </summary>
+        /// <param name="logOption"></param>
+        /// <returns></returns>
+        public static bool IsProviderConfigValid(this LogOption logOption)
+        {
+            if (logOption.ProviderType == "MSSql")
+            {
+                var mssql = logOption.Provider.MSSql;
+                var validLogType = logOption.LogType.MustContain(mssql.LogType);
+                if (!validLogType || mssql.Retention.IsNullOrEmpty() || mssql.Server.IsNullOrEmpty() || mssql.Username.IsNullOrEmpty() || mssql.Password.IsNullOrEmpty() || mssql.Port <= 0) return false;
+                return true;
+            }
+            else if (logOption.ProviderType == "CosmosDb")
+            {
+                var cmdb = logOption.Provider.CosmosDb;
+                var validLogType = logOption.LogType.MustContain(cmdb.LogType);
+                if (!validLogType || cmdb.Retention.IsNullOrEmpty() || cmdb.AccountUrl.IsNullOrEmpty() || cmdb.Key.IsNullOrEmpty() || cmdb.DatabaseName.IsNullOrEmpty()) return false;
+                return true;
+            }
+            else if (logOption.ProviderType == "File")
+            {
+                var file = logOption.Provider.File;
+                var validLogType = logOption.LogType.MustContain(file.LogType);
+                if (!validLogType || file.Retention.IsNullOrEmpty()) return false;
+                return true;
+            }
+            else if (logOption.ProviderType == "Mongo")
+            {
+                var mongo = logOption.Provider.Mongo;
+                var validLogType = logOption.LogType.MustContain(mongo.LogType);
+                if (!validLogType || mongo.Retention.IsNullOrEmpty() || mongo.Port <= 0 || mongo.Username.IsNullOrEmpty() || mongo.Password.IsNullOrEmpty() || mongo.Server.IsNullOrEmpty() || mongo.DatabaseName.IsNullOrEmpty() || mongo.DatabaseName1.IsNullOrEmpty() || mongo.ConnectionString.IsNullOrEmpty()) return false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
