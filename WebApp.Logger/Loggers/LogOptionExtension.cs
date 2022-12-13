@@ -106,7 +106,24 @@ namespace WebApp.Logger.Loggers
             if (contain.Count == 0)
                 return true;
 
-            return source.All(c => contain.Select(s => s.ToLower()).Contains(c.ToLower()));
+           return contain.All(c => source.Select(s => s.ToLower()).Contains(c.ToLower()));
+        }
+        /// <summary>
+        /// passing contain string must be available in source list
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="contain"></param>
+        /// <returns></returns>
+        public static bool MustContain(this List<string> source, string contain)
+        {
+            if (contain == null)
+                return true;
+
+            if ((source == null | source.Count == 0))
+                return false;
+
+
+            return source.Select(s => s.ToLower()).Contains(contain.ToLower());
         }
     }
 }
