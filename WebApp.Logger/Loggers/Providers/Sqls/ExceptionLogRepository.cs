@@ -22,7 +22,7 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly LogOption _logOptions;
 
         public ExceptionLogRepository(DapperContext dapper,
-            ILogger<ExceptionLogRepository> logger,IOptions<LogOption>logOptions)
+            ILogger<ExceptionLogRepository> logger, IOptions<LogOption> logOptions)
         {
             _dapper = dapper;
             _logger = logger;
@@ -31,12 +31,11 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(ErrorModel errorModel)
         {
-            if (errorModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
+            if (LogOptionExtension.SkipErrorLog(errorModel, _logOptions))
                 return;
 
-            var ignoreColumns = _logOptions.Log.Error.EnableIgnore ? _logOptions.Log.Error.IgnoreColumns : new List<string> { };
-            var maskColumns = _logOptions.Log.Error.EnableMask ? _logOptions.Log.Error.MaskColumns : new List<string> { };
-            var createdDateUtc = ignoreColumns.MustContain("CreatedDateUtc") ? null : maskColumns.MustContain("CreatedDateUtc") ? "****" : DateTime.UtcNow.ToString();
+            errorModel = errorModel.PrepareErrorModel(_logOptions);
+
             var query = @"INSERT INTO [dbo].[ExceptionLogs]
                                ([UserId]
                                ,[ApplicationName]
@@ -90,7 +89,6 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 using (var connection = _dapper.CreateConnection())
                 {
-                    errorModel = errorModel.ToFilter<ErrorModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
                     await connection.ExecuteAsync(query, new
                     {
                         UserId = errorModel.UserId,
@@ -115,7 +113,7 @@ namespace WebApp.Logger.Loggers.Repositories
                         Message = errorModel.Message,
                         MessageDetails = errorModel.MessageDetails,
                         StackTrace = errorModel.StackTrace,
-                        CreatedDateUtc = createdDateUtc
+                        CreatedDateUtc = DateTime.UtcNow
                     });
                 }
             }
@@ -147,7 +145,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     });
                     exceptionLogUnescapeString = JsonSerializeExtentions.ToJson(exceptionLogs);
                     var unescape = exceptionLogUnescapeString.JsonUnescaping();
-               
+
                     logs = JArray.Parse(unescape);
                 }
 

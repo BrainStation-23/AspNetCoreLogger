@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebApp.Logger.Extensions;
+using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Loggers
 {
@@ -187,5 +188,30 @@ namespace WebApp.Logger.Loggers
                 return false;
             }
         }
+
+        public static bool SkipErrorLog(ErrorModel errorModel, LogOption logOptions)
+        {
+            bool skip = false;
+
+            if (errorModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
+                skip = true;
+
+            if (!logOptions.LogType.MustContain(LogType.Error.ToString()))
+                skip = true;
+
+            return skip;
+        }
+
+        public static ErrorModel PrepareErrorModel(this ErrorModel errorModel, LogOption logOptions)
+        {
+            var errorLogOptions = logOptions.Log.Error;
+
+            var ignoreColumns = errorLogOptions.EnableIgnore ? errorLogOptions.IgnoreColumns : new List<string>();
+            var maskColumns = errorLogOptions.EnableMask ? errorLogOptions.MaskColumns : new List<string>();
+            errorModel = errorModel.ToFilter<ErrorModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
+
+            return errorModel;
+        }
+
     }
 }
