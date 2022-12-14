@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using WebApp.Common.Serialize;
 using WebApp.Logger.Providers.Sqls;
 using WebApp.Logger.Models;
+using WebApp.Logger.Extensions;
+using MassTransit.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
@@ -16,20 +19,23 @@ namespace WebApp.Logger.Loggers.Repositories
     {
         private readonly DapperContext _dapper;
         private readonly ILogger<ExceptionLogRepository> _logger;
+        private readonly LogOption _logOptions;
 
         public ExceptionLogRepository(DapperContext dapper,
-            ILogger<ExceptionLogRepository> logger)
+            ILogger<ExceptionLogRepository> logger, IOptions<LogOption> logOptions)
         {
             _dapper = dapper;
             _logger = logger;
+            _logOptions = logOptions.Value;
         }
 
         public async Task AddAsync(ErrorModel errorModel)
         {
-            if (errorModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
+            if (LogOptionExtension.SkipErrorLog(errorModel, _logOptions))
                 return;
 
-            var createdDateUtc = DateTime.UtcNow.ToString();
+            errorModel = errorModel.PrepareErrorModel(_logOptions);
+
             var query = @"INSERT INTO [dbo].[ExceptionLogs]
                                ([UserId]
                                ,[ApplicationName]
@@ -107,7 +113,7 @@ namespace WebApp.Logger.Loggers.Repositories
                         Message = errorModel.Message,
                         MessageDetails = errorModel.MessageDetails,
                         StackTrace = errorModel.StackTrace,
-                        CreatedDateUtc = createdDateUtc
+                        CreatedDateUtc = DateTime.UtcNow
                     });
                 }
             }
@@ -137,8 +143,9 @@ namespace WebApp.Logger.Loggers.Repositories
                     {
                         f.StackTrace = JsonConvert.SerializeObject(f.StackTrace);
                     });
-                    exceptionLogUnescapeString = exceptionLogs.ToJson();
+                    exceptionLogUnescapeString = JsonSerializeExtentions.ToJson(exceptionLogs);
                     var unescape = exceptionLogUnescapeString.JsonUnescaping();
+
                     logs = JArray.Parse(unescape);
                 }
 
