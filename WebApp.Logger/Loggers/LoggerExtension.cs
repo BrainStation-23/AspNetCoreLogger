@@ -51,9 +51,9 @@ namespace WebApp.Logger.Loggers
         /// Handling all changes in database
         /// WebAppDbContext] -> SaveChanges() -> base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));;
         /// </summary>
-        public static IList<AuditEntry> AuditTrailLog(this ChangeTracker changeTracker, long userId, string ignoreEntity = null)
+        public static IList<AuditEntry> AuditTrailLog(this ChangeTracker changeTracker, long userId, LogOption logOption, string ignoreEntity = null)
         {
-            return changeTracker.AuditTrail(userId, ignoreEntity);
+            return changeTracker.AuditTrail(userId, ignoreEntity,logOption);
         }
 
         /// <summary>

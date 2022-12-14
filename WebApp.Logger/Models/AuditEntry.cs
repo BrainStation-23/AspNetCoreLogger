@@ -8,7 +8,7 @@ using WebApp.Logger.Enums;
 namespace WebApp.Logger.Models
 {
     public class AuditEntry
-    {
+    {      
         public AuditEntry(EntityEntry entry)
         {
             Entry = entry;
@@ -38,7 +38,7 @@ namespace WebApp.Logger.Models
                     UserId = auditEntry.UserId,
                     Type = auditEntry.AuditType.ToString(),
                     TableName = auditEntry.TableName,
-                    DateTimes = DateTime.Now,
+                    DateTime = DateTime.Now,
                     PrimaryKey = auditEntry.KeyValues,
                     OldValues = auditEntry.OldValues,
                     NewValues = auditEntry.NewValues,
@@ -53,7 +53,7 @@ namespace WebApp.Logger.Models
                 UserId = auditEntry.UserId,
                 Type = auditEntry.AuditType.ToString(),
                 TableName = auditEntry.TableName,
-                DateTimes = DateTime.Now,
+                DateTime = DateTime.Now,
                 PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
                 OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues),
                 NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),

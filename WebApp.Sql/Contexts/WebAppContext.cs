@@ -91,7 +91,7 @@ namespace WebApp.Sql
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
-            base.ChangeTracker.Audit(userId);
+            base.ChangeTracker.Audit(userId, _logOptions);
         }
 
         private bool AuditTrailLog()
@@ -101,7 +101,7 @@ namespace WebApp.Sql
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
-            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));
+            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, _logOptions ,nameof(AuditLog));
 
             if (auditEntries.Any())
             {

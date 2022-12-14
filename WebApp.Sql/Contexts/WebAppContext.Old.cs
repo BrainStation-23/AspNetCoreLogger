@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
@@ -34,13 +35,14 @@ namespace WebApp.Sql
 
         public readonly ISignInHelper SignInHelper;
         public readonly IHttpContextAccessor HttpContextAccessor;
-
+        public readonly LogOption _logOption;
         public WebAppContextOld(DbContextOptions<WebAppContext> options,
             ISignInHelper signInHelper,
-            IHttpContextAccessor httpContextAccessor) : base(options)
+            IHttpContextAccessor httpContextAccessor,IOptions<LogOption>logOption) : base(options)
         {
             SignInHelper = signInHelper;
             HttpContextAccessor = httpContextAccessor;
+            _logOption = logOption.Value;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -76,7 +78,7 @@ namespace WebApp.Sql
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
-            base.ChangeTracker.Audit(userId);
+            base.ChangeTracker.Audit(userId, _logOption);
         }
 
         private bool AuditTrailLog()
@@ -86,7 +88,7 @@ namespace WebApp.Sql
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
-            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));
+            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, _logOption, nameof(AuditLog));
 
             if (auditEntries.Any())
             {
