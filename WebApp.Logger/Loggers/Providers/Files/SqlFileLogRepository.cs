@@ -94,7 +94,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     Source = sqlModel.Source,
                     Scheme = sqlModel.Scheme,
                     TraceId = sqlModel.TraceId,
-                    Protocol = sqlModel.Proctocol,
+                    Protocol = sqlModel.Protocol,
                     UrlReferrer = sqlModel.UrlReferrer,
                     Area = sqlModel.Area,
                     ControllerName = sqlModel.ControllerName,

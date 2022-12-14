@@ -11,7 +11,7 @@
         public string Source { get; set; }
         public string Scheme { get; set; }
         public string TraceId { get; set; }
-        public string Proctocol { get; set; }
+        public string Protocol { get; set; }
         public string UrlReferrer { get; set; }
         public string Area { get; set; }
 	    public string ControllerName { get; set; }

@@ -67,7 +67,12 @@ namespace WebApp.Logger.Extensions
             var toMask = SelectJsonProperties(jObject, maskProperties);
 
             foreach (var prop in toMask)
-                prop.Value = "*****";
+            {
+                if (prop.Value.Type == JTokenType.String)
+                {
+                    prop.Value = "*****";
+                }
+            }
 
             var json = jObject.ToString();
 

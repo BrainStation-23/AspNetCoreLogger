@@ -90,7 +90,7 @@ namespace WebApp.Logger.Interceptors
                 Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl(),
                 TraceId = context.TraceIdentifier,
                 Scheme = context.Request.Scheme,
-                Proctocol = context.Request.Protocol,
+                Protocol = context.Request.Protocol,
                 Version = "",
                 UrlReferrer = "",
                 Area = "",
