@@ -21,7 +21,7 @@ namespace WebApp.Common.Contexts
         {
             bool isChanges = false;
             var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
-
+            
             foreach (var property in currentValues.Properties)
             {
                 string propertyName = property.Metadata.Name;
@@ -110,7 +110,7 @@ namespace WebApp.Common.Contexts
                         case EntityState.Deleted:
                             auditEntry.AuditType = AuditType.Delete;
                             auditEntry.OldValues[propertyName] = property.OriginalValue;
-                            break;
+                                break;
                         case EntityState.Modified:
                             if (property.IsModified)
                             {
