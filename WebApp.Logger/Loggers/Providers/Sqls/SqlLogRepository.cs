@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Common.Serialize;
+using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Sqls;
 
@@ -91,16 +92,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
             try
             {
-                using var connection = _dapper.CreateConnection();
-                //toFilter was not working
-                foreach (var property in ignoreColumns)
-                {
-                    DropProperty(sqlModel, property);
-                }
-                foreach (var property in maskColumns)
-                {
-                    MaskProperty(sqlModel, property);
-                }
+                using var connection = _dapper.CreateConnection();               
                 var model = new
                 {
                     UserId = sqlModel.UserId,
@@ -112,7 +104,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     Source = sqlModel.Source,
                     Scheme = sqlModel.Scheme,
                     TraceId = sqlModel.TraceId,
-                    Protocol = sqlModel.Proctocol,
+                    Protocol = sqlModel.Protocol,
                     UrlReferrer = sqlModel.UrlReferrer,
                     Area = sqlModel.Area,
                     ControllerName = sqlModel.ControllerName,
@@ -129,8 +121,8 @@ namespace WebApp.Logger.Loggers.Repositories
                     Event = sqlModel.Event,
                     CreatedDateUtc = createdDateUtc
                 };
-                
-                await connection.ExecuteAsync(query, model);
+                var result=model.ToFilter<SqlModelDTO>(ignoreColumns.ToArray(), maskColumns.ToArray());
+                await connection.ExecuteAsync(query, result);
             }
             catch (Exception exception)
             {
@@ -151,7 +143,7 @@ namespace WebApp.Logger.Loggers.Repositories
                 using (var connection = _dapper.CreateConnection())
                 {
                     var sqlLogsEntities = await connection.QueryAsync(query, pager);
-                    var sqlLogUnescapeString = sqlLogsEntities.ToJson().JsonUnescaping();
+                    var sqlLogUnescapeString = JsonSerializeExtentions.ToJson(sqlLogsEntities).JsonUnescaping();
                     sqlLogs = JArray.Parse(sqlLogUnescapeString);
                 }
 
@@ -164,16 +156,6 @@ namespace WebApp.Logger.Loggers.Repositories
             }
         }
 
-        public void DropProperty(SqlModel obj, string propertyName)
-        {
-
-            obj.GetType().GetProperty(propertyName)?.SetValue(obj, null);
-            
-        }
-        public void MaskProperty(object obj, string propertyName)
-        {
-            obj.GetType().GetProperty(propertyName)?.SetValue(obj, "****");
-            
-        }
+       
     }
 }

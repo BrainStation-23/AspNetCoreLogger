@@ -28,4 +28,10 @@
         public double Duration { get; set; }
         public string Message { get; set; }
     }
+
+
+    public class SqlModelDTO:SqlModel
+    {
+        public string CreatedDateUtc { get; set; }
+    }
 }
