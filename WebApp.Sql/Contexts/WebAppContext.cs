@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
@@ -33,14 +34,17 @@ namespace WebApp.Sql
 
         public readonly ISignInHelper SignInHelper;
         public readonly IConfiguration Configuration;
+        public readonly LogOption _logOptions;
 
         public WebAppContext(DbContextOptions<WebAppContext> options,
             ISignInHelper signInHelper,
             IConfiguration configuration,
-            IServiceProvider serviceProvider) : base(options, configuration, serviceProvider)
+            IServiceProvider serviceProvider,
+            IOptions<LogOption> logOptions) : base(options, configuration, serviceProvider)
         {
             SignInHelper = signInHelper;
             Configuration = configuration;
+            _logOptions= logOptions.Value;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -76,7 +80,7 @@ namespace WebApp.Sql
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
-            base.ChangeTracker.Audit(userId);
+            base.ChangeTracker.Audit(userId, _logOptions);
         }
 
         private bool AuditTrailLog()
@@ -86,7 +90,7 @@ namespace WebApp.Sql
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
-            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));
+            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, _logOptions ,nameof(AuditLog));
 
             if (auditEntries.Any())
             {

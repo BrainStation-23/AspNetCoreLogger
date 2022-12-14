@@ -11,17 +11,19 @@ using System.Linq;
 using WebApp.Common.Exceptions;
 using WebApp.Common.Sqls;
 using WebApp.Logger.Enums;
+using WebApp.Logger.Extensions;
+using WebApp.Logger.Loggers;
 using WebApp.Logger.Models;
 
 namespace WebApp.Common.Contexts
 {
     public static class DbContextExtensions
     {
-        private static bool HasChanges(PropertyValues originalEntry, EntityEntry currentValues)
+        private static bool HasChanges(PropertyValues originalEntry, EntityEntry currentValues,LogOption logOption)
         {
             bool isChanges = false;
-            var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
-            
+            var ignorePropertyName = logOption.Log.Audit.IgnoreColumns.ToList();
+
             foreach (var property in currentValues.Properties)
             {
                 string propertyName = property.Metadata.Name;
@@ -45,7 +47,7 @@ namespace WebApp.Common.Contexts
                     case EntityState.Modified:
                         if (property.IsModified)
                         {
-                            if (ignorePropertyName.Contains(propertyName))
+                            if (ignorePropertyName.MustContain(propertyName))
                                 continue;
 
                             var currentValue = property.CurrentValue?.ToString();
@@ -63,7 +65,7 @@ namespace WebApp.Common.Contexts
             return isChanges;
         }
 
-        public static IList<AuditEntry> AuditTrail(this ChangeTracker changeTracker, long userId, string ignoreEntity)
+        public static IList<AuditEntry> AuditTrail(this ChangeTracker changeTracker, long userId, string ignoreEntity,LogOption logOption)
         {
             changeTracker.DetectChanges();
             var auditEntries = new List<AuditEntry>();
@@ -81,7 +83,7 @@ namespace WebApp.Common.Contexts
                         continue;
 
                 var originalEntry = entry.GetDatabaseValues();
-                var hasChanges = HasChanges(originalEntry, entry);
+                var hasChanges = HasChanges(originalEntry, entry,logOption);
                 if (!hasChanges) continue;
 
                 var auditEntry = new AuditEntry(entry)
@@ -91,8 +93,9 @@ namespace WebApp.Common.Contexts
                 };
                 auditEntries.Add(auditEntry);
 
-                var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
 
+                var ignorePropertyName = logOption.Log.Audit.EnableIgnore==true? logOption.Log.Audit.IgnoreColumns.ToList():new List<string> { };
+                var maskPropertyName = logOption.Log.Audit.EnableMask == true ? logOption.Log.Audit.MaskColumns.ToList() : new List<string> { };
                 foreach (var property in entry.Properties)
                 {
                     string propertyName = property.Metadata.Name;
@@ -106,6 +109,11 @@ namespace WebApp.Common.Contexts
                         case EntityState.Added:
                             auditEntry.AuditType = AuditType.Create;
                             auditEntry.NewValues[propertyName] = property.CurrentValue;
+                            if (maskPropertyName.MustContain(propertyName))
+                            {
+                                auditEntry.NewValues[propertyName] = "****";
+                            }
+
                             break;
                         case EntityState.Deleted:
                             auditEntry.AuditType = AuditType.Delete;
@@ -122,11 +130,11 @@ namespace WebApp.Common.Contexts
                                 auditEntry.OldValues[propertyName] = originalEntry[propertyName];
                                 auditEntry.NewValues[propertyName] = property.CurrentValue;
 
-                                if (ignorePropertyName.Contains(propertyName))
+                                if (ignorePropertyName.MustContain(propertyName))
                                     continue;
 
                                 var currentValue = property.CurrentValue?.ToString();
-                                var originalValue = originalEntry[propertyName]?.ToString();
+                                var originalValue = originalEntry[propertyName]?.ToString();                                
                                 if (currentValue != originalValue)
                                 {
                                     auditEntry.ChangedColumnNames.Add(propertyName);
@@ -144,10 +152,10 @@ namespace WebApp.Common.Contexts
             return auditEntries;
         }
 
-        public static void Audit(this ChangeTracker changeTracker, long userId)
+        public static void Audit(this ChangeTracker changeTracker, long userId, LogOption logOption)
         {
             var now = DateTimeOffset.UtcNow;
-            var ignorePropertyName = typeof(BaseEntity).GetProperties().Select(e => e.Name).ToList();
+            var ignorePropertyName = logOption.Log.Audit.EnableIgnore == true ? logOption.Log.Audit.IgnoreColumns.ToList() : new List<string> { };
 
 
             foreach (var entry in changeTracker.Entries<BaseEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
@@ -155,7 +163,7 @@ namespace WebApp.Common.Contexts
                 foreach (var property in entry.Properties)
                 {
                     string propertyName = property.Metadata.Name;
-                    if (ignorePropertyName.Contains(propertyName))
+                    if (ignorePropertyName.MustContain(propertyName))
                         entry.Property(propertyName).IsModified = false;
 
                 }
