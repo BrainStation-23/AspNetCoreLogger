@@ -19,10 +19,10 @@ namespace WebApp.Common.Contexts
 {
     public static class DbContextExtensions
     {
-        private static bool HasChanges(PropertyValues originalEntry, EntityEntry currentValues,LogOption logOption)
+        private static bool HasChanges(PropertyValues originalEntry, EntityEntry currentValues, LogOption logOption)
         {
             bool isChanges = false;
-            var ignorePropertyName = logOption.Log.Audit.IgnoreColumns.ToList();
+             var ignorePropertyName = logOption.Log.Audit.EnableIgnoreSchemas? logOption.Log.Audit.IgnoreSchemas?? new List<string> { } : new List<string> { };
 
             foreach (var property in currentValues.Properties)
             {
@@ -65,7 +65,7 @@ namespace WebApp.Common.Contexts
             return isChanges;
         }
 
-        public static IList<AuditEntry> AuditTrail(this ChangeTracker changeTracker, long userId, string ignoreEntity,LogOption logOption)
+        public static IList<AuditEntry> AuditTrail(this ChangeTracker changeTracker, long userId, string ignoreEntity, LogOption logOption)
         {
             changeTracker.DetectChanges();
             var auditEntries = new List<AuditEntry>();
@@ -94,8 +94,8 @@ namespace WebApp.Common.Contexts
                 auditEntries.Add(auditEntry);
 
 
-                var ignorePropertyName = logOption.Log.Audit.EnableIgnore==true? logOption.Log.Audit.IgnoreColumns.ToList():new List<string> { };
-                var maskPropertyName = logOption.Log.Audit.EnableMask == true ? logOption.Log.Audit.MaskColumns.ToList() : new List<string> { };
+                var ignorePropertyName = logOption.Log.Audit.EnableIgnoreSchemas ? logOption.Log.Audit.IgnoreSchemas ?? new List<string> { } : new List<string> { };
+                //var maskPropertyName = logOption.Log.Audit.EnableMask == true ? logOption.Log.Audit.MaskColumns.ToList() : new List<string> { };
                 foreach (var property in entry.Properties)
                 {
                     string propertyName = property.Metadata.Name;
@@ -109,16 +109,16 @@ namespace WebApp.Common.Contexts
                         case EntityState.Added:
                             auditEntry.AuditType = AuditType.Create;
                             auditEntry.NewValues[propertyName] = property.CurrentValue;
-                            if (maskPropertyName.MustContain(propertyName))
-                            {
-                                auditEntry.NewValues[propertyName] = "****";
-                            }
+                            //if (maskPropertyName.MustContain(propertyName))
+                            //{
+                            //    auditEntry.NewValues[propertyName] = "****";
+                            //}
 
                             break;
                         case EntityState.Deleted:
                             auditEntry.AuditType = AuditType.Delete;
                             auditEntry.OldValues[propertyName] = property.OriginalValue;
-                                break;
+                            break;
                         case EntityState.Modified:
                             if (property.IsModified)
                             {
@@ -134,7 +134,7 @@ namespace WebApp.Common.Contexts
                                     continue;
 
                                 var currentValue = property.CurrentValue?.ToString();
-                                var originalValue = originalEntry[propertyName]?.ToString();                                
+                                var originalValue = originalEntry[propertyName]?.ToString();
                                 if (currentValue != originalValue)
                                 {
                                     auditEntry.ChangedColumnNames.Add(propertyName);
@@ -155,7 +155,7 @@ namespace WebApp.Common.Contexts
         public static void Audit(this ChangeTracker changeTracker, long userId, LogOption logOption)
         {
             var now = DateTimeOffset.UtcNow;
-            var ignorePropertyName = logOption.Log.Audit.EnableIgnore == true ? logOption.Log.Audit.IgnoreColumns.ToList() : new List<string> { };
+            var ignorePropertyName = logOption.Log.Audit.EnableIgnoreSchemas ? logOption.Log.Audit.IgnoreSchemas ?? new List<string> { } : new List<string> { };
 
 
             foreach (var entry in changeTracker.Entries<BaseEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))

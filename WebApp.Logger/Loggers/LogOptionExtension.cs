@@ -135,9 +135,11 @@ namespace WebApp.Logger.Loggers
             if (contain == null)
                 return true;
 
-            if ((source == null | source.Count == 0))
+            if (source == null)
                 return false;
 
+            if (source.Count == 0)
+                return false;
 
             return source.Select(s => s.ToLower()).Contains(contain.ToLower());
         }
@@ -206,11 +208,30 @@ namespace WebApp.Logger.Loggers
         {
             var errorLogOptions = logOptions.Log.Error;
 
-            var ignoreColumns = errorLogOptions.EnableIgnore ? errorLogOptions.IgnoreColumns : new List<string>();
-            var maskColumns = errorLogOptions.EnableMask ? errorLogOptions.MaskColumns : new List<string>();
+            var ignoreColumns = errorLogOptions.EnableIgnore ? errorLogOptions.IgnoreColumns ?? new List<string> { } : new List<string>();
+            var maskColumns = errorLogOptions.EnableMask ? errorLogOptions.MaskColumns ?? new List<string> { } : new List<string>();
             errorModel = errorModel.ToFilter<ErrorModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
 
             return errorModel;
+        }
+        public static List<AuditModel> PrepareAuditModel(this List<AuditModel> auditModels, LogOption logOptions)
+        {
+            var ignoreColumns = logOptions.Log.Audit.EnableIgnore ? logOptions.Log.Audit.IgnoreColumns ?? new List<string> { } : new List<string> { };
+            var maskColumns = logOptions.Log.Audit.EnableMask ? logOptions.Log.Audit.MaskColumns ?? new List<string> { } : new List<string> { };
+            var ignoreSchemas = logOptions.Log.Audit.EnableIgnoreSchemas ? logOptions.Log.Audit.IgnoreSchemas ?? new List<string> { } : new List<string> { };
+            var ignoreTables = logOptions.Log.Audit.EnableIgnoreTable ? logOptions.Log.Audit.IgnoreTables ?? new List<string> { } : new List<string> { };
+
+            auditModels.Remove(auditModels.FirstOrDefault(s => ignoreTables.MustContain(s.TableName)));
+
+            auditModels = auditModels.Select(m => m.PrepareAuditModel(ignoreColumns.ToArray(), maskColumns.ToArray(), ignoreSchemas.ToArray())).ToList();
+
+            return auditModels;
+        }
+        public static AuditModel PrepareAuditModel(this AuditModel auditModel, string[] ignoreColumns, string[] maskColumns, string[] ignoreSchemas)
+        {
+            auditModel = auditModel.ToFilter<AuditModel>(ignoreColumns, maskColumns);
+
+            return auditModel;
         }
 
     }
