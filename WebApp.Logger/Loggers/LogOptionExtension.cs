@@ -95,8 +95,15 @@ namespace WebApp.Logger.Loggers
             if (logOptions.Log.Request.HttpVerbs.NotContains(context.Request.Method))
                 return true;
 
+            if (logOptions.IgnoreHttpVerbs.MustContain(context.Request.Method))
+                return true;
+
             var url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
             if (logOptions.Log.Request.IgnoreRequests.Any(r => url.ToLower().Contains(r.ToLower())))
+                return true;
+
+            var ignoreEndPoints = logOptions.IgnoreEndPoints ?? new List<string> { };
+            if (ignoreEndPoints.Any(r => url.ToLower().Contains(r.ToLower())))
                 return true;
 
             return skip;
@@ -113,7 +120,10 @@ namespace WebApp.Logger.Loggers
             if (contain == null)
                 return true;
 
-            if ((source == null | source.Count == 0) && contain.Count > 0)
+            if (source == null)
+                return false;
+
+            if ((source.Count == 0) && contain.Count > 0)
                 return false;
 
             if (source.Count < contain.Count)
@@ -223,11 +233,11 @@ namespace WebApp.Logger.Loggers
 
             auditModels.Remove(auditModels.FirstOrDefault(s => ignoreTables.MustContain(s.TableName)));
 
-            auditModels = auditModels.Select(m => m.PrepareAuditModel(ignoreColumns.ToArray(), maskColumns.ToArray(), ignoreSchemas.ToArray())).ToList();
+            auditModels = auditModels.Select(m => m.PrepareAuditModel(ignoreColumns.ToArray(), maskColumns.ToArray())).ToList();
 
             return auditModels;
         }
-        public static AuditModel PrepareAuditModel(this AuditModel auditModel, string[] ignoreColumns, string[] maskColumns, string[] ignoreSchemas)
+        public static AuditModel PrepareAuditModel(this AuditModel auditModel, string[] ignoreColumns, string[] maskColumns)
         {
             auditModel = auditModel.ToFilter<AuditModel>(ignoreColumns, maskColumns);
 
