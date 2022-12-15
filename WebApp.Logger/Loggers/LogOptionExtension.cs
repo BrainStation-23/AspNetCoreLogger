@@ -212,6 +212,16 @@ namespace WebApp.Logger.Loggers
 
             return errorModel;
         }
+        public static RequestModel PrepareRequestModel(this RequestModel requestModel, LogOption logOptions)
+        {
+            var requestLogOptions = logOptions.Log.Request;
+
+            var ignoreColumns = requestLogOptions.EnableIgnore ? requestLogOptions.IgnoreColumns : new List<string>();
+            var maskColumns = requestLogOptions.EnableMask ? requestLogOptions.MaskColumns : new List<string>();
+            requestModel = requestModel.ToFilter<RequestModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
+
+            return requestModel;
+        }
 
     }
 }

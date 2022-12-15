@@ -1,0 +1,35 @@
+----------------------------------------------------------------------------------
+
+ [Request: 7:25:09 PM Wednesday, December 14, 2022] OK GET https://localhost:44373/api/Blog/search?pageSize=10
+TraceId: 40000055-0004-ff00-b63f-84710c7967bb
+Body: 
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 7:25:47 PM Wednesday, December 14, 2022] OK GET https://localhost:44373/api/Blog/search?pageSize=10
+TraceId: 40000037-0006-f700-b63f-84710c7967bb
+Body: 
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 7:26:55 PM Wednesday, December 14, 2022] OK GET https://localhost:44373/api/Blog/search?pageSize=10
+TraceId: 40000011-0002-fb00-b63f-84710c7967bb
+Body: 
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 7:27:53 PM Wednesday, December 14, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 40000013-0002-fb00-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 7:28:06 PM Wednesday, December 14, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 4000003b-0006-f700-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: 
+----------------------------------------------------------------------------------

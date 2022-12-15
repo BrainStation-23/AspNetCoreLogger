@@ -1,0 +1,98 @@
+----------------------------------------------------------------------------------
+
+ [Request: 10:50:16 AM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 4000004d-0001-ff00-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 11:30:38 AM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 4000003c-0003-fe00-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 11:38:32 AM Thursday, December 15, 2022] OK GET https://localhost:44373/api/Blog/search?pageSize=10
+TraceId: 400000c3-0000-fb00-b63f-84710c7967bb
+Body: 
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 11:42:29 AM Thursday, December 15, 2022] OK GET https://localhost:44373/api/Blog/search?pageSize=10
+TraceId: 40000055-0006-fb00-b63f-84710c7967bb
+Body: 
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 11:46:52 AM Thursday, December 15, 2022] OK GET https://localhost:44373/api/Blog/search?pageSize=10
+TraceId: 400000c7-0000-fb00-b63f-84710c7967bb
+Body: 
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 12:44:14 PM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 400000e4-0006-fd00-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 12:46:41 PM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 40000057-0002-fd00-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 12:49:41 PM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 4000004d-0007-fb00-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 12:53:10 PM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 40000059-0002-fd00-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: 
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 1:10:01 PM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 400000a2-0004-fa00-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: {"statusCode":200,"appStatusCode":"AP1300E","isSuccess":true,"message":null,"data":{"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":[],"id":50084},"errors":null}
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 1:12:16 PM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 40000066-0004-fe00-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: {"statusCode":200,"appStatusCode":"AP1300E","isSuccess":true,"message":null,"data":{"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":[],"id":50085},"errors":null}
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 1:13:16 PM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 40000070-0006-f700-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: {"statusCode":200,"appStatusCode":"AP1300E","isSuccess":true,"message":null,"data":{"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":[],"id":50086},"errors":null}
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 1:16:14 PM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 4000009a-0005-fc00-b63f-84710c7967bb
+Body: {"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":null,"id":0}
+Response: {"statusCode":200,"appStatusCode":"AP1300E","isSuccess":true,"message":null,"data":{"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":[],"id":50087},"errors":null}
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 1:17:04 PM Thursday, December 15, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 4000008c-0007-fc00-b63f-84710c7967bb
+Body: *****
+Response: {"statusCode":200,"appStatusCode":"AP1300E","isSuccess":true,"message":null,"data":{"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":[],"id":50088},"errors":null}
+----------------------------------------------------------------------------------
