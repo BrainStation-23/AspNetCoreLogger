@@ -6,3 +6,19 @@ Table Name: BlogEntity
 Old values: 
 New Values: {"CreatedBy":0,"CreatedDateUtc":"****","Description":"My blog description","Motto":"Blog Motto","Name":"My Blog","UpdatedBy":0,"UpdatedDateUtc":null}
 ----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+[Request: 3:51:36 PM Sunday, December 18, 2022]
+UserId: 0
+Type: Create
+TableName: BlogEntity
+DateTime: 12/18/2022 3:51:36 PM
+OldValues: 
+NewValues: {"CreatedBy":0,"CreatedDateUtc":"****","Description":"My blog description","Motto":"Blog Motto","Name":"My Blog","UpdatedBy":0,"UpdatedDateUtc":null}
+AffectedColumns: 
+PrimaryKey: {"Id":-9223372036854774807}
+CreatedBy: 0
+CreatedDateUtc: 12/18/2022 9:51:36 AM
+UpdatedBy: 0
+UpdatedDateUtc: 12/18/2022 9:51:36 AM
+----------------------------------------------------------------------------------

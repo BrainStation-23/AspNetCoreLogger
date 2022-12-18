@@ -6,3 +6,69 @@ Body: {"userName":"string","email":"string","firstname":"string","lastname":"str
 Message: User already exists with email string
 Response: 
 ----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+[Request: 3:53:08 PM Sunday, December 18, 2022] NotFound POST https://localhost:44373/api/Account/user/add
+UserId: 
+Application: WebApp.Service
+IpAddress: ::1
+Version: https
+Host: localhost:44373
+Url: POST https://localhost:44373/api/Account/user/add
+Source: WebApp.Service
+Form: 
+Body: {"userName":"string","email":"string","firstname":"string","lastname":"string","password":"string"}
+Response: 
+RequestHeader: {"Accept":["*/*"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["en-US,en;q=0.9"],"Connection":["close"],"Content-Length":["99"],"Content-Type":["application/json-patch\u002Bjson"],"Host":["localhost:44373"],"Referer":["https://localhost:44373/swagger/index.html"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"],"sec-ch-ua":["\u0022Not?A_Brand\u0022;v=\u00228\u0022, \u0022Chromium\u0022;v=\u0022108\u0022, \u0022Google Chrome\u0022;v=\u0022108\u0022"],"sec-ch-ua-mobile":["?0"],"sec-ch-ua-platform":["\u0022Windows\u0022"],"origin":["https://localhost:44373"],"sec-fetch-site":["same-origin"],"sec-fetch-mode":["cors"],"sec-fetch-dest":["empty"]}
+ResponseHeader: {"Accept":["*/*"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["en-US,en;q=0.9"],"Connection":["close"],"Content-Length":["99"],"Content-Type":["application/json-patch\u002Bjson"],"Host":["localhost:44373"],"Referer":["https://localhost:44373/swagger/index.html"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"],"sec-ch-ua":["\u0022Not?A_Brand\u0022;v=\u00228\u0022, \u0022Chromium\u0022;v=\u0022108\u0022, \u0022Google Chrome\u0022;v=\u0022108\u0022"],"sec-ch-ua-mobile":["?0"],"sec-ch-ua-platform":["\u0022Windows\u0022"],"origin":["https://localhost:44373"],"sec-fetch-site":["same-origin"],"sec-fetch-mode":["cors"],"sec-fetch-dest":["empty"]}
+Scheme: https
+TraceId: 40000166-0006-f700-b63f-84710c7967bb
+Protocol: HTTP/2
+Errors: 
+StatusCode: NotFound
+AppStatusCode: AP1504E
+Message: User already exists with email string
+MessageDetails: User already exists with email string
+StackTrace:    at WebApp.Service.Services.Accounts.UserService.AddUserAsync(User user, String password) in C:\BS-CS-Basic-Team\AspNetCoreLogger\WebApp.Service\Services\Accounts\UserService.cs:line 82
+   at WebApp.Controllers.Auths.AccountController.AddUser(UserVm model) in C:\BS-CS-Basic-Team\AspNetCoreLogger\WebApp\Controllers\Auths\AccountController.cs:line 52
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at WebApp.Logger.Middlewares.HttpRequestMiddleware.InvokeAsync(HttpContext context, IServiceProvider _serviceProvider) in C:\BS-CS-Basic-Team\AspNetCoreLogger\WebApp.Logger\Middlewares\HttpRequestMiddleware.cs:line 54
+   at WebApp.Logger.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context, IServiceProvider _serviceProvider) in C:\BS-CS-Basic-Team\AspNetCoreLogger\WebApp.Logger\Middlewares\ExceptionMiddleware.cs:line 54
+CreatedDateUtc: 12/18/2022 9:53:08 AM
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+[Request: 3:59:34 PM Sunday, December 18, 2022] NotFound POST https://localhost:44373/api/Account/user/add
+UserId: 
+Application: WebApp.Service
+IpAddress: ::1
+Version: https
+Host: localhost:44373
+Url: POST https://localhost:44373/api/Account/user/add
+Source: WebApp.Service
+Form: 
+Body: {"userName":"string","email":"string","firstname":"string","lastname":"string","password":"string"}
+Response: 
+RequestHeader: {"Accept":["*/*"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["en-US,en;q=0.9"],"Connection":["close"],"Content-Length":["99"],"Content-Type":["application/json-patch\u002Bjson"],"Host":["localhost:44373"],"Referer":["https://localhost:44373/swagger/index.html"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"],"sec-ch-ua":["\u0022Not?A_Brand\u0022;v=\u00228\u0022, \u0022Chromium\u0022;v=\u0022108\u0022, \u0022Google Chrome\u0022;v=\u0022108\u0022"],"sec-ch-ua-mobile":["?0"],"sec-ch-ua-platform":["\u0022Windows\u0022"],"origin":["https://localhost:44373"],"sec-fetch-site":["same-origin"],"sec-fetch-mode":["cors"],"sec-fetch-dest":["empty"]}
+ResponseHeader: {"Accept":["*/*"],"Accept-Encoding":["gzip, deflate, br"],"Accept-Language":["en-US,en;q=0.9"],"Connection":["close"],"Content-Length":["99"],"Content-Type":["application/json-patch\u002Bjson"],"Host":["localhost:44373"],"Referer":["https://localhost:44373/swagger/index.html"],"User-Agent":["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"],"sec-ch-ua":["\u0022Not?A_Brand\u0022;v=\u00228\u0022, \u0022Chromium\u0022;v=\u0022108\u0022, \u0022Google Chrome\u0022;v=\u0022108\u0022"],"sec-ch-ua-mobile":["?0"],"sec-ch-ua-platform":["\u0022Windows\u0022"],"origin":["https://localhost:44373"],"sec-fetch-site":["same-origin"],"sec-fetch-mode":["cors"],"sec-fetch-dest":["empty"]}
+Scheme: https
+TraceId: 40000065-0006-f900-b63f-84710c7967bb
+Protocol: HTTP/2
+Errors: 
+StatusCode: NotFound
+AppStatusCode: AP1504E
+Message: User already exists with email string
+MessageDetails: User already exists with email string
+StackTrace: 
+CreatedDateUtc: 12/18/2022 9:59:34 AM
+----------------------------------------------------------------------------------
