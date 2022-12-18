@@ -1,0 +1,8 @@
+----------------------------------------------------------------------------------
+
+ [Request: 12:42:26 PM Sunday, December 18, 2022] NotFound POST https://localhost:44373/api/Account/user/add
+TraceId: 40000048-0004-f900-b63f-84710c7967bb
+Body: {"userName":"string","email":"string","firstname":"string","lastname":"string","password":"string"}
+Message: User already exists with email string
+Response: 
+----------------------------------------------------------------------------------

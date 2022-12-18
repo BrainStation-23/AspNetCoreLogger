@@ -1,0 +1,8 @@
+----------------------------------------------------------------------------------
+
+ [Request: 12:41:32 PM Sunday, December 18, 2022]
+TraceId: 4000009e-0000-fd00-b63f-84710c7967bb
+Table Name: BlogEntity
+Old values: 
+New Values: {"CreatedBy":0,"CreatedDateUtc":"****","Description":"My blog description","Motto":"Blog Motto","Name":"My Blog","UpdatedBy":0,"UpdatedDateUtc":null}
+----------------------------------------------------------------------------------

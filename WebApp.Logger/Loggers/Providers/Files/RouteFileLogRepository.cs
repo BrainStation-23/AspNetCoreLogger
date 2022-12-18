@@ -36,6 +36,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
             try
             {
+                requestModel = requestModel.PrepareRequestModel(_logOption);
                 FileExtension.LogWrite(fileConfig.Path, null, requestModel);
             }
             catch (Exception exception)

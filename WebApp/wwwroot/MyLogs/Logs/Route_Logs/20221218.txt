@@ -1,0 +1,14 @@
+----------------------------------------------------------------------------------
+
+ [Request: 12:40:19 PM Sunday, December 18, 2022] OK GET https://localhost:44373/api/Blog/search?pageSize=10
+TraceId: 400000bb-0005-fb00-b63f-84710c7967bb
+Body: *****
+Response: {"statusCode":200,"appStatusCode":"AP1300E","isSuccess":true,"message":null,"data":{"total":115,"data":[{"name":" dafdfdMysadzx zxzsXXZXZXadsad Blog","description":"sadsadsadMy bladasssddog description","motto":"Blog Mdfdsfoazxxzxz zxsdsadasdsdtto","posts":[],"id":1},{"name":"Md Imran Khan","description":null,"motto":null,"posts":[{"blogId":2,"title":"My post title 2","shortDescription":"My blog short description","description":"My blog description","isPublished":false,"publishedFromDateUtc":"2022-11-29T09:45:27.1269496","id":14}],"id":2},{"name":"blog 2","description":"blog 2 descriptioin update","motto":"blog 2 motto","posts":[],"id":3},{"name":"blog 2","description":"blog 2 descriptioin update","motto":"blog 2 motto","posts":[],"id":4},{"name":"blog 3","description":"blog 3 descriptioin update","motto":"blog 3 motto","posts":[],"id":5},{"name":"blog 3","description":"blog 3 descriptioin update","motto":"blog 3 motto","posts":[],"id":6},{"name":"blog 3","description":"blog 3 descriptioin update","motto":"blog 3 motto","posts":[],"id":7},{"name":"blog 2","description":"blog 2 descriptioin","motto":"blog 2 motto","posts":[],"id":8},{"name":"My Blog","description":"My blog description 1","motto":"Blog Motto","posts":[],"id":9},{"name":"test","description":null,"motto":null,"posts":[{"blogId":10,"title":"My post title","shortDescription":"My blog short description","description":"My blog description","isPublished":false,"publishedFromDateUtc":"2022-06-20T15:07:59.9939322","id":1},{"blogId":10,"title":"My post title","shortDescription":"My blog short description","description":"My blog description","isPublished":false,"publishedFromDateUtc":"2022-06-20T15:07:59.9939322","id":2},{"blogId":10,"title":"My post title","shortDescription":"My blog short description","description":"My blog description","isPublished":false,"publishedFromDateUtc":"2022-06-20T15:07:59.9939322","id":4}],"id":10}],"pageIndex":0,"pageSize":10,"currentPage":1,"totalPage":12,"hasPreviousPage":false,"hasNextPage":true},"errors":null}
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+ [Request: 12:41:34 PM Sunday, December 18, 2022] OK POST https://localhost:44373/api/Blog
+TraceId: 4000009e-0000-fd00-b63f-84710c7967bb
+Body: *****
+Response: {"statusCode":200,"appStatusCode":"AP1300E","isSuccess":true,"message":null,"data":{"name":"My Blog","description":"My blog description","motto":"Blog Motto","posts":[],"id":50097},"errors":null}
+----------------------------------------------------------------------------------

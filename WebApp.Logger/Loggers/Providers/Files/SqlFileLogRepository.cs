@@ -1,9 +1,12 @@
 ﻿using Dapper;
+using MassTransit.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Threading.Tasks;
 using WebApp.Common.Serialize;
+using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Sqls;
 
@@ -13,12 +16,15 @@ namespace WebApp.Logger.Loggers.Repositories
     {
         private readonly DapperContext _dapper;
         private readonly ILogger<SqlLogRepository> _logger;
+        private readonly LogOption _logOption;
 
         public SqlFileLogRepository(DapperContext dapper,
-            ILogger<SqlLogRepository> logger)
+            ILogger<SqlLogRepository> logger,
+            IOptions<LogOption> logOption)
         {
             _dapper = dapper;
             _logger = logger;
+            _logOption = logOption.Value;
         }
 
         public async Task AddAsync(SqlModel sqlModel)
@@ -26,95 +32,15 @@ namespace WebApp.Logger.Loggers.Repositories
             if (sqlModel.Url.Contains("/Log/"))
                 return;
 
-            var createdDateUtc = DateTime.UtcNow.ToString();
-            var query = @"INSERT INTO [dbo].[SqlLogs]
-                            ([UserId]
-                            ,[ApplicationName]
-                            ,[IpAddress]
-                            ,[Version]
-                            ,[Host]
-                            ,[Url]
-                            ,[Source]
-                            ,[Scheme]
-                            ,[TraceId]
-                            ,[Protocol]
-                            ,[UrlReferrer]
-                            ,[Area]
-                            ,[ControllerName]
-                            ,[ActionName]
-                            ,[ClassName]
-                            ,[MethodName]
-                            ,[QueryType]
-                            ,[Query]
-                            ,[Response]  
-                            ,[Duration]
-                            ,[Message]    
-                            ,[Connection]
-                            ,[Command]
-                            ,[Event]
-                            ,[CreatedDateUtc] )
-                         VALUES
-                            ( @UserId
-                            , @ApplicationName
-                            , @IpAddress
-                            , @Version
-                            , @Host
-                            , @Url
-                            , @Source                            
-                            , @Scheme
-                            , @TraceId
-                            , @Protocol
-                            , @UrlReferrer
-                            , @Area
-                            , @ControllerName
-                            , @ActionName
-                            , @ClassName
-                            , @MethodName
-                            , @QueryType
-                            , @Query
-                            , @Response                            
-                            , @Duration
-                            , @Message
-                            , @Connection
-                            , @Command
-                            , @Event
-                            , @CreatedDateUtc)";
+            var fileConfig = _logOption.Provider.File;
 
             try
             {
-                using var connection = _dapper.CreateConnection();
-                await connection.ExecuteAsync(query, new
-                {
-                    UserId = sqlModel.UserId,
-                    ApplicationName = sqlModel.ApplicationName,
-                    IpAddress = sqlModel.IpAddress,
-                    Version = sqlModel.Version,
-                    Host = sqlModel.Host,
-                    Url = sqlModel.Url,
-                    Source = sqlModel.Source,
-                    Scheme = sqlModel.Scheme,
-                    TraceId = sqlModel.TraceId,
-                    Protocol = sqlModel.Proctocol,
-                    UrlReferrer = sqlModel.UrlReferrer,
-                    Area = sqlModel.Area,
-                    ControllerName = sqlModel.ControllerName,
-                    ActionName = sqlModel.ActionName,
-                    ClassName = sqlModel.ClassName,
-                    MethodName = sqlModel.MethodName,
-                    QueryType = sqlModel.QueryType,
-                    Query = sqlModel.Query,
-                    Response = sqlModel.Response,
-                    Duration = sqlModel.Duration,
-                    Message = sqlModel.Message,
-                    Connection = sqlModel.Connection,
-                    Command = sqlModel.Command,
-                    Event = sqlModel.Event,
-                    CreatedDateUtc = createdDateUtc
-                });
+                FileExtension.LogWrite(fileConfig.Path, null, sqlModel);
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(RouteLogRepository), exception);
+                _logger.LogError(nameof(ExceptionLogRepository), exception);
             }
         }
 
@@ -131,7 +57,7 @@ namespace WebApp.Logger.Loggers.Repositories
                 using (var connection = _dapper.CreateConnection())
                 {
                     var sqlLogsEntities = await connection.QueryAsync(query, pager);
-                    var sqlLogUnescapeString = sqlLogsEntities.ToJson().JsonUnescaping();
+                    var sqlLogUnescapeString =JsonSerializeExtentions.ToJson(sqlLogsEntities).JsonUnescaping();
                     sqlLogs = JArray.Parse(sqlLogUnescapeString);
                 }
 
