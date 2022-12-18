@@ -10,6 +10,6 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
     public class ErrorLogDocument : ErrorModel, IDocument
     {
         public ObjectId Id { get; set; }
-        public DateTime CreatedDateUtc => Id.CreationTime;
+        public DateTime? CreatedDateUtc => Id.CreationTime;
     }
 }

@@ -20,13 +20,13 @@ namespace WebApp.Logger.Loggers
         public static void AddDapper(this IServiceCollection services, IConfiguration configuration)
         {
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
-            services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
-            services.AddScoped<IRouteLogRepository, RouteLogRepository>();
-            services.AddScoped<IAuditLogRepository, AuditLogRepository>();
-            services.AddScoped<ISqlLogRepository, SqlLogRepository>();
+            //services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
+            //services.AddScoped<IRouteLogRepository, RouteLogRepository>();
+            //services.AddScoped<IAuditLogRepository, AuditLogRepository>();
+            //services.AddScoped<ISqlLogRepository, SqlLogRepository>();
 
             services.AddMongoDb(configuration);
-            services.AddCosmosDb(configuration);
+            //services.AddCosmosDb(configuration);
 
          
         }

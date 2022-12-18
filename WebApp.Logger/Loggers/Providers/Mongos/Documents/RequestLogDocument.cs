@@ -10,6 +10,6 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
     public class RequestLogDocument : RequestModel, IDocument
     {
         public ObjectId Id => ObjectId.GenerateNewId();
-        public DateTime CreatedDateUtc => Id.CreationTime;
+        public DateTime? CreatedDateUtc => Id.CreationTime;
     }
 }

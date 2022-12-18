@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -64,8 +65,8 @@ namespace WebApp.Logger.Middlewares
             //var providerType = _logOptions.ProviderType.ToProviderTypeEnums().FirstOrDefault();
             ILog loggerWrapper = factory.Build(_logOptions.ProviderType);
 
-            var request = requestModel.ToFilter<RequestModel>(_logOptions.Log.Request.IgnoreColumns.ToArray(), _logOptions.Log.Request.MaskColumns.ToArray());
-            await loggerWrapper.Request.AddAsync(request);
+            //var request = requestModel.ToFilter<RequestModel>(_logOptions.Log.Request.IgnoreColumns.ToArray(), _logOptions.Log.Request.MaskColumns.ToArray());
+            await loggerWrapper.Request.AddAsync(requestModel);
 
             //await routeLogRepository.AddAsync(requestModel);
         }

@@ -1,4 +1,7 @@
-﻿using WebApp.Logger.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Loggers.Providers.Mongos
 {
@@ -25,7 +28,36 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
         {
             return new RequestLogDocument
             {
-
+                UserId = model.UserId,
+                Application = model.Application,
+                IpAddress = model.IpAddress,
+                Version = model.Version,
+                Host = model.Host,
+                Url = model.Url,
+                Source = model.Source,
+                Form = model.Form,
+                Body = model.Body,
+                Response = model.Response,
+                RequestHeaders = model.ResponseHeaders,
+                ResponseHeaders = model.ResponseHeaders,
+                Scheme = model.Scheme,
+                TraceId = model.TraceId,
+                Proctocol = model.Proctocol,
+                Area = model.Area,
+                ControllerName = model.ControllerName,
+                ActionName = model.ActionName,
+                ExecutionDuration = model.ExecutionDuration,
+                RoleId = model.RoleId,
+                LanguageId = model.LanguageId,
+                IsFirstLogin = model.IsFirstLogin,
+                LoggedInDateTimeUtc = model.LoggedInDateTimeUtc,
+                LoggedOutDateTimeUtc = model.LoggedInDateTimeUtc,
+                LoginStatus = model.LoginStatus,
+                PageAccessed = model.PageAccessed,
+                SessionId = model.SessionId,
+                UrlReferrer = model.UrlReferrer,
+                StatusCode = model.StatusCode,
+                AppStatusCode = model.AppStatusCode,
             };
         }
 
@@ -41,7 +73,29 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
         {
             return new ErrorLogDocument
             {
-
+                UserId = model.UserId,
+                Application = model.Application,
+                IpAddress = model.IpAddress,
+                Version = model.Version,
+                Host = model.Host,
+                Url = model.Url,
+                Source = model.Source,
+                Form = model.Form,
+                Body = model.Body,
+                Response = model.Response,
+                RequestHeaders = model.RequestHeaders,
+                ResponseHeaders = model.ResponseHeaders,
+                ErrorCode = model.ErrorCode,
+                Scheme = model.Scheme,
+                TraceId = model.TraceId,
+                Proctocol = model.Proctocol,
+                Errors = model.Errors,
+                StatusCode = model.StatusCode,
+                AppStatusCode = model.AppStatusCode,
+                Message = model.Message,
+                MessageDetails = model.MessageDetails,
+                StackTrace = model.StackTrace,
+                
             };
         }
     }

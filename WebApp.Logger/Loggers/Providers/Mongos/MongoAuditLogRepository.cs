@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,14 +15,16 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly DapperContext _dapper;
         private readonly ILogger<MongoAuditLogRepository> _logger;
         private readonly IMongoRepository<AuditLogDocument> _auditRepository;
-
+        private readonly LogOption _logOption;
         public MongoAuditLogRepository(DapperContext dapper,
             ILogger<MongoAuditLogRepository> logger,
-            IMongoRepository<AuditLogDocument> auditRepository)
+            IMongoRepository<AuditLogDocument> auditRepository,
+            IOptions<LogOption>logOption)
         {
             _dapper = dapper;
             _logger = logger;
             _auditRepository = auditRepository;
+            _logOption = logOption.Value;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)

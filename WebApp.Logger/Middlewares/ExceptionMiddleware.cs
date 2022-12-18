@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using WebApp.Logger.Loggers;
 using Microsoft.Extensions.Options;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace WebApp.Logger.Middlewares
 {

@@ -9,6 +9,6 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
     public class SqlLogDocument : SqlModel, IDocument
     {
         public ObjectId Id => ObjectId.GenerateNewId();
-        public DateTime CreatedDateUtc => Id.CreationTime;
+        public DateTime? CreatedDateUtc => Id.CreationTime;
     }
 }

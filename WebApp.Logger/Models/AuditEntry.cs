@@ -8,14 +8,14 @@ using WebApp.Logger.Enums;
 namespace WebApp.Logger.Models
 {
     public class AuditEntry
-    {      
+    {
         public AuditEntry(EntityEntry entry)
         {
             Entry = entry;
         }
-        
+
         public EntityEntry Entry { get; }
-        
+
         public string TraceId { get; set; }
         public string RequestId { get; set; }
         public long UserId { get; set; }
