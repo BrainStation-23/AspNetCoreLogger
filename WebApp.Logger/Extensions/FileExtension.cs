@@ -133,7 +133,7 @@ namespace WebApp.Logger.Extensions
             try
             {
                 txtWriter.WriteLine("----------------------------------------------------------------------------------");
-                txtWriter.WriteLine("\r\n [Request: {0} {1}] {2} {3}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), model.StatusCode, model.Url);
+                txtWriter.WriteLine("\r\n[Request: {0} {1}] {2} {3}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), model.StatusCode, model.Url);
                 txtWriter.WriteLine("TraceId: {0}", model.TraceId);
                 txtWriter.WriteLine("Body: {0}", model.Body);
                 txtWriter.WriteLine("Response: {0}", model.Response);
@@ -148,7 +148,7 @@ namespace WebApp.Logger.Extensions
             try
             {
                 txtWriter.WriteLine("----------------------------------------------------------------------------------");
-                txtWriter.WriteLine("\r\n [Request: {0} {1}] {2} {3}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), model.StatusCode, model.Url);
+                txtWriter.WriteLine("\r\n[Request: {0} {1}] {2} {3}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), model.StatusCode, model.Url);
                 txtWriter.WriteLine("TraceId: {0}", model.TraceId);
                 txtWriter.WriteLine("Body: {0}", model.Body);
                 txtWriter.WriteLine("Message: {0}", model.Message);
@@ -164,7 +164,7 @@ namespace WebApp.Logger.Extensions
             try
             {
                 txtWriter.WriteLine("----------------------------------------------------------------------------------");
-                txtWriter.WriteLine("\r\n [Request: {0} {1}] {2}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), model.Url);
+                txtWriter.WriteLine("\r\n[Request: {0} {1}] {2}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), model.Url);
                 txtWriter.WriteLine("TraceId: {0}", model.TraceId);
                 txtWriter.WriteLine("Message: {0}", model.Message);
                 txtWriter.WriteLine("Query: {0}", model.Query);
@@ -180,7 +180,7 @@ namespace WebApp.Logger.Extensions
             try
             {
                 txtWriter.WriteLine("----------------------------------------------------------------------------------");
-                txtWriter.WriteLine("\r\n [Request: {0} {1}]", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
+                txtWriter.WriteLine("\r\n[Request: {0} {1}]", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
                 txtWriter.WriteLine("TraceId: {0}", model.TraceId);
                 txtWriter.WriteLine("Table Name: {0}", model.TableName);
                 txtWriter.WriteLine("Old values: {0}", model.OldValues);
