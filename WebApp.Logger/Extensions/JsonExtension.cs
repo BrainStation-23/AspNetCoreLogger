@@ -89,5 +89,20 @@ namespace WebApp.Logger.Extensions
                 .MaskIt(maskColumns)
                 .ToModel<T>();
         }
+
+        public static object ToFilter(this object obj, string[] skipColumns, string[] maskColumns)
+        {
+            if (obj == null)
+                return null;
+
+            var data = obj.ToJson()
+                .SkipIt(skipColumns)
+            .MaskIt(maskColumns);
+
+            return JsonConvert.DeserializeObject(data, new JsonSerializerSettings
+            {
+                DateParseHandling = DateParseHandling.None
+            });
+        }
     }
 }

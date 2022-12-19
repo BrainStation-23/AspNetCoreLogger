@@ -25,8 +25,8 @@ namespace WebApp.Logger.Loggers
             services.AddScoped<IAuditLogRepository, AuditLogRepository>();
             services.AddScoped<ISqlLogRepository, SqlLogRepository>();
 
-            services.AddMongoDb(configuration);
-            services.AddCosmosDb(configuration);
+            //services.AddMongoDb(configuration);
+            //services.AddCosmosDb(configuration);
 
          
         }
@@ -50,9 +50,9 @@ namespace WebApp.Logger.Loggers
         /// Handling all changes in database
         /// WebAppDbContext] -> SaveChanges() -> base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));;
         /// </summary>
-        public static IList<AuditEntry> AuditTrailLog(this ChangeTracker changeTracker, long userId, LogOption logOption, string ignoreEntity = null)
+        public static IList<AuditEntry> AuditTrailLog(this ChangeTracker changeTracker, long userId, string ignoreEntity = null)
         {
-            return changeTracker.AuditTrail(userId, ignoreEntity,logOption);
+            return changeTracker.AuditTrail(userId, ignoreEntity);
         }
 
         /// <summary>

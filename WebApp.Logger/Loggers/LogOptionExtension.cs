@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
@@ -95,8 +97,15 @@ namespace WebApp.Logger.Loggers
             if (logOptions.Log.Request.HttpVerbs.NotContains(context.Request.Method))
                 return true;
 
+            if (logOptions.IgnoreHttpVerbs.MustContain(context.Request.Method))
+                return true;
+
             var url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
             if (logOptions.Log.Request.IgnoreRequests.Any(r => url.ToLower().Contains(r.ToLower())))
+                return true;
+
+            var ignoreEndPoints = logOptions.IgnoreEndPoints ?? new List<string> { };
+            if (ignoreEndPoints.Any(r => url.ToLower().Contains(r.ToLower())))
                 return true;
 
             return skip;
@@ -113,7 +122,10 @@ namespace WebApp.Logger.Loggers
             if (contain == null)
                 return true;
 
-            if ((source == null | source.Count == 0) && contain.Count > 0)
+            if (source == null)
+                return false;
+
+            if ((source.Count == 0) && contain.Count > 0)
                 return false;
 
             if (source.Count < contain.Count)
@@ -135,9 +147,11 @@ namespace WebApp.Logger.Loggers
             if (contain == null)
                 return true;
 
-            if ((source == null | source.Count == 0))
+            if (source == null)
                 return false;
 
+            if (source.Count == 0)
+                return false;
 
             return source.Select(s => s.ToLower()).Contains(contain.ToLower());
         }
@@ -206,8 +220,9 @@ namespace WebApp.Logger.Loggers
         {
             var errorLogOptions = logOptions.Log.Error;
 
-            var ignoreColumns = errorLogOptions.EnableIgnore ? errorLogOptions.IgnoreColumns : new List<string>();
-            var maskColumns = errorLogOptions.EnableMask ? errorLogOptions.MaskColumns : new List<string>();
+            var ignoreColumns = errorLogOptions.IgnoreColumns.GetEnableList(errorLogOptions.EnableIgnore);
+            var maskColumns = errorLogOptions.MaskColumns.GetEnableList(errorLogOptions.EnableMask);
+
             errorModel = errorModel.ToFilter<ErrorModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
 
             return errorModel;
@@ -223,5 +238,62 @@ namespace WebApp.Logger.Loggers
             return requestModel;
         }
 
+        public static bool SkipSqlLog(SqlModel sqlModel, LogOption logOptions)
+        {
+            bool skip = false;
+
+            if (sqlModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
+                skip = true;
+
+            if (!logOptions.LogType.MustContain(LogType.Sql.ToString()))
+                skip = true;
+
+            return skip;
+        }
+
+        public static SqlModel PrepareSqlModel(this SqlModel sqlModel, LogOption logOptions)
+        {
+            var sqlLogOptions = logOptions.Log.Sql;
+
+            var ignoreColumns = sqlLogOptions.EnableIgnore ? sqlLogOptions.IgnoreColumns : new List<string>();
+            var maskColumns = sqlLogOptions.EnableMask ? sqlLogOptions.MaskColumns : new List<string>();
+            sqlModel = sqlModel.ToFilter<SqlModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
+
+            return sqlModel;
+        }
+
+        public static List<AuditModel> PrepareAuditModel(this List<AuditModel> auditModels, LogOption logOptions)
+        {
+            if (logOptions.LogType.MustContain("Audit")!=true)
+                return new List<AuditModel> { };
+
+            var auditLogOption = logOptions.Log.Audit;
+
+            var ignoreColumns = auditLogOption.IgnoreColumns.GetEnableList(auditLogOption.EnableIgnore);
+            var maskColumns = auditLogOption.MaskColumns.GetEnableList(auditLogOption.EnableMask);
+            var ignoreSchemas = auditLogOption.IgnoreSchemas.GetEnableList(auditLogOption.EnableIgnoreSchema);
+            var ignoreTables = auditLogOption.IgnoreTables.GetEnableList(auditLogOption.EnableIgnoreTable);
+            var ignoreShcemaNames = auditLogOption.IgnoreSchemas.GetEnableList(auditLogOption.EnableIgnoreSchema);
+
+            auditModels.Remove(auditModels.FirstOrDefault(s => ignoreShcemaNames.MustContain(s.SchemaName)));
+
+            auditModels.Remove(auditModels.FirstOrDefault(s => ignoreTables.MustContain(s.TableName)));
+
+            auditModels.ForEach(m =>
+            {
+                var oldValues = m.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+                var newValues = m.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+
+                m.OldValues = JsonConvert.SerializeObject(oldValues);
+                m.NewValues = JsonConvert.SerializeObject(newValues);
+            });
+
+            return auditModels;
+        }
+
+        public static List<string> GetEnableList(this List<string> list,bool enableFlag)
+        {
+            return enableFlag ? (list ?? new List<string> { }) : new List<string> { };
+        }
     }
 }
