@@ -19,9 +19,10 @@ namespace WebApp.Logger.Interceptors
         private readonly IHttpContextAccessor Context;
         private readonly ISqlLogRepository SqlLogRepository;
         private readonly LogOption _logOption;
-
+     
         public SqlQueryInterceptor(IHttpContextAccessor context,
             ISqlLogRepository sqlLogRepository,
+           
             IOptions<LogOption> logOption)
         {
             Context = context;

@@ -47,13 +47,13 @@ namespace WebApp.Sql
             _logOptions= logOptions.Value;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.LogTo(Console.WriteLine);
-            optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
-            //optionsBuilder.AddInterceptors(new SqlQueryInterceptor(HttpContextAccessor));
-            optionsBuilder.UseLoggerFactory(_myLoggerFactory).EnableSensitiveDataLogging();
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.LogTo(Console.WriteLine);
+        //    optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
+        //    //optionsBuilder.AddInterceptors(new SqlQueryInterceptor(HttpContextAccessor));
+        //    optionsBuilder.UseLoggerFactory(_myLoggerFactory).EnableSensitiveDataLogging();
+        //}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
