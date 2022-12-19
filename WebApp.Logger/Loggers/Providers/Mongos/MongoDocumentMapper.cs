@@ -65,7 +65,30 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
         {
             return new SqlLogDocument
             {
-
+                ActionName= model.ActionName,
+                ApplicationName= model.ApplicationName,
+                Area= model.Area,
+                ControllerName= model.ControllerName,
+                ClassName= model.ClassName,
+                Command= model.Command,
+                IpAddress= model.IpAddress,
+                Connection= model.Connection,
+                Duration= model.Duration,
+                Event= model.Event,
+                Host= model.Host,
+                Message= model.Message,
+                MethodName= model.MethodName,
+                Proctocol= model.Proctocol,
+                Query= model.Query,
+                QueryType= model.QueryType,
+                Response= model.Response,
+                Scheme= model.Scheme,
+                Source= model.Source,
+                TraceId= model.TraceId,
+                Url= model.Url,
+                UrlReferrer= model.UrlReferrer,
+                UserId= model.UserId,
+                Version= model.Version
             };
         }
 
