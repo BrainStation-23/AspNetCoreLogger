@@ -247,8 +247,11 @@ namespace WebApp.Logger.Loggers
 
             auditModels.ForEach(m =>
             {
-                m.OldValues= JsonConvert.SerializeObject(m.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray()));
-                m.NewValues= JsonConvert.SerializeObject(m.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray()));
+                var oldValues = m.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+                var newValues = m.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+
+                m.OldValues = JsonConvert.SerializeObject(oldValues);
+                m.NewValues = JsonConvert.SerializeObject(newValues);
             });
 
             return auditModels;
