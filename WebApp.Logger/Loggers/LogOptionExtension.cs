@@ -228,6 +228,30 @@ namespace WebApp.Logger.Loggers
             return errorModel;
         }
 
+        public static bool SkipSqlLog(SqlModel sqlModel, LogOption logOptions)
+        {
+            bool skip = false;
+
+            if (sqlModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
+                skip = true;
+
+            if (!logOptions.LogType.MustContain(LogType.Sql.ToString()))
+                skip = true;
+
+            return skip;
+        }
+
+        public static SqlModel PrepareSqlModel(this SqlModel sqlModel, LogOption logOptions)
+        {
+            var sqlLogOptions = logOptions.Log.Sql;
+
+            var ignoreColumns = sqlLogOptions.EnableIgnore ? sqlLogOptions.IgnoreColumns : new List<string>();
+            var maskColumns = sqlLogOptions.EnableMask ? sqlLogOptions.MaskColumns : new List<string>();
+            sqlModel = sqlModel.ToFilter<SqlModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
+
+            return sqlModel;
+        }
+
         public static List<AuditModel> PrepareAuditModel(this List<AuditModel> auditModels, LogOption logOptions)
         {
             if (logOptions.LogType.MustContain("Audit")!=true)
