@@ -11,7 +11,6 @@ using System.Linq;
 using WebApp.Common.Exceptions;
 using WebApp.Common.Sqls;
 using WebApp.Logger.Enums;
-using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Models;
 
@@ -19,11 +18,10 @@ namespace WebApp.Common.Contexts
 {
     public static class DbContextExtensions
     {
-        private static bool HasChanges(PropertyValues originalEntry, EntityEntry currentValues,LogOption logOption)
+        private static bool HasChanges(PropertyValues originalEntry, EntityEntry currentValues)
         {
             bool isChanges = false;
-            var ignorePropertyName = logOption.Log.Audit.IgnoreColumns.ToList();
-
+            
             foreach (var property in currentValues.Properties)
             {
                 string propertyName = property.Metadata.Name;
@@ -47,9 +45,6 @@ namespace WebApp.Common.Contexts
                     case EntityState.Modified:
                         if (property.IsModified)
                         {
-                            if (ignorePropertyName.MustContain(propertyName))
-                                continue;
-
                             var currentValue = property.CurrentValue?.ToString();
                             var originalValue = originalEntry[propertyName]?.ToString();
                             if (currentValue != originalValue)
@@ -65,60 +60,56 @@ namespace WebApp.Common.Contexts
             return isChanges;
         }
 
-        public static IList<AuditEntry> AuditTrail(this ChangeTracker changeTracker, long userId, string ignoreEntity,LogOption logOption)
+        public static IList<AuditEntry> AuditTrail(this ChangeTracker changeTracker, long userId, string ignoreEntity)
         {
             changeTracker.DetectChanges();
             var auditEntries = new List<AuditEntry>();
             foreach (var entry in changeTracker.Entries())
             {
                 if (entry.State == EntityState.Detached
-                    || entry.State == EntityState.Unchanged
-                //|| entry.Entity is BaseEntity
-                //|| entry.Entity is AuditLog
-                )
+                    || entry.State == EntityState.Unchanged)
                     continue;
 
                 if (!string.IsNullOrEmpty(ignoreEntity))
                     if (entry.Entity.GetType().Name == ignoreEntity)
                         continue;
-
+             
                 var originalEntry = entry.GetDatabaseValues();
-                var hasChanges = HasChanges(originalEntry, entry,logOption);
+                var hasChanges = HasChanges(originalEntry, entry);
                 if (!hasChanges) continue;
+
+                var schemaName = changeTracker.Context.GetSchemaName(entry);
 
                 var auditEntry = new AuditEntry(entry)
                 {
+                    SchemaName = schemaName,
                     TableName = entry.Entity.GetType().Name,
                     UserId = userId
                 };
                 auditEntries.Add(auditEntry);
 
-
-                var ignorePropertyName = logOption.Log.Audit.EnableIgnore==true? logOption.Log.Audit.IgnoreColumns.ToList():new List<string> { };
-                var maskPropertyName = logOption.Log.Audit.EnableMask == true ? logOption.Log.Audit.MaskColumns.ToList() : new List<string> { };
                 foreach (var property in entry.Properties)
                 {
                     string propertyName = property.Metadata.Name;
+
                     if (property.Metadata.IsPrimaryKey())
                     {
                         auditEntry.KeyValues[propertyName] = property.CurrentValue;
                         continue;
                     }
+
                     switch (entry.State)
                     {
                         case EntityState.Added:
                             auditEntry.AuditType = AuditType.Create;
                             auditEntry.NewValues[propertyName] = property.CurrentValue;
-                            if (maskPropertyName.MustContain(propertyName))
-                            {
-                                auditEntry.NewValues[propertyName] = "****";
-                            }
-
                             break;
+
                         case EntityState.Deleted:
                             auditEntry.AuditType = AuditType.Delete;
                             auditEntry.OldValues[propertyName] = property.OriginalValue;
-                                break;
+                            break;
+
                         case EntityState.Modified:
                             if (property.IsModified)
                             {
@@ -130,11 +121,8 @@ namespace WebApp.Common.Contexts
                                 auditEntry.OldValues[propertyName] = originalEntry[propertyName];
                                 auditEntry.NewValues[propertyName] = property.CurrentValue;
 
-                                if (ignorePropertyName.MustContain(propertyName))
-                                    continue;
-
                                 var currentValue = property.CurrentValue?.ToString();
-                                var originalValue = originalEntry[propertyName]?.ToString();                                
+                                var originalValue = originalEntry[propertyName]?.ToString();
                                 if (currentValue != originalValue)
                                 {
                                     auditEntry.ChangedColumnNames.Add(propertyName);
@@ -253,5 +241,13 @@ namespace WebApp.Common.Contexts
             };
         }
 
+        private static string GetSchemaName(this DbContext context, EntityEntry entry)
+        {
+             var entity = entry.Entity;
+            var schemaAnnotation = context.Model.FindEntityType(entity.GetType()).GetAnnotations()
+                .FirstOrDefault(a => a.Name == "Relational:Schema");
+
+            return schemaAnnotation == null ? "dbo" : schemaAnnotation.Value.ToString();
+        }
     }
 }
