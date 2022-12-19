@@ -145,7 +145,7 @@ namespace WebApp.Logger.Loggers.Repositories
                 var models = auditEntries.ToAuditModel(false);
 
                 models = models.PrepareAuditModel(_logOption);
-                
+
                 await connection.ExecuteAsync(query, models);
             }
             catch (Exception exception)

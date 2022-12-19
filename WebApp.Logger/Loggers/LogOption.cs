@@ -30,14 +30,14 @@ namespace WebApp.Logger.Loggers
     public class Audit
     {
         public string Mode { get; set; }
-        public bool EnableMask { get; set; }
-        public bool EnableIgnore { get; set; }
+        public bool EnableIgnoreSchema { get; set; }
         public bool EnableIgnoreTable { get; set; }
-        public bool EnableIgnoreSchemas { get; set; }
+        public bool EnableIgnore { get; set; }
+        public bool EnableMask { get; set; }
+        public List<string> IgnoreSchemas { get; set; }
+        public List<string> IgnoreTables { get; set; }
         public List<string> IgnoreColumns { get; set; }
         public List<string> MaskColumns { get; set; }
-        public List<string> IgnoreTables { get; set; }
-        public List<string> IgnoreSchemas { get; set; }
     }
 
     public class Request

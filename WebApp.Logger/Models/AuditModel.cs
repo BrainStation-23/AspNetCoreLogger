@@ -7,6 +7,7 @@ namespace WebApp.Logger.Models
         public long UserId { get; set; }
         public string TraceId { get; set; }
         public string Type { get; set; }
+        public string SchemaName { get; set; }
         public string TableName { get; set; }
         public DateTime? DateTime { get; set; }
         public object PrimaryKey { get; set; }
