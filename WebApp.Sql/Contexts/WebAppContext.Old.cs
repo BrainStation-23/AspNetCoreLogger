@@ -38,7 +38,7 @@ namespace WebApp.Sql
         public readonly LogOption _logOption;
         public WebAppContextOld(DbContextOptions<WebAppContext> options,
             ISignInHelper signInHelper,
-            IHttpContextAccessor httpContextAccessor,IOptions<LogOption>logOption) : base(options)
+            IHttpContextAccessor httpContextAccessor, IOptions<LogOption> logOption) : base(options)
         {
             SignInHelper = signInHelper;
             HttpContextAccessor = httpContextAccessor;
@@ -78,7 +78,7 @@ namespace WebApp.Sql
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
-            base.ChangeTracker.Audit(userId, _logOption);
+            base.ChangeTracker.Audit(userId);
         }
 
         private bool AuditTrailLog()
@@ -88,7 +88,7 @@ namespace WebApp.Sql
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
-            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, _logOption, nameof(AuditLog));
+            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));
 
             if (auditEntries.Any())
             {

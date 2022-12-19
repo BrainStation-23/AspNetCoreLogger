@@ -76,7 +76,7 @@ namespace WebApp.Sql
             if (_signInHelper.IsAuthenticated)
                 UserId = _signInHelper.UserId;
 
-            base.ChangeTracker.Audit(UserId.Value, _logOption);
+            base.ChangeTracker.Audit(UserId.Value);
         }
 
         private async Task<bool> AuditTrailLog()
@@ -86,7 +86,7 @@ namespace WebApp.Sql
             if (_signInHelper.IsAuthenticated)
                 userId = (long)_signInHelper.UserId;
 
-            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, _logOption);
+            var auditEntries = base.ChangeTracker.AuditTrailLog(userId);
             auditEntries.ToList().ForEach(x => x.TraceId = HttpContextAccessor.HttpContext.TraceIdentifier);
 
             if (auditEntries.Any())

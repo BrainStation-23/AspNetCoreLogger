@@ -18,7 +18,7 @@ namespace WebApp.Common.Contexts
 {
     public static class DbContextExtensions
     {
-        private static bool HasChanges(PropertyValues originalEntry, EntityEntry currentValues, LogOption logOption)
+        private static bool HasChanges(PropertyValues originalEntry, EntityEntry currentValues)
         {
             bool isChanges = false;
             
@@ -60,7 +60,7 @@ namespace WebApp.Common.Contexts
             return isChanges;
         }
 
-        public static IList<AuditEntry> AuditTrail(this ChangeTracker changeTracker, long userId, string ignoreEntity, LogOption logOption)
+        public static IList<AuditEntry> AuditTrail(this ChangeTracker changeTracker, long userId, string ignoreEntity)
         {
             changeTracker.DetectChanges();
             var auditEntries = new List<AuditEntry>();
@@ -75,7 +75,7 @@ namespace WebApp.Common.Contexts
                         continue;
              
                 var originalEntry = entry.GetDatabaseValues();
-                var hasChanges = HasChanges(originalEntry, entry,logOption);
+                var hasChanges = HasChanges(originalEntry, entry);
                 if (!hasChanges) continue;
 
                 var schemaName = changeTracker.Context.GetSchemaName(entry);
@@ -140,7 +140,7 @@ namespace WebApp.Common.Contexts
             return auditEntries;
         }
 
-        public static void Audit(this ChangeTracker changeTracker, long userId, LogOption logOption)
+        public static void Audit(this ChangeTracker changeTracker, long userId)
         {
             var now = DateTimeOffset.UtcNow;
 
