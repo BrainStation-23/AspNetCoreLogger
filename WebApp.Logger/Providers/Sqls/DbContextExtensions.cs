@@ -152,20 +152,15 @@ namespace WebApp.Common.Contexts
             return auditEntries;
         }
 
-        public static void Audit(this ChangeTracker changeTracker, long userId, LogOption logOption)
+        public static void Audit(this ChangeTracker changeTracker, long userId)
         {
             var now = DateTimeOffset.UtcNow;
-            var ignorePropertyName = logOption.Log.Audit.EnableIgnore == true ? logOption.Log.Audit.IgnoreColumns.ToList() : new List<string> { };
-
 
             foreach (var entry in changeTracker.Entries<BaseEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
             {
                 foreach (var property in entry.Properties)
                 {
                     string propertyName = property.Metadata.Name;
-                    if (ignorePropertyName.MustContain(propertyName))
-                        entry.Property(propertyName).IsModified = false;
-
                 }
 
                 if (entry.State == EntityState.Added)

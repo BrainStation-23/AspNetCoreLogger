@@ -18,15 +18,12 @@ namespace WebApp.Logger.Interceptors
     {
         private readonly IHttpContextAccessor Context;
         private readonly ISqlLogRepository SqlLogRepository;
-        private readonly LogOption _logOption;
 
         public SqlQueryInterceptor(IHttpContextAccessor context,
-            ISqlLogRepository sqlLogRepository,
-            IOptions<LogOption> logOption)
+            ISqlLogRepository sqlLogRepository)
         {
             Context = context;
             SqlLogRepository = sqlLogRepository;
-            _logOption = logOption.Value;
         }
 
         public override DbDataReader ReaderExecuted(DbCommand command,
@@ -77,8 +74,8 @@ namespace WebApp.Logger.Interceptors
 
         private async Task ManipulateCommandAsync(DbCommand command, CommandExecutedEventData commandExecutedEventData)
         {
-            if (_logOption.LogType.Contains(LogType.Sql.ToString()))
-                return;
+            //if (_logOption.LogType.Contains(LogType.Sql.ToString()))
+            //    return;
 
             var context = Context.HttpContext;
             var model = new SqlModel
