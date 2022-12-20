@@ -80,6 +80,7 @@ namespace WebApp.Logger.Interceptors
             var context = Context.HttpContext;
             var model = new SqlModel
             {
+                Source = "Query",
                 ApplicationName = "",
                 UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null,
                 IpAddress = context.GetIpAddress(),
