@@ -143,11 +143,9 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 using var connection = _dapper.CreateConnection();
                 var models = auditEntries.ToAuditModel(false);
-                var ignoreColumns = _logOption.Log.Audit.EnableIgnore ? _logOption.Log.Audit.IgnoreColumns : new List<string> { };
-                var maskColumns = _logOption.Log.Audit.EnableMask ? _logOption.Log.Audit.MaskColumns : new List<string> { };
-                
-                models = models.Select(m=>m.ToFilter<AuditModel>(ignoreColumns.ToArray(), maskColumns.ToArray())).ToList();
-                
+
+                models = models.PrepareAuditModel(_logOption);
+
                 await connection.ExecuteAsync(query, models);
             }
             catch (Exception exception)

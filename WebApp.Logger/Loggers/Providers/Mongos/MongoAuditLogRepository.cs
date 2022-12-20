@@ -42,6 +42,7 @@ namespace WebApp.Logger.Loggers.Repositories
         public async Task AddAsync(List<AuditEntry> auditEntries)
         {
             var auditModel = auditEntries.ToAuditModel();
+            auditModel = auditModel.PrepareAuditModel(_logOption);
             var auditDocument = auditModel.Select(e => e.ToDocument());
 
             await _auditRepository.InsertManyAsync(auditDocument);

@@ -20,15 +20,34 @@ namespace WebApp.Logger.Loggers
         public static void AddDapper(this IServiceCollection services, IConfiguration configuration)
         {
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
-            //services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
-            //services.AddScoped<IRouteLogRepository, RouteLogRepository>();
-            //services.AddScoped<IAuditLogRepository, AuditLogRepository>();
-            //services.AddScoped<ISqlLogRepository, SqlLogRepository>();
 
-            services.AddMongoDb(configuration);
-            //services.AddCosmosDb(configuration);
+            var logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
 
-         
+            if (logOptions.ProviderType.ToString().ToLower() == "mssql")
+            {
+                services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
+                services.AddScoped<IRouteLogRepository, RouteLogRepository>();
+                services.AddScoped<IAuditLogRepository, AuditLogRepository>();
+                services.AddScoped<ISqlLogRepository, SqlLogRepository>();
+            }
+            if (logOptions.ProviderType.ToString().ToLower() == "mongo")
+                services.AddMongoDb(configuration);
+
+
+
+            if (logOptions.ProviderType.ToString().ToLower() == "cosmosdb")
+                services.AddCosmosDb(configuration);
+
+
+
+            if (logOptions.ProviderType.ToString().ToLower() == "file")
+            {
+                services.AddScoped<IExceptionLogRepository, ExceptionFileLogRepository>();
+                services.AddScoped<IRouteLogRepository, RouteFileLogRepository>();
+                //services.AddScoped<IAuditLogRepository, AuditFileLogRepository>();
+                services.AddScoped<ISqlLogRepository, SqlFileLogRepository>();
+            }
+
         }
 
         public static void HttpLog(this IApplicationBuilder app)
@@ -50,9 +69,9 @@ namespace WebApp.Logger.Loggers
         /// Handling all changes in database
         /// WebAppDbContext] -> SaveChanges() -> base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));;
         /// </summary>
-        public static IList<AuditEntry> AuditTrailLog(this ChangeTracker changeTracker, long userId, LogOption logOption, string ignoreEntity = null)
+        public static IList<AuditEntry> AuditTrailLog(this ChangeTracker changeTracker, long userId, string ignoreEntity = null)
         {
-            return changeTracker.AuditTrail(userId, ignoreEntity,logOption);
+            return changeTracker.AuditTrail(userId, ignoreEntity);
         }
 
         /// <summary>
