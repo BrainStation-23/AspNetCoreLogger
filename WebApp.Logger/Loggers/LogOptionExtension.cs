@@ -202,7 +202,7 @@ namespace WebApp.Logger.Loggers
                 return false;
             }
         }
-
+        
         public static bool SkipErrorLog(ErrorModel errorModel, LogOption logOptions)
         {
             bool skip = false;
@@ -226,6 +226,29 @@ namespace WebApp.Logger.Loggers
             errorModel = errorModel.ToFilter<ErrorModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
 
             return errorModel;
+        }
+        public static bool SkipRequestLog(RequestModel requestModel, LogOption logOptions)
+        {
+            bool skip = false;
+
+            if (requestModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
+                skip = true;
+
+            if (!logOptions.LogType.MustContain(LogType.Request.ToString()))
+                skip = true;
+
+            return skip;
+        }
+
+        public static RequestModel PrepareRequestModel(this RequestModel requestModel, LogOption logOptions)
+        {
+            var requestLogOptions = logOptions.Log.Request;
+
+            var ignoreColumns = requestLogOptions.EnableIgnore ? requestLogOptions.IgnoreColumns : new List<string>();
+            var maskColumns = requestLogOptions.EnableMask ? requestLogOptions.MaskColumns : new List<string>();
+            requestModel = requestModel.ToFilter<RequestModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
+
+            return requestModel;
         }
 
         public static bool SkipSqlLog(SqlModel sqlModel, LogOption logOptions)

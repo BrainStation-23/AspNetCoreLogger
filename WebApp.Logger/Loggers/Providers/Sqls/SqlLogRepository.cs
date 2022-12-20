@@ -16,7 +16,8 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly ILogger<SqlLogRepository> _logger;
         private readonly LogOption _logOptions;
         public SqlLogRepository(DapperContext dapper,
-            ILogger<SqlLogRepository> logger, IOptions<LogOption> logOptions
+            ILogger<SqlLogRepository> logger,
+            IOptions<LogOption> logOptions
             )
         {
             _dapper = dapper;

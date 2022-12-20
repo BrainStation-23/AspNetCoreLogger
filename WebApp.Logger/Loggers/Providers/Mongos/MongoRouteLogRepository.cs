@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,14 +15,16 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly DapperContext _dapper;
         private readonly ILogger<MongoRouteLogRepository> _logger;
         private readonly IMongoRepository<RequestLogDocument> _RequestRepository;
-
+        private readonly LogOption _logOption;
         public MongoRouteLogRepository(DapperContext dapper,
             ILogger<MongoRouteLogRepository> logger,
-            IMongoRepository<RequestLogDocument> RequestRepository)
+            IMongoRepository<RequestLogDocument> RequestRepository,
+            IOptions<LogOption>logOption)
         {
             _dapper = dapper;
             _logger = logger;
             _RequestRepository = RequestRepository;
+            _logOption=logOption.Value;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -33,8 +36,12 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(RequestModel requestModel)
         {
-            if (requestModel.Url.Contains("/Log/"))
+            if (LogOptionExtension.SkipRequestLog(requestModel, _logOption))
                 return;
+
+            requestModel = requestModel.PrepareRequestModel(_logOption);
+            //if (requestModel.Url.Contains("/Log/"))
+            //    return;
 
             var requestDocument = requestModel.ToDocument();
 

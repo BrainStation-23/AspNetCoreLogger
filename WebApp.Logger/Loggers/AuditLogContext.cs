@@ -97,7 +97,7 @@ namespace WebApp.Sql
             if (_signInHelper.IsAuthenticated)
                 userId = (long)_signInHelper.UserId;
 
-            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, _logOptions);
+            var auditEntries = base.ChangeTracker.AuditTrailLog(userId);
             auditEntries.ToList().ForEach(x => x.TraceId = HttpContextAccessor.HttpContext.TraceIdentifier);
 
             if (auditEntries.Any())
