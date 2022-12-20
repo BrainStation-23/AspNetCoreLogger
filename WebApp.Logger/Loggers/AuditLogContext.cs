@@ -5,13 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
-using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WebApp.Common.Contexts;
 using WebApp.Core.Acls;
 using WebApp.Logger.Interceptors;
 using WebApp.Logger.Loggers;
@@ -61,8 +58,9 @@ namespace WebApp.Sql
             optionsBuilder.LogTo(Console.WriteLine);
             optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
             optionsBuilder.AddInterceptors(new SqlQueryInterceptor(HttpContextAccessor, _sqlLogRepository));
-            //optionsBuilder.AddInterceptors(new SqlSaveChangesInterceptor(HttpContextAccessor, _sqlLogRepository, _logOptions));
-            //optionsBuilder.AddInterceptors(new SqlTransactionInterceptor(HttpContextAccessor, _sqlLogRepository, _logOptions));
+            optionsBuilder.AddInterceptors(new SqlConnectionInterceptor(HttpContextAccessor, _sqlLogRepository));
+            //optionsBuilder.AddInterceptors(new SqlSaveChangesInterceptor(HttpContextAccessor, _sqlLogRepository));
+            optionsBuilder.AddInterceptors(new SqlTransactionInterceptor(HttpContextAccessor, _sqlLogRepository));
             optionsBuilder.UseLoggerFactory(_myLoggerFactory).EnableSensitiveDataLogging();
         }
 

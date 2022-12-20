@@ -23,18 +23,16 @@ namespace WebApp.Logger.Interceptors
         private readonly LogOption _logOption;
 
         public SqlConnectionInterceptor(IHttpContextAccessor context,
-            ISqlLogRepository sqlLogRepository,
-            IOptions<LogOption> logOption)
+            ISqlLogRepository sqlLogRepository)
         {
             Context = context;
             SqlLogRepository = sqlLogRepository;
-            _logOption = logOption.Value;
         }
 
-        public override InterceptionResult ConnectionOpening(DbConnection connection,
-            ConnectionEventData eventData,
-            InterceptionResult result)
-            => throw new InvalidOperationException("Open connections asynchronously when using AAD authentication.");
+        //public override InterceptionResult ConnectionOpening(DbConnection connection,
+        //    ConnectionEventData eventData,
+        //    InterceptionResult result)
+        //    => throw new InvalidOperationException("Open connections asynchronously when using AAD authentication.");
 
         public override async ValueTask<InterceptionResult> ConnectionOpeningAsync(DbConnection connection,
             ConnectionEventData eventData,
@@ -50,12 +48,10 @@ namespace WebApp.Logger.Interceptors
 
         private async Task ManipulateCommandAsync(SqlConnection connection, ConnectionEventData commandExecutedEventData)
         {
-            if (_logOption.LogType.Contains(LogType.Sql.ToString()))
-                return;
-
             var context = Context.HttpContext;
             var model = new SqlModel
             {
+                Source = "Connection",
                 ApplicationName = "",
                 UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null,
                 IpAddress = context.GetIpAddress(),
@@ -79,23 +75,20 @@ namespace WebApp.Logger.Interceptors
                 {
                     commandExecutedEventData.Connection.Database,
                     commandExecutedEventData.Connection.DataSource,
-                    commandExecutedEventData.Connection.ServerVersion,
                     commandExecutedEventData.ConnectionId,
-                    ConnectionTimeout = ((Microsoft.Data.SqlClient.SqlConnection)commandExecutedEventData.Connection).ConnectionTimeout
-
+                    ConnectionTimeout = ((SqlConnection)commandExecutedEventData.Connection).ConnectionTimeout
                 }.ToJson(),
                 Command = new
                 {
                     CommandTimeout = 0,
-                    CommandType = "",
+                    CommandType = ""
                 }.ToJson(),
                 Event = new
                 {
                     commandExecutedEventData.EventId.Id,
                     commandExecutedEventData.EventId.Name,
-                }.ToJson()
+                }.ToJson(),
             };
-
             await SqlLogRepository.AddAsync(model);
         }
     }
