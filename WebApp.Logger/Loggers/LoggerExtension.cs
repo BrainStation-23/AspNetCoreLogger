@@ -26,13 +26,26 @@ namespace WebApp.Logger.Loggers
             services.AddLoggerControllers();
 
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
-            services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
-            services.AddScoped<IRouteLogRepository, RouteLogRepository>();
-            services.AddScoped<IAuditLogRepository, AuditLogRepository>();
-            services.AddScoped<ISqlLogRepository, SqlLogRepository>();
 
-            services.AddMongoDb(configuration);
-            services.AddCosmosDb(configuration);
+            var logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
+
+            if (logOptions.ProviderType.ToString().ToLower() == "mssql")
+            {
+                services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
+                services.AddScoped<IRouteLogRepository, RouteLogRepository>();
+                services.AddScoped<IAuditLogRepository, AuditLogRepository>();
+                services.AddScoped<ISqlLogRepository, SqlLogRepository>();
+            }
+            if (logOptions.ProviderType.ToString().ToLower() == "mongo")
+                services.AddMongoDb(configuration);
+
+
+
+            if (logOptions.ProviderType.ToString().ToLower() == "cosmosdb")
+                services.AddCosmosDb(configuration);
+
+            //services.AddMongoDb(configuration);
+            //services.AddCosmosDb(configuration);
         }
 
         public static void AddLoggerControllers(this IServiceCollection services)

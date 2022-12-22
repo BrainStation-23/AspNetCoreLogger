@@ -13,7 +13,7 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
         [BsonId]
         [BsonRepresentation(BsonType.String)]
         public ObjectId Id { get; set; }
-        public new DateTime CreatedDateUtc { get; set; }
+       // public new DateTime? CreatedDateUtc { get; set; }
 
         public AuditLogDocument()
         {

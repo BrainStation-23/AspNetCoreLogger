@@ -9,7 +9,12 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
     [BsonCollection("RequestLog")]
     public class RequestLogDocument : RequestModel, IDocument
     {
-        public ObjectId Id => ObjectId.GenerateNewId();
-        public DateTime CreatedDateUtc => Id.CreationTime;
+        public RequestLogDocument()
+        {
+            Id = ObjectId.GenerateNewId();
+            CreatedDateUtc = Id.CreationTime;
+        }
+        public ObjectId Id { get; set; }
+        public DateTime? CreatedDateUtc { get; set; }
     }
 }

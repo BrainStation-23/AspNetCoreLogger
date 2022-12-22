@@ -67,7 +67,12 @@ namespace WebApp.Logger.Extensions
             var toMask = SelectJsonProperties(jObject, maskProperties);
 
             foreach (var prop in toMask)
-                prop.Value = "*****";
+            {
+                if(prop.Value.Type == JTokenType.String)
+                {
+                    prop.Value = "*****";
+                }
+            }
 
             var json = jObject.ToString();
 
@@ -83,6 +88,21 @@ namespace WebApp.Logger.Extensions
                 .SkipIt(skipColumns)
                 .MaskIt(maskColumns)
                 .ToModel<T>();
+        }
+
+        public static object ToFilter(this object obj, string[] skipColumns, string[] maskColumns)
+        {
+            if (obj == null)
+                return null;
+
+            var data = obj.ToJson()
+                .SkipIt(skipColumns)
+            .MaskIt(maskColumns);
+
+            return JsonConvert.DeserializeObject(data, new JsonSerializerSettings
+            {
+                DateParseHandling = DateParseHandling.None
+            });
         }
     }
 }

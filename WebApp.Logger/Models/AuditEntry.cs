@@ -13,12 +13,13 @@ namespace WebApp.Logger.Models
         {
             Entry = entry;
         }
-        
+
         public EntityEntry Entry { get; }
-        
+
         public string TraceId { get; set; }
         public string RequestId { get; set; }
         public long UserId { get; set; }
+        public string SchemaName { get; set; }
         public string TableName { get; set; }
         public Dictionary<string, object> KeyValues { get; } = new Dictionary<string, object>();
         public Dictionary<string, object> OldValues { get; } = new Dictionary<string, object>();
@@ -32,31 +33,49 @@ namespace WebApp.Logger.Models
     {
         public static AuditModel ToAuditModel(this AuditEntry auditEntry, bool objectValue = true)
         {
-            if (objectValue)
-                return new AuditModel
-                {
-                    UserId = auditEntry.UserId,
-                    Type = auditEntry.AuditType.ToString(),
-                    TableName = auditEntry.TableName,
-                    DateTimes = DateTime.Now,
-                    PrimaryKey = auditEntry.KeyValues,
-                    OldValues = auditEntry.OldValues,
-                    NewValues = auditEntry.NewValues,
-                    AffectedColumns = auditEntry.ChangedColumnNames,
-                    CreatedBy = 0,
-                    CreatedDateUtc = DateTime.UtcNow,
-                    TraceId = auditEntry.TraceId
-                };
+            //if (objectValue)
+            //    return new AuditModel
+            //    {
+            //        UserId = auditEntry.UserId,
+            //        Type = auditEntry.AuditType.ToString(),
+            //        SchemaName = auditEntry.SchemaName,
+            //        TableName = auditEntry.TableName,
+            //        DateTime = DateTime.Now,
+            //        PrimaryKey = auditEntry.KeyValues,
+            //        OldValues = auditEntry.OldValues,
+            //        NewValues = auditEntry.NewValues,
+            //        AffectedColumns = auditEntry.ChangedColumnNames,
+            //        CreatedBy = 0,
+            //        CreatedDateUtc = DateTime.UtcNow,
+            //        TraceId = auditEntry.TraceId
+            //    };
+
+            //return new AuditModel
+            //{
+            //    UserId = auditEntry.UserId,
+            //    Type = auditEntry.AuditType.ToString(),
+            //    TableName = auditEntry.TableName,
+            //    SchemaName = auditEntry.SchemaName,
+            //    DateTime = DateTime.Now,
+            //    PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
+            //    OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues),
+            //    NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),
+            //    AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames),
+            //    CreatedBy = 0,
+            //    CreatedDateUtc = DateTime.UtcNow,
+            //    TraceId = auditEntry.TraceId
+            //};
 
             return new AuditModel
             {
                 UserId = auditEntry.UserId,
                 Type = auditEntry.AuditType.ToString(),
+                SchemaName = auditEntry.SchemaName,
                 TableName = auditEntry.TableName,
-                DateTimes = DateTime.Now,
+                DateTime = DateTime.Now,
                 PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
-                OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues),
-                NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),
+                OldValues = auditEntry.OldValues,
+                NewValues = auditEntry.NewValues,
                 AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames),
                 CreatedBy = 0,
                 CreatedDateUtc = DateTime.UtcNow,

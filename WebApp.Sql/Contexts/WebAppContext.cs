@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
@@ -16,6 +16,7 @@ using WebApp.Entity.Entities.Identities;
 using WebApp.Entity.Entities.Logs;
 using WebApp.Entity.Entities.Settings;
 using WebApp.Logger.Loggers;
+using WebApp.Logger.Loggers.Repositories;
 using static WebApp.Entity.Entities.Identities.IdentityModel;
 
 namespace WebApp.Sql
@@ -43,13 +44,13 @@ namespace WebApp.Sql
             Configuration = configuration;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.LogTo(Console.WriteLine);
-            optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
-            //optionsBuilder.AddInterceptors(new SqlQueryInterceptor(HttpContextAccessor));
-            optionsBuilder.UseLoggerFactory(_myLoggerFactory).EnableSensitiveDataLogging();
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.LogTo(Console.WriteLine);
+        //    optionsBuilder.LogTo(message => LoggerExtension.SqlQueryLog(message));
+        //    //optionsBuilder.AddInterceptors(new SqlQueryInterceptor(HttpContextAccessor));
+        //    optionsBuilder.UseLoggerFactory(_myLoggerFactory).EnableSensitiveDataLogging();
+        //}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -72,45 +73,44 @@ namespace WebApp.Sql
         {
             long userId = 0;
 
-
             if (SignInHelper.IsAuthenticated)
                 userId = (long)SignInHelper.UserId;
 
             base.ChangeTracker.Audit(userId);
         }
 
-        private bool AuditTrailLog()
-        {
-            long userId = 0;
+        //private bool AuditTrailLog()
+        //{
+        //    long userId = 0;
 
-            if (SignInHelper.IsAuthenticated)
-                userId = (long)SignInHelper.UserId;
+        //    if (SignInHelper.IsAuthenticated)
+        //        userId = (long)SignInHelper.UserId;
 
-            var auditEntries = base.ChangeTracker.AuditTrailLog(userId, nameof(AuditLog));
+        //    var auditEntries = base.ChangeTracker.AuditTrailLog(userId, _logOptions, nameof(AuditLog));
 
-            if (auditEntries.Any())
-            {
-                foreach (var auditEntry in auditEntries)
-                {
-                    var audit = new AuditLog
-                    {
-                        UserId = auditEntry.UserId,
-                        Type = auditEntry.AuditType.ToString(),
-                        TableName = auditEntry.TableName,
-                        DateTime = DateTime.Now,
-                        PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
-                        OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues),
-                        NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),
-                        AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames)
-                    };
-                    //var data = auditEntry.Changes.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.Changes);
+        //    if (auditEntries.Any())
+        //    {
+        //        foreach (var auditEntry in auditEntries)
+        //        {
+        //            var audit = new AuditLog
+        //            {
+        //                UserId = auditEntry.UserId,
+        //                Type = auditEntry.AuditType.ToString(),
+        //                TableName = auditEntry.TableName,
+        //                DateTime = DateTime.Now,
+        //                PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
+        //                OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues),
+        //                NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),
+        //                AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames)
+        //            };
+        //            //var data = auditEntry.Changes.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.Changes);
 
-                    AuditLogs.Add(audit);
-                }
-            }
+        //            AuditLogs.Add(audit);
+        //        }
+        //    }
 
-            return auditEntries.Any();
-        }
+        //    return auditEntries.Any();
+        //}
         #endregion
 
         #region acl entitites

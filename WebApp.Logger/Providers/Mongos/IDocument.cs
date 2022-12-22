@@ -10,6 +10,6 @@ namespace WebApp.Logger.Providers.Mongos
         [BsonRepresentation(BsonType.String)]
         ObjectId Id { get; }
 
-        DateTime CreatedDateUtc { get; }
+        DateTime? CreatedDateUtc { get; }
     }
 }

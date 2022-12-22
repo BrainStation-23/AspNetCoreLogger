@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Threading.Tasks;
@@ -13,20 +14,24 @@ namespace WebApp.Logger.Loggers.Repositories
     {
         private readonly DapperContext _dapper;
         private readonly ILogger<SqlLogRepository> _logger;
-
+        private readonly LogOption _logOptions;
         public SqlLogRepository(DapperContext dapper,
-            ILogger<SqlLogRepository> logger)
+            ILogger<SqlLogRepository> logger,
+            IOptions<LogOption> logOptions
+            )
         {
             _dapper = dapper;
             _logger = logger;
+            _logOptions = logOptions.Value;
         }
 
         public async Task AddAsync(SqlModel sqlModel)
         {
-            if (sqlModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
+            if (LogOptionExtension.SkipSqlLog(sqlModel, _logOptions))
                 return;
 
-            var createdDateUtc = DateTime.UtcNow.ToString();
+            sqlModel = sqlModel.PrepareSqlModel(_logOptions);
+
             var query = @"INSERT INTO [dbo].[SqlLogs]
                             ([UserId]
                             ,[ApplicationName]
@@ -109,7 +114,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     Connection = sqlModel.Connection,
                     Command = sqlModel.Command,
                     Event = sqlModel.Event,
-                    CreatedDateUtc = createdDateUtc
+                    CreatedDateUtc = DateTime.UtcNow
                 });
             }
             catch (Exception exception)

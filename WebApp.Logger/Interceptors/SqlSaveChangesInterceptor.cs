@@ -12,15 +12,12 @@ namespace WebApp.Logger.Interceptors
     {
         private readonly IHttpContextAccessor Context;
         private readonly ISqlLogRepository SqlLogRepository;
-        private readonly LogOption _logOption;
 
         public SqlSaveChangesInterceptor(IHttpContextAccessor context,
-            ISqlLogRepository sqlLogRepository,
-            IOptions<LogOption> logOption)
+            ISqlLogRepository sqlLogRepository)
         {
             Context = context;
             SqlLogRepository = sqlLogRepository;
-            _logOption = logOption.Value;
         }
 
         public async ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData,
