@@ -39,8 +39,6 @@ namespace WebApp.Logger.Loggers
             if (logOptions.ProviderType.ToString().ToLower() == "mongo")
                 services.AddMongoDb(configuration);
 
-
-
             if (logOptions.ProviderType.ToString().ToLower() == "cosmosdb")
                 services.AddCosmosDb(configuration);
 
