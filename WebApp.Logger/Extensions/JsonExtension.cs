@@ -105,12 +105,13 @@ namespace WebApp.Logger.Extensions
 
             var data = obj.ToJson()
                 .SkipIt(skipColumns)
-            .MaskIt(maskColumns);
+                .MaskIt(maskColumns);
 
             return JsonConvert.DeserializeObject(data, new JsonSerializerSettings
             {
                 DateParseHandling = DateParseHandling.None
             });
         }
+
     }
 }

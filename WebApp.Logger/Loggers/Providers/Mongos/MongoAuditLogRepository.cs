@@ -19,7 +19,7 @@ namespace WebApp.Logger.Loggers.Repositories
         public MongoAuditLogRepository(DapperContext dapper,
             ILogger<MongoAuditLogRepository> logger,
             IMongoRepository<AuditLogDocument> auditRepository,
-            IOptions<LogOption>logOption)
+            IOptions<LogOption> logOption)
         {
             _dapper = dapper;
             _logger = logger;
@@ -41,7 +41,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(List<AuditEntry> auditEntries)
         {
-            var auditModel = auditEntries.ToAuditModel();
+            var auditModel = auditEntries.ToAuditModel(_logOption);
             auditModel = auditModel.PrepareAuditModel(_logOption);
             var auditDocument = auditModel.Select(e => e.ToDocument());
 

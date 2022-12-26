@@ -49,7 +49,7 @@ namespace WebApp.Logger.Interceptors
                 Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl(),
                 TraceId = context.TraceIdentifier,
                 Scheme = context.Request.Scheme,
-                Proctocol = context.Request.Protocol,
+                Protocol = context.Request.Protocol,
                 Version = "",
                 UrlReferrer = "",
                 Area = "",
@@ -61,7 +61,7 @@ namespace WebApp.Logger.Interceptors
                 {
                     eventData.EventId.Id,
                     eventData.EventId.Name,
-                }.ToJson()
+                }
             };
 
             await SqlLogRepository.AddAsync(model);

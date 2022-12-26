@@ -202,7 +202,7 @@ namespace WebApp.Logger.Loggers
                 return false;
             }
         }
-        
+
         public static bool SkipErrorLog(ErrorModel errorModel, LogOption logOptions)
         {
             bool skip = false;
@@ -244,7 +244,7 @@ namespace WebApp.Logger.Loggers
             var requestLogOptions = logOptions.Log.Request;
 
             var ignoreColumns = requestLogOptions.IgnoreColumns.ToList(requestLogOptions.EnableIgnore);
-            var maskColumns =  requestLogOptions.MaskColumns.ToList(requestLogOptions.EnableMask);
+            var maskColumns = requestLogOptions.MaskColumns.ToList(requestLogOptions.EnableMask);
             requestModel = requestModel.ToFilter<RequestModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
 
             return requestModel;
@@ -276,7 +276,7 @@ namespace WebApp.Logger.Loggers
 
         public static List<AuditModel> PrepareAuditModel(this List<AuditModel> auditModels, LogOption logOptions)
         {
-            if (logOptions.LogType.MustContain("Audit")!=true)
+            if (logOptions.LogType.MustContain("Audit") != true)
                 return new List<AuditModel> { };
 
             var auditLogOption = logOptions.Log.Audit;
@@ -293,22 +293,41 @@ namespace WebApp.Logger.Loggers
             auditModels.ForEach(m =>
             {
                 if (ignoreShcemaNames.MustContain(m.SchemaName))
-                    m= null;
+                    m = null;
 
                 if (ignoreTables.MustContain(m.TableName))
                     m = null;
 
-                if (m == null)
+                if (m != null)
                 {
-                    var oldValues = m.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
-                    var newValues = m.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
-
-                    m.OldValues = JsonConvert.SerializeObject(oldValues);
-                    m.NewValues = JsonConvert.SerializeObject(newValues);
+                    m.OldValues = m.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+                    m.NewValues = m.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
                 }
             });
 
             return auditModels;
+        }
+
+        public static List<AuditModel> SerializeAuditModel(this List<AuditModel> auditModels)
+        {
+            auditModels.ForEach(auditModel =>
+            {
+                auditModel.PrimaryKey = auditModel.PrimaryKey == null ? null : JsonConvert.SerializeObject(auditModel.PrimaryKey);
+                auditModel.OldValues = auditModel.OldValues == null ? null : JsonConvert.SerializeObject(auditModel.OldValues);
+                auditModel.NewValues = auditModel.NewValues == null ? null : JsonConvert.SerializeObject(auditModel.NewValues);
+                auditModel.AffectedColumns = auditModel.AffectedColumns == null ? null : JsonConvert.SerializeObject(auditModel.AffectedColumns);
+            });
+
+            return auditModels;
+        }
+
+        public static SqlModel SerializeSqlModel(this SqlModel sqlModel)
+        {
+            sqlModel.Event = sqlModel.Event == null ? null : JsonConvert.SerializeObject(sqlModel.Event);
+            sqlModel.Connection = sqlModel.Connection == null ? null : JsonConvert.SerializeObject(sqlModel.Connection);
+            sqlModel.Command = sqlModel.Command == null ? null : JsonConvert.SerializeObject(sqlModel.Command);
+
+            return sqlModel;
         }
 
         public static AuditModel PrepareAuditModel(this AuditModel auditModel, LogOption logOptions)
@@ -329,20 +348,18 @@ namespace WebApp.Logger.Loggers
             if (ignoreTables.MustContain(auditModel.TableName))
                 return null;
 
-
             var oldValues = auditModel.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
             var newValues = auditModel.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
 
-            auditModel.OldValues = JsonConvert.SerializeObject(oldValues);
-            auditModel.NewValues = JsonConvert.SerializeObject(newValues);
-
+            //auditModel.OldValues = JsonConvert.SerializeObject(oldValues);
+            //auditModel.NewValues = JsonConvert.SerializeObject(newValues);
 
             return auditModel;
         }
 
         public static List<string> ToList(this List<string> list, bool enableFlag)
         {
-            list= enableFlag ? (list ?? new List<string> { }) : new List<string> { };
+            list = enableFlag ? (list ?? new List<string> { }) : new List<string> { };
 
             return list;
         }

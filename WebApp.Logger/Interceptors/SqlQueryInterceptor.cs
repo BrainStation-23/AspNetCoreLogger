@@ -88,15 +88,14 @@ namespace WebApp.Logger.Interceptors
                 Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl(),
                 TraceId = context.TraceIdentifier,
                 Scheme = context.Request.Scheme,
-                Proctocol = context.Request.Protocol,
+                Protocol = context.Request.Protocol,
                 Version = "",
                 UrlReferrer = "",
                 Area = "",
-                ControllerName = "",
-                ActionName = "",
+                ControllerName = context.Request.RouteValues["controller"].ToString(),
+                ActionName = context.Request.RouteValues["action"].ToString(),
                 ClassName = "",
                 MethodName = "",
-
                 Query = command.CommandText,
                 QueryType = command.CommandType.ToString(),
                 Duration = commandExecutedEventData.Duration.TotalMilliseconds,
@@ -109,17 +108,17 @@ namespace WebApp.Logger.Interceptors
                     commandExecutedEventData.ConnectionId,
                     ConnectionTimeout = ((Microsoft.Data.SqlClient.SqlConnection)commandExecutedEventData.Connection).ConnectionTimeout
 
-                }.ToJson(),
+                },
                 Command = new
                 {
                     CommandTimeout = ((Microsoft.Data.SqlClient.SqlCommand)commandExecutedEventData.Command).CommandTimeout,
                     CommandType = command.CommandType.ToString(),
-                }.ToJson(),
+                },
                 Event = new
                 {
                     commandExecutedEventData.EventId.Id,
                     commandExecutedEventData.EventId.Name,
-                }.ToJson()
+                }
             };
 
             await SqlLogRepository.AddAsync(model);

@@ -20,7 +20,6 @@ namespace WebApp.Logger.Interceptors
     {
         private readonly IHttpContextAccessor Context;
         private readonly ISqlLogRepository SqlLogRepository;
-        private readonly LogOption _logOption;
 
         public SqlConnectionInterceptor(IHttpContextAccessor context,
             ISqlLogRepository sqlLogRepository)
@@ -59,7 +58,7 @@ namespace WebApp.Logger.Interceptors
                 Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl(),
                 TraceId = context.TraceIdentifier,
                 Scheme = context.Request.Scheme,
-                Proctocol = context.Request.Protocol,
+                Protocol = context.Request.Protocol,
                 Version = "",
                 UrlReferrer = "",
                 Area = "",
@@ -77,17 +76,17 @@ namespace WebApp.Logger.Interceptors
                     commandExecutedEventData.Connection.DataSource,
                     commandExecutedEventData.ConnectionId,
                     ConnectionTimeout = ((SqlConnection)commandExecutedEventData.Connection).ConnectionTimeout
-                }.ToJson(),
+                },
                 Command = new
                 {
                     CommandTimeout = 0,
                     CommandType = ""
-                }.ToJson(),
+                },
                 Event = new
                 {
                     commandExecutedEventData.EventId.Id,
                     commandExecutedEventData.EventId.Name,
-                }.ToJson(),
+                },
             };
             await SqlLogRepository.AddAsync(model);
         }

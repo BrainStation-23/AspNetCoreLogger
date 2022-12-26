@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -50,9 +51,9 @@ namespace WebApp.Logger.Extensions
         /// </summary>
         /// <param name="directory"></param>
         /// <returns></returns>
-        public static FileInfo GetLastCreatedFile(this DirectoryInfo directory)
+        public static FileInfo GetLastCreatedFile(this DirectoryInfo directory, string namingFormate)
         {
-            var lastFile = directory.GetFiles().OrderByDescending(file=>file.LastWriteTime).FirstOrDefault();
+            var lastFile = directory.GetFiles().Where(f => f.Name.ToLower().Contains(namingFormate)).OrderByDescending(file => file.LastWriteTime).FirstOrDefault();
             if (lastFile is null)
                 return null;
             return lastFile;
@@ -74,16 +75,14 @@ namespace WebApp.Logger.Extensions
             string dateStamp = DateTime.Now.ToString("yyyyMMdd");
             var logName = model.GetType().Name;
 
-            if (logName.Contains("List"))
-                logName = "Audit";
-            else
-                logName = logName.Remove(logName.Length - 5);
+            logName = logName.Remove(logName.Length - 5);
 
-            var defaultFileName = $"{logName}_Log_{fileFormate}_{dateStamp}_1.txt";
+            var fileNamingFormate = $"{logName}_Log_{fileFormate}_{dateStamp}";
+            var defaultFileName = fileNamingFormate + "_1.txt";
 
-            var dir = ReadOrCreateDirectory($"{path}/{fileFormate}/{logName}/{dateStamp}");
+            var dir = ReadOrCreateDirectory($"{path}/{dateStamp}");
 
-            var lastCreatedFile = dir.GetLastCreatedFile();
+            var lastCreatedFile = dir.GetLastCreatedFile(fileNamingFormate);
 
             var fileName = defaultFileName;
 
@@ -95,7 +94,7 @@ namespace WebApp.Logger.Extensions
                     fileName = lastCreatedFile.Name;
             }
 
-            var file = ReadOrCreateFile(dir.FullName, fileName);
+            var file = ReadOrCreateFile(dir.FullName, fileName.ToLower());
 
             return file;
         }
@@ -153,6 +152,20 @@ namespace WebApp.Logger.Extensions
         }
 
         /// <summary>
+        /// Generate log files according to the configurations
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fileConfig"></param>
+        /// <param name="model"></param>
+        public static void LogWrite<T>(Loggers.File fileConfig, List<T> models) where T : class
+        {
+            foreach (var model in models)
+            {
+                LogWrite(fileConfig, model);
+            }
+        }
+
+        /// <summary>
         /// Return a header string for file.
         /// </summary>
         /// <param name="statusCode"></param>
@@ -160,15 +173,13 @@ namespace WebApp.Logger.Extensions
         /// <returns></returns>
         public static string HeaderAppender(string statusCode, string url)
         {
-            var message = "----------------------------------------------------------------------------------\n";
-            message = message + ($"[Request: {DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()}] {statusCode} {url}\n");
+            var message = $"[Request: {DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()}] {statusCode} {url}\n";
 
             return message;
         }
         public static string HeaderAppender(string logType)
         {
-            var message = "----------------------------------------------------------------------------------\n";
-            message = message + ($"{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss zz")} [{logType}] ");
+            var message = $"{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss zz")} [{logType}] ";
 
             return message;
         }
@@ -244,12 +255,10 @@ namespace WebApp.Logger.Extensions
         {
             var jsonText = model.ToPrettyJson();
             var logType = model.GetType().Name;
-            if (logType.Contains("List"))
-                logType = "Audit";
-            else
-                logType = logType.Remove(logType.Length - 5).ToLower();
 
-            jsonText = HeaderAppender(logType)+jsonText+FooterAppender();
+            logType = logType.Remove(logType.Length - 5).ToLower();
+
+            jsonText = HeaderAppender(logType) + jsonText + FooterAppender();
 
             return jsonText;
         }

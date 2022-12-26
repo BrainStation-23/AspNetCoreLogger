@@ -78,7 +78,7 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Host= model.Host,
                 Message= model.Message,
                 MethodName= model.MethodName,
-                Proctocol= model.Proctocol,
+                Protocol= model.Protocol,
                 Query= model.Query,
                 QueryType= model.QueryType,
                 Response= model.Response,

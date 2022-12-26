@@ -45,7 +45,7 @@ namespace WebApp.Logger.Loggers.Repositories
             var fileConfig = _logOptions.Provider.File;
             try
             {
-                var auditModels = auditEntries.ToAuditModel(false);
+                var auditModels = auditEntries.ToAuditModel(_logOptions);
                 auditModels = auditModels.PrepareAuditModel(_logOptions);
                 FileExtension.LogWrite(fileConfig, auditModels);
             }
@@ -54,6 +54,7 @@ namespace WebApp.Logger.Loggers.Repositories
                 _logger.LogError(nameof(AuditFileLogRepository), exception);
             }
         }
+        
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
             dynamic routeLogs = null;
