@@ -27,6 +27,9 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(SqlModel sqlModel)
         {
+            if (LogOptionExtension.SkipSqlLog(sqlModel, _logOptions))
+                return;
+
             sqlModel = sqlModel.PrepareSqlModel(_logOptions);
 
             var query = @"INSERT INTO [dbo].[SqlLogs]

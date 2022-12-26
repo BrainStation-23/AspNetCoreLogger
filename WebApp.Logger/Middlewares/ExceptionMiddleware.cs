@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using WebApp.Logger.Loggers;
 using Microsoft.Extensions.Options;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace WebApp.Logger.Middlewares
 {
@@ -60,7 +61,7 @@ namespace WebApp.Logger.Middlewares
             }
             catch (Exception exception)
             {
-
+                
                 errorModel = await exception.ErrorAsync(context, _logger);
                 errorModel.Body = requestModel.Body;
                 context.Response.Body = originalBodyStream;

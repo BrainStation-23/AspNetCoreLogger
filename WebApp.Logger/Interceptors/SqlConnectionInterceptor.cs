@@ -20,6 +20,7 @@ namespace WebApp.Logger.Interceptors
     {
         private readonly IHttpContextAccessor Context;
         private readonly ISqlLogRepository SqlLogRepository;
+        private readonly LogOption _logOption;
 
         public SqlConnectionInterceptor(IHttpContextAccessor context,
             ISqlLogRepository sqlLogRepository)

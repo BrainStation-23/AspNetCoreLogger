@@ -36,8 +36,13 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(RequestModel requestModel)
         {
+            if (LogOptionExtension.SkipRequestLog(requestModel, _logOption))
+                return;
+
             requestModel = requestModel.PrepareRequestModel(_logOption);
-            
+            //if (requestModel.Url.Contains("/Log/"))
+            //    return;
+
             var requestDocument = requestModel.ToDocument();
 
             await _RequestRepository.InsertAsync(requestDocument);

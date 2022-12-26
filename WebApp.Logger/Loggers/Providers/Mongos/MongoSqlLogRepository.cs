@@ -37,6 +37,11 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(SqlModel sqlModel)
         {
+            //if (sqlModel.Url.Contains("/Log/"))
+            //    return;
+            if (LogOptionExtension.SkipSqlLog(sqlModel, _logOptions))
+                return;
+
             sqlModel = sqlModel.PrepareSqlModel(_logOptions);
 
             var sqlDocument = sqlModel.ToDocument();

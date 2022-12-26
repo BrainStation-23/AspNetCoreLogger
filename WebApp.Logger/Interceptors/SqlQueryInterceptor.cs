@@ -74,6 +74,9 @@ namespace WebApp.Logger.Interceptors
 
         private async Task ManipulateCommandAsync(DbCommand command, CommandExecutedEventData commandExecutedEventData)
         {
+            //if (_logOption.LogType.Contains(LogType.Sql.ToString()))
+            //    return;
+
             var context = Context.HttpContext;
             var model = new SqlModel
             {

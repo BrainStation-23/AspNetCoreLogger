@@ -12,6 +12,10 @@ using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Middlewares;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Mongos.Configurations;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
+using WebApp.Logger.Endpoints;
 
 namespace WebApp.Logger.Loggers
 {
@@ -19,6 +23,8 @@ namespace WebApp.Logger.Loggers
     {
         public static void AddDapper(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddLoggerControllers();
+
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
 
             var logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
@@ -38,17 +44,37 @@ namespace WebApp.Logger.Loggers
             if (logOptions.ProviderType.ToString().ToLower() == "cosmosdb")
                 services.AddCosmosDb(configuration);
 
+            //services.AddMongoDb(configuration);
+            //services.AddCosmosDb(configuration);
+        }
 
+        public static void AddLoggerControllers(this IServiceCollection services)
+        {
+            var assembly = typeof(LoggerWrapperController).Assembly;
+            services.AddControllers()
+                //.AddApplicationPart(Assembly.Load(new AssemblyName("ClassLibrary")));
+                .AddApplicationPart(assembly);
+        }
 
-            if (logOptions.ProviderType.ToString().ToLower() == "file")
-            {
-                services.AddScoped<IExceptionLogRepository, ExceptionFileLogRepository>();
-                services.AddScoped<IRouteLogRepository, RouteFileLogRepository>();
-                services.AddScoped<IAuditLogRepository, AuditFileLogRepository>();
-                services.AddScoped<ISqlLogRepository, SqlFileLogRepository>();
-            }
+        //public static void AddLoggerEndpoints(this IEndpointRouteBuilder endpoints)
+        //{
+        //    endpoints.MapGet("/log/hello", async context =>
+        //    {
+        //        await context.Response.WriteAsync("Hello World!");
+        //    });
+        //}
 
+        public static void AddHost()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder
+                        .UseUrls("http://*:5002", "https://*:5003")
+                        .UseStartup<LoggerWrapperStartup>();
+                });
 
+            host.Build().Run();
         }
 
         public static void HttpLog(this IApplicationBuilder app)
