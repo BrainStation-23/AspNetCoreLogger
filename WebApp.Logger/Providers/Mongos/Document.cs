@@ -7,6 +7,6 @@ namespace WebApp.Logger.Providers.Mongos
     {
         public ObjectId Id { get; set; }
 
-        public DateTime CreatedDateUtc => Id.CreationTime;
+        public DateTime? CreatedDateUtc => Id.CreationTime;
     }
 }

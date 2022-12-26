@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,14 +15,17 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly DapperContext _dapper;
         private readonly ILogger<MongoExceptionLogRepository> _logger;
         private readonly IMongoRepository<ErrorLogDocument> _errorRepository;
+        private readonly LogOption _logOptions;
 
         public MongoExceptionLogRepository(DapperContext dapper,
             ILogger<MongoExceptionLogRepository> logger,
-            IMongoRepository<ErrorLogDocument> errorRepository)
+            IMongoRepository<ErrorLogDocument> errorRepository,
+            IOptions<LogOption>logOption)
         {
             _dapper = dapper;
             _logger = logger;
             _errorRepository = errorRepository;
+            _logOptions = logOption.Value;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -31,8 +35,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(ErrorModel errorModel)
         {
-            if (errorModel.Url.Contains("/Log/"))
-                return;
+            errorModel = errorModel.PrepareErrorModel(_logOptions);
 
             var errorDocument = errorModel.ToDocument();
 

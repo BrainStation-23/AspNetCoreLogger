@@ -202,7 +202,7 @@ namespace WebApp.Logger.Loggers
                 return false;
             }
         }
-
+        
         public static bool SkipErrorLog(ErrorModel errorModel, LogOption logOptions)
         {
             bool skip = false;
@@ -226,6 +226,18 @@ namespace WebApp.Logger.Loggers
             errorModel = errorModel.ToFilter<ErrorModel>(ignoreColumns.ToArray(), maskColumns.ToArray());
 
             return errorModel;
+        }
+        public static bool SkipRequestLog(RequestModel requestModel, LogOption logOptions)
+        {
+            bool skip = false;
+
+            if (requestModel.Url.Contains("/Log/", StringComparison.InvariantCultureIgnoreCase))
+                skip = true;
+
+            if (!logOptions.LogType.MustContain(LogType.Request.ToString()))
+                skip = true;
+
+            return skip;
         }
         public static RequestModel PrepareRequestModel(this RequestModel requestModel, LogOption logOptions)
         {
@@ -271,7 +283,6 @@ namespace WebApp.Logger.Loggers
 
             var ignoreColumns = auditLogOption.IgnoreColumns.ToList(auditLogOption.EnableIgnore);
             var maskColumns = auditLogOption.MaskColumns.ToList(auditLogOption.EnableMask);
-            var ignoreSchemas = auditLogOption.IgnoreSchemas.ToList(auditLogOption.EnableIgnoreSchema);
             var ignoreTables = auditLogOption.IgnoreTables.ToList(auditLogOption.EnableIgnoreTable);
             var ignoreShcemaNames = auditLogOption.IgnoreSchemas.ToList(auditLogOption.EnableIgnoreSchema);
 
@@ -281,17 +292,55 @@ namespace WebApp.Logger.Loggers
 
             auditModels.ForEach(m =>
             {
-                var oldValues = m.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
-                var newValues = m.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+                if (ignoreShcemaNames.MustContain(m.SchemaName))
+                    m= null;
 
-                m.OldValues = JsonConvert.SerializeObject(oldValues);
-                m.NewValues = JsonConvert.SerializeObject(newValues);
+                if (ignoreTables.MustContain(m.TableName))
+                    m = null;
+
+                if (m == null)
+                {
+                    var oldValues = m.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+                    var newValues = m.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+
+                    m.OldValues = JsonConvert.SerializeObject(oldValues);
+                    m.NewValues = JsonConvert.SerializeObject(newValues);
+                }
             });
 
             return auditModels;
         }
 
-        public static List<string> ToList(this List<string> list,bool enableFlag)
+        public static AuditModel PrepareAuditModel(this AuditModel auditModel, LogOption logOptions)
+        {
+            if (logOptions.LogType.MustContain("Audit") != true)
+                return null;
+
+            var auditLogOption = logOptions.Log.Audit;
+
+            var ignoreColumns = auditLogOption.IgnoreColumns.ToList(auditLogOption.EnableIgnore);
+            var maskColumns = auditLogOption.MaskColumns.ToList(auditLogOption.EnableMask);
+            var ignoreTables = auditLogOption.IgnoreTables.ToList(auditLogOption.EnableIgnoreTable);
+            var ignoreShcemaNames = auditLogOption.IgnoreSchemas.ToList(auditLogOption.EnableIgnoreSchema);
+
+            if (ignoreShcemaNames.MustContain(auditModel.SchemaName))
+                return null;
+
+            if (ignoreTables.MustContain(auditModel.TableName))
+                return null;
+
+
+            var oldValues = auditModel.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+            var newValues = auditModel.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+
+            auditModel.OldValues = JsonConvert.SerializeObject(oldValues);
+            auditModel.NewValues = JsonConvert.SerializeObject(newValues);
+
+
+            return auditModel;
+        }
+
+        public static List<string> ToList(this List<string> list, bool enableFlag)
         {
             list= enableFlag ? (list ?? new List<string> { }) : new List<string> { };
 

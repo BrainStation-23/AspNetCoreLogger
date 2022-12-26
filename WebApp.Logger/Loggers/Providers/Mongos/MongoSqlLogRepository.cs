@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,14 +16,16 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly DapperContext _dapper;
         private readonly ILogger<MongoSqlLogRepository> _logger;
         private readonly IMongoRepository<SqlLogDocument> _sqlRepository;
-
+        private readonly LogOption _logOptions;
         public MongoSqlLogRepository(DapperContext dapper,
             ILogger<MongoSqlLogRepository> logger,
-            IMongoRepository<SqlLogDocument> sqlRepository)
+            IMongoRepository<SqlLogDocument> sqlRepository,
+            IOptions<LogOption> logOptions)
         {
             _dapper = dapper;
             _logger = logger;
             _sqlRepository = sqlRepository;
+            _logOptions = logOptions.Value;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -34,8 +37,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(SqlModel sqlModel)
         {
-            if (sqlModel.Url.Contains("/Log/"))
-                return;
+            sqlModel = sqlModel.PrepareSqlModel(_logOptions);
 
             var sqlDocument = sqlModel.ToDocument();
 

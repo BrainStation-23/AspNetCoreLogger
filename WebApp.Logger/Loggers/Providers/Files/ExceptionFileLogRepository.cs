@@ -18,7 +18,7 @@ namespace WebApp.Logger.Loggers.Repositories
     {
         private readonly DapperContext _dapper;
         private readonly ILogger<ExceptionLogRepository> _logger;
-        private readonly LogOption _logOption;
+        private readonly LogOption _logOptions;
 
         public ExceptionFileLogRepository(DapperContext dapper,
             ILogger<ExceptionLogRepository> logger,
@@ -26,7 +26,7 @@ namespace WebApp.Logger.Loggers.Repositories
         {
             _dapper = dapper;
             _logger = logger;
-            _logOption = logOption.Value;
+            _logOptions = logOption.Value;
         }
 
         public async Task AddAsync(ErrorModel errorModel)
@@ -34,12 +34,13 @@ namespace WebApp.Logger.Loggers.Repositories
             if (errorModel.Url.Contains("/Log/"))
                 return;
 
-            var fileConfig = _logOption.Provider.File;
+            var fileConfig = _logOptions.Provider.File;
 
             try
             {
-                errorModel = errorModel.PrepareErrorModel(_logOption);
-                FileExtension.LogWrite(fileConfig.Path, null, errorModel);
+                errorModel = errorModel.PrepareErrorModel(_logOptions);
+
+                FileExtension.LogWrite(fileConfig, errorModel);
             }
             catch (Exception exception)
             {
@@ -49,36 +50,9 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
-            dynamic logs;
+            dynamic routeLogs = null;
 
-            var query = @"SELECT * FROM [dbo].[ExceptionLogs]
-                            ORDER BY [Id] DESC
-                            OFFSET @Offset ROWS 
-                            FETCH NEXT @Next ROWS ONLY";
-
-            var exceptionLogUnescapeString = string.Empty;
-            try
-            {
-                using (var connection = _dapper.CreateConnection())
-                {
-                    var exceptionLogs = await connection.QueryAsync<ExceptionLogVm>(query, pager);
-
-                    exceptionLogs.ToList().ForEach(f =>
-                    {
-                        f.StackTrace = JsonConvert.SerializeObject(f.StackTrace);
-                    });
-                    exceptionLogUnescapeString = JsonSerializeExtentions.ToJson(exceptionLogs);
-                    var unescape = exceptionLogUnescapeString.JsonUnescaping();
-                    logs = JArray.Parse(unescape);
-                }
-
-                return logs;
-            }
-            catch (Exception exception)
-            {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
-                throw;
-            }
+            return routeLogs;
         }
     }
 }

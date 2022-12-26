@@ -16,7 +16,8 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly ILogger<SqlLogRepository> _logger;
         private readonly LogOption _logOptions;
         public SqlLogRepository(DapperContext dapper,
-            ILogger<SqlLogRepository> logger, IOptions<LogOption> logOptions
+            ILogger<SqlLogRepository> logger,
+            IOptions<LogOption> logOptions
             )
         {
             _dapper = dapper;
@@ -26,9 +27,6 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(SqlModel sqlModel)
         {
-            if (LogOptionExtension.SkipSqlLog(sqlModel, _logOptions))
-                return;
-
             sqlModel = sqlModel.PrepareSqlModel(_logOptions);
 
             var query = @"INSERT INTO [dbo].[SqlLogs]

@@ -1,13 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
-using WebApp.Logger.Models;
+using System.Linq;
 
 namespace WebApp.Logger.Extensions
 {
     public static class FileExtension
     {
+
+        /// <summary>
+        /// Read a directory if exists or create a new directory
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static DirectoryInfo ReadOrCreateDirectory(string path)
         {
             if (string.IsNullOrEmpty(path))
@@ -22,240 +26,232 @@ namespace WebApp.Logger.Extensions
             return Directory.CreateDirectory(path);
         }
 
+        /// <summary>
+        /// Read a file from a given path and filename if exists or create a new file named the given filename.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public static FileInfo ReadOrCreateFile(string path, string filename)
         {
             path = $"{path}\\{filename}";
             FileInfo fileInfo = new FileInfo(path);
             if (!fileInfo.Exists)
             {
-                File.Create(path).Dispose();
+                System.IO.File.Create(path).Dispose();
                 fileInfo = new FileInfo(path);
-                if (fileInfo.Length > 1024)
-                {
-
-                }
             }
 
             return fileInfo;
         }
 
-        //public static async Task FileCrop(string path, string line)
-        //{
-        //    if (File.ReadAllBytes().Length >= 100 * 1024 * 1024) // (100mB) File to big? Create new
-        //    {
-        //        string filenamebase = "myLogFile"; //Insert the base form of the log file, the same as the 1st filename without .log at the end
-        //        if (filename.contains("-")) //Check if older log contained -x
-        //        {
-        //            int lognumber = Int32.Parse(filename.substring(filename.lastIndexOf("-") + 1, filename.Length - 4); //Get old number, Can cause exception if the last digits aren't numbers
-        //            lognumber++; //Increment lognumber by 1
-        //            filename = filenamebase + "-" + lognumber + ".log"; //Override filename
-        //        }
-        //        else
-        //        {
-        //            filename = filenamebase + "-1.log"; //Override filename
-        //        }
-        //        fs = File.Create(filename);
-        //        fs.Close();
-        //    }
-        //}
-
-        public static void LogWrite(string path, string filename, RequestModel model)
+        /// <summary>
+        /// Returns the last created file of a path if any exists or returns null.
+        /// </summary>
+        /// <param name="directory"></param>
+        /// <returns></returns>
+        public static FileInfo GetLastCreatedFile(this DirectoryInfo directory)
         {
-            filename = $"{DateTime.Now.ToString("yyyyMMdd")}.txt";
-
-            var dir = ReadOrCreateDirectory(path + "/Route_Logs");
-            var file = ReadOrCreateFile(dir.FullName, filename);
-            if (file.Exists)
-            {
-                //var p = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                using (StreamWriter stream = File.AppendText(file.FullName))
-                    LogWriteMessage(model, stream);
-            }
+            var lastFile = directory.GetFiles().OrderByDescending(file=>file.LastWriteTime).FirstOrDefault();
+            if (lastFile is null)
+                return null;
+            return lastFile;
         }
-        public static void LogWrite(string path, string filename, ErrorModel model)
-        {
-            filename = $"{DateTime.Now.ToString("yyyyMMdd")}.txt";
 
-            var dir = ReadOrCreateDirectory(path + "/Error_Logs");
-            var file = ReadOrCreateFile(dir.FullName, filename);
-            if (file.Exists)
+        /// <summary>
+        /// Prepares file for log in the directory according to the configurations.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fileConfig"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static FileInfo PrepareLogFile<T>(Loggers.File fileConfig, T model) where T : class
+        {
+            string path = fileConfig.Path;
+            string maxFileSize = fileConfig.FileSize;
+            string fileFormate = fileConfig.FileFormate;
+
+            string dateStamp = DateTime.Now.ToString("yyyyMMdd");
+            var logName = model.GetType().Name;
+
+            if (logName.Contains("List"))
+                logName = "Audit";
+            else
+                logName = logName.Remove(logName.Length - 5);
+
+            var defaultFileName = $"{logName}_Log_{fileFormate}_{dateStamp}_1.txt";
+
+            var dir = ReadOrCreateDirectory($"{path}/{fileFormate}/{logName}/{dateStamp}");
+
+            var lastCreatedFile = dir.GetLastCreatedFile();
+
+            var fileName = defaultFileName;
+
+            if (lastCreatedFile != null)
             {
-                //var p = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                using (StreamWriter stream = File.AppendText(file.FullName))
-                    LogWriteMessage(model, stream);
+                if (lastCreatedFile.IsFileSizeExceed(maxFileSize))
+                    fileName = GetNewFileName(lastCreatedFile.Name);
+                else
+                    fileName = lastCreatedFile.Name;
             }
-        }
-        public static void LogWrite(string path, string filename, SqlModel model)
-        {
-            filename = $"{DateTime.Now.ToString("yyyyMMdd")}.txt";
 
-            var dir = ReadOrCreateDirectory(path + "/Query_Logs");
-            var file = ReadOrCreateFile(dir.FullName, filename);
-            if (file.Exists)
+            var file = ReadOrCreateFile(dir.FullName, fileName);
+
+            return file;
+        }
+
+        /// <summary>
+        /// Check whether a file size is exceeded more than maxSize or not.
+        /// </summary>
+        /// <param name="fileInfo"></param>
+        /// <param name="maxSizeInMb"></param>
+        /// <returns></returns>
+        public static bool IsFileSizeExceed(this FileInfo fileInfo, string maxSizeInMb)
+        {
+            if (fileInfo.Length > maxSizeInMb.ToBytes())
             {
-                //var p = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                using (StreamWriter stream = File.AppendText(file.FullName))
-                    LogWriteMessage(model, stream);
+                return true;
             }
+            return false;
         }
-        public static void LogWrite(string path, string filename, List<AuditModel> models)
-        {
-            filename = $"{DateTime.Now.ToString("yyyyMMdd")}.txt";
 
-            var dir = ReadOrCreateDirectory(path + "/Audit_Logs");
-            var file = ReadOrCreateFile(dir.FullName, filename);
+        /// <summary>
+        /// Converts megabytes to bytes. Filesize formate should be "%MB"
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static int ToBytes(this string filesize)
+        {
+            filesize = filesize.Remove(filesize.Length - 2);
+            var mbInNumber = int.Parse(filesize);
+            return mbInNumber * 1024 * 1024;
+        }
+
+        /// <summary>
+        /// Generate log files according to the configurations
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fileConfig"></param>
+        /// <param name="model"></param>
+        public static void LogWrite<T>(Loggers.File fileConfig, T model) where T : class
+        {
+            var file = PrepareLogFile(fileConfig, model);
+
             if (file.Exists)
             {
-                //var p = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                using (StreamWriter stream = File.AppendText(file.FullName))
+                using (StreamWriter writer = System.IO.File.AppendText(file.FullName))
                 {
-                    foreach (var model in models) { LogWriteMessage(model, stream); }
+                    var message = "";
+                    if (fileConfig.FileFormate == "JSON")
+                        message = PrepareMessageForJSONFormate(model);
+                    else
+                        message = PrepareMessageForTextFormate(model);
 
+                    writer.WriteLine(message);
                 }
             }
         }
-        public static void LogWrite(string path, string filename, AuditModel model)
-        {
-            filename = $"{DateTime.Now.ToString("yyyyMMdd")}.txt";
 
-            var dir = ReadOrCreateDirectory(path + "/Audit_Logs");
-            var file = ReadOrCreateFile(dir.FullName, filename);
-            if (file.Exists)
-            {
-                //var p = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                using (StreamWriter stream = File.AppendText(file.FullName))
-                    LogWriteMessage(model, stream);
-            }
+        /// <summary>
+        /// Return a header string for file.
+        /// </summary>
+        /// <param name="statusCode"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static string HeaderAppender(string statusCode, string url)
+        {
+            var message = "----------------------------------------------------------------------------------\n";
+            message = message + ($"[Request: {DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()}] {statusCode} {url}\n");
+
+            return message;
+        }
+        public static string HeaderAppender(string logType)
+        {
+            var message = "----------------------------------------------------------------------------------\n";
+            message = message + ($"{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss zz")} [{logType}] ");
+
+            return message;
+        }
+        /// <summary>
+        /// Return a footer string to file.
+        /// </summary>
+        /// <returns></returns>
+        public static string FooterAppender()
+        {
+            var message = "\n----------------------------------------------------------------------------------";
+
+            return message;
         }
 
-        public static void LogWriteMessage(RequestModel model, TextWriter txtWriter)
+        /// <summary>
+        /// Increment the file number and return a new file name according to the last file name
+        /// </summary>
+        /// <param name="lastFileName"></param>
+        /// <returns></returns>
+        public static string GetNewFileName(string lastFileName)
         {
-            try
-            {
-                txtWriter.WriteLine("----------------------------------------------------------------------------------");
-                txtWriter.WriteLine("\r\n[Request: {0} {1}] {2} {3}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), model.StatusCode, model.Url);
-                txtWriter.WriteLine("UserId: {0}", model.UserId);
-                txtWriter.WriteLine("Application: {0}", model.Application);
-                txtWriter.WriteLine("IpAddress: {0}", model.IpAddress);
-                txtWriter.WriteLine("Version: {0}", model.Version);
-                txtWriter.WriteLine("Host: {0}", model.Host);
-                txtWriter.WriteLine("Url: {0}", model.Url);
-                txtWriter.WriteLine("Source: {0}", model.Source);
-                txtWriter.WriteLine("Form: {0}", model.Form);
-                txtWriter.WriteLine("Body: {0}", model.Body);
-                txtWriter.WriteLine("Response: {0}", model.Response);
-                txtWriter.WriteLine("RequestHeader: {0}", model.RequestHeaders);
-                txtWriter.WriteLine("ResponseHeader: {0}", model.ResponseHeaders);
-                txtWriter.WriteLine("Scheme: {0}", model.Scheme);
-                txtWriter.WriteLine("TraceId: {0}", model.TraceId);
-                txtWriter.WriteLine("Protocol: {0}", model.Proctocol);
-                txtWriter.WriteLine("UrlReferrer: {0}", model.UrlReferrer);
-                txtWriter.WriteLine("Area: {0}", model.Area);
-                txtWriter.WriteLine("ControllerName: {0}", model.ControllerName);
-                txtWriter.WriteLine("ActionName: {0}", model.ActionName);
-                txtWriter.WriteLine("ExecutionDuration: {0}", model.ExecutionDuration);
-                txtWriter.WriteLine("StatusCode: {0}", model.StatusCode);
-                txtWriter.WriteLine("AppStatusCode: {0}", model.AppStatusCode);
-                txtWriter.WriteLine("----------------------------------------------------------------------------------");
-            }
-            catch (Exception ex)
-            {
-            }
+            var extension = lastFileName.Split('.')[1];
+            var lastFileNameWithoutExtension = lastFileName.Split('.')[0];
+
+            var splitedStrings = lastFileNameWithoutExtension.Split('_');
+            var numberString = splitedStrings[4];
+            var number = int.Parse(numberString);
+            number += 1;
+            numberString = number.ToString();
+            splitedStrings[4] = numberString;
+
+            var newFileName = string.Join("_", splitedStrings) + '.' + extension;
+
+            return newFileName;
         }
-        public static void LogWriteMessage(ErrorModel model, TextWriter txtWriter)
+        public static string AddLine(this string mainString, string toAdd)
         {
-            try
-            {
-                txtWriter.WriteLine("----------------------------------------------------------------------------------");
-                txtWriter.WriteLine("\r\n[Request: {0} {1}] {2} {3}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), model.StatusCode, model.Url);
-                txtWriter.WriteLine("UserId: {0}", model.UserId);
-                txtWriter.WriteLine("Application: {0}", model.Application);
-                txtWriter.WriteLine("IpAddress: {0}", model.IpAddress);
-                txtWriter.WriteLine("Version: {0}", model.Version);
-                txtWriter.WriteLine("Host: {0}", model.Host);
-                txtWriter.WriteLine("Url: {0}", model.Url);
-                txtWriter.WriteLine("Source: {0}", model.Source);
-                txtWriter.WriteLine("Form: {0}", model.Form);
-                txtWriter.WriteLine("Body: {0}", model.Body);
-                txtWriter.WriteLine("Response: {0}", model.Response);
-                txtWriter.WriteLine("RequestHeader: {0}", model.RequestHeaders);
-                txtWriter.WriteLine("ResponseHeader: {0}", model.ResponseHeaders);
-                txtWriter.WriteLine("Scheme: {0}", model.Scheme);
-                txtWriter.WriteLine("TraceId: {0}", model.TraceId);
-                txtWriter.WriteLine("Protocol: {0}", model.Proctocol);
-                txtWriter.WriteLine("Errors: {0}", model.Errors);
-                txtWriter.WriteLine("StatusCode: {0}", model.StatusCode);
-                txtWriter.WriteLine("AppStatusCode: {0}", model.AppStatusCode);
-                txtWriter.WriteLine("Message: {0}", model.Message);
-                txtWriter.WriteLine("MessageDetails: {0}", model.MessageDetails);
-                txtWriter.WriteLine("StackTrace: {0}", model.StackTrace);
-                txtWriter.WriteLine("CreatedDateUtc: {0}", DateTime.UtcNow);
-                txtWriter.WriteLine("----------------------------------------------------------------------------------");
-            }
-            catch (Exception ex)
-            {
-            }
+            mainString = mainString + "\n" + toAdd;
+
+            return mainString;
         }
-        public static void LogWriteMessage(SqlModel model, TextWriter txtWriter)
+        public static string PrepareMessageForTextFormate<T>(T model) where T : class
         {
-            try
+
+            var properites = model.GetProperties();
+            var statusCode = "";
+            var url = "";
+            string message = "";
+
+            properites.ForEach(prop =>
             {
-                txtWriter.WriteLine("----------------------------------------------------------------------------------");
-                txtWriter.WriteLine("\r\n[Request: {0} {1}] {2}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString(), model.Url);
-                txtWriter.WriteLine("UserId: {0}", model.UserId);
-                txtWriter.WriteLine("ApplicationName: {0}", model.ApplicationName);
-                txtWriter.WriteLine("IpAddress: {0}", model.IpAddress);
-                txtWriter.WriteLine("Version: {0}", model.Version);
-                txtWriter.WriteLine("Host: {0}", model.Host);
-                txtWriter.WriteLine("Url: {0}", model.Url);
-                txtWriter.WriteLine("Source: {0}", model.Source);
-                txtWriter.WriteLine("Scheme: {0}", model.Scheme);
-                txtWriter.WriteLine("TraceId: {0}", model.TraceId);
-                txtWriter.WriteLine("Protocol: {0}", model.Proctocol);
-                txtWriter.WriteLine("UrlReferrer: {0}", model.UrlReferrer);
-                txtWriter.WriteLine("Area: {0}", model.Area);
-                txtWriter.WriteLine("ControllerName: {0}", model.ControllerName);
-                txtWriter.WriteLine("ActionName: {0}", model.ActionName);
-                txtWriter.WriteLine("ClassName: {0}", model.ClassName);
-                txtWriter.WriteLine("MethodName: {0}", model.MethodName);
-                txtWriter.WriteLine("QueryType: {0}", model.QueryType);
-                txtWriter.WriteLine("Query: {0}", model.Query);
-                txtWriter.WriteLine("Response: {0}", model.Response);
-                txtWriter.WriteLine("Response: {0}", model.Duration);
-                txtWriter.WriteLine("Message: {0}", model.Message);
-                txtWriter.WriteLine("Connection: {0}", model.Connection);
-                txtWriter.WriteLine("Command: {0}", model.Command);
-                txtWriter.WriteLine("Event: {0}", model.Event);
-                txtWriter.WriteLine("CreatedDateUtc: {0}", DateTime.UtcNow);
-                txtWriter.WriteLine("----------------------------------------------------------------------------------");
-            }
-            catch (Exception ex)
+                if (prop.Name == "StatusCode")
+                    statusCode = prop.GetValue(model).ToString();
+
+                if (prop.Name == "Url")
+                    url = prop.GetValue(model).ToString();
+            });
+
+
+            message = message.AddLine(HeaderAppender(statusCode, url));
+
+            foreach (var prop in properites)
             {
+                message = message.AddLine($"{prop.Name}: {prop.GetValue(model)}");
             }
+
+            message = message.AddLine(FooterAppender());
+
+            return message;
+
         }
-        public static void LogWriteMessage(AuditModel model, TextWriter txtWriter)
+        public static string PrepareMessageForJSONFormate<T>(T model) where T : class
         {
-            try
-            {
-                txtWriter.WriteLine("----------------------------------------------------------------------------------");
-                txtWriter.WriteLine("\r\n[Request: {0} {1}]", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
-                txtWriter.WriteLine("UserId: {0}", model.UserId);
-                txtWriter.WriteLine("Type: {0}", model.Type);
-                txtWriter.WriteLine("TableName: {0}", model.TableName);
-                txtWriter.WriteLine("DateTime: {0}", model.DateTime);
-                txtWriter.WriteLine("OldValues: {0}", model.OldValues);
-                txtWriter.WriteLine("NewValues: {0}", model.NewValues);
-                txtWriter.WriteLine("AffectedColumns: {0}", model.AffectedColumns);
-                txtWriter.WriteLine("PrimaryKey: {0}", model.PrimaryKey);
-                txtWriter.WriteLine("CreatedBy: {0}", model.CreatedBy);
-                txtWriter.WriteLine("CreatedDateUtc: {0}", model.CreatedDateUtc);
-                txtWriter.WriteLine("UpdatedBy: {0}", model.UpdatedBy);
-                txtWriter.WriteLine("UpdatedDateUtc: {0}", DateTime.UtcNow);
-                txtWriter.WriteLine("----------------------------------------------------------------------------------");
-            }
-            catch (Exception ex)
-            {
-            }
+            var jsonText = model.ToPrettyJson();
+            var logType = model.GetType().Name;
+            if (logType.Contains("List"))
+                logType = "Audit";
+            else
+                logType = logType.Remove(logType.Length - 5).ToLower();
+
+            jsonText = HeaderAppender(logType)+jsonText+FooterAppender();
+
+            return jsonText;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace WebApp.Sql.Configurations
     {
         public static void AddDbContextDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<SqlQueryInterceptor>();
+            //services.AddTransient<SqlQueryInterceptor>();
 
             var connectionString = configuration.GetConnectionString("WebAppConnection");
             services.AddDbContext<WebAppContext>((provider, options) =>
@@ -21,7 +21,7 @@ namespace WebApp.Sql.Configurations
                 options.LogTo(Console.WriteLine);
                 options.UseSqlServer(connectionString);
 
-                options.AddInterceptors(provider.GetRequiredService<SqlQueryInterceptor>());
+                //options.AddInterceptors(provider.GetRequiredService<SqlQueryInterceptor>());
             });
             services.AddDatabaseDeveloperPageExceptionFilter();
             services

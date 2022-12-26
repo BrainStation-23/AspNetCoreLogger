@@ -31,9 +31,6 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(ErrorModel errorModel)
         {
-            if (LogOptionExtension.SkipErrorLog(errorModel, _logOptions))
-                return;
-
             errorModel = errorModel.PrepareErrorModel(_logOptions);
 
             var query = @"INSERT INTO [dbo].[ExceptionLogs]

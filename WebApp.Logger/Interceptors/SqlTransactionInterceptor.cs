@@ -18,15 +18,12 @@ namespace WebApp.Logger.Interceptors
     {
         private readonly IHttpContextAccessor Context;
         private readonly ISqlLogRepository SqlLogRepository;
-        private readonly LogOption _logOption;
 
         public SqlTransactionInterceptor(IHttpContextAccessor context,
-            ISqlLogRepository sqlLogRepository,
-            IOptions<LogOption> logOption)
+            ISqlLogRepository sqlLogRepository)
         {
             Context = context;
             SqlLogRepository = sqlLogRepository;
-            _logOption = logOption.Value;
         }
 
         public override async ValueTask<InterceptionResult> TransactionCommittingAsync(DbTransaction transaction,
@@ -34,18 +31,17 @@ namespace WebApp.Logger.Interceptors
             InterceptionResult result,
             CancellationToken cancellationToken = default)
         {
-            //await ManipulateCommandAsync(command, eventData);
+            await ManipulateCommandAsync(transaction, eventData);
             return result;
         }
 
         private async Task ManipulateCommandAsync(DbTransaction transaction, TransactionEventData eventData)
         {
-            if (_logOption.LogType.Contains(LogType.Sql.ToString()))
-                return;
 
             var context = Context.HttpContext;
             var model = new SqlModel
             {
+                Source = "Transaction",
                 ApplicationName = "",
                 UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null,
                 IpAddress = context.GetIpAddress(),

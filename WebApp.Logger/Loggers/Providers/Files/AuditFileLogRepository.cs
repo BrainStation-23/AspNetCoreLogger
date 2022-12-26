@@ -1,12 +1,8 @@
-﻿using Dapper;
-using MassTransit.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebApp.Common.Serialize;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Sqls;
@@ -17,7 +13,7 @@ namespace WebApp.Logger.Loggers.Repositories
     {
         private readonly DapperContext _dapper;
         private readonly ILogger<RouteLogRepository> _logger;
-        private readonly LogOption _logOption;
+        private readonly LogOption _logOptions;
 
         public AuditFileLogRepository(DapperContext dapper,
             ILogger<RouteLogRepository> logger,
@@ -25,31 +21,33 @@ namespace WebApp.Logger.Loggers.Repositories
         {
             _dapper = dapper;
             _logger = logger;
-            _logOption = logOption.Value;
+            _logOptions = logOption.Value;
         }
 
         public async Task AddAsync(AuditEntry auditEntry)
         {
-            var fileConfig = _logOption.Provider.File;
-            var auditModel = auditEntry.ToAuditModel();
+            var fileConfig = _logOptions.Provider.File;
+
             try
             {
-                FileExtension.LogWrite(fileConfig.Path, null, auditModel);
+                var auditModel = auditEntry.ToAuditModel();
+                auditModel = auditModel.PrepareAuditModel(_logOptions);
+                FileExtension.LogWrite(fileConfig, auditModel);
             }
             catch (Exception exception)
             {
                 _logger.LogError(nameof(AuditFileLogRepository), exception);
             }
         }
-        
 
         public async Task AddAsync(List<AuditEntry> auditEntries)
         {
-            var fileConfig = _logOption.Provider.File;
+            var fileConfig = _logOptions.Provider.File;
             try
             {
                 var auditModels = auditEntries.ToAuditModel(false);
-                FileExtension.LogWrite(fileConfig.Path, null, auditModels);
+                auditModels = auditModels.PrepareAuditModel(_logOptions);
+                FileExtension.LogWrite(fileConfig, auditModels);
             }
             catch (Exception exception)
             {
@@ -58,28 +56,9 @@ namespace WebApp.Logger.Loggers.Repositories
         }
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
-            dynamic auditLogs;
-            var query = @"SELECT * FROM [dbo].[AuditLogs]
-                            ORDER BY [Id] DESC
-                            OFFSET @Offset ROWS 
-                            FETCH NEXT  @Next   ROWS ONLY";
+            dynamic routeLogs = null;
 
-            try
-            {
-                using (var connection = _dapper.CreateConnection())
-                {
-                    var auditLogsEntities = await connection.QueryAsync(query, pager);
-                    var auditLogUnescapeString = JsonSerializeExtentions.ToJson(auditLogsEntities).JsonUnescaping();
-                    auditLogs = JArray.Parse(auditLogUnescapeString);
-                }
-
-                return auditLogs;
-            }
-            catch (Exception exception)
-            {
-                _logger.LogError(nameof(RouteLogRepository), exception);
-                throw;
-            }
+            return routeLogs;
         }
     }
 }

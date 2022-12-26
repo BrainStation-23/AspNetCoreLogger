@@ -16,7 +16,7 @@ namespace WebApp.Logger.Loggers.Repositories
     {
         private readonly DapperContext _dapper;
         private readonly ILogger<SqlLogRepository> _logger;
-        private readonly LogOption _logOption;
+        private readonly LogOption _logOptions;
 
         public SqlFileLogRepository(DapperContext dapper,
             ILogger<SqlLogRepository> logger,
@@ -24,7 +24,7 @@ namespace WebApp.Logger.Loggers.Repositories
         {
             _dapper = dapper;
             _logger = logger;
-            _logOption = logOption.Value;
+            _logOptions = logOption.Value;
         }
 
         public async Task AddAsync(SqlModel sqlModel)
@@ -32,11 +32,12 @@ namespace WebApp.Logger.Loggers.Repositories
             if (sqlModel.Url.Contains("/Log/"))
                 return;
 
-            var fileConfig = _logOption.Provider.File;
+            var fileConfig = _logOptions.Provider.File;
 
             try
             {
-                FileExtension.LogWrite(fileConfig.Path, null, sqlModel);
+                sqlModel = sqlModel.PrepareSqlModel(_logOptions);
+                FileExtension.LogWrite(fileConfig, sqlModel);
             }
             catch (Exception exception)
             {
@@ -46,28 +47,9 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
-            dynamic sqlLogs;
-            var query = @"SELECT * FROM [dbo].[SqlLogs]
-                            ORDER BY [Id] DESC
-                            OFFSET @Offset ROWS 
-                            FETCH NEXT  @Next   ROWS ONLY";
+            dynamic routeLogs = null;
 
-            try
-            {
-                using (var connection = _dapper.CreateConnection())
-                {
-                    var sqlLogsEntities = await connection.QueryAsync(query, pager);
-                    var sqlLogUnescapeString =JsonSerializeExtentions.ToJson(sqlLogsEntities).JsonUnescaping();
-                    sqlLogs = JArray.Parse(sqlLogUnescapeString);
-                }
-
-                return sqlLogs;
-            }
-            catch (Exception exception)
-            {
-                _logger.LogError(nameof(SqlLogRepository), exception);
-                throw;
-            }
+            return routeLogs;
         }
     }
 }

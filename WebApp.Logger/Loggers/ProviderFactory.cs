@@ -25,9 +25,9 @@ namespace WebApp.Logger.Loggers
                 case "file":
                     log = new FileProvider(_serviceProvider);
                     break;
-                //case ProviderType.MongoDb:
-                //    log = new SqlProvider(_serviceProvider);
-                //    break;
+                case "mongo":
+                    log = new MongoDbProvider(_serviceProvider);
+                    break;
                 //case ProviderType.CosmosDb:
                 //    log = new SqlProvider(_serviceProvider);
                 //    break;
