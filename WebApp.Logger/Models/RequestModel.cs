@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 namespace WebApp.Logger.Models
 {
@@ -35,5 +36,6 @@ namespace WebApp.Logger.Models
 
         public HttpStatusCode StatusCode { get; set; }
         public string AppStatusCode { get; set; }
+        public DateTime? CreatedDateUtc { get; set; }
     }
 }

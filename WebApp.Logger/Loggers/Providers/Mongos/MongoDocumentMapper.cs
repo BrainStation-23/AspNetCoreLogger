@@ -38,7 +38,7 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Form = model.Form,
                 Body = model.Body,
                 Response = model.Response,
-                RequestHeaders = model.ResponseHeaders,
+                RequestHeaders = model.RequestHeaders,
                 ResponseHeaders = model.ResponseHeaders,
                 Scheme = model.Scheme,
                 TraceId = model.TraceId,

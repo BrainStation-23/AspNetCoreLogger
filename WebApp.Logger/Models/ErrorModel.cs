@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace WebApp.Logger.Models
@@ -28,5 +29,6 @@ namespace WebApp.Logger.Models
         public string Message { get; set; }
         public string MessageDetails { get; set; }
         public string StackTrace { get; set; }
+        public DateTime? CreatedDateUtc { get; set; }
     }
 }

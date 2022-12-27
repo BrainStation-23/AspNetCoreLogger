@@ -29,6 +29,6 @@ namespace WebApp.Logger.Models
         public string Response { get; set; }
         public double Duration { get; set; }
         public string Message { get; set; }
-        public DateTime CreatedDateUtc { get; set; } = DateTime.UtcNow;
+        public DateTime? CreatedDateUtc { get; set; } = DateTime.UtcNow;
     }
 }

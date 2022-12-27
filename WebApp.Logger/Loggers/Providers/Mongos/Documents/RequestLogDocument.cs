@@ -12,9 +12,7 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
         public RequestLogDocument()
         {
             Id = ObjectId.GenerateNewId();
-            CreatedDateUtc = Id.CreationTime;
         }
         public ObjectId Id { get; set; }
-        public DateTime? CreatedDateUtc { get; set; }
     }
 }

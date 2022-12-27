@@ -14,6 +14,5 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
             CreatedDateUtc = Id.CreationTime;
         }
         public ObjectId Id { get; set; }
-        public DateTime? CreatedDateUtc { get; set; }
     }
 }
