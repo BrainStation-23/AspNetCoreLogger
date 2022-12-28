@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /coveragereport
+/WebApp/wwwroot/logs/20221226

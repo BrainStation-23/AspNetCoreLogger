@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using WebApp.Common.Serialize;
 using WebApp.Logger.Providers.Sqls;
 using WebApp.Logger.Models;
+using WebApp.Logger.Extensions;
+using Microsoft.Extensions.Options;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
@@ -16,12 +18,15 @@ namespace WebApp.Logger.Loggers.Repositories
     {
         private readonly DapperContext _dapper;
         private readonly ILogger<ExceptionLogRepository> _logger;
+        private readonly LogOption _logOptions;
 
         public ExceptionFileLogRepository(DapperContext dapper,
-            ILogger<ExceptionLogRepository> logger)
+            ILogger<ExceptionLogRepository> logger,
+            IOptions<LogOption> logOption)
         {
             _dapper = dapper;
             _logger = logger;
+            _logOptions = logOption.Value;
         }
 
         public async Task AddAsync(ErrorModel errorModel)
@@ -29,87 +34,13 @@ namespace WebApp.Logger.Loggers.Repositories
             if (errorModel.Url.Contains("/Log/"))
                 return;
 
-            var createdDateUtc = DateTime.UtcNow.ToString();
-            var query = @"INSERT INTO [dbo].[ExceptionLogs]
-                               ([UserId]
-                               ,[ApplicationName]
-                               ,[IpAddress]
-                               ,[Version]
-                               ,[Host]
-                               ,[Url]
-                               ,[Source]
-                               ,[Form]
-                               ,[Body]
-                               ,[Response]
-                               ,[RequestHeaders]
-                               ,[ResponseHeaders]
-                               ,[ErrorCode]
-                               ,[Scheme]
-                               ,[TraceId]
-                               ,[Protocol]
-                               ,[Errors]
-                               ,[StatusCode]
-                               ,[AppStatusCode]
-                               ,[Message]
-                               ,[MessageDetails]
-                               ,[StackTrace]
-                               ,[CreatedDateUtc] )
-                         VALUES
-                               ( @UserId
-                               , @ApplicationName
-                               , @IpAddress
-                               , @Version
-                               , @Host
-                               , @Url
-                               , @Source
-                               , @Form
-                               , @Body
-                               , @Response
-                               , @RequestHeaders
-                               , @ResponseHeaders
-                               , @ErrorCode
-                               , @Scheme
-                               , @TraceId
-                               , @Protocol
-                               , @Errors
-                               , @StatusCode
-                               , @AppStatusCode
-                               , @Message
-                               , @MessageDetails
-                               , @StackTrace
-                               , @CreatedDateUtc)";
+            var fileConfig = _logOptions.Provider.File;
 
             try
             {
-                using (var connection = _dapper.CreateConnection())
-                {
-                    await connection.ExecuteAsync(query, new
-                    {
-                        UserId = errorModel.UserId,
-                        ApplicationName = errorModel.Application,
-                        IpAddress = errorModel.IpAddress,
-                        Version = errorModel.Version,
-                        Host = errorModel.Host,
-                        Url = errorModel.Url,
-                        Source = errorModel.Source,
-                        Form = errorModel.Form,
-                        Body = errorModel.Body,
-                        Response = errorModel.Response,
-                        RequestHeaders = errorModel.RequestHeaders,
-                        ResponseHeaders = errorModel.ResponseHeaders,
-                        ErrorCode = errorModel.ErrorCode,
-                        Scheme = errorModel.Scheme,
-                        TraceId = errorModel.TraceId,
-                        Protocol = errorModel.Proctocol,
-                        Errors = JsonConvert.SerializeObject(errorModel.Errors),
-                        StatusCode = ((int)errorModel.StatusCode).ToString(),
-                        AppStatusCode = errorModel.AppStatusCode,
-                        Message = errorModel.Message,
-                        MessageDetails = errorModel.MessageDetails,
-                        StackTrace = errorModel.StackTrace,
-                        CreatedDateUtc = createdDateUtc
-                    });
-                }
+                errorModel = errorModel.PrepareErrorModel(_logOptions);
+
+                FileExtension.LogWrite(fileConfig, errorModel);
             }
             catch (Exception exception)
             {
@@ -119,36 +50,9 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
-            dynamic logs;
+            dynamic routeLogs = null;
 
-            var query = @"SELECT * FROM [dbo].[ExceptionLogs]
-                            ORDER BY [Id] DESC
-                            OFFSET @Offset ROWS 
-                            FETCH NEXT @Next ROWS ONLY";
-
-            var exceptionLogUnescapeString = string.Empty;
-            try
-            {
-                using (var connection = _dapper.CreateConnection())
-                {
-                    var exceptionLogs = await connection.QueryAsync<ExceptionLogVm>(query, pager);
-
-                    exceptionLogs.ToList().ForEach(f =>
-                    {
-                        f.StackTrace = JsonConvert.SerializeObject(f.StackTrace);
-                    });
-                    exceptionLogUnescapeString = exceptionLogs.ToJson();
-                    var unescape = exceptionLogUnescapeString.JsonUnescaping();
-                    logs = JArray.Parse(unescape);
-                }
-
-                return logs;
-            }
-            catch (Exception exception)
-            {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
-                throw;
-            }
+            return routeLogs;
         }
     }
 }

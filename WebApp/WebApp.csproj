@@ -72,6 +72,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\images\profiles\" />
+    <Folder Include="wwwroot\logs\" />
   </ItemGroup>
 
 </Project>

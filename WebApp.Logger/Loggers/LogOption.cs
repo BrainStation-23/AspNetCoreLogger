@@ -87,6 +87,7 @@ namespace WebApp.Logger.Loggers
         public string FileSize { get; set; }
         public string Path { get; set; }
         public string Filename { get; set; }
+        public string FileFormate { get; set; }
     }
 
 

@@ -30,6 +30,14 @@ namespace WebApp.Logger.Extensions
             });
         }
 
+        public static string ToPrettyJson(this object obj)
+        {
+            return JsonConvert.SerializeObject(obj, Formatting.Indented, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+        }
+
         public static T ToModel<T>(this string str)
         {
             return JsonConvert.DeserializeObject<T>(str, new JsonSerializerSettings
@@ -97,12 +105,13 @@ namespace WebApp.Logger.Extensions
 
             var data = obj.ToJson()
                 .SkipIt(skipColumns)
-            .MaskIt(maskColumns);
+                .MaskIt(maskColumns);
 
             return JsonConvert.DeserializeObject(data, new JsonSerializerSettings
             {
                 DateParseHandling = DateParseHandling.None
             });
         }
+
     }
 }
