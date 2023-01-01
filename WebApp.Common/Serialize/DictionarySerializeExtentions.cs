@@ -28,16 +28,28 @@ namespace WebApp.Common.Serialize
             if (obj == null)
                 return null;
 
-            var dict = obj.ToJson().ToModel<Dictionary<string, dynamic>>();
-
-            foreach (var item in dict)
+            try
             {
-                if (item.Value is not null)
-                {
-                    dict[item.Key] = CheckDictionaryProperties(item.Value);
-                }
+                var a= obj.ToJson().ToModel<List<dynamic>>().ArrayToDynamicDictionary();
+
+                return a;
             }
-            return dict;
+            catch(Exception ex) { 
+            try
+            {
+                var dict = obj.ToJson().ToModel<Dictionary<string, dynamic>>();
+
+                foreach (var item in dict)
+                {
+                    if (item.Value is not null)
+                    {
+                        dict[item.Key] = CheckDictionaryProperties(item.Value);
+                    }
+                }
+                return dict;
+            }
+            catch (Exception exp) { return null; }
+            }
         }
 
         public static dynamic CheckDictionaryProperties(dynamic value)
@@ -54,21 +66,25 @@ namespace WebApp.Common.Serialize
             }
             else if (type.Name.ToLower().Contains("jarray"))
             {
-                List<dynamic> dynamicList = new List<dynamic> { };
-                dynamic v = null ;
-
-                foreach (var val in value)
-                {
-                    v = CheckDictionaryProperties(val); 
-                    dynamicList.Add(v);
-                }
-
-                return dynamicList;
+                return ArrayToDynamicDictionary(value);
             }
             else
             {
                 return value;
             }
+        }
+
+        public static dynamic ArrayToDynamicDictionary(this List<dynamic> values)
+        {
+            Dictionary<string,dynamic> Dict = new Dictionary<string, dynamic>();
+            int pos = 0;
+
+            foreach (var val in values)
+            {
+                Dict.Add(pos.ToString(),CheckDictionaryProperties(val));
+                pos++;
+            }
+            return Dict;
         }
     }
 }
