@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WebApp.Service.Contract.Models.Blogs
 {
-    public class PostModel : MasterModel
+    public class PostBulkModel : MasterModel
     {
         public long BlogId { get; set; }
         public string Title { get; set; }
@@ -12,11 +15,8 @@ namespace WebApp.Service.Contract.Models.Blogs
         public bool IsPublished { get; set; }
         public DateTime? PublishedFromDateUtc { get; set; }
 
-        public BlogModel Blog { get; set; }
-
-        public IList<CommentModel> Comments { get; set; }
-        public IList<PostTagModel> PostTags { get; set; }
-        public IList<LikeModel> User { get; set; }
-        public IList<TagModel> Tags { get; set; }
+        public List<CommentBulkModel> Comments { get; set; }
+        public List<LikeBulkModel> Users { get; set; }
+        public List<TagBulkModel> Tags { get; set; }
     }
 }
