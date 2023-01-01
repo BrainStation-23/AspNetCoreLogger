@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Linq;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
@@ -328,6 +329,23 @@ namespace WebApp.Logger.Loggers
             sqlModel.Command = sqlModel.Command == null ? null : JsonConvert.SerializeObject(sqlModel.Command);
 
             return sqlModel;
+        }
+        public static RequestModel DeserializeRequestModel(this RequestModel requestModel)
+        {
+            requestModel.Body = requestModel.Body == null ? null : JsonConvert.DeserializeObject<object>(requestModel.Body.ToString());
+            requestModel.Response = requestModel.Response == null ? null : JsonConvert.DeserializeObject<object>(requestModel.Response.ToString());
+            requestModel.RequestHeaders = requestModel.RequestHeaders == null ? null : JsonConvert.DeserializeObject<object>(requestModel.RequestHeaders.ToString());
+            requestModel.ResponseHeaders = requestModel.ResponseHeaders == null ? null : JsonConvert.DeserializeObject<object>(requestModel.ResponseHeaders.ToString());
+            return requestModel;
+        }
+
+        public static ErrorModel DeserializeErrorModel(this ErrorModel errorModel)
+        {
+            errorModel.Body = errorModel.Body == null ? null : JsonConvert.DeserializeObject<object>(errorModel.Body.ToString());
+            errorModel.Response = errorModel.Response == null ? null : JsonConvert.DeserializeObject<object>(errorModel.Response.ToString());
+            errorModel.RequestHeaders = errorModel.RequestHeaders == null ? null : JsonConvert.DeserializeObject<object>(errorModel.RequestHeaders.ToString());
+            errorModel.ResponseHeaders = errorModel.ResponseHeaders == null ? null : JsonConvert.DeserializeObject<object>(errorModel.ResponseHeaders.ToString());
+            return errorModel;
         }
 
         public static AuditModel PrepareAuditModel(this AuditModel auditModel, LogOption logOptions)

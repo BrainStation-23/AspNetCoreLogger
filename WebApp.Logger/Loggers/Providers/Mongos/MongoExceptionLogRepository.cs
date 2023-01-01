@@ -42,7 +42,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
             //if (errorModel.Url.Contains("/Log/"))
             //    return;
-
+            errorModel = errorModel.DeserializeErrorModel();
             var errorDocument = errorModel.ToDocument();
 
             await _errorRepository.InsertAsync(errorDocument);

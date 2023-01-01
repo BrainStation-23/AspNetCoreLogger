@@ -1,6 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
+using System;
 using System.Collections.Generic;
 using System.Net;
+using WebApp.Common.DataType;
+using WebApp.Common.Serialize;
+using WebApp.Core.Extensions;
+using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Loggers.Providers.Mongos
@@ -15,10 +21,10 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Type = model.Type,
                 TableName = model.TableName,
                 DateTime = model.DateTime,
-                PrimaryKey = model.PrimaryKey,
-                OldValues = model.OldValues,
-                NewValues = model.NewValues,
-                AffectedColumns = model.AffectedColumns,
+                PrimaryKey = model.PrimaryKey.ToDynamicDictionary(),
+                OldValues = model.OldValues.ToDynamicDictionary(),
+                NewValues = model.NewValues.ToDynamicDictionary(),
+                AffectedColumns = model.AffectedColumns.ToDynamicDictionary(),
                 CreatedBy = model.CreatedBy,
                 TraceId = model.TraceId
             };
@@ -36,10 +42,10 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Url = model.Url,
                 Source = model.Source,
                 Form = model.Form,
-                Body = model.Body,
-                Response = model.Response,
-                RequestHeaders = model.RequestHeaders,
-                ResponseHeaders = model.ResponseHeaders,
+                Body = model.Body.ToDynamicDictionary(),
+                Response = model.Response.ToDynamicDictionary(),
+                RequestHeaders = model.RequestHeaders.ToDynamicDictionary(),
+                ResponseHeaders = model.ResponseHeaders.ToDynamicDictionary(),
                 Scheme = model.Scheme,
                 TraceId = model.TraceId,
                 Proctocol = model.Proctocol,
@@ -70,11 +76,11 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Area= model.Area,
                 ControllerName= model.ControllerName,
                 ClassName= model.ClassName,
-                Command= model.Command,
+                Command= model.Command.ToDynamicDictionary(),
                 IpAddress= model.IpAddress,
-                Connection= model.Connection,
+                Connection= model.Connection.ToDynamicDictionary(),
                 Duration= model.Duration,
-                Event= model.Event,
+                Event= model.Event.ToDynamicDictionary(),
                 Host= model.Host,
                 Message= model.Message,
                 MethodName= model.MethodName,
@@ -104,15 +110,15 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Url = model.Url,
                 Source = model.Source,
                 Form = model.Form,
-                Body = model.Body,
-                Response = model.Response,
-                RequestHeaders = model.RequestHeaders,
-                ResponseHeaders = model.ResponseHeaders,
+                Body = model.Body.ToDynamicDictionary(),
+                Response = model.Response.ToDynamicDictionary(),
+                RequestHeaders = model.RequestHeaders.ToDynamicDictionary(),
+                ResponseHeaders = model.ResponseHeaders.ToDynamicDictionary(),
                 ErrorCode = model.ErrorCode,
                 Scheme = model.Scheme,
                 TraceId = model.TraceId,
                 Proctocol = model.Proctocol,
-                Errors = model.Errors,
+                Errors = model.Errors.ToDynamicDictionary(),
                 StatusCode = model.StatusCode,
                 AppStatusCode = model.AppStatusCode,
                 Message = model.Message,
