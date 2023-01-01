@@ -45,14 +45,14 @@ namespace WebApp.Common.Serialize
             if (value == null)
                 return null;
             dynamic output;
-            Type unknown = value.GetType();
-            if (unknown.Name.ToLower().Contains("jobject"))
+            Type type = value.GetType();
+            if (type.Name.ToLower().Contains("jobject"))
             {
-                object unknownobject = value.ToObject<object>();
-                output = unknownobject.ToDynamicDictionary();
+                object obj = value.ToObject<object>();
+                output = obj.ToDynamicDictionary();
                 return output;
             }
-            else if (unknown.Name.ToLower().Contains("jarray"))
+            else if (type.Name.ToLower().Contains("jarray"))
             {
                 List<dynamic> dynamicList = new List<dynamic> { };
                 dynamic v = null ;
@@ -67,7 +67,7 @@ namespace WebApp.Common.Serialize
             }
             else
             {
-                return value.ToString();
+                return value;
             }
         }
     }
