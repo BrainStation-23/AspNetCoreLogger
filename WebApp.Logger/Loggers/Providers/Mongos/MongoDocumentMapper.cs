@@ -21,7 +21,11 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 NewValues = model.NewValues.IdentifyNestedObjects(),
                 AffectedColumns = model.AffectedColumns.IdentifyNestedObjects(),
                 CreatedBy = model.CreatedBy,
-                TraceId = model.TraceId
+                TraceId = model.TraceId,
+                CreatedDateUtc = model.CreatedDateUtc,
+                UpdatedDateUtc= model.DateTime,
+                SchemaName= model.SchemaName,
+                UpdatedBy=model.UpdatedBy
             };
         }
 
