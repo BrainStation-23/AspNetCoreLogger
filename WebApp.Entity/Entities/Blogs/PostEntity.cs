@@ -18,6 +18,6 @@ namespace WebApp.Entity.Entities.Blogs
         public IList<CommentEntity> Comments { get; set; }
         public IList<TagEntity> Tags { get; set; }
         public IList<PostTagEntity> PostTags { get; set; }
-        public IList<LikeEntity> Users { get; set; }
+        public IList<LikeEntity> Likes { get; set; }
     }
 }

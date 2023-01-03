@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20230102064358_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -471,9 +473,22 @@ namespace WebApp.Sql.Migrations
                     b.Property<DateTimeOffset?>("UpdatedDateUtc")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserLoginProvider")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserProviderKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("UserLoginProvider", "UserProviderKey");
 
                     b.ToTable("Likes");
                 });
@@ -632,7 +647,15 @@ namespace WebApp.Sql.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("WebApp.Entity.Entities.Identities.IdentityModel+UserLogin", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserLoginProvider", "UserProviderKey")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Post");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebApp.Service.Contract.Models.Blogs.PostTagEntity", b =>
@@ -676,6 +699,11 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Tags");
 
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("WebApp.Entity.Entities.Identities.IdentityModel+UserLogin", b =>
+                {
+                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("WebApp.Service.Contract.Models.Blogs.TagEntity", b =>

@@ -10,11 +10,8 @@ namespace WebApp.Entity.EntityConfigurations.Blogs
         {
             builder.HasKey(x => x.Id);
 
-            builder.HasKey(sc => new { sc.PostId, sc.UserId });
+            builder.HasOne(bc => bc.Post).WithMany(b => b.Likes).HasForeignKey(bc => bc.PostId);
 
-            builder.HasOne(bc => bc.Post).WithMany(b => b.Users).HasForeignKey(bc => bc.PostId);
-
-            builder.HasOne(bc => bc.User).WithMany(c => c.Posts).HasForeignKey(bc => bc.UserId);
         }
     }
 }

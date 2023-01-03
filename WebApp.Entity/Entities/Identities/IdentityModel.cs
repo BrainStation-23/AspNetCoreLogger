@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using WebApp.Service.Contract.Models.Blogs;
 
 namespace WebApp.Entity.Entities.Identities
 {
@@ -47,7 +45,6 @@ namespace WebApp.Entity.Entities.Identities
             [ForeignKey("User"), Key]
             public override long UserId { get => base.UserId; set => base.UserId = value; }
             public User User { get; set; }
-            public IList<LikeEntity> Posts { get; set; }
         }
 
         [NotMapped]

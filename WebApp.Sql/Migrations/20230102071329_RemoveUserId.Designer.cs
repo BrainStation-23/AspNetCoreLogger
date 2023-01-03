@@ -10,8 +10,8 @@ using WebApp.Sql;
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    [Migration("20230101095843_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230102071329_RemoveUserId")]
+    partial class RemoveUserId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -473,17 +473,9 @@ namespace WebApp.Sql.Migrations
                     b.Property<DateTimeOffset?>("UpdatedDateUtc")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("UserId1")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("Likes");
                 });
@@ -538,6 +530,9 @@ namespace WebApp.Sql.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("PostEntityId")
+                        .HasColumnType("bigint");
+
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
 
@@ -546,28 +541,9 @@ namespace WebApp.Sql.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PostEntityId");
+
                     b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("WebApp.Service.Contract.Models.Users.UserEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserEntity");
                 });
 
             modelBuilder.Entity("WebApp.Entity.Entities.Blogs.PostEntity", b =>
@@ -658,20 +634,13 @@ namespace WebApp.Sql.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WebApp.Service.Contract.Models.Users.UserEntity", "User")
-                        .WithMany("Posts")
-                        .HasForeignKey("UserId1")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("Post");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebApp.Service.Contract.Models.Blogs.PostTagEntity", b =>
                 {
                     b.HasOne("WebApp.Entity.Entities.Blogs.PostEntity", "Post")
-                        .WithMany("Tags")
+                        .WithMany("PostTags")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -687,6 +656,14 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("WebApp.Service.Contract.Models.Blogs.TagEntity", b =>
+                {
+                    b.HasOne("WebApp.Entity.Entities.Blogs.PostEntity", null)
+                        .WithMany("Tags")
+                        .HasForeignKey("PostEntityId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("WebApp.Entity.Entities.Blogs.BlogEntity", b =>
                 {
                     b.Navigation("Posts");
@@ -696,17 +673,14 @@ namespace WebApp.Sql.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("PostTags");
+
                     b.Navigation("Tags");
 
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("WebApp.Service.Contract.Models.Blogs.TagEntity", b =>
-                {
-                    b.Navigation("Posts");
-                });
-
-            modelBuilder.Entity("WebApp.Service.Contract.Models.Users.UserEntity", b =>
                 {
                     b.Navigation("Posts");
                 });

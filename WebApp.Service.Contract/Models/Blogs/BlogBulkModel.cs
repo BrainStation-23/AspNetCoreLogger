@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace WebApp.Service.Contract.Models.Blogs
 {
-    public class BlogBulkModel : MasterModel
+    public class BlogBulkModel
     {
         public string Name { get; set; }
         public string Description { get; set; }
