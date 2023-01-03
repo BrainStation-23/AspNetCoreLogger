@@ -17,8 +17,7 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly LogOption _logOptions;
         public SqlLogRepository(DapperContext dapper,
             ILogger<SqlLogRepository> logger,
-            IOptions<LogOption> logOptions
-            )
+            IOptions<LogOption> logOptions)
         {
             _dapper = dapper;
             _logger = logger;
@@ -88,34 +87,8 @@ namespace WebApp.Logger.Loggers.Repositories
             try
             {
                 using var connection = _dapper.CreateConnection();
-                await connection.ExecuteAsync(query, new
-                {
-                    UserId = sqlModel.UserId,
-                    ApplicationName = sqlModel.ApplicationName,
-                    IpAddress = sqlModel.IpAddress,
-                    Version = sqlModel.Version,
-                    Host = sqlModel.Host,
-                    Url = sqlModel.Url,
-                    Source = sqlModel.Source,
-                    Scheme = sqlModel.Scheme,
-                    TraceId = sqlModel.TraceId,
-                    Protocol = sqlModel.Proctocol,
-                    UrlReferrer = sqlModel.UrlReferrer,
-                    Area = sqlModel.Area,
-                    ControllerName = sqlModel.ControllerName,
-                    ActionName = sqlModel.ActionName,
-                    ClassName = sqlModel.ClassName,
-                    MethodName = sqlModel.MethodName,
-                    QueryType = sqlModel.QueryType,
-                    Query = sqlModel.Query,
-                    Response = sqlModel.Response,
-                    Duration = sqlModel.Duration,
-                    Message = sqlModel.Message,
-                    Connection = sqlModel.Connection,
-                    Command = sqlModel.Command,
-                    Event = sqlModel.Event,
-                    CreatedDateUtc = DateTime.UtcNow
-                });
+                sqlModel = sqlModel.SerializeSqlModel();
+                await connection.ExecuteAsync(query, sqlModel);
             }
             catch (Exception exception)
             {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,14 +16,17 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly DapperContext _dapper;
         private readonly ILogger<RouteLogRepository> _logger;
         private readonly ICosmosDbRepository<AuditLogItem> _auditRepository;
+        private readonly LogOption _logOption;
 
         public CosmosDbAuditLogRepository(DapperContext dapper,
             ILogger<RouteLogRepository> logger,
-            ICosmosDbRepository<AuditLogItem> auditRepository)
+            ICosmosDbRepository<AuditLogItem> auditRepository,
+            IOptions<LogOption> logOptions)
         {
             _dapper = dapper;
             _logger = logger;
             _auditRepository = auditRepository;
+            _logOption = logOptions.Value;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -34,7 +38,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(List<AuditEntry> auditEntries)
         {
-            var auditModels = auditEntries.ToAuditModel(false);
+            var auditModels = auditEntries.ToAuditModel(_logOption);
             var auditItems = auditModels.Select(e => e.ToItem()).ToList();
 
             await _auditRepository.InsertManyAsync(auditItems);

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Common.Serialize;
@@ -20,7 +21,8 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly ILogger<RouteLogRepository> _logger;
         private readonly LogOption _logOption;
         public AuditLogRepository(DapperContext dapper,
-            ILogger<RouteLogRepository> logger, IOptions<LogOption> logOptions)
+            ILogger<RouteLogRepository> logger,
+            IOptions<LogOption> logOptions)
         {
             _dapper = dapper;
             _logger = logger;
@@ -142,9 +144,9 @@ namespace WebApp.Logger.Loggers.Repositories
             try
             {
                 using var connection = _dapper.CreateConnection();
-                var models = auditEntries.ToAuditModel(false);
-
+                var models = auditEntries.ToAuditModel(_logOption);
                 models = models.PrepareAuditModel(_logOption);
+                models = models.SerializeAuditModel();
 
                 await connection.ExecuteAsync(query, models);
             }

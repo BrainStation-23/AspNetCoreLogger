@@ -39,10 +39,16 @@ namespace WebApp.Logger.Loggers
             if (logOptions.ProviderType.ToString().ToLower() == "mongo")
                 services.AddMongoDb(configuration);
 
-
-
             if (logOptions.ProviderType.ToString().ToLower() == "cosmosdb")
                 services.AddCosmosDb(configuration);
+
+            if (logOptions.ProviderType.ToString().ToLower() == "file")
+            {
+                services.AddScoped<IExceptionLogRepository, ExceptionFileLogRepository>();
+                services.AddScoped<IRouteLogRepository, RouteFileLogRepository>();
+                services.AddScoped<IAuditLogRepository, AuditFileLogRepository>();
+                services.AddScoped<ISqlLogRepository, SqlFileLogRepository>();
+            }
 
             //services.AddMongoDb(configuration);
             //services.AddCosmosDb(configuration);

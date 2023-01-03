@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebApp.Logger.Enums;
+using WebApp.Logger.Extensions;
+using WebApp.Logger.Loggers;
 
 namespace WebApp.Logger.Models
 {
@@ -65,6 +67,38 @@ namespace WebApp.Logger.Models
             //    CreatedDateUtc = DateTime.UtcNow,
             //    TraceId = auditEntry.TraceId
             //};
+            //if (objectValue)
+            //    return new AuditModel
+            //    {
+            //        UserId = auditEntry.UserId,
+            //        Type = auditEntry.AuditType.ToString(),
+            //        SchemaName = auditEntry.SchemaName,
+            //        TableName = auditEntry.TableName,
+            //        DateTime = DateTime.Now,
+            //        PrimaryKey = auditEntry.KeyValues,
+            //        OldValues = auditEntry.OldValues,
+            //        NewValues = auditEntry.NewValues,
+            //        AffectedColumns = auditEntry.ChangedColumnNames,
+            //        CreatedBy = 0,
+            //        CreatedDateUtc = DateTime.UtcNow,
+            //        TraceId = auditEntry.TraceId
+            //    };
+            //else
+            //    return new AuditModel
+            //    {
+            //        UserId = auditEntry.UserId,
+            //        Type = auditEntry.AuditType.ToString(),
+            //        SchemaName = auditEntry.SchemaName,
+            //        TableName = auditEntry.TableName,
+            //        DateTime = DateTime.Now,
+            //        PrimaryKey = auditEntry.KeyValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.KeyValues),
+            //        OldValues = auditEntry.OldValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.OldValues),
+            //        NewValues = auditEntry.NewValues.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.NewValues),
+            //        AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames),
+            //        CreatedBy = 0,
+            //        CreatedDateUtc = DateTime.UtcNow,
+            //        TraceId = auditEntry.TraceId
+            //    };
 
             return new AuditModel
             {
@@ -73,18 +107,35 @@ namespace WebApp.Logger.Models
                 SchemaName = auditEntry.SchemaName,
                 TableName = auditEntry.TableName,
                 DateTime = DateTime.Now,
-                PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
+                PrimaryKey = auditEntry.KeyValues,
                 OldValues = auditEntry.OldValues,
                 NewValues = auditEntry.NewValues,
-                AffectedColumns = auditEntry.ChangedColumnNames.Count == 0 ? null : JsonConvert.SerializeObject(auditEntry.ChangedColumnNames),
+                AffectedColumns = auditEntry.ChangedColumnNames,
                 CreatedBy = 0,
                 CreatedDateUtc = DateTime.UtcNow,
                 TraceId = auditEntry.TraceId
             };
         }
 
-        public static List<AuditModel> ToAuditModel(this List<AuditEntry> auditEntry, bool objectValue = true)
+        public static List<AuditModel> ToAuditModel(this List<AuditEntry> auditEntry, LogOption logOption)
         {
+            var objectValue = false;
+            var providerType = logOption.ProviderType.ToEnum(ProviderType.MSSql);
+
+            switch (providerType)
+            {
+                case ProviderType.MSSql:
+                    objectValue = false;
+                    break;
+                case ProviderType.File:
+                case ProviderType.MongoDb:
+                case ProviderType.CosmosDb:
+                    objectValue = true;
+                    break;
+                default:
+                    break;
+            }
+
             return auditEntry.Select(e => e.ToAuditModel(objectValue)).ToList();
         }
     }
