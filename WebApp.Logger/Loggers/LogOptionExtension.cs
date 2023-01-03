@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Linq;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
@@ -329,6 +330,23 @@ namespace WebApp.Logger.Loggers
 
             return sqlModel;
         }
+        public static RequestModel DeserializeRequestModel(this RequestModel requestModel)
+        {
+            requestModel.Body = requestModel.Body == null ? null : JsonConvert.DeserializeObject<object>(requestModel.Body.ToString());
+            requestModel.Response = requestModel.Response == null ? null : JsonConvert.DeserializeObject<object>(requestModel.Response.ToString());
+            requestModel.RequestHeaders = requestModel.RequestHeaders == null ? null : JsonConvert.DeserializeObject<object>(requestModel.RequestHeaders.ToString());
+            requestModel.ResponseHeaders = requestModel.ResponseHeaders == null ? null : JsonConvert.DeserializeObject<object>(requestModel.ResponseHeaders.ToString());
+            return requestModel;
+        }
+
+        public static ErrorModel DeserializeErrorModel(this ErrorModel errorModel)
+        {
+            errorModel.Body = errorModel.Body == null ? null : JsonConvert.DeserializeObject<object>(errorModel.Body.ToString());
+            errorModel.Response = errorModel.Response == null ? null : JsonConvert.DeserializeObject<object>(errorModel.Response.ToString());
+            errorModel.RequestHeaders = errorModel.RequestHeaders == null ? null : JsonConvert.DeserializeObject<object>(errorModel.RequestHeaders.ToString());
+            errorModel.ResponseHeaders = errorModel.ResponseHeaders == null ? null : JsonConvert.DeserializeObject<object>(errorModel.ResponseHeaders.ToString());
+            return errorModel;
+        }
 
         public static AuditModel PrepareAuditModel(this AuditModel auditModel, LogOption logOptions)
         {
@@ -348,11 +366,8 @@ namespace WebApp.Logger.Loggers
             if (ignoreTables.MustContain(auditModel.TableName))
                 return null;
 
-            var oldValues = auditModel.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
-            var newValues = auditModel.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
-
-            //auditModel.OldValues = JsonConvert.SerializeObject(oldValues);
-            //auditModel.NewValues = JsonConvert.SerializeObject(newValues);
+            auditModel.OldValues = auditModel.OldValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
+            auditModel.NewValues = auditModel.NewValues.ToFilter(ignoreColumns.ToArray(), maskColumns.ToArray());
 
             return auditModel;
         }

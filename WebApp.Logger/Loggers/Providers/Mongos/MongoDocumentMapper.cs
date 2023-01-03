@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using WebApp.Common.Serialize;
 using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Loggers.Providers.Mongos
@@ -15,10 +16,10 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Type = model.Type,
                 TableName = model.TableName,
                 DateTime = model.DateTime,
-                PrimaryKey = model.PrimaryKey,
-                OldValues = model.OldValues,
-                NewValues = model.NewValues,
-                AffectedColumns = model.AffectedColumns,
+                PrimaryKey = model.PrimaryKey.IdentifyNestedObjects(),
+                OldValues = model.OldValues.IdentifyNestedObjects(),
+                NewValues = model.NewValues.IdentifyNestedObjects(),
+                AffectedColumns = model.AffectedColumns.IdentifyNestedObjects(),
                 CreatedBy = model.CreatedBy,
                 TraceId = model.TraceId
             };
@@ -36,10 +37,10 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Url = model.Url,
                 Source = model.Source,
                 Form = model.Form,
-                Body = model.Body,
-                Response = model.Response,
-                RequestHeaders = model.RequestHeaders,
-                ResponseHeaders = model.ResponseHeaders,
+                Body = model.Body.IdentifyNestedObjects(),
+                Response = model.Response.IdentifyNestedObjects(),
+                RequestHeaders = model.RequestHeaders.IdentifyNestedObjects(),
+                ResponseHeaders = model.ResponseHeaders.IdentifyNestedObjects(),
                 Scheme = model.Scheme,
                 TraceId = model.TraceId,
                 Proctocol = model.Proctocol,
@@ -70,11 +71,11 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Area= model.Area,
                 ControllerName= model.ControllerName,
                 ClassName= model.ClassName,
-                Command= model.Command,
+                Command= model.Command.IdentifyNestedObjects(),
                 IpAddress= model.IpAddress,
-                Connection= model.Connection,
+                Connection= model.Connection.IdentifyNestedObjects(),
                 Duration= model.Duration,
-                Event= model.Event,
+                Event= model.Event.IdentifyNestedObjects(),
                 Host= model.Host,
                 Message= model.Message,
                 MethodName= model.MethodName,
@@ -104,10 +105,10 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Url = model.Url,
                 Source = model.Source,
                 Form = model.Form,
-                Body = model.Body,
-                Response = model.Response,
-                RequestHeaders = model.RequestHeaders,
-                ResponseHeaders = model.ResponseHeaders,
+                Body = model.Body.IdentifyNestedObjects(),
+                Response = model.Response.IdentifyNestedObjects(),
+                RequestHeaders = model.RequestHeaders.IdentifyNestedObjects(),
+                ResponseHeaders = model.ResponseHeaders.IdentifyNestedObjects(),
                 ErrorCode = model.ErrorCode,
                 Scheme = model.Scheme,
                 TraceId = model.TraceId,
