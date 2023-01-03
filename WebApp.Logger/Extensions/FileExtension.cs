@@ -1,7 +1,9 @@
-﻿using System;
+﻿using GreenPipes.Pipes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Extensions
 {
@@ -261,6 +263,48 @@ namespace WebApp.Logger.Extensions
             jsonText = HeaderAppender(logType) + jsonText + FooterAppender();
 
             return jsonText;
+        }
+
+        public static List<object> GetLogObjectsFromFile(Loggers.File fileConfig, DapperPager pager, string? logName=null)
+        {
+            string path = fileConfig.Path;
+            string fileFormate = fileConfig.FileFormate;
+
+            var directory = ReadOrCreateDirectory(path);
+            var fileFolders = directory.GetDirectories().ToList();
+
+            List<FileInfo> files = new List<FileInfo>();
+
+            foreach (var fileFolder in fileFolders)
+            { 
+                if(logName==null)
+                    files = files.Concat(fileFolder.GetFiles().ToList()).ToList();
+                else
+                    files = files.Concat(fileFolder.GetFiles().Where(f=>f.FullName.ToLower().Contains(logName.ToLower())).ToList()).ToList();
+            }
+            var logs = new List<string>();
+            foreach(var file in files)
+            {
+                logs=logs.Concat(File.ReadAllText(file.FullName).Split(FooterAppender())).ToList();
+            }
+
+            var logObjects = new List<object>();
+            foreach (var log in logs)
+            {
+                var ind = log.IndexOf('{');
+                if (ind < 0) { continue; }
+                var obj = log.Substring(ind);
+                logObjects.Add(obj.ToModel<object>());
+            }
+
+           var a= logObjects.Pagination(pager);
+
+            return a;
+        }
+
+        public static List<object> Pagination(this List<object> list, DapperPager pager)
+        {
+            return list.Skip(pager.PageIndex * pager.PageSize).Take(pager.PageSize).ToList();
         }
     }
 }
