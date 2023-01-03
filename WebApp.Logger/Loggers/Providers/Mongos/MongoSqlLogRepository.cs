@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -54,6 +56,13 @@ namespace WebApp.Logger.Loggers.Repositories
             var sqlDocuments = sqlModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.ToDocument());
 
             await _sqlRepository.InsertManyAsync(sqlDocuments);
+        }
+        public async Task DeleteRetention(DateTime dateTime)
+        {
+            using var connection = _dapper.CreateConnection();
+
+            await connection.ExecuteAsync("delete from SqlLogs where CreatedDateUtc <=" +
+                " dateTime ");
         }
     }
 }

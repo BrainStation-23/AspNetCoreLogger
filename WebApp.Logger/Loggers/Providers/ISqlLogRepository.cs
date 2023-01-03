@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Sqls;
 
@@ -8,5 +9,6 @@ namespace WebApp.Logger.Loggers.Repositories
     {
         Task AddAsync(SqlModel sqlModel);
         Task<dynamic> GetPageAsync(DapperPager pager);
+        Task DeleteRetention(DateTime dateTime);
     }
 }

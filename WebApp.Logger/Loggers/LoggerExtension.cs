@@ -16,6 +16,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
 using WebApp.Logger.Endpoints;
+using System;
+using WebApp.Logger.Extensions;
+
 
 namespace WebApp.Logger.Loggers
 {
@@ -24,7 +27,7 @@ namespace WebApp.Logger.Loggers
         public static void AddDapper(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddLoggerControllers();
-
+            //services.AddHostedService<TimedHostedService>();
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
 
             var logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
