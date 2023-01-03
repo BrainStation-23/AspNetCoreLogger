@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
 using WebApp.Common.Contexts;
 using WebApp.Common.Responses;
 using WebApp.Logger.Extensions;
