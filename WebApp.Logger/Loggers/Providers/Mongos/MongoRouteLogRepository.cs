@@ -42,7 +42,7 @@ namespace WebApp.Logger.Loggers.Repositories
             requestModel = requestModel.PrepareRequestModel(_logOption);
             //if (requestModel.Url.Contains("/Log/"))
             //    return;
-
+            requestModel = requestModel.DeserializeRequestModel();
             var requestDocument = requestModel.ToDocument();
 
             await _RequestRepository.InsertAsync(requestDocument);
