@@ -17,7 +17,6 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
         public AuditLogDocument()
         {
             Id = ObjectId.GenerateNewId();
-            CreatedDateUtc = Id.CreationTime;
         }
     }
 }
