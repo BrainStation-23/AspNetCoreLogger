@@ -265,46 +265,80 @@ namespace WebApp.Logger.Extensions
             return jsonText;
         }
 
-        public static List<object> GetLogObjectsFromFile(Loggers.File fileConfig, DapperPager pager, string? logName=null)
+        public static List<string> GetFileNamesBySearchKey(Loggers.File fileConfig, string searchKey)
         {
             string path = fileConfig.Path;
-            string fileFormate = fileConfig.FileFormate;
 
             var directory = ReadOrCreateDirectory(path);
-            var fileFolders = directory.GetDirectories().ToList();
 
-            List<FileInfo> files = new List<FileInfo>();
+            var fileNameList = new List<string>();
 
-            foreach (var fileFolder in fileFolders)
-            { 
-                if(logName==null)
-                    files = files.Concat(fileFolder.GetFiles().ToList()).ToList();
-                else
-                    files = files.Concat(fileFolder.GetFiles().Where(f=>f.FullName.ToLower().Contains(logName.ToLower())).ToList()).ToList();
-            }
-            var logs = new List<string>();
-            foreach(var file in files)
+            directory.GetDirectories().ToList().ForEach(fileFolder =>
             {
-                logs=logs.Concat(File.ReadAllText(file.FullName).Split(FooterAppender())).ToList();
-            }
+                fileNameList =fileNameList.Concat(fileFolder.GetFiles().Select(folder=>folder.Name).Where(f => f.ToLower().Contains(searchKey.ToLower())).ToList()).ToList();
+            });
 
-            var logObjects = new List<object>();
-            foreach (var log in logs)
-            {
-                var ind = log.IndexOf('{');
-                if (ind < 0) { continue; }
-                var obj = log.Substring(ind);
-                logObjects.Add(obj.ToModel<object>());
-            }
-
-           var a= logObjects.Pagination(pager);
-
-            return a;
+            return fileNameList;
         }
 
-        public static List<object> Pagination(this List<object> list, DapperPager pager)
+        public static Dictionary<string, List<string>> GetAllLogFileDirectory(this Loggers.File fileConfig)
         {
-            return list.Skip(pager.PageIndex * pager.PageSize).Take(pager.PageSize).ToList();
+            string path = fileConfig.Path;
+
+            var directory = ReadOrCreateDirectory(path);
+            var fileTree = new Dictionary<string, List<string>>();
+
+            directory.GetDirectories().ToList().ForEach(fileFolder =>
+            {
+                var files = fileFolder.GetFiles().Select(f => f.Name).ToList();
+
+                fileTree.Add(fileFolder.Name, files);
+            });
+
+            return fileTree;
+
+        }
+
+        public static List<object> GetLogsFromSpecificFiles(this Loggers.File fileConfig, string fileName)
+        {
+            string path = fileConfig.Path;
+
+            var directory = ReadOrCreateDirectory(path);
+            var fileTree = new Dictionary<string, List<string>>();
+
+            List<object> logObjects = null;
+
+            directory.GetDirectories().ToList().ForEach(fileFolder =>
+            {
+                fileFolder.GetFiles().ToList().ForEach(f =>
+                {
+                    if (f.Name.ToLower() == fileName.ToLower())
+                    {
+                        logObjects = File.ReadAllText(f.FullName).ToLogObjects();
+                        return;
+                    }
+                });
+            });
+
+            return logObjects;
+
+        }
+
+        public static List<object> ToLogObjects(this string logsInStringForm)
+        {
+            var logObjects = new List<object>();
+
+            logsInStringForm.Split(FooterAppender()).ToList().ForEach(logsInStringForm =>
+            {
+                var ind = logsInStringForm.IndexOf('{');
+                if (ind >= 0) {
+                    var obj = logsInStringForm.Substring(ind);
+                    logObjects.Add(obj.ToModel<object>());
+                }
+                
+            });
+
+            return logObjects;
         }
     }
 }

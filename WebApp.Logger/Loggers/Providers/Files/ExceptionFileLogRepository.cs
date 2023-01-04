@@ -51,7 +51,7 @@ namespace WebApp.Logger.Loggers.Repositories
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
             var fileConfig = _logOptions.Provider.File;
-            var exceptionLogs = FileExtension.GetLogObjectsFromFile(fileConfig, pager, "error");
+            var exceptionLogs = FileExtension.GetFileNamesBySearchKey(fileConfig, "error");
 
             return exceptionLogs;
         }

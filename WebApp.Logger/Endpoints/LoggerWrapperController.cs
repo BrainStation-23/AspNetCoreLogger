@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using WebApp.Common.Responses;
 using WebApp.Core;
+using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Providers.Sqls;
@@ -70,6 +71,30 @@ namespace WebApp.Logger
         public async Task<IActionResult> GetSqlLogssAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
             var res = await _loggerWrapper.Sql.GetPageAsync(new DapperPager(pageIndex, pageSize));
+
+            return new OkResponse(res);
+        }
+
+        [HttpGet("file/file_directories")]
+        public async Task<IActionResult> GetFileLogsDirectoriesAsync()
+        {
+            var res = FileExtension.GetAllLogFileDirectory(_logOption.Provider.File);
+
+            return new OkResponse(res);
+        }
+
+        [HttpGet("file/read_file")]
+        public async Task<IActionResult> GetAllLogsFromSpecificFileAsync(string fileName)
+        {
+            var res = FileExtension.GetLogsFromSpecificFiles(_logOption.Provider.File,fileName);
+
+            return new OkResponse(res);
+        }
+
+        [HttpGet("file/search_file")]
+        public async Task<IActionResult> GetAllLogFilesBySearchKeyAsync(string searchKey)
+        {
+            var res = FileExtension.GetFileNamesBySearchKey(_logOption.Provider.File, searchKey);
 
             return new OkResponse(res);
         }
