@@ -45,12 +45,9 @@ namespace WebApp.Logger.Loggers.Repositories
             //var model = sqlModel.ToItem();
             //await _sqlRepository.InsertAsync(model);
         }
-        public async Task DeleteRetention(DateTime dateTime)
+        public async Task RetentionAsync(DateTime dateTime)
         {
-            using var connection = _dapper.CreateConnection();
-
-            await connection.ExecuteAsync("delete from SqlLogs where CreatedDateUtc <=" +
-                " dateTime ");
+            //todo
         }
     }
 }

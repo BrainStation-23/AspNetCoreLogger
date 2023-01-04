@@ -122,12 +122,12 @@ namespace WebApp.Logger.Loggers.Repositories
             }
         }
 
-        public async Task DeleteRetention(DateTime dateTime)
+        public async Task RetentionAsync(DateTime dateTime)
         {
+            string date = dateTime.ToString();//"2023-01-04 06:11:12.2333333"
+            var query = $"delete from [dbo].[SqlLogs] where CreatedDateUtc <= '{date}'";
             using var connection = _dapper.CreateConnection();
-
-            await connection.ExecuteAsync("delete from SqlLogs where CreatedDateUtc <=" +
-                " dateTime ");
+            await connection.ExecuteAsync(query);
         }
     }
 }

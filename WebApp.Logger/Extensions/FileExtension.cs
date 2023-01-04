@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace WebApp.Logger.Extensions
 {
@@ -261,6 +262,21 @@ namespace WebApp.Logger.Extensions
             jsonText = HeaderAppender(logType) + jsonText + FooterAppender();
 
             return jsonText;
+        }
+
+        public static void DeletePreviousLogs(DateTime dateTime, Loggers.File fileConfig)
+        {
+            string path = fileConfig.Path;
+            string date = dateTime.ToString("yyyyMMdd");
+            var directory = ReadOrCreateDirectory(path);
+
+             directory.GetDirectories().ToList().ForEach(fileFolder =>
+            {
+                if (fileFolder.Name.CompareTo(date) <= 0)
+                {
+                    fileFolder.Delete(true);
+                }
+            });
         }
     }
 }

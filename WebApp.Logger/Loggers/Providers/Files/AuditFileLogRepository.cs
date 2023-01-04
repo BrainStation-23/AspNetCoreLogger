@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,11 @@ namespace WebApp.Logger.Loggers.Repositories
             dynamic routeLogs = null;
 
             return routeLogs;
+        }
+
+        public async Task RetentionAsync(DateTime dateTime)
+        {
+
         }
     }
 }

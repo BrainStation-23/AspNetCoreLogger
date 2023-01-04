@@ -9,6 +9,6 @@ namespace WebApp.Logger.Loggers.Repositories
     {
         Task AddAsync(SqlModel sqlModel);
         Task<dynamic> GetPageAsync(DapperPager pager);
-        Task DeleteRetention(DateTime dateTime);
+        Task RetentionAsync(DateTime dateTime);
     }
 }

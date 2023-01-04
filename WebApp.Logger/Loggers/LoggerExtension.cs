@@ -18,7 +18,8 @@ using System.Threading.Tasks;
 using WebApp.Logger.Endpoints;
 using System;
 using WebApp.Logger.Extensions;
-
+using WebApp.Logger.Hostings;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApp.Logger.Loggers
 {
@@ -27,10 +28,13 @@ namespace WebApp.Logger.Loggers
         public static void AddDapper(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddLoggerControllers();
-            //services.AddHostedService<TimedHostedService>();
+
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
 
             var logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
+
+            services.AddHostedService<ScopedBackgroundService>();
+            services.AddScoped<IScopedProcessingService, DefaultScopedProcessingService>();
 
             if (logOptions.ProviderType.ToString().ToLower() == "mssql")
             {
@@ -55,6 +59,9 @@ namespace WebApp.Logger.Loggers
 
             //services.AddMongoDb(configuration);
             //services.AddCosmosDb(configuration);
+
+
+
         }
 
         public static void AddLoggerControllers(this IServiceCollection services)

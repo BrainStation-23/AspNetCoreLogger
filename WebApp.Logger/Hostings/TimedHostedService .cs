@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
@@ -7,47 +8,44 @@ using WebApp.Logger.Loggers.Repositories;
 
 namespace WebApp.Logger.Hostings
 {
-    public class TimedHostedService : IHostedService, IDisposable
+    public sealed class ScopedBackgroundService : BackgroundService
     {
-        private int executionCount = 0;
-        private readonly ILogger<TimedHostedService> _logger;
-        private Timer _timer = null;
-        private readonly ISqlLogRepository _sqlLogRepository;
-        public TimedHostedService(ISqlLogRepository sqlLogRepository)
-        {
-            _sqlLogRepository = sqlLogRepository;
-        }
-        public TimedHostedService(ILogger<TimedHostedService> logger)
-        {
-            _logger = logger;
-        }
+        private readonly IServiceProvider _serviceProvider;
+        private readonly ILogger<ScopedBackgroundService> _logger;
 
-        public Task StartAsync(CancellationToken stoppingToken)
+        public ScopedBackgroundService(
+            IServiceProvider serviceProvider,
+            ILogger<ScopedBackgroundService> logger) =>
+            (_serviceProvider, _logger) = (serviceProvider, logger);
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("Timed Hosted Service running.");
+            _logger.LogInformation(
+                $"{nameof(ScopedBackgroundService)} is running.");
 
-            _timer = new Timer(DoWork, null, TimeSpan.Zero,
-                TimeSpan.FromSeconds(20));
-
-            return Task.CompletedTask;
+            await DoWorkAsync(stoppingToken);
         }
 
-        private void DoWork(object state)
+        private async Task DoWorkAsync(CancellationToken stoppingToken)
         {
-            var retentionDays = 0;
-            var currentDate = DateTime.Now;
-            var retentionDate = currentDate.AddDays(-retentionDays).Date;
-            _sqlLogRepository.DeleteRetention(retentionDate);
+            _logger.LogInformation(
+                $"{nameof(ScopedBackgroundService)} is working.");
+
+            using (IServiceScope scope = _serviceProvider.CreateScope())
+            {
+                IScopedProcessingService scopedProcessingService =
+                    scope.ServiceProvider.GetRequiredService<IScopedProcessingService>();
+
+                await scopedProcessingService.DoWorkAsync(stoppingToken);
+            }
         }
 
-        public Task StopAsync(CancellationToken cancellationToken)
+        public override async Task StopAsync(CancellationToken stoppingToken)
         {
-            throw new NotImplementedException();
-        }
+            _logger.LogInformation(
+                $"{nameof(ScopedBackgroundService)} is stopping.");
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
+            await base.StopAsync(stoppingToken);
         }
     }
 }
