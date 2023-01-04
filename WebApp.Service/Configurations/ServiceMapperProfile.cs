@@ -21,6 +21,12 @@ namespace WebApp.Service.Configurations
             CreateMap<BlogEntity, BlogModel>().ReverseMap();
             CreateMap<PostEntity, PostModel>().ReverseMap();
 
+            CreateMap<BlogEntity, BlogBulkModel>();
+            CreateMap<PostEntity, PostBulkModel>();
+            CreateMap<CommentEntity, CommentBulkModel>();
+            CreateMap<LikeEntity, LikeBulkModel>();
+            CreateMap<TagEntity, TagBulkModel>();
+
             //CreateMap<BlogEntity, BlogDto>().ReverseMap();
             //CreateMap<PostEntity, PostDto>().ReverseMap();
         }
