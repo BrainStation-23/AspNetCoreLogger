@@ -13,10 +13,10 @@ namespace WebApp.Logger.Models
         public string Url { get; set; }
         public string Source { get; set; }
         public string Form { get; set; }
-        public string Body { get; set; }
-        public string Response { get; set; }
-        public string RequestHeaders { get; set; }
-        public string ResponseHeaders { get; set; }
+        public object Body { get; set; }
+        public object Response { get; set; }
+        public object RequestHeaders { get; set; }
+        public object ResponseHeaders { get; set; }
         public string Scheme { get; set; }
         public string TraceId { get; set; }
         public string Proctocol { get; set; }

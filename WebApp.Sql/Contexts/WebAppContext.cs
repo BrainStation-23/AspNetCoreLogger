@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using System;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,10 +10,8 @@ using WebApp.Core.Acls;
 using WebApp.Core.Contexts;
 using WebApp.Entity.Entities.Blogs;
 using WebApp.Entity.Entities.Identities;
-using WebApp.Entity.Entities.Logs;
 using WebApp.Entity.Entities.Settings;
-using WebApp.Logger.Loggers;
-using WebApp.Logger.Loggers.Repositories;
+using WebApp.Service.Contract.Models.Blogs;
 using static WebApp.Entity.Entities.Identities.IdentityModel;
 
 namespace WebApp.Sql
@@ -124,14 +119,16 @@ namespace WebApp.Sql
         #endregion
 
         #region logs
-        public DbSet<SmsLog> SmsLogs { get; set; }
-        public DbSet<EmailLog> EmailLogs { get; set; }
-        public DbSet<AuditLog> AuditLogs { get; set; }
-        public DbSet<RequestLog> RequestLogs { get; set; }
+        //public DbSet<SmsLog> SmsLogs { get; set; }
+        //public DbSet<EmailLog> EmailLogs { get; set; }      
         #endregion
 
         public DbSet<BlogEntity> Blogs { get; set; }
         public DbSet<PostEntity> Posts { get; set; }
+        public DbSet<CommentEntity> Comments { get; set; }
+        public DbSet<LikeEntity> Likes { get; set; }
+        public DbSet<PostTagEntity> PostTags { get; set; }
+        public DbSet<TagEntity> Tags { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

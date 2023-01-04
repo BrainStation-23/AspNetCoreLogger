@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
-using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebApp.Core;
 using WebApp.Common.Responses;
+using WebApp.Core;
 using WebApp.Entity.Entities.Blogs;
 using WebApp.Helpers.Base;
 using WebApp.Service;
@@ -58,6 +58,21 @@ namespace WebApp.Controllers
             var res = await _blogService.UpdateBlogDetailAsync(blogId, model);
 
             return new OkResponse(res);
+        }
+
+        [HttpPost("BulkBlog")]
+        public async Task<IActionResult> BulkBlogAsync(List<BlogBulkModel> blogs)
+        {
+            var res = await _blogService.AddBulkBlogAsync(blogs);
+
+            return new OkResponse(res);
+        }
+
+        [HttpPost("BlogOperation")]
+        public async Task BlogOperationAsync()
+        {
+            await _blogService.AddBlogOperationAsync();
+
         }
     }
 }

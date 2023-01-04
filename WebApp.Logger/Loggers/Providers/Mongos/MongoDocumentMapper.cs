@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using WebApp.Common.Serialize;
+using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Loggers.Providers.Mongos
@@ -15,12 +17,16 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Type = model.Type,
                 TableName = model.TableName,
                 DateTime = model.DateTime,
-                PrimaryKey = model.PrimaryKey,
-                OldValues = model.OldValues,
-                NewValues = model.NewValues,
-                AffectedColumns = model.AffectedColumns,
+                PrimaryKey = model.PrimaryKey.ReadNestedObject(),
+                OldValues = model.OldValues.ReadNestedObject(),
+                NewValues = model.NewValues.ReadNestedObject(),
+                AffectedColumns = model.AffectedColumns.ReadNestedObject(),
                 CreatedBy = model.CreatedBy,
-                TraceId = model.TraceId
+                TraceId = model.TraceId,
+                CreatedDateUtc = model.CreatedDateUtc,
+                UpdatedDateUtc= model.DateTime,
+                SchemaName= model.SchemaName,
+                UpdatedBy=model.UpdatedBy
             };
         }
 
@@ -36,10 +42,10 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Url = model.Url,
                 Source = model.Source,
                 Form = model.Form,
-                Body = model.Body,
-                Response = model.Response,
-                RequestHeaders = model.RequestHeaders,
-                ResponseHeaders = model.ResponseHeaders,
+                Body = model.Body.ReadNestedObject(),
+                Response = model.Response.ReadNestedObject(),
+                RequestHeaders = model.RequestHeaders.ReadNestedObject(),
+                ResponseHeaders = model.ResponseHeaders.ReadNestedObject(),
                 Scheme = model.Scheme,
                 TraceId = model.TraceId,
                 Proctocol = model.Proctocol,
@@ -70,11 +76,11 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Area= model.Area,
                 ControllerName= model.ControllerName,
                 ClassName= model.ClassName,
-                Command= model.Command,
+                Command= model.Command.ReadNestedObject(),
                 IpAddress= model.IpAddress,
-                Connection= model.Connection,
+                Connection= model.Connection.ReadNestedObject(),
                 Duration= model.Duration,
-                Event= model.Event,
+                Event= model.Event.ReadNestedObject(),
                 Host= model.Host,
                 Message= model.Message,
                 MethodName= model.MethodName,
@@ -104,10 +110,10 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Url = model.Url,
                 Source = model.Source,
                 Form = model.Form,
-                Body = model.Body,
-                Response = model.Response,
-                RequestHeaders = model.RequestHeaders,
-                ResponseHeaders = model.ResponseHeaders,
+                Body = model.Body.ReadNestedObject(),
+                Response = model.Response.ReadNestedObject(),
+                RequestHeaders = model.RequestHeaders.ReadNestedObject(),
+                ResponseHeaders = model.ResponseHeaders.ReadNestedObject(),
                 ErrorCode = model.ErrorCode,
                 Scheme = model.Scheme,
                 TraceId = model.TraceId,
