@@ -78,21 +78,21 @@ namespace WebApp.Logger
         [HttpGet("file/file_directories")]
         public async Task<IActionResult> GetFileLogsDirectoriesAsync()
         {
-            var res = FileExtension.GetAllDirectories(_logOption.Provider.File);
+            var res = FileExtension.GetDirectoryWithSubDirectories(_logOption.Provider.File);
 
             return new OkResponse(res);
         }
 
         [HttpGet("file/read_file")]
-        public async Task<IActionResult> GetAllLogsFromSpecificFileAsync(string fileName)
+        public async Task<IActionResult> GetLogsFromFileAsync(string fileName)
         {
-            var res = FileExtension.ParseLogFileToLogObject(_logOption.Provider.File,fileName);
+            var res = FileExtension.GetLogObjects(_logOption.Provider.File,fileName);
 
             return new OkResponse(res);
         }
 
         [HttpGet("file/search_file")]
-        public async Task<IActionResult> GetAllLogFilesBySearchKeyAsync(string searchKey)
+        public async Task<IActionResult> GetLogFilesBySearchKeyAsync(string searchKey)
         {
             var res = FileExtension.GetFileNamesBySearchKey(_logOption.Provider.File, searchKey);
 

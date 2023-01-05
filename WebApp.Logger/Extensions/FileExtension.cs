@@ -1,6 +1,7 @@
 ﻿using GreenPipes.Pipes;
 using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.IO;
 using System.Linq;
 using WebApp.Logger.Providers.Sqls;
@@ -15,7 +16,7 @@ namespace WebApp.Logger.Extensions
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static DirectoryInfo ReadOrCreateDirectory(string path,string root= "wwwroot")
+        public static DirectoryInfo ReadOrCreateDirectory(string path, string root = "wwwroot")
         {
             if (string.IsNullOrEmpty(path))
                 return null;
@@ -87,7 +88,7 @@ namespace WebApp.Logger.Extensions
             string fileFormate = fileConfig.FileFormate;
 
             string dateStamp = DateTime.Now.ToString("yyyyMMdd");
-            var logName = model.GetType().Name;
+            var logName = model.GetType().Name.ToLower();
 
             logName = logName.Remove(logName.Length - 5);
 
@@ -277,47 +278,28 @@ namespace WebApp.Logger.Extensions
             return jsonText;
         }
 
-        public static List<string> GetFileNamesBySearchKey(Loggers.File fileConfig, string searchKey)
-        {
-            string path = fileConfig.Path;
-
-            var directory = ReadDirectory(path);
-
-            if (directory == null)
-                return null;
-
-            var fileNameList = new List<string>();
-
-            directory.GetDirectories().ToList().ForEach(fileFolder =>
-            {
-                fileNameList =fileNameList.Concat(fileFolder.GetFiles().Select(folder=>folder.Name).Where(f => f.ToLower().Contains(searchKey.ToLower())).ToList()).ToList();
-            });
-
-            return fileNameList;
-        }
-
-        public static Dictionary<string, object> GetAllDirectories(Loggers.File fileConfig)
+        public static Dictionary<string, object> GetDirectoryWithSubDirectories(Loggers.File fileConfig)
         {
             var directory = ReadDirectory(fileConfig.Path);
 
             if (directory is null)
                 return null;
 
-            return GetAllDirectories(directory);
+            return GetDirectoryWithSubDirectories(directory);
         }
 
-        public static Dictionary<string,object> GetAllDirectories(DirectoryInfo directory)
+        public static Dictionary<string, object> GetDirectoryWithSubDirectories(DirectoryInfo directory)
         {
             if (directory is null)
                 return null;
 
-            var fileTree = new Dictionary<string,object>();
+            var fileTree = new Dictionary<string, object>();
 
             var subDirectories = new List<object>();
 
             directory.GetDirectories().ToList().ForEach(subDirectory =>
             {
-                subDirectories.Add(GetAllDirectories(subDirectory));
+                subDirectories.Add(GetDirectoryWithSubDirectories(subDirectory));
             });
 
             directory.GetFiles().ToList().ForEach(file =>
@@ -330,54 +312,124 @@ namespace WebApp.Logger.Extensions
 
         }
 
-        public static List<object> ParseLogFileToLogObject(this Loggers.File fileConfig, string fileName)
+        public static FileInfo SearchFileInDirectoryAndSubDirectory(this DirectoryInfo directory, string fileName)
         {
-            string path = fileConfig.Path;
+            if (directory is null)
+                return null;
 
-            var directory = ReadDirectory(path);
+            FileInfo file = null;
+
+            directory.GetFiles().ToList().ForEach(fi =>
+            {
+                if (fi.Name.ToLower() == fileName.ToLower())
+                {
+                    file = fi;
+
+                    return;
+                }
+            });
+
+            if (file is null)
+            {
+                directory.GetDirectories().ToList().ForEach(subDirectory =>
+                {
+
+                    var logObjectsFromSubDirectory = SearchFileInDirectoryAndSubDirectory(subDirectory, fileName);
+
+                    if (logObjectsFromSubDirectory is not null)
+                    {
+                        file = logObjectsFromSubDirectory;
+
+                        return;
+                    }
+
+                });
+            }
+
+            return file;
+
+        }
+
+        public static List<string> SearchFilesWithSearchKey(this DirectoryInfo directory, string searchkey)
+        {
+            if (directory is null)
+                return null;
+
+            var files = new List<string>();
+
+            directory.GetDirectories().ToList().ForEach(subDirectory =>
+            {
+                subDirectory.GetFiles().ToList().ForEach(fi =>
+                {
+                    if (fi.Name.ToLower().Contains(searchkey.ToLower()))
+                    {
+                        files.Add(fi.Name);
+                    }
+                });
+
+                var filesFromSubDirectory = SearchFilesWithSearchKey(subDirectory, searchkey);
+
+                if (filesFromSubDirectory is not null)
+                {
+                    files = files.Concat(filesFromSubDirectory).ToList();
+
+                    return;
+                }
+
+            });
+
+            return files;
+
+        }
+
+        public static List<string> GetFileNamesBySearchKey(this Loggers.File fileConfig, string searchkey)
+        {
+            var directory = ReadDirectory(fileConfig.Path);
 
             if (directory is null)
                 return null;
 
-            List<object> logObjects = null;
-
-            directory.GetDirectories().ToList().ForEach(fileFolder =>
-            {
-                fileFolder.GetFiles().ToList().ForEach(fi =>
-                {
-                    if (fi.Name.ToLower() == fileName.ToLower())
-                    {
-                        FileStream fs = fi.Open(FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read);
-
-                        StreamReader sr = new StreamReader(fs);
-
-                        string fileContent = sr.ReadToEnd();
-
-                        sr.Close();
-                        fs.Close();
-
-                        logObjects = fileContent.ToLogObjects();
-
-                    }
-                });
-            });
-
-            return logObjects;
-
+            return SearchFilesWithSearchKey(directory, searchkey);
         }
 
-        public static List<object> ToLogObjects(this string logsInStringForm)
+        public static FileInfo SearchAndGetFile(this Loggers.File fileConfig, string fileName)
+        {
+            var directory = ReadDirectory(fileConfig.Path);
+
+            if (directory is null)
+                return null;
+
+            var file = directory.SearchFileInDirectoryAndSubDirectory(fileName);
+
+            return file;
+        }
+
+        public static List<object> GetLogObjects(this Loggers.File fileConfig, string fileName)
+        {
+            var file = fileConfig.SearchAndGetFile(fileName);
+
+            if (file is null)
+                return null;
+
+            var fileContent = File.ReadAllText(file.FullName);
+
+            return fileContent.ToLogObjects();
+        }
+
+        public static List<object> ToLogObjects(this string JSONlogsString)
         {
             var logObjects = new List<object>();
 
-            logsInStringForm.Split(FooterAppender()).ToList().ForEach(logsInStringForm =>
+            JSONlogsString.Split(FooterAppender()).ToList().ForEach(JSONString =>
             {
-                var ind = logsInStringForm.IndexOf('{');
-                if (ind >= 0) {
-                    var obj = logsInStringForm.Substring(ind);
-                    logObjects.Add(obj.ToModel<object>());
+                var ind = JSONString.IndexOf('{');
+
+                if (ind >= 0)
+                {
+                    var obj = JSONString.Substring(ind).ToModel<object>();
+                    logObjects.Add(obj);
                 }
-                
+
             });
 
             return logObjects;
