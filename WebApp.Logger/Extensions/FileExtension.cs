@@ -15,18 +15,30 @@ namespace WebApp.Logger.Extensions
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static DirectoryInfo ReadOrCreateDirectory(string path)
+        public static DirectoryInfo ReadOrCreateDirectory(string path,string root= "wwwroot")
         {
             if (string.IsNullOrEmpty(path))
                 return null;
 
-            path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot\\{path}");
+            path = Path.Combine(Directory.GetCurrentDirectory(), $"{root}\\{path}");
 
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
             if (directoryInfo.Exists)
                 return directoryInfo;
 
             return Directory.CreateDirectory(path);
+        }
+
+        public static DirectoryInfo ReadDirectory(string path, string root = "wwwroot")
+        {
+            if (string.IsNullOrEmpty(path))
+                return null;
+
+            path = Path.Combine(Directory.GetCurrentDirectory(), $"{root}\\{path}");
+
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+
+            return directoryInfo;
         }
 
         /// <summary>
@@ -82,7 +94,7 @@ namespace WebApp.Logger.Extensions
             var fileNamingFormate = $"{logName}_Log_{fileFormate}_{dateStamp}";
             var defaultFileName = fileNamingFormate + "_1.txt";
 
-            var dir = ReadOrCreateDirectory($"{path}/{dateStamp}");
+            var dir = ReadOrCreateDirectory($"{path}/{logName}/{dateStamp}");
 
             var lastCreatedFile = dir.GetLastCreatedFile(fileNamingFormate);
 
@@ -269,7 +281,10 @@ namespace WebApp.Logger.Extensions
         {
             string path = fileConfig.Path;
 
-            var directory = ReadOrCreateDirectory(path);
+            var directory = ReadDirectory(path);
+
+            if (directory == null)
+                return null;
 
             var fileNameList = new List<string>();
 
@@ -281,41 +296,68 @@ namespace WebApp.Logger.Extensions
             return fileNameList;
         }
 
-        public static Dictionary<string, List<string>> GetAllLogFileDirectory(this Loggers.File fileConfig)
+        public static Dictionary<string, object> GetAllDirectories(Loggers.File fileConfig)
         {
-            string path = fileConfig.Path;
+            var directory = ReadDirectory(fileConfig.Path);
 
-            var directory = ReadOrCreateDirectory(path);
-            var fileTree = new Dictionary<string, List<string>>();
+            if (directory is null)
+                return null;
 
-            directory.GetDirectories().ToList().ForEach(fileFolder =>
+            return GetAllDirectories(directory);
+        }
+
+        public static Dictionary<string,object> GetAllDirectories(DirectoryInfo directory)
+        {
+            if (directory is null)
+                return null;
+
+            var fileTree = new Dictionary<string,object>();
+
+            var subDirectories = new List<object>();
+
+            directory.GetDirectories().ToList().ForEach(subDirectory =>
             {
-                var files = fileFolder.GetFiles().Select(f => f.Name).ToList();
-
-                fileTree.Add(fileFolder.Name, files);
+                subDirectories.Add(GetAllDirectories(subDirectory));
             });
+
+            directory.GetFiles().ToList().ForEach(file =>
+            {
+                subDirectories.Add(file.Name);
+            });
+            fileTree.Add(directory.Name, subDirectories);
 
             return fileTree;
 
         }
 
-        public static List<object> GetLogsFromSpecificFiles(this Loggers.File fileConfig, string fileName)
+        public static List<object> ParseLogFileToLogObject(this Loggers.File fileConfig, string fileName)
         {
             string path = fileConfig.Path;
 
-            var directory = ReadOrCreateDirectory(path);
-            var fileTree = new Dictionary<string, List<string>>();
+            var directory = ReadDirectory(path);
+
+            if (directory is null)
+                return null;
 
             List<object> logObjects = null;
 
             directory.GetDirectories().ToList().ForEach(fileFolder =>
             {
-                fileFolder.GetFiles().ToList().ForEach(f =>
+                fileFolder.GetFiles().ToList().ForEach(fi =>
                 {
-                    if (f.Name.ToLower() == fileName.ToLower())
+                    if (fi.Name.ToLower() == fileName.ToLower())
                     {
-                        logObjects = File.ReadAllText(f.FullName).ToLogObjects();
-                        return;
+                        FileStream fs = fi.Open(FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read);
+
+                        StreamReader sr = new StreamReader(fs);
+
+                        string fileContent = sr.ReadToEnd();
+
+                        sr.Close();
+                        fs.Close();
+
+                        logObjects = fileContent.ToLogObjects();
+
                     }
                 });
             });

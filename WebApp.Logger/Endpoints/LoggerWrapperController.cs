@@ -78,7 +78,7 @@ namespace WebApp.Logger
         [HttpGet("file/file_directories")]
         public async Task<IActionResult> GetFileLogsDirectoriesAsync()
         {
-            var res = FileExtension.GetAllLogFileDirectory(_logOption.Provider.File);
+            var res = FileExtension.GetAllDirectories(_logOption.Provider.File);
 
             return new OkResponse(res);
         }
@@ -86,7 +86,7 @@ namespace WebApp.Logger
         [HttpGet("file/read_file")]
         public async Task<IActionResult> GetAllLogsFromSpecificFileAsync(string fileName)
         {
-            var res = FileExtension.GetLogsFromSpecificFiles(_logOption.Provider.File,fileName);
+            var res = FileExtension.ParseLogFileToLogObject(_logOption.Provider.File,fileName);
 
             return new OkResponse(res);
         }
