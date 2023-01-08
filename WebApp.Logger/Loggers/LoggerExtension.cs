@@ -32,9 +32,8 @@ namespace WebApp.Logger.Loggers
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
 
             var logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
-
-            services.AddHostedService<ScopedBackgroundService>();
-            services.AddScoped<IScopedProcessingService, DefaultScopedProcessingService>();
+       
+            services.AddHostedService<RetentionPolicyService>();
 
             if (logOptions.ProviderType.ToString().ToLower() == "mssql")
             {
@@ -59,7 +58,7 @@ namespace WebApp.Logger.Loggers
 
             //services.AddMongoDb(configuration);
             //services.AddCosmosDb(configuration);
-
+            
 
 
         }
