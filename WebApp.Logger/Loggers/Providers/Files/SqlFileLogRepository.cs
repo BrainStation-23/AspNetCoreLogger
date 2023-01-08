@@ -48,7 +48,7 @@ namespace WebApp.Logger.Loggers.Repositories
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
             var fileConfig = _logOptions.Provider.File;
-            var sqlLogs = FileExtension.GetFileNamesBySearchKey(fileConfig,"sql");
+            var sqlLogs = FileExtension.GetFilenames(fileConfig.Path, LogType.Sql.ToString());
 
             return sqlLogs;
         }
