@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 /coveragereport
 /WebApp/wwwroot/logs/20221226
+/WebApp/wwwroot/logs

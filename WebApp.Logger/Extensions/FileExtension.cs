@@ -1,7 +1,11 @@
-﻿using System;
+﻿using GreenPipes.Pipes;
+using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.IO;
 using System.Linq;
+using WebApp.Logger.Loggers;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Extensions
 {
@@ -13,18 +17,30 @@ namespace WebApp.Logger.Extensions
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static DirectoryInfo ReadOrCreateDirectory(string path)
+        public static DirectoryInfo ReadOrCreateDirectory(string path, string root = "wwwroot")
         {
             if (string.IsNullOrEmpty(path))
                 return null;
 
-            path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot\\{path}");
+            path = Path.Combine(Directory.GetCurrentDirectory(), $"{root}\\{path}");
 
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
             if (directoryInfo.Exists)
                 return directoryInfo;
 
             return Directory.CreateDirectory(path);
+        }
+
+        public static DirectoryInfo ReadDirectory(string path, string root = "wwwroot")
+        {
+            if (string.IsNullOrEmpty(path))
+                return null;
+
+            path = Path.Combine(Directory.GetCurrentDirectory(), $"{root}\\{path}");
+
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+
+            return directoryInfo;
         }
 
         /// <summary>
@@ -51,9 +67,9 @@ namespace WebApp.Logger.Extensions
         /// </summary>
         /// <param name="directory"></param>
         /// <returns></returns>
-        public static FileInfo GetLastCreatedFile(this DirectoryInfo directory, string namingFormate)
+        public static FileInfo GetLastCreatedFile(this DirectoryInfo directory, string namingFormat)
         {
-            var lastFile = directory.GetFiles().Where(f => f.Name.ToLower().Contains(namingFormate)).OrderByDescending(file => file.LastWriteTime).FirstOrDefault();
+            var lastFile = directory.GetFiles().Where(f => f.Name.ToLower().Contains(namingFormat)).OrderByDescending(file => file.LastWriteTime).FirstOrDefault();
             if (lastFile is null)
                 return null;
             return lastFile;
@@ -70,19 +86,17 @@ namespace WebApp.Logger.Extensions
         {
             string path = fileConfig.Path;
             string maxFileSize = fileConfig.FileSize;
-            string fileFormate = fileConfig.FileFormate;
+            string fileFormat = fileConfig.FileFormate;
 
             string dateStamp = DateTime.Now.ToString("yyyyMMdd");
-            var logName = model.GetType().Name;
+            var logName = model.GetLogType();
 
-            logName = logName.Remove(logName.Length - 5);
+            var fileNamingFormat = $"{logName}_Log_{fileFormat}_{dateStamp}";
+            var defaultFileName = fileNamingFormat + "_1.txt";
 
-            var fileNamingFormate = $"{logName}_Log_{fileFormate}_{dateStamp}";
-            var defaultFileName = fileNamingFormate + "_1.txt";
+            var dir = ReadOrCreateDirectory($"{path}/{logName}/{dateStamp}");
 
-            var dir = ReadOrCreateDirectory($"{path}/{dateStamp}");
-
-            var lastCreatedFile = dir.GetLastCreatedFile(fileNamingFormate);
+            var lastCreatedFile = dir.GetLastCreatedFile(fileNamingFormat);
 
             var fileName = defaultFileName;
 
@@ -115,7 +129,7 @@ namespace WebApp.Logger.Extensions
         }
 
         /// <summary>
-        /// Converts megabytes to bytes. Filesize formate should be "%MB"
+        /// Converts megabytes to bytes. Filesize format should be "%MB"
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
@@ -142,9 +156,9 @@ namespace WebApp.Logger.Extensions
                 {
                     var message = "";
                     if (fileConfig.FileFormate == "JSON")
-                        message = PrepareMessageForJSONFormate(model);
+                        message = PrepareMessageForJSONFormat(model);
                     else
-                        message = PrepareMessageForTextFormate(model);
+                        message = PrepareMessageForTextFormat(model);
 
                     writer.WriteLine(message);
                 }
@@ -221,7 +235,7 @@ namespace WebApp.Logger.Extensions
 
             return mainString;
         }
-        public static string PrepareMessageForTextFormate<T>(T model) where T : class
+        public static string PrepareMessageForTextFormat<T>(T model) where T : class
         {
 
             var properites = model.GetProperties();
@@ -251,16 +265,200 @@ namespace WebApp.Logger.Extensions
             return message;
 
         }
-        public static string PrepareMessageForJSONFormate<T>(T model) where T : class
+        public static string PrepareMessageForJSONFormat<T>(T model) where T : class
         {
             var jsonText = model.ToPrettyJson();
-            var logType = model.GetType().Name;
 
-            logType = logType.Remove(logType.Length - 5).ToLower();
+            var logType = model.GetLogType();
 
             jsonText = HeaderAppender(logType) + jsonText + FooterAppender();
 
             return jsonText;
+        }
+
+        public static Dictionary<string, object> GetDirectories(string path,bool withSubdirectories =false)
+        {
+            var directory = ReadDirectory(path);
+
+            if (directory is null)
+                return null;
+
+            return GetDirectories(directory, withSubdirectories);
+        }
+
+        public static Dictionary<string, object> GetDirectories(DirectoryInfo directory, bool withSubdirectories = false)
+        {
+            if (directory is null)
+                return null;
+
+            var fileTree = new Dictionary<string, object>();
+
+            var subDirectories = new List<object>();
+
+            if (withSubdirectories is true)
+            {
+                directory.GetDirectories().ToList().ForEach(subDirectory =>
+                {
+                    subDirectories.Add(GetDirectories(subDirectory,true));
+                });
+            }
+
+            directory.GetFiles().ToList().ForEach(file =>
+            {
+                subDirectories.Add(file.Name);
+            });
+
+            fileTree.Add(directory.Name, subDirectories);
+
+            return fileTree;
+
+        }
+
+        public static FileInfo SearchFileWithDirectory(this DirectoryInfo directory, string fileName,bool searchInSubdirectory = false)
+        {
+            if (directory is null)
+                return null;
+
+            FileInfo file = null;
+
+            directory.GetFiles().ToList().ForEach(fi =>
+            {
+                if (fi.Name.ToLower() == fileName.ToLower())
+                {
+                    file = fi;
+
+                    return;
+                }
+            });
+
+            if (file is null && searchInSubdirectory is true)
+            {
+                directory.GetDirectories().ToList().ForEach(subDirectory =>
+                {
+
+                    var logObjectsFromSubDirectory = SearchFileWithDirectory(subDirectory, fileName, searchInSubdirectory);
+
+                    if (logObjectsFromSubDirectory is not null)
+                    {
+                        file = logObjectsFromSubDirectory;
+
+                        return;
+                    }
+
+                });
+            }
+
+            return file;
+
+        }
+
+        public static List<string> SearchFiles(this DirectoryInfo directory, string searchkey)
+        {
+            if (directory is null)
+                return null;
+
+            var files = new List<string>();
+
+            directory.GetDirectories().ToList().ForEach(subDirectory =>
+            {
+                subDirectory.GetFiles().ToList().ForEach(fi =>
+                {
+                    if (fi.Name.ToLower().Contains(searchkey.ToLower()))
+                    {
+                        files.Add(fi.Name);
+                    }
+                });
+
+                var filesFromSubDirectory = SearchFiles(subDirectory, searchkey);
+
+                if (filesFromSubDirectory is not null)
+                {
+                    files = files.Concat(filesFromSubDirectory).ToList();
+
+                    return;
+                }
+
+            });
+
+            return files;
+
+        }
+
+        public static List<string> GetFilenames(this string path, string searchkey)
+        {
+            var directory = ReadDirectory(path);
+
+            if (directory is null)
+                return null;
+
+            return SearchFiles(directory, searchkey);
+        }
+
+        public static FileInfo SearchFileWithPath(this string path, string fileName)
+        {
+            var directory = ReadDirectory(path);
+
+            if (directory is null)
+                return null;
+
+            var file = directory.SearchFileWithDirectory(fileName,true);
+
+            return file;
+        }
+
+        public static List<object> GetLogObjects(this string path, string fileName)
+        {
+            var file = path.SearchFileWithPath(fileName);
+
+            if (file is null)
+                return null;
+
+            var fileContent = System.IO.File.ReadAllText(file.FullName);
+
+            return fileContent.ToLogObjects();
+        }
+
+        public static List<object> ToLogObjects(this string jsonString)
+        {
+            var logObjects = new List<object>();
+
+            jsonString.Split(FooterAppender()).ToList().ForEach(j =>
+            {
+                var ind = j.IndexOf('{');
+
+                if (ind >= 0)
+                {
+                    var obj = j.Substring(ind).ToModel<object>();
+                    logObjects.Add(obj);
+                }
+
+            });
+
+            return logObjects;
+        }
+
+        public static string GetLogType<T>(this T model)
+        {
+            var logName = model.GetType().Name.ToLower();
+
+            if (logName.Contains(LogType.Audit.ToString().ToLower()))
+            {
+                return LogType.Audit.ToString().ToLower();
+            }
+            else if (logName.Contains(LogType.Sql.ToString().ToLower()))
+            {
+                return LogType.Sql.ToString().ToLower();
+            }
+            else if (logName.Contains(LogType.Request.ToString().ToLower()))
+            {
+                return LogType.Request.ToString().ToLower();
+            }
+            else if (logName.Contains(LogType.Error.ToString().ToLower()))
+            {
+                return LogType.Error.ToString().ToLower();
+            }
+            else
+                return "UnknownLog";
         }
     }
 }
