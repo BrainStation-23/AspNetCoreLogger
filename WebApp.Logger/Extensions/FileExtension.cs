@@ -1,4 +1,5 @@
 ﻿using GreenPipes.Pipes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
@@ -276,7 +277,7 @@ namespace WebApp.Logger.Extensions
             return jsonText;
         }
 
-        public static Dictionary<string, object> GetDirectories(string path,bool withSubdirectories =false)
+        public static Dictionary<string, object> GetDirectories(string path, bool withSubdirectories = false)
         {
             var directory = ReadDirectory(path);
 
@@ -299,7 +300,7 @@ namespace WebApp.Logger.Extensions
             {
                 directory.GetDirectories().ToList().ForEach(subDirectory =>
                 {
-                    subDirectories.Add(GetDirectories(subDirectory,true));
+                    subDirectories.Add(GetDirectories(subDirectory, true));
                 });
             }
 
@@ -314,7 +315,7 @@ namespace WebApp.Logger.Extensions
 
         }
 
-        public static FileInfo SearchFileWithDirectory(this DirectoryInfo directory, string fileName,bool searchInSubdirectory = false)
+        public static FileInfo SearchFileWithDirectory(this DirectoryInfo directory, string fileName, bool searchInSubdirectory = false)
         {
             if (directory is null)
                 return null;
@@ -401,7 +402,7 @@ namespace WebApp.Logger.Extensions
             if (directory is null)
                 return null;
 
-            var file = directory.SearchFileWithDirectory(fileName,true);
+            var file = directory.SearchFileWithDirectory(fileName, true);
 
             return file;
         }
@@ -459,6 +460,59 @@ namespace WebApp.Logger.Extensions
             }
             else
                 return "UnknownLog";
+        }
+
+        public static DirectoryInfo SearchDirectory(this DirectoryInfo currentDirectory, string directoryName)
+        {
+            if (currentDirectory is null)
+                return null;
+
+            DirectoryInfo directoryInfo = null;
+
+            currentDirectory.GetDirectories().ToList().ForEach(d =>
+            {
+                if (d.Name.ToLower() == directoryName.ToLower())
+                {
+                    directoryInfo = d;
+                    return;
+                }
+                else
+                {
+                    var dir = d.SearchDirectory(directoryName);
+                    if (dir is not null)
+                    {
+                        directoryInfo = dir;
+                        return;
+                    }
+                }
+
+            });
+
+            return directoryInfo;
+        }
+
+        public static void RetentionFileLogs(this DateTime datetime, string path, string logtype)
+        {
+            string date = datetime.ToString("yyyyMMdd");
+
+            logtype = logtype.ToLower();
+
+            var mainDirectory = ReadDirectory(path);
+
+            if (mainDirectory is null)
+            {
+                return;
+            }
+
+            var logDirectory = mainDirectory.SearchDirectory(logtype);
+
+            if (logDirectory is not null)
+            {
+                logDirectory.GetDirectories().AsQueryable().Where(d => d.Name.ToString().CompareTo(date) <= 0).Select(d => d.FullName).ToList().ForEach(directoryFullname =>
+                {
+                    Directory.Delete(directoryFullname, true);
+                });
+            }
         }
     }
 }

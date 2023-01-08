@@ -54,7 +54,7 @@ namespace WebApp.Logger.Loggers.Repositories
         }
         public async Task RetentionAsync(DateTime dateTime)
         {
-            FileExtension.DeletePreviousLogs(dateTime,_logOptions.Provider.File);
+            FileExtension.RetentionFileLogs(dateTime, _logOptions.Provider.File.Path, LogType.Sql.ToString());
         }
     }
 }

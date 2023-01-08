@@ -55,7 +55,7 @@ namespace WebApp.Logger.Loggers.Repositories
                 _logger.LogError(nameof(AuditFileLogRepository), exception);
             }
         }
-        
+
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
             var fileConfig = _logOptions.Provider.File;
@@ -66,7 +66,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task RetentionAsync(DateTime dateTime)
         {
-
+            FileExtension.RetentionFileLogs(dateTime, _logOptions.Provider.File.Path, LogType.Audit.ToString());
         }
     }
 }
