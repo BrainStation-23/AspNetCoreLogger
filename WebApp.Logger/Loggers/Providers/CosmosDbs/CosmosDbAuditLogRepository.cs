@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,6 +50,10 @@ namespace WebApp.Logger.Loggers.Repositories
         {
             var model = auditEntry.ToAuditModel(false).ToItem();
             await _auditRepository.InsertAsync(model);
+        }
+        public async Task RetentionAsync(DateTime dateTime)
+        {
+            //todo
         }
     }
 }
