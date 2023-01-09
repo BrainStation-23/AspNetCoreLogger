@@ -26,7 +26,30 @@ namespace WebApp.Logger.Loggers.Providers.CosmosDbs
         {
             return new SqlLogItem
             {
-               
+                UserId = model.UserId,
+                ApplicationName = model.ApplicationName,
+                IpAddress = model.IpAddress,
+                Version = model.Version,
+                Host = model.Host,
+                Url = model.Url,
+                Source = model.Source,
+                Scheme = model.Scheme,
+                TraceId = model.TraceId,
+                Protocol = model.Protocol,
+                UrlReferrer = model.UrlReferrer,
+                Area = model.Area,
+                ControllerName = model.ControllerName,
+                ActionName = model.ActionName,
+                ClassName = model.ClassName,
+                MethodName = model.MethodName,
+                Connection = model.Connection,
+                Command = model.Command,
+                Event = model.Event,
+                QueryType = model.QueryType,
+                Query = model.Query,
+                Response = model.Response,
+                Duration = model.Duration,
+                Message = model.Message,
             };
         }
 
@@ -34,7 +57,29 @@ namespace WebApp.Logger.Loggers.Providers.CosmosDbs
         {
             return new ErrorLogItem
             {
-                
+                Application = model.Application,
+                AppStatusCode = model.AppStatusCode,
+                IpAddress = model.IpAddress,
+                Body = model.Body,
+                CreatedBy = 0,
+                ErrorCode = model.ErrorCode,
+                Errors = model.Errors,
+                Form = model.Form,
+                Host = model.Host,
+                Message = model.Message,
+                MessageDetails = model.MessageDetails,
+                Proctocol = model.Proctocol,
+                RequestHeaders = model.RequestHeaders,
+                Response = model.Response,
+                ResponseHeaders = model.ResponseHeaders,
+                Scheme = model.Scheme,
+                Source = model.Source,
+                StackTrace = model.StackTrace,
+                StatusCode = model.StatusCode,
+                TraceId = model.TraceId,
+                Url = model.Url,
+                UserId = model.UserId,
+                Version = model.Version,
             };
         }
 
@@ -43,7 +88,36 @@ namespace WebApp.Logger.Loggers.Providers.CosmosDbs
         {
             return new RequestLogItem
             {
-                
+                Application = model.Application,
+                AppStatusCode = model.AppStatusCode,
+                IpAddress = model.IpAddress,
+                Body = model.Body,
+                Form = model.Form,
+                Host = model.Host,
+                Proctocol = model.Proctocol,
+                RequestHeaders = model.RequestHeaders,
+                Response = model.Response,
+                ResponseHeaders = model.ResponseHeaders,
+                Scheme = model.Scheme,
+                Source = model.Source,
+                StatusCode = model.StatusCode,
+                TraceId = model.TraceId,
+                Url = model.Url,
+                UserId = model.UserId,
+                Version = model.Version,
+                ActionName = model.ActionName,
+                Area = model.Area,
+                PageAccessed = model.PageAccessed,
+                ControllerName = model.ControllerName,
+                ExecutionDuration = model.ExecutionDuration,
+                IsFirstLogin = model.IsFirstLogin,
+                LanguageId = model.LanguageId,
+                LoggedInDateTimeUtc = model.LoggedInDateTimeUtc,
+                LoggedOutDateTimeUtc = model.LoggedOutDateTimeUtc,
+                LoginStatus = model.LoginStatus,
+                RoleId = model.RoleId,
+                SessionId = model.SessionId,
+                UrlReferrer = model.UrlReferrer,
             };
         }
     }

@@ -28,9 +28,9 @@ namespace WebApp.Logger.Loggers
                 case "mongo":
                     log = new MongoDbProvider(_serviceProvider);
                     break;
-                //case ProviderType.CosmosDb:
-                //    log = new SqlProvider(_serviceProvider);
-                //    break;
+                case "cosmosdb":
+                    log = new CosmoDbProvider(_serviceProvider);
+                    break;
                 default:
                     log = new FileProvider(_serviceProvider);
                     break;
