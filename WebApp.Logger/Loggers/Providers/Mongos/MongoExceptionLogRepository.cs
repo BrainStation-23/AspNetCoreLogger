@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +22,7 @@ namespace WebApp.Logger.Loggers.Repositories
         public MongoExceptionLogRepository(DapperContext dapper,
             ILogger<MongoExceptionLogRepository> logger,
             IMongoRepository<ErrorLogDocument> errorRepository,
-            IOptions<LogOption>logOption)
+            IOptions<LogOption> logOption)
         {
             _dapper = dapper;
             _logger = logger;
@@ -53,6 +55,11 @@ namespace WebApp.Logger.Loggers.Repositories
             var errorDocuments = errorModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.ToDocument());
 
             await _errorRepository.InsertManyAsync(errorDocuments);
+        }
+
+        public async Task RetentionAsync(DateTime dateTime)
+        {
+            await _errorRepository.DeleteManyAsync(x => x.CreatedDateUtc <= dateTime);
         }
     }
 }

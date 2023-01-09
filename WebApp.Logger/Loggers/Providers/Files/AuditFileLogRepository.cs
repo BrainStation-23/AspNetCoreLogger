@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -54,13 +55,18 @@ namespace WebApp.Logger.Loggers.Repositories
                 _logger.LogError(nameof(AuditFileLogRepository), exception);
             }
         }
-        
+
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
             var fileConfig = _logOptions.Provider.File;
             var auditLogs = FileExtension.GetFilenames(fileConfig.Path, LogType.Audit.ToString());
 
             return auditLogs;
+        }
+
+        public async Task RetentionAsync(DateTime dateTime)
+        {
+            FileExtension.RetentionFileLogs(dateTime, _logOptions.Provider.File.Path, LogType.Audit.ToString());
         }
     }
 }

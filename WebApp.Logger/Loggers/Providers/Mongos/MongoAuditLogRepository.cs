@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,6 +48,11 @@ namespace WebApp.Logger.Loggers.Repositories
             var auditDocument = auditModel.Select(e => e.ToDocument());
 
             await _auditRepository.InsertManyAsync(auditDocument);
+        }
+
+        public async Task RetentionAsync(DateTime dateTime)
+        {
+            await _auditRepository.DeleteManyAsync(x => x.DateTime <= dateTime);
         }
     }
 }

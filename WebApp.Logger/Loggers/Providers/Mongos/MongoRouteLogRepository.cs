@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,12 +21,12 @@ namespace WebApp.Logger.Loggers.Repositories
         public MongoRouteLogRepository(DapperContext dapper,
             ILogger<MongoRouteLogRepository> logger,
             IMongoRepository<RequestLogDocument> RequestRepository,
-            IOptions<LogOption>logOption)
+            IOptions<LogOption> logOption)
         {
             _dapper = dapper;
             _logger = logger;
             _RequestRepository = RequestRepository;
-            _logOption=logOption.Value;
+            _logOption = logOption.Value;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -53,6 +55,11 @@ namespace WebApp.Logger.Loggers.Repositories
             var requestDocuments = requestModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.ToDocument());
 
             await _RequestRepository.InsertManyAsync(requestDocuments);
+        }
+
+        public async Task RetentionAsync(DateTime dateTime)
+        {
+            await _RequestRepository.DeleteManyAsync(x => x.CreatedDateUtc <= dateTime);
         }
     }
 }
