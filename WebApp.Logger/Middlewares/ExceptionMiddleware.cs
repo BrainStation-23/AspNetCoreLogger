@@ -28,16 +28,14 @@ namespace WebApp.Logger.Middlewares
 
         public ExceptionMiddleware(RequestDelegate next,
             ILogger<ExceptionMiddleware> logger,
-            IHostEnvironment webHostEnvironment
-            //,IExceptionLogRepository exceptionLogRepository
-            )
+            IHostEnvironment webHostEnvironment)
         {
             _next = next;
             _logger = logger;
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task InvokeAsync(HttpContext context, IServiceProvider _serviceProvider)
+        public async Task InvokeAsync(HttpContext context, IExceptionLogRepository exceptionLogRepository)
         {
             var errorModel = new ErrorModel();
             var requestModel = new RequestModel();
@@ -75,9 +73,7 @@ namespace WebApp.Logger.Middlewares
 
                 //await loggerWrapper.Error.AddAsync(errorModel);
 
-                var _exceptionLogRepository = _serviceProvider.GetService<IExceptionLogRepository>();
-               
-                await _exceptionLogRepository.AddAsync(errorModel);
+                await exceptionLogRepository.AddAsync(errorModel);
             }
             finally
             {

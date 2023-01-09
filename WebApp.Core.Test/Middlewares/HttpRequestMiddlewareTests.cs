@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using WebApp.Common.Responses;
+using WebApp.Core.Test.Extensions;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
@@ -28,6 +29,7 @@ namespace WebApp.Core.Test.Middlewares
         Mock<ILogger<HttpRequestMiddleware>> mockLogger;
         Mock<IRouteLogRepository> mockRouteLogRepository;
         Mock<LogOption> MockLogOption;
+        LogOption _logOption;
 
         [TestInitialize]
         public void Initialize()
@@ -35,7 +37,7 @@ namespace WebApp.Core.Test.Middlewares
             defaultContext = new DefaultHttpContext();
             mockLogger = new Mock<ILogger<HttpRequestMiddleware>>();
             mockRouteLogRepository = new Mock<IRouteLogRepository>();
-
+            _logOption = LogOptionInitExtension.GetValue();
             mockRouteLogRepository.Setup(r => r.AddAsync(It.IsAny<RequestModel>()));
         }
 
@@ -54,7 +56,7 @@ namespace WebApp.Core.Test.Middlewares
                 return Task.CompletedTask;
             });
 
-            var someOptions = Options.Create(MockLogOption.Object);
+            var someOptions = Options.Create(_logOption);
             var serviceProvider = new Mock<IServiceProvider>();
             // Act
             var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
@@ -77,7 +79,7 @@ namespace WebApp.Core.Test.Middlewares
                 innerHttpContext.Response.WriteAsync(exptected);
                 return Task.CompletedTask;
             });
-            var someOptions = Options.Create(new LogOption());
+            var someOptions = Options.Create(_logOption);
             var serviceProvider = new Mock<IServiceProvider>();
             // Act
             var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
@@ -106,7 +108,7 @@ namespace WebApp.Core.Test.Middlewares
                 httpContext.Response.WriteAsync(responseExpected);
                 return Task.CompletedTask;
             });
-            var someOptions = Options.Create(new LogOption());
+            var someOptions = Options.Create(_logOption);
             var serviceProvider = new Mock<IServiceProvider>();
 
             // Act
@@ -151,7 +153,7 @@ namespace WebApp.Core.Test.Middlewares
             //    innerHttpContext.Response.WriteAsync(expectedOutput);
             //    return Task.CompletedTask;
             //}, logger: mockLogger.Object);
-            var someOptions = Options.Create(new LogOption());
+            var someOptions = Options.Create(_logOption);
             var serviceProvider = new Mock<IServiceProvider>();
             // Act
             var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
