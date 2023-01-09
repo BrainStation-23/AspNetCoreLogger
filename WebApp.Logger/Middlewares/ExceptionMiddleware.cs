@@ -28,7 +28,9 @@ namespace WebApp.Logger.Middlewares
 
         public ExceptionMiddleware(RequestDelegate next,
             ILogger<ExceptionMiddleware> logger,
-            IHostEnvironment webHostEnvironment)
+            IHostEnvironment webHostEnvironment
+            //,IExceptionLogRepository exceptionLogRepository
+            )
         {
             _next = next;
             _logger = logger;
