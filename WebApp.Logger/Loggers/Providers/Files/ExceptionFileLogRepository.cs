@@ -48,6 +48,28 @@ namespace WebApp.Logger.Loggers.Repositories
             }
         }
 
+        public async Task AddAsync(List<ErrorModel> errorModels)
+        {
+            //if (errorModel.Url.Contains("/Log/"))
+            //    return;
+
+            var fileConfig = _logOptions.Provider.File;
+
+            try
+            {
+                errorModels.ForEach(errorModel =>
+                {
+                    errorModel = errorModel.PrepareErrorModel(_logOptions);
+                });
+                
+                FileExtension.LogWrite(fileConfig, errorModels);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(nameof(ExceptionLogRepository), exception);
+            }
+        }
+
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
             var fileConfig = _logOptions.Provider.File;
