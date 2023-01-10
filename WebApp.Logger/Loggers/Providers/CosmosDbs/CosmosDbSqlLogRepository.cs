@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Dapper;
+using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,6 +48,11 @@ namespace WebApp.Logger.Loggers.Repositories
         {
             var model = sqlModel.PrepareSqlModel(_logOption).ToItem();
             await _sqlRepository.InsertAsync(model);
+        }
+        public async Task RetentionAsync(DateTime dateTime)
+        {
+             await _sqlRepository.GetItemQueryable(dateTime);
+           
         }
     }
 }

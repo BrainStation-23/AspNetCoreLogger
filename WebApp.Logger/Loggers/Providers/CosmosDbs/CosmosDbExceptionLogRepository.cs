@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Logger.Loggers.Providers.CosmosDbs;
 using WebApp.Logger.Loggers.Providers.CosmosDbs.Items;
@@ -46,6 +48,10 @@ namespace WebApp.Logger.Loggers.Repositories
         {
             var model = errorModel.PrepareErrorModel(_logOption).ToItem();
             await _errorRepository.InsertAsync(model);
+        }
+        public async Task RetentionAsync(DateTime dateTime)
+        {
+            //todo
         }
     }
 }

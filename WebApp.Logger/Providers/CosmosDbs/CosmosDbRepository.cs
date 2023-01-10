@@ -1,12 +1,18 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
+using Microsoft.Azure.Cosmos.Scripts;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Numeric;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using WebApp.Common.Serialize;
+using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Providers.CosmosDbs;
 using WebApp.Logger.Providers.Sqls;
@@ -15,9 +21,10 @@ namespace WebApp.Logger.Providers.Mongos
 {
     public class CosmosDbRepository<TItem> : ICosmosDbRepository<TItem> where TItem : IItem
     {
+
         protected readonly CosmosClient _client;
         protected readonly Database _database;
-        protected readonly Container _container;
+        protected Microsoft.Azure.Cosmos.Container _container;
 
         public string DatabaseName { get; set; }
         public string ContainerName { get; set; }
@@ -75,7 +82,7 @@ namespace WebApp.Logger.Providers.Mongos
             return response.Database;
         }
 
-        public async Task<Container> CreateContainerAsync()
+        public async Task<Microsoft.Azure.Cosmos.Container> CreateContainerAsync()
         {
             var response = await _database.CreateContainerIfNotExistsAsync(id: ContainerName,
                 partitionKeyPath: "/id",
@@ -148,7 +155,7 @@ namespace WebApp.Logger.Providers.Mongos
             return response.Resource;
         }
 
-        public async Task<string> GetPartitionKey(Container container)
+        public async Task<string> GetPartitionKey(Microsoft.Azure.Cosmos.Container container)
         {
             ContainerProperties cproperties = await _container.ReadContainerAsync();
 
@@ -202,7 +209,30 @@ namespace WebApp.Logger.Providers.Mongos
         {
             var response = await _container.DeleteItemAsync<TItem>(id, new PartitionKey());
 
+            //            using FeedIterator<Product> feed = _container.GetItemQueryIterator<Product>(
+            //    queryText: "DELETE * FROM products where id < 1"
+            //);
+
+            //            //// Iterate query result pages
+            //            //while (feed.HasMoreResults)
+            //            //{
+            //            //    FeedResponse<Product> response = await feed.ReadNextAsync();
+
+            //            //    // Iterate query results
+            //            //    foreach (Product item in response)
+            //            //    {
+            //            //        Console.WriteLine($"Found item:\t{item.name}");
+            //            //    }
+            //            //}
+
             return response.Resource;
+        }
+
+        public async Task GetItemQueryable(DateTime date)
+        {
+                string query = "SELECT * FROM SqlLogItem";
+            var result = await _container.Scripts.ExecuteStoredProcedureAsync<object>("DeleteSqlItems", new PartitionKey("/id"), null);
+
         }
     }
 }

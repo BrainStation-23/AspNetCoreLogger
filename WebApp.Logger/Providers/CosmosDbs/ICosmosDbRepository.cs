@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WebApp.Logger.Providers.CosmosDbs;
 using WebApp.Logger.Providers.Sqls;
@@ -13,6 +16,7 @@ namespace WebApp.Logger.Providers.Mongos
         Task<TItem> InsertAsync(TItem item);
         Task<List<TItem>> InsertManyAsync(List<TItem> items);
         Task<TItem> UpdateAsync(string id, TItem item);
+       Task GetItemQueryable(DateTime date);
     }
 
 }

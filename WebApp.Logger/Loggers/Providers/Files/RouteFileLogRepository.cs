@@ -52,5 +52,9 @@ namespace WebApp.Logger.Loggers.Repositories
 
             return routeLogs;
         }
+        public async Task RetentionAsync(DateTime dateTime)
+        {
+            FileExtension.RetentionFileLogs(dateTime, _logOption.Provider.File.Path, LogType.Request.ToString());
+        }
     }
 }
