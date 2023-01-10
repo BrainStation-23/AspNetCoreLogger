@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
+using WebApp.Logger.Test.InitValues;
 using WebApp.Logger.Test.Samples.NestedObject;
 
 namespace WebApp.Logger.Test.Extensions
@@ -60,7 +61,7 @@ namespace WebApp.Logger.Test.Extensions
         [TestMethod]
         public void ObjectExtensionTests_ReadNestedObject_ErrorObject()
         {
-            var errorObject = ObjectInitExtension.GetErrorObject();
+            var errorObject = ErrorObjectInit.GetErrorObject();
 
             var errorData = errorObject.ReadNestedObject();
             var errorAsHash = errorData as Hashtable;
@@ -72,7 +73,7 @@ namespace WebApp.Logger.Test.Extensions
         [TestMethod]
         public void ObjectExtensionTests_ReadNestedObject_SqlObject()
         {
-            var sqlObject = ObjectInitExtension.GetSqlObject();
+            var sqlObject = SqlObjectInit.GetSqlObject();
 
             var sqlData = sqlObject.ReadNestedObject();
             var sqlAsHash = sqlData as Hashtable;
@@ -84,7 +85,7 @@ namespace WebApp.Logger.Test.Extensions
         [TestMethod]
         public void ObjectExtensionTests_ReadNestedObject_RequestObject()
         {
-            var requestObject = ObjectInitExtension.GetRequestObject();
+            var requestObject = RequestObjectInit.GetRequestObject();
 
             var requestData = requestObject.ReadNestedObject();
             var request = requestData as Hashtable;
@@ -98,7 +99,7 @@ namespace WebApp.Logger.Test.Extensions
         [TestMethod]
         public void ObjectExtensionTests_ReadNestedObject_AuditObject()
         {
-            var auditObject = ObjectInitExtension.GetAuditObject();
+            var auditObject = AuditObjectInit.GetAuditObject();
 
             var auditData = auditObject.ReadNestedObject();
             var auditAsHash = auditData as Hashtable;

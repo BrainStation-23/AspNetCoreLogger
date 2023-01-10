@@ -14,6 +14,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using WebApp.Common.Responses;
 using WebApp.Core.Test.Extensions;
+using WebApp.Logger.Core.Test.InitValues;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
@@ -37,7 +38,7 @@ namespace WebApp.Core.Test.Middlewares
             defaultContext = new DefaultHttpContext();
             mockLogger = new Mock<ILogger<HttpRequestMiddleware>>();
             mockRouteLogRepository = new Mock<IRouteLogRepository>();
-            _logOption = LogOptionInitExtension.GetValue();
+            _logOption = LogOptionInit.GetValue();
             mockRouteLogRepository.Setup(r => r.AddAsync(It.IsAny<RequestModel>()));
         }
 

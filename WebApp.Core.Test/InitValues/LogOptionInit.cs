@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApp.Logger.Loggers;
 
-namespace WebApp.Core.Test.Extensions
+namespace WebApp.Logger.Core.Test.InitValues
 {
-    public static class LogOptionInitExtension
+    public static class LogOptionInit
     {
         public static LogOption GetValue()
         {

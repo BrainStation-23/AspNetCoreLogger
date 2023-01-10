@@ -67,12 +67,6 @@ namespace WebApp.Logger.Middlewares
                 var apiResponse = _webHostEnvironment.IsDevelopment() ? errorModel.ToApiDevelopmentResponse(): errorModel.ToApiResponse();
                 await context.Response.WriteAsync(apiResponse);
 
-                //var factory = new ProviderFactory(_serviceProvider);
-                //var providerType = _logOptions.ProviderType;
-                //ILog loggerWrapper = factory.Build(providerType);
-
-                //await loggerWrapper.Error.AddAsync(errorModel);
-
                 await exceptionLogRepository.AddAsync(errorModel);
             }
             finally
