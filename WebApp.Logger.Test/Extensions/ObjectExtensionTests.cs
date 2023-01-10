@@ -88,9 +88,11 @@ namespace WebApp.Logger.Test.Extensions
 
             var requestData = requestObject.ReadNestedObject();
             var request = requestData as Hashtable;
+            var responseType = request["response"].GetType().Name;
 
             Assert.IsNotNull(request["response"]);
-            Assert.AreEqual(request["ipAddress"], "::1");
+            Assert.AreEqual(request["ipAddress"], "127.0.0.1");
+            Assert.AreEqual(responseType, "Hashtable");
         }
 
         [TestMethod]
@@ -100,9 +102,11 @@ namespace WebApp.Logger.Test.Extensions
 
             var auditData = auditObject.ReadNestedObject();
             var auditAsHash = auditData as Hashtable;
+            var oldValuesType = auditAsHash["oldValues"].GetType().Name;
 
             Assert.IsNotNull(auditAsHash["type"]);
             Assert.AreEqual(auditAsHash["traceId"], "400001b9-0000-fc00-b63f-84710c7967bb");
+            Assert.AreEqual(oldValuesType, "Hashtable");
         }
     }
 }
