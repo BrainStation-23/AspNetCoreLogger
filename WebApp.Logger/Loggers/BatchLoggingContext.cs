@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApp.Logger.Loggers.Providers.Mongos;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Models;
+using WebApp.Logger.Providers;
 
 namespace WebApp.Logger.Loggers
 {
@@ -15,57 +17,33 @@ namespace WebApp.Logger.Loggers
         public static Queue<RequestModel> requestLogs = new Queue<RequestModel>();
         public static Queue<SqlModel> sqlLogs = new Queue<SqlModel>();
 
-        public static async Task AddToLogBatch(this AuditEntry log)
+        public static async Task AddToLogBatch<T>(this T log,string logType) where T: class
         {
-            auditLogs.Enqueue(log);
+            if (logType == LogType.Error.ToString())
+                errorLogs.Enqueue(log as ErrorModel);
+
+            else if (logType == LogType.Audit.ToString())
+                auditLogs.Enqueue(log as AuditEntry);
+
+            else if (logType == LogType.Request.ToString())
+                requestLogs.Enqueue(log as RequestModel);
+
+            else if (logType == LogType.Sql.ToString())
+                sqlLogs.Enqueue(log as SqlModel);
         }
-
-        public static async Task AddToLogBatch(this ErrorModel log)
+        public static async Task AddToLogBatch<T>(this List<T> logs,string logType) where T : class
         {
-            errorLogs.Enqueue(log);
-        }
+            if(logType==LogType.Error.ToString())
+                logs.ForEach(log =>{errorLogs.Enqueue(log as ErrorModel);});
 
-        public static async Task AddToLogBatch(this RequestModel log)
-        {
-            requestLogs.Enqueue(log);
-        }
+            else if (logType == LogType.Audit.ToString())
+                logs.ForEach(log => { auditLogs.Enqueue(log as AuditEntry); });
 
-        public static async Task AddToLogBatch(this SqlModel log)
-        {
-            sqlLogs.Enqueue(log);
-        }
+            else if(logType == LogType.Request.ToString())
+                logs.ForEach(log => { requestLogs.Enqueue(log as RequestModel); });
 
-        public static async Task AddToLogBatch(this List<AuditEntry> logs)
-        {
-
-            logs.ForEach(log =>
-            {
-                auditLogs.Enqueue(log);
-            });
-        }
-
-        public static async Task AddToLogBatch(this List<ErrorModel> logs)
-        {
-            logs.ForEach(log =>
-            {
-                errorLogs.Enqueue(log);
-            });
-        }
-
-        public static async Task AddToLogBatch(this List<RequestModel> logs)
-        {
-            logs.ForEach(log =>
-            {
-                requestLogs.Enqueue(log);
-            });
-        }
-
-        public static async Task AddToLogBatch(this List<SqlModel> logs)
-        {
-            logs.ForEach(log =>
-            {
-                sqlLogs.Enqueue(log);
-            });
+            else if(logType == LogType.Sql.ToString())
+                logs.ForEach(log => {sqlLogs.Enqueue(log as SqlModel); });
         }
 
         public static async Task SaveAllLogsToDatabase(IRouteLogRepository routeLogRepository
