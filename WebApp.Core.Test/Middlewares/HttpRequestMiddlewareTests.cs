@@ -28,6 +28,9 @@ namespace WebApp.Core.Test.Middlewares
     {
         DefaultHttpContext defaultContext;
         Mock<ILogger<HttpRequestMiddleware>> mockLogger;
+        Mock<IExceptionLogRepository> mockExceptionLogRepository;
+        Mock<IAuditLogRepository> mockAuditLogRepository;
+        Mock<ISqlLogRepository> mockSqlLogRepository;
         Mock<IRouteLogRepository> mockRouteLogRepository;
         Mock<LogOption> MockLogOption;
         LogOption _logOption;
@@ -37,143 +40,172 @@ namespace WebApp.Core.Test.Middlewares
         {
             defaultContext = new DefaultHttpContext();
             mockLogger = new Mock<ILogger<HttpRequestMiddleware>>();
+
+            mockExceptionLogRepository = new Mock<IExceptionLogRepository>();
+            mockAuditLogRepository = new Mock<IAuditLogRepository>();
+            mockSqlLogRepository = new Mock<ISqlLogRepository>();
             mockRouteLogRepository = new Mock<IRouteLogRepository>();
+
             _logOption = LogOptionInit.GetValue();
+
+            mockExceptionLogRepository.Setup(r => r.AddAsync(It.IsAny<ErrorModel>()));
+            mockAuditLogRepository.Setup(r => r.AddAsync(It.IsAny<AuditEntry>()));
+            mockSqlLogRepository.Setup(r => r.AddAsync(It.IsAny<SqlModel>()));
             mockRouteLogRepository.Setup(r => r.AddAsync(It.IsAny<RequestModel>()));
         }
 
-        //[TestMethod]
-        //public async Task HttpRequestMiddlewareTests_ReadRquestBody()
-        //{
-        //    // Arrange
-        //    defaultContext.Response.Body = new MemoryStream();
-        //    var data = new { Name = "My Blog Name", Title = "Hello word title!" };
-        //    var exptected = JsonSerializer.Serialize(data);
-        //    var stream = new MemoryStream(Encoding.UTF8.GetBytes(exptected));
-        //    var requestDelegate = new RequestDelegate((httpContext) =>
-        //    {
-        //        httpContext.Request.Body = stream;
-        //        httpContext.Request.ContentLength = stream.Length;
-        //        return Task.CompletedTask;
-        //    });
+        [TestMethod]
+        public async Task HttpRequestMiddlewareTests_ReadRquestBody()
+        {
+            // Arrange
+            defaultContext.Response.Body = new MemoryStream();
+            var data = new { Name = "My Blog Name", Title = "Hello word title!" };
+            var exptected = JsonSerializer.Serialize(data);
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes(exptected));
+            var requestDelegate = new RequestDelegate((httpContext) =>
+            {
+                httpContext.Request.Body = stream;
+                httpContext.Request.ContentLength = stream.Length;
+                return Task.CompletedTask;
+            });
 
-        //    var someOptions = Options.Create(_logOption);
-        //    var serviceProvider = new Mock<IServiceProvider>();
-        //    // Act
-        //    var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
-        //    await middleware.InvokeAsync(defaultContext, serviceProvider.Object, mockRouteLogRepository.Object);
-        //    var requestBody = await defaultContext.Request.GetRequestBodyAsync();
+            var someOptions = Options.Create(_logOption);
+            var serviceProvider = new Mock<IServiceProvider>();
+            // Act
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
+            await middleware.InvokeAsync(defaultContext, serviceProvider.Object
+                , mockRouteLogRepository.Object
+                , mockExceptionLogRepository.Object
+                , mockSqlLogRepository.Object
+                , mockAuditLogRepository.Object);
+            var requestBody = await defaultContext.Request.GetRequestBodyAsync();
 
-        //    // Assert
-        //    Assert.AreEqual(exptected, requestBody);
-        //}
+            // Assert
+            Assert.AreEqual(exptected, requestBody);
+        }
 
-        //[TestMethod]
-        //public async Task ExceptionMiddlewareTests_ReadResponseBody()
-        //{
-        //    // Arrange
-        //    defaultContext.Response.Body = new MemoryStream();
-        //    ApiResponse responseModel = new ApiResponse { StatusCode = (int)HttpStatusCode.OK, Data = new { Name = "Blog Post 1" } };
-        //    var exptected = JsonSerializer.Serialize(responseModel);
-        //    var requestDelegate = new RequestDelegate((innerHttpContext) =>
-        //    {
-        //        innerHttpContext.Response.WriteAsync(exptected);
-        //        return Task.CompletedTask;
-        //    });
-        //    var someOptions = Options.Create(_logOption);
-        //    var serviceProvider = new Mock<IServiceProvider>();
-        //    // Act
-        //    var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
-        //    await middleware.InvokeAsync(defaultContext, serviceProvider.Object, mockRouteLogRepository.Object);
-        //    var responeBody = await defaultContext.Response.GetResponseAsync();
+        [TestMethod]
+        public async Task ExceptionMiddlewareTests_ReadResponseBody()
+        {
+            // Arrange
+            defaultContext.Response.Body = new MemoryStream();
+            ApiResponse responseModel = new ApiResponse { StatusCode = (int)HttpStatusCode.OK, Data = new { Name = "Blog Post 1" } };
+            var exptected = JsonSerializer.Serialize(responseModel);
+            var requestDelegate = new RequestDelegate((innerHttpContext) =>
+            {
+                innerHttpContext.Response.WriteAsync(exptected);
+                return Task.CompletedTask;
+            });
+            var someOptions = Options.Create(_logOption);
+            var serviceProvider = new Mock<IServiceProvider>();
+            // Act
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
+            await middleware.InvokeAsync(defaultContext
+                , serviceProvider.Object
+                , mockRouteLogRepository.Object
+                , mockExceptionLogRepository.Object
+                , mockSqlLogRepository.Object
+                , mockAuditLogRepository.Object);
 
-        //    // Assert
-        //    Assert.AreEqual(exptected, responeBody);
-        //}
+            var responeBody = await defaultContext.Response.GetResponseAsync();
 
-        //[TestMethod]
-        //public async Task HttpRequestMiddlewareTests_ReadMiddlewareDataAgain()
-        //{
-        //    var request = new { Name = "My Blog Name", Title = "Hello word title!" };
-        //    var requestExptected = JsonSerializer.Serialize(request);
-        //    var requestStream = new MemoryStream(Encoding.UTF8.GetBytes(requestExptected));
-        //    var response = new ApiResponse { StatusCode = (int)HttpStatusCode.OK, Data = new { Name = "Blog Post 1" } };
-        //    var responseExpected = JsonSerializer.Serialize(response);
-        //    defaultContext.Response.Body = new MemoryStream();
+            // Assert
+            Assert.AreEqual(exptected, responeBody);
+        }
 
-        //    var requestDelegate = new RequestDelegate((httpContext) =>
-        //    {
-        //        httpContext.Request.Body = requestStream;
-        //        httpContext.Request.ContentLength = requestStream.Length;
+        [TestMethod]
+        public async Task HttpRequestMiddlewareTests_ReadMiddlewareDataAgain()
+        {
+            var request = new { Name = "My Blog Name", Title = "Hello word title!" };
+            var requestExptected = JsonSerializer.Serialize(request);
+            var requestStream = new MemoryStream(Encoding.UTF8.GetBytes(requestExptected));
+            var response = new ApiResponse { StatusCode = (int)HttpStatusCode.OK, Data = new { Name = "Blog Post 1" } };
+            var responseExpected = JsonSerializer.Serialize(response);
+            defaultContext.Response.Body = new MemoryStream();
 
-        //        httpContext.Response.WriteAsync(responseExpected);
-        //        return Task.CompletedTask;
-        //    });
-        //    var someOptions = Options.Create(_logOption);
-        //    var serviceProvider = new Mock<IServiceProvider>();
+            var requestDelegate = new RequestDelegate((httpContext) =>
+            {
+                httpContext.Request.Body = requestStream;
+                httpContext.Request.ContentLength = requestStream.Length;
 
-        //    // Act
-        //    var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
-        //    await middleware.InvokeAsync(defaultContext, serviceProvider.Object, mockRouteLogRepository.Object);
+                httpContext.Response.WriteAsync(responseExpected);
+                return Task.CompletedTask;
+            });
+            var someOptions = Options.Create(_logOption);
+            var serviceProvider = new Mock<IServiceProvider>();
 
-        //    var requestBody = await defaultContext.Request.GetRequestBodyAsync();
-        //    var responseBody = await defaultContext.Response.GetResponseAsync();
+            // Act
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
+            await middleware.InvokeAsync(defaultContext
+                , serviceProvider.Object
+                , mockRouteLogRepository.Object
+                , mockExceptionLogRepository.Object
+                , mockSqlLogRepository.Object
+                , mockAuditLogRepository.Object);
 
-        //    var requestBodyAgain = await defaultContext.Request.GetRequestBodyAsync();
-        //    var responseBodyAgain = await defaultContext.Response.GetResponseAsync();
+            var requestBody = await defaultContext.Request.GetRequestBodyAsync();
+            var responseBody = await defaultContext.Response.GetResponseAsync();
 
-        //    // Assert
-        //    Assert.AreEqual(requestExptected, requestBody);
-        //    Assert.AreEqual(responseExpected, responseBody);
-        //    Assert.AreEqual(requestExptected, requestBodyAgain);
-        //    Assert.AreEqual(responseExpected, responseBodyAgain);
-        //}
+            var requestBodyAgain = await defaultContext.Request.GetRequestBodyAsync();
+            var responseBodyAgain = await defaultContext.Response.GetResponseAsync();
 
-        //[TestMethod]
-        //public async Task HttpRequestMiddlewareTests_ReadMiddlewareData()
-        //{
-        //    var request = new { Name = "My Blog Name", Title = "Hello word title!" };
-        //    var requestExptected = JsonSerializer.Serialize(request);
-        //    var requestStream = new MemoryStream(Encoding.UTF8.GetBytes(requestExptected));
-        //    var response = new ApiResponse { StatusCode = (int)HttpStatusCode.OK, Data = new { Name = "Blog Post 1" } };
-        //    var responseExpected = JsonSerializer.Serialize(response);
-        //    defaultContext.Response.Body = new MemoryStream();
+            // Assert
+            Assert.AreEqual(requestExptected, requestBody);
+            Assert.AreEqual(responseExpected, responseBody);
+            Assert.AreEqual(requestExptected, requestBodyAgain);
+            Assert.AreEqual(responseExpected, responseBodyAgain);
+        }
 
-        //    var requestDelegate = new RequestDelegate((httpContext) =>
-        //    {
-        //        httpContext.Request.Body = requestStream;
-        //        httpContext.Request.ContentLength = requestStream.Length;
+        [TestMethod]
+        public async Task HttpRequestMiddlewareTests_ReadMiddlewareData()
+        {
+            var request = new { Name = "My Blog Name", Title = "Hello word title!" };
+            var requestExptected = JsonSerializer.Serialize(request);
+            var requestStream = new MemoryStream(Encoding.UTF8.GetBytes(requestExptected));
+            var response = new ApiResponse { StatusCode = (int)HttpStatusCode.OK, Data = new { Name = "Blog Post 1" } };
+            var responseExpected = JsonSerializer.Serialize(response);
+            defaultContext.Response.Body = new MemoryStream();
 
-        //        httpContext.Response.WriteAsync(responseExpected);
-        //        return Task.CompletedTask;
-        //    });
+            var requestDelegate = new RequestDelegate((httpContext) =>
+            {
+                httpContext.Request.Body = requestStream;
+                httpContext.Request.ContentLength = requestStream.Length;
 
-        //    // Act
-        //    //var middlewareInstance = new HttpRequestMiddleware(next: (innerHttpContext) =>
-        //    //{
-        //    //    innerHttpContext.Response.WriteAsync(expectedOutput);
-        //    //    return Task.CompletedTask;
-        //    //}, logger: mockLogger.Object);
-        //    var someOptions = Options.Create(_logOption);
-        //    var serviceProvider = new Mock<IServiceProvider>();
-        //    // Act
-        //    var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
-        //    await middleware.InvokeAsync(defaultContext, serviceProvider.Object, mockRouteLogRepository.Object);
+                httpContext.Response.WriteAsync(responseExpected);
+                return Task.CompletedTask;
+            });
 
-        //    var requestBody = await defaultContext.Request.GetRequestBodyAsync();
-        //    var responseBody = await defaultContext.Response.GetResponseAsync();
+            // Act
+            //var middlewareInstance = new HttpRequestMiddleware(next: (innerHttpContext) =>
+            //{
+            //    innerHttpContext.Response.WriteAsync(expectedOutput);
+            //    return Task.CompletedTask;
+            //}, logger: mockLogger.Object);
+            var someOptions = Options.Create(_logOption);
+            var serviceProvider = new Mock<IServiceProvider>();
+            // Act
+            var middleware = new HttpRequestMiddleware(next: requestDelegate, logger: mockLogger.Object, someOptions);
+            await middleware.InvokeAsync(defaultContext
+                , serviceProvider.Object
+                , mockRouteLogRepository.Object
+                , mockExceptionLogRepository.Object
+                , mockSqlLogRepository.Object
+                , mockAuditLogRepository.Object);
 
-        //    // Assert
-        //    Assert.AreEqual(requestExptected, requestBody);
-        //    Assert.AreEqual(responseExpected, responseBody);
+            var requestBody = await defaultContext.Request.GetRequestBodyAsync();
+            var responseBody = await defaultContext.Response.GetResponseAsync();
 
-        //    var responseData = JsonSerializer.Deserialize<ApiResponse>(responseBody);
-        //    responseData.StatusCode.Should().Be((int)HttpStatusCode.OK);
+            // Assert
+            Assert.AreEqual(requestExptected, requestBody);
+            Assert.AreEqual(responseExpected, responseBody);
 
-        //    //// Assert 2: if the cookie is added to the response
-        //    //var setCookieHeaders = defaultContext.Response.GetTypedHeaders().SetCookie;
-        //    //var cookie = setCookieHeaders?.FirstOrDefault(x => x.Name == "DummyCookie");
-        //    //Assert.IsTrue(Guid.TryParse(cookie.Value, out Guid result));
-        //}
+            var responseData = JsonSerializer.Deserialize<ApiResponse>(responseBody);
+            responseData.StatusCode.Should().Be((int)HttpStatusCode.OK);
+
+            //// Assert 2: if the cookie is added to the response
+            //var setCookieHeaders = defaultContext.Response.GetTypedHeaders().SetCookie;
+            //var cookie = setCookieHeaders?.FirstOrDefault(x => x.Name == "DummyCookie");
+            //Assert.IsTrue(Guid.TryParse(cookie.Value, out Guid result));
+        }
     }
 }

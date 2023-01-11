@@ -17,7 +17,7 @@ namespace WebApp.Logger.Loggers
         public static Queue<RequestModel> requestLogs = new Queue<RequestModel>();
         public static Queue<SqlModel> sqlLogs = new Queue<SqlModel>();
 
-        public static async Task AddToLogBatch<T>(this T log,string logType) where T: class
+        public static async Task AddToLogBatch<T>(this T log, string logType) where T : class
         {
             if (logType == LogType.Error.ToString())
                 errorLogs.Enqueue(log as ErrorModel);
@@ -31,31 +31,30 @@ namespace WebApp.Logger.Loggers
             else if (logType == LogType.Sql.ToString())
                 sqlLogs.Enqueue(log as SqlModel);
         }
-        public static async Task AddToLogBatch<T>(this List<T> logs,string logType) where T : class
+        public static async Task AddToLogBatch<T>(this List<T> logs, string logType) where T : class
         {
-            if(logType==LogType.Error.ToString())
-                logs.ForEach(log =>{errorLogs.Enqueue(log as ErrorModel);});
+            if (logType == LogType.Error.ToString())
+                logs.ForEach(log => { errorLogs.Enqueue(log as ErrorModel); });
 
             else if (logType == LogType.Audit.ToString())
                 logs.ForEach(log => { auditLogs.Enqueue(log as AuditEntry); });
 
-            else if(logType == LogType.Request.ToString())
+            else if (logType == LogType.Request.ToString())
                 logs.ForEach(log => { requestLogs.Enqueue(log as RequestModel); });
 
-            else if(logType == LogType.Sql.ToString())
-                logs.ForEach(log => {sqlLogs.Enqueue(log as SqlModel); });
+            else if (logType == LogType.Sql.ToString())
+                logs.ForEach(log => { sqlLogs.Enqueue(log as SqlModel); });
         }
 
         public static async Task SaveAllLogsToDatabase(IRouteLogRepository routeLogRepository
-            ,ISqlLogRepository sqlLogRepository
-            ,IExceptionLogRepository exceptionLogRepository
-            ,IAuditLogRepository auditLogRepository)
+            , ISqlLogRepository sqlLogRepository
+            , IExceptionLogRepository exceptionLogRepository
+            , IAuditLogRepository auditLogRepository)
         {
             List<AuditEntry> auditLogList = new List<AuditEntry>();
             List<SqlModel> sqlLogList = new List<SqlModel>();
             List<ErrorModel> errorLogList = new List<ErrorModel>();
             List<RequestModel> requestLogList = new List<RequestModel>();
-
 
             while (sqlLogs.Count > 0)
             {
@@ -86,7 +85,7 @@ namespace WebApp.Logger.Loggers
             if (requestLogList.Count is not 0)
                 await routeLogRepository.AddAsync(requestLogList);
 
-            if(errorLogList.Count is not 0)
+            if (errorLogList.Count is not 0)
                 await exceptionLogRepository.AddAsync(errorLogList);
         }
     }
