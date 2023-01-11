@@ -32,9 +32,12 @@ namespace WebApp.Logger.Middlewares
             _logOptions = logOptions.Value;
         }
 
-        public async Task InvokeAsync(HttpContext context,
-            IServiceProvider _serviceProvider,
-            IRouteLogRepository RouteLogRepository)
+        public async Task InvokeAsync(HttpContext context
+            ,IServiceProvider _serviceProvider
+            ,IRouteLogRepository RouteLogRepository
+            , IExceptionLogRepository ExceptionLogRepository
+            , ISqlLogRepository SqlLogRepository
+            ,IAuditLogRepository AuditLogRepository)
         {
             var isSkipable = LogOptionExtension.SkipRequest(context, _logOptions);
             if (isSkipable)
@@ -68,7 +71,11 @@ namespace WebApp.Logger.Middlewares
 
             var request = requestModel.PrepareRequestModel(_logOptions);
             //await loggerWrapper.Request.AddAsync(request);
-            await RouteLogRepository.AddAsync(request);
+            //await RouteLogRepository.AddAsync(request);
+
+            await request.AddToLogBatch();
+
+            await BatchLoggingContext.SaveAllLogsToDatabase(RouteLogRepository, SqlLogRepository, ExceptionLogRepository, AuditLogRepository);
 
             //await routeLogRepository.AddAsync(requestModel);
         }

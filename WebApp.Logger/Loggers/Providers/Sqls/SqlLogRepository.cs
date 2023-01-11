@@ -4,6 +4,8 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Common.Serialize;
 using WebApp.Logger.Models;
@@ -99,9 +101,6 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(List<SqlModel> sqlModels)
         {
-            //if (LogOptionExtension.SkipSqlLog(sqlModels, _logOptions))
-            //    return;
-
             var query = @"INSERT INTO [dbo].[SqlLogs]
                             ([UserId]
                             ,[ApplicationName]
@@ -154,13 +153,10 @@ namespace WebApp.Logger.Loggers.Repositories
                             , @Command
                             , @Event
                             , @CreatedDateUtc)";
-
+            
+            sqlModels=sqlModels.Select(sqlModel =>sqlModel.PrepareSqlModel(_logOptions).SerializeSqlModel()).ToList();
             try
             {
-                sqlModels.ForEach(model =>
-                {
-                    model = model.PrepareSqlModel(_logOptions).SerializeSqlModel();
-                });
                 using var connection = _dapper.CreateConnection();
                 await connection.ExecuteAsync(query, sqlModels);
             }

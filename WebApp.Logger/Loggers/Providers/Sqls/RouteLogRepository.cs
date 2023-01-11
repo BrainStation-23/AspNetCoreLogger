@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using WebApp.Common.Serialize;
 using WebApp.Logger.Providers.Sqls;
 using WebApp.Logger.Models;
+using System.Collections.Generic;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Linq;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
@@ -111,6 +114,93 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 _logger.LogError(nameof(RouteLogRepository), exception);
             }
+        }
+
+        public async Task AddAsync(List<RequestModel> requestModels)
+        {
+            var requestLogs = new List<object>();
+            var createdDateUtc = DateTime.UtcNow.ToString();
+            var query = @"INSERT INTO [dbo].[RouteLogs]
+                               ([UserId]
+                               ,[ApplicationName]
+                               ,[IpAddress]
+                               ,[Version]
+                               ,[Host]
+                               ,[Url]
+                               ,[Source]
+                               ,[Form]
+                               ,[Body]
+                               ,[Response]
+                               ,[RequestHeaders]
+                               ,[ResponseHeaders]
+                               ,[Scheme]
+                               ,[TraceId]
+                               ,[Protocol]
+                               ,[UrlReferrer]
+                               ,[Area]
+                               ,[ControllerName]
+                               ,[ActionName]
+                               ,[ExecutionDuration]
+                               ,[StatusCode]
+                               ,[AppStatusCode]
+                               ,[CreatedDateUtc] )
+                         VALUES
+                               ( @UserId
+                               , @ApplicationName
+                               , @IpAddress
+                               , @Version
+                               , @Host
+                               , @Url
+                               , @Source
+                               , @Form
+                               , @Body
+                               , @Response
+                               , @RequestHeaders
+                               , @ResponseHeaders
+                               , @Scheme
+                               , @TraceId
+                               , @Protocol
+                               , @UrlReferrer
+                               , @Area
+                               , @ControllerName
+                               , @ActionName
+                               , @ExecutionDuration
+                               , @StatusCode
+                               , @AppStatusCode
+                               , @CreatedDateUtc)";
+
+            requestModels.ForEach(requestModel =>
+            {
+                requestLogs.Add(new
+                {
+                    UserId = requestModel.UserId,
+                    ApplicationName = requestModel.Application,
+                    IpAddress = requestModel.IpAddress,
+                    Version = requestModel.Version,
+                    Host = requestModel.Host,
+                    Url = requestModel.Url,
+                    Source = requestModel.Source,
+                    Form = requestModel.Form,
+                    Body = requestModel.Body,
+                    Response = requestModel.Response,
+                    RequestHeaders = requestModel.RequestHeaders,
+                    ResponseHeaders = requestModel.ResponseHeaders,
+                    Scheme = requestModel.Scheme,
+                    TraceId = requestModel.TraceId,
+                    Protocol = requestModel.Proctocol,
+                    UrlReferrer = requestModel.UrlReferrer,
+                    Area = requestModel.Area,
+                    ControllerName = requestModel.ControllerName,
+                    ActionName = requestModel.ActionName,
+                    ExecutionDuration = requestModel.ExecutionDuration,
+                    StatusCode = ((int)requestModel.StatusCode).ToString(),
+                    AppStatusCode = requestModel.AppStatusCode,
+                    CreatedDateUtc = createdDateUtc
+                });
+            });
+
+            using var connection = _dapper.CreateConnection();
+            await connection.ExecuteAsync(query, requestLogs);
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)

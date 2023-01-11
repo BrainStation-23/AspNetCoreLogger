@@ -15,27 +15,27 @@ namespace WebApp.Logger.Loggers
         public static Queue<RequestModel> requestLogs = new Queue<RequestModel>();
         public static Queue<SqlModel> sqlLogs = new Queue<SqlModel>();
 
-        public static void SaveToQueue(this AuditEntry log)
+        public static async Task AddToLogBatch(this AuditEntry log)
         {
             auditLogs.Enqueue(log);
         }
 
-        public static void SaveToQueue(this ErrorModel log)
+        public static async Task AddToLogBatch(this ErrorModel log)
         {
             errorLogs.Enqueue(log);
         }
 
-        public static void SaveToQueue(this RequestModel log)
+        public static async Task AddToLogBatch(this RequestModel log)
         {
             requestLogs.Enqueue(log);
         }
 
-        public static void SaveToQueue(this SqlModel log)
+        public static async Task AddToLogBatch(this SqlModel log)
         {
             sqlLogs.Enqueue(log);
         }
 
-        public static void SaveToQueue(this List<AuditEntry> logs)
+        public static async Task AddToLogBatch(this List<AuditEntry> logs)
         {
 
             logs.ForEach(log =>
@@ -44,7 +44,7 @@ namespace WebApp.Logger.Loggers
             });
         }
 
-        public static void SaveToQueue(this List<ErrorModel> logs)
+        public static async Task AddToLogBatch(this List<ErrorModel> logs)
         {
             logs.ForEach(log =>
             {
@@ -52,7 +52,7 @@ namespace WebApp.Logger.Loggers
             });
         }
 
-        public static void SaveToQueue(this List<RequestModel> logs)
+        public static async Task AddToLogBatch(this List<RequestModel> logs)
         {
             logs.ForEach(log =>
             {
@@ -60,7 +60,7 @@ namespace WebApp.Logger.Loggers
             });
         }
 
-        public static void SaveToQueue(this List<SqlModel> logs)
+        public static async Task AddToLogBatch(this List<SqlModel> logs)
         {
             logs.ForEach(log =>
             {
@@ -68,7 +68,7 @@ namespace WebApp.Logger.Loggers
             });
         }
 
-        public static void SaveAllLogsToDatabase(IRouteLogRepository routeLogRepository
+        public static async Task SaveAllLogsToDatabase(IRouteLogRepository routeLogRepository
             ,ISqlLogRepository sqlLogRepository
             ,IExceptionLogRepository exceptionLogRepository
             ,IAuditLogRepository auditLogRepository)
@@ -83,25 +83,26 @@ namespace WebApp.Logger.Loggers
             {
                 sqlLogList.Add(sqlLogs.Dequeue());
             }
-            sqlLogRepository.AddAsync(sqlLogList);
 
             while (auditLogs.Count > 0)
             {
                 auditLogList.Add(auditLogs.Dequeue());
             }
-            auditLogRepository.AddAsync(auditLogList);
 
             while (requestLogs.Count > 0)
             {
                 requestLogList.Add(requestLogs.Dequeue());
             }
-            routeLogRepository.AddAsync(requestLogList);
 
             while (errorLogs.Count > 0)
             {
                 errorLogList.Add(errorLogs.Dequeue());
             }
-            exceptionLogRepository.AddAsync(errorLogList);
+
+            await sqlLogRepository.AddAsync(sqlLogList);
+            await auditLogRepository.AddAsync(auditLogList);
+            await routeLogRepository.AddAsync(requestLogList);
+            await exceptionLogRepository.AddAsync(errorLogList);
         }
     }
 }

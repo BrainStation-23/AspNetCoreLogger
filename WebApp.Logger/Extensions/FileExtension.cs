@@ -467,6 +467,9 @@ namespace WebApp.Logger.Extensions
             if (currentDirectory is null)
                 return null;
 
+            if (currentDirectory.Exists is false)
+                return null;
+
             DirectoryInfo directoryInfo = null;
 
             currentDirectory.GetDirectories().ToList().ForEach(d =>

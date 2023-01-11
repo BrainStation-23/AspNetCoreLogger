@@ -88,7 +88,9 @@ namespace WebApp.Logger.Interceptors
                     commandExecutedEventData.EventId.Name,
                 },
             };
-            await SqlLogRepository.AddAsync(model);
+            //await SqlLogRepository.AddAsync(model);
+
+            await model.AddToLogBatch();
         }
     }
 }

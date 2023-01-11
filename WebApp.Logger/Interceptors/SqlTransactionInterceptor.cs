@@ -64,7 +64,9 @@ namespace WebApp.Logger.Interceptors
                 }
             };
 
-            await SqlLogRepository.AddAsync(model);
+            // await SqlLogRepository.AddAsync(model);
+
+            await model.AddToLogBatch();
         }
     }
 }
