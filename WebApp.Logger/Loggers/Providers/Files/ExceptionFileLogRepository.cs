@@ -38,7 +38,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
             try
             {
-                errorModel = errorModel.PrepareErrorModel(_logOptions).DeserializeErrorModel();
+                errorModel = errorModel.DeserializeErrorModel().PrepareErrorModel(_logOptions);
 
                 FileExtension.LogWrite(fileConfig, errorModel);
             }
@@ -59,7 +59,7 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 errorModels.ForEach(errorModel =>
                 {
-                    errorModel = errorModel.PrepareErrorModel(_logOptions);
+                    errorModel = errorModel.DeserializeErrorModel().PrepareErrorModel(_logOptions);
                 });
                 
                 FileExtension.LogWrite(fileConfig, errorModels);

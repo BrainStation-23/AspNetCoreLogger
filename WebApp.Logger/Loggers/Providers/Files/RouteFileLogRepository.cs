@@ -37,7 +37,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
             try
             {
-                requestModel = requestModel.PrepareRequestModel(_logOption).DeserializeRequestModel();
+                requestModel = requestModel.DeserializeRequestModel().PrepareRequestModel(_logOption);
                 FileExtension.LogWrite(fileConfig, requestModel);
             }
             catch (Exception exception)
@@ -57,7 +57,7 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 requestModels.ForEach(requestModel =>
                 {
-                    requestModel = requestModel.PrepareRequestModel(_logOption);
+                    requestModel = requestModel.DeserializeRequestModel().PrepareRequestModel(_logOption);
                 });
                 FileExtension.LogWrite(fileConfig, requestModels);
             }
