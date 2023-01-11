@@ -77,10 +77,17 @@ namespace WebApp.Logger.Loggers
                 errorLogList.Add(errorLogs.Dequeue());
             }
 
-            await sqlLogRepository.AddAsync(sqlLogList);
-            await auditLogRepository.AddAsync(auditLogList);
-            await routeLogRepository.AddAsync(requestLogList);
-            await exceptionLogRepository.AddAsync(errorLogList);
+            if (sqlLogList.Count is not 0)
+                await sqlLogRepository.AddAsync(sqlLogList);
+
+            if (auditLogList.Count is not 0)
+                await auditLogRepository.AddAsync(auditLogList);
+
+            if (requestLogList.Count is not 0)
+                await routeLogRepository.AddAsync(requestLogList);
+
+            if(errorLogList.Count is not 0)
+                await exceptionLogRepository.AddAsync(errorLogList);
         }
     }
 }
