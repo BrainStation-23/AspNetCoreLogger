@@ -47,7 +47,7 @@ namespace WebApp.Logger.Loggers
                 logs.ForEach(log => { sqlLogs.Enqueue(log as SqlModel); });
         }
 
-        public static async Task SaveAllLogsToDatabase(IRouteLogRepository routeLogRepository
+        public static async Task PublishToDbAsync(IRouteLogRepository routeLogRepository
             , ISqlLogRepository sqlLogRepository
             , IExceptionLogRepository exceptionLogRepository
             , IAuditLogRepository auditLogRepository)

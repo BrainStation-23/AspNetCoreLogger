@@ -75,7 +75,7 @@ namespace WebApp.Logger.Middlewares
 
             await request.PublishAsync(LogType.Request.ToString());
 
-            await BatchLoggingContext.SaveAllLogsToDatabase(RouteLogRepository, SqlLogRepository, ExceptionLogRepository, AuditLogRepository);
+            await BatchLoggingContext.PublishToDbAsync(RouteLogRepository, SqlLogRepository, ExceptionLogRepository, AuditLogRepository);
 
             //await routeLogRepository.AddAsync(requestModel);
         }
