@@ -1,0 +1,89 @@
+01-12-2023 11:22:54 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNKBJS9QTHB:0000000B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-12T11:22:54.8935726+06:00",
+  "primaryKey": {
+    "id": -9223372036854774807
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-12T11:22:54.7861733+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-12T05:22:54.8938353Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-12-2023 11:23:24 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNKBJS9QTHB:0000000D",
+  "type": "Update",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-12T11:23:24.2890636+06:00",
+  "primaryKey": {
+    "id": 10313
+  },
+  "oldValues": {
+    "createdDateUtc": "0001-01-01T06:00:00+06:00",
+    "description": null,
+    "motto": "learn new technology",
+    "name": "medium",
+    "updatedBy": 0,
+    "updatedDateUtc": "2023-01-12T11:16:00.9119739+06:00"
+  },
+  "newValues": {
+    "createdDateUtc": "0001-01-01T06:00:00+06:00",
+    "description": null,
+    "motto": "ask any question",
+    "name": "quora",
+    "updatedBy": 0,
+    "updatedDateUtc": "2023-01-12T11:23:24.2603094+06:00"
+  },
+  "affectedColumns": [
+    "Motto",
+    "Name",
+    "UpdatedDateUtc"
+  ],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-12T05:23:24.2890646Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-12-2023 11:23:43 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNKBJS9QTHB:0000000F",
+  "type": "Delete",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-12T11:23:43.6546698+06:00",
+  "primaryKey": {
+    "id": 3
+  },
+  "oldValues": {
+    "createdDateUtc": "2023-01-02T13:14:28.1778779+06:00",
+    "description": "string",
+    "motto": "string",
+    "name": "yutuyit",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "newValues": {},
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-12T05:23:43.6546714Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
