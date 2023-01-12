@@ -1,0 +1,146 @@
+01-11-2023 16:21:46 +06 [sql] {
+  "userId": null,
+  "applicationName": "",
+  "ipAddress": "::1",
+  "version": "",
+  "host": "localhost:5001",
+  "url": "https://localhost:5001/api/Blog",
+  "source": "Query",
+  "scheme": "https",
+  "traceId": "0HMNJNMG67T4O:00000009",
+  "protocol": "HTTP/2",
+  "urlReferrer": "",
+  "area": "",
+  "controllerName": "Blog",
+  "actionName": "AddBlogDetail",
+  "className": "",
+  "methodName": "",
+  "connection": {
+    "database": "DotnetLoggerWrapper",
+    "dataSource": "BS-1002\\SQLEXPRESS",
+    "serverVersion": "15.00.2000",
+    "connectionId": "503dee07-1528-43ac-a5ae-50c682c876b2",
+    "connectionTimeout": 15
+  },
+  "command": {
+    "commandTimeout": 30,
+    "commandType": "Text"
+  },
+  "event": {
+    "name": "Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"
+  },
+  "queryType": "Text",
+  "query": "SELECT TOP(1) [b].[Id], [b].[CreatedBy], [b].[CreatedDateUtc], [b].[Description], [b].[Motto], [b].[Name], [b].[UpdatedBy], [b].[UpdatedDateUtc]\r\nFROM [Blogs] AS [b]\r\nWHERE [b].[Id] = @__p_0",
+  "response": null,
+  "duration": 32.0434,
+  "message": null,
+  "createdDateUtc": "2023-01-11T10:21:46.7278233Z"
+}
+----------------------------------------------------------------------------------
+01-11-2023 16:21:46 +06 [sql] {
+  "userId": null,
+  "applicationName": "",
+  "ipAddress": "::1",
+  "version": "",
+  "host": "localhost:5001",
+  "url": "https://localhost:5001/api/Blog",
+  "source": "Connection",
+  "scheme": "https",
+  "traceId": "0HMNJNMG67T4O:00000009",
+  "protocol": "HTTP/2",
+  "urlReferrer": "",
+  "area": "",
+  "controllerName": "",
+  "actionName": "",
+  "className": "",
+  "methodName": "",
+  "connection": {
+    "database": "DotnetLoggerWrapper",
+    "dataSource": "BS-1002\\SQLEXPRESS",
+    "connectionId": "503dee07-1528-43ac-a5ae-50c682c876b2",
+    "connectionTimeout": 15
+  },
+  "command": {
+    "commandTimeout": 0,
+    "commandType": ""
+  },
+  "event": {
+    "name": "Microsoft.EntityFrameworkCore.Database.Connection.ConnectionOpening"
+  },
+  "queryType": "",
+  "query": "",
+  "response": null,
+  "duration": 0.0,
+  "message": null,
+  "createdDateUtc": "2023-01-11T10:21:46.8258783Z"
+}
+----------------------------------------------------------------------------------
+01-11-2023 16:21:46 +06 [sql] {
+  "userId": null,
+  "applicationName": "",
+  "ipAddress": "::1",
+  "version": "",
+  "host": "localhost:5001",
+  "url": "https://localhost:5001/api/Blog",
+  "source": "Query",
+  "scheme": "https",
+  "traceId": "0HMNJNMG67T4O:00000009",
+  "protocol": "HTTP/2",
+  "urlReferrer": "",
+  "area": "",
+  "controllerName": "Blog",
+  "actionName": "AddBlogDetail",
+  "className": "",
+  "methodName": "",
+  "connection": {
+    "database": "DotnetLoggerWrapper",
+    "dataSource": "BS-1002\\SQLEXPRESS",
+    "serverVersion": "15.00.2000",
+    "connectionId": "503dee07-1528-43ac-a5ae-50c682c876b2",
+    "connectionTimeout": 15
+  },
+  "command": {
+    "commandTimeout": 30,
+    "commandType": "Text"
+  },
+  "event": {
+    "name": "Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"
+  },
+  "queryType": "Text",
+  "query": "SET NOCOUNT ON;\r\nINSERT INTO [Blogs] ([CreatedBy], [CreatedDateUtc], [Description], [Motto], [Name], [UpdatedBy], [UpdatedDateUtc])\r\nVALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);\r\nSELECT [Id]\r\nFROM [Blogs]\r\nWHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();\r\n\r\n",
+  "response": null,
+  "duration": 16.4592,
+  "message": null,
+  "createdDateUtc": "2023-01-11T10:21:46.9144521Z"
+}
+----------------------------------------------------------------------------------
+01-11-2023 16:21:46 +06 [sql] {
+  "userId": null,
+  "applicationName": "",
+  "ipAddress": "::1",
+  "version": "",
+  "host": "localhost:5001",
+  "url": "https://localhost:5001/api/Blog",
+  "source": "Transaction",
+  "scheme": "https",
+  "traceId": "0HMNJNMG67T4O:00000009",
+  "protocol": "HTTP/2",
+  "urlReferrer": "",
+  "area": "",
+  "controllerName": "",
+  "actionName": "",
+  "className": "",
+  "methodName": "",
+  "connection": null,
+  "command": null,
+  "event": {
+    "name": "Microsoft.EntityFrameworkCore.Database.Transaction.TransactionCommitting"
+  },
+  "queryType": null,
+  "query": null,
+  "response": null,
+  "duration": 0.0,
+  "message": null,
+  "createdDateUtc": "2023-01-11T10:21:46.9536801Z"
+}
+----------------------------------------------------------------------------------
