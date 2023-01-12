@@ -90,7 +90,7 @@ namespace WebApp.Logger.Interceptors
             };
             //await SqlLogRepository.AddAsync(model);
 
-            await model.AddToLogBatch(LogType.Sql.ToString());
+            await model.PublishAsync(LogType.Sql.ToString());
         }
     }
 }

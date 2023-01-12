@@ -73,7 +73,7 @@ namespace WebApp.Logger.Middlewares
 
                 //await exceptionLogRepository.AddAsync(errorModel);
 
-                await errorModel.AddToLogBatch(LogType.Error.ToString());
+                await errorModel.PublishAsync(LogType.Error.ToString());
 
                 await BatchLoggingContext.SaveAllLogsToDatabase(routeLogRepository, sqlLogRepository, exceptionLogRepository, auditLogRepository);
             }

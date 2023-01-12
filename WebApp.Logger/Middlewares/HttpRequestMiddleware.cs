@@ -73,7 +73,7 @@ namespace WebApp.Logger.Middlewares
             //await loggerWrapper.Request.AddAsync(request);
             //await RouteLogRepository.AddAsync(request);
 
-            await request.AddToLogBatch(LogType.Request.ToString());
+            await request.PublishAsync(LogType.Request.ToString());
 
             await BatchLoggingContext.SaveAllLogsToDatabase(RouteLogRepository, SqlLogRepository, ExceptionLogRepository, AuditLogRepository);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,12 @@ namespace WebApp.Logger.Loggers
 {
     public static class BatchLoggingContext
     {
-        public static Queue<AuditEntry> auditLogs = new Queue<AuditEntry>();
-        public static Queue<ErrorModel> errorLogs = new Queue<ErrorModel>();
-        public static Queue<RequestModel> requestLogs = new Queue<RequestModel>();
-        public static Queue<SqlModel> sqlLogs = new Queue<SqlModel>();
+        private static ConcurrentQueue<AuditEntry> auditLogs = new ConcurrentQueue<AuditEntry>();
+        private static ConcurrentQueue<ErrorModel> errorLogs = new ConcurrentQueue<ErrorModel>();
+        private static ConcurrentQueue<RequestModel> requestLogs = new ConcurrentQueue<RequestModel>();
+        private static ConcurrentQueue<SqlModel> sqlLogs = new ConcurrentQueue<SqlModel>();
 
-        public static async Task AddToLogBatch<T>(this T log, string logType) where T : class
+        public static async Task PublishAsync<T>(this T log, string logType) where T : class
         {
             if (logType == LogType.Error.ToString())
                 errorLogs.Enqueue(log as ErrorModel);
@@ -31,7 +32,7 @@ namespace WebApp.Logger.Loggers
             else if (logType == LogType.Sql.ToString())
                 sqlLogs.Enqueue(log as SqlModel);
         }
-        public static async Task AddToLogBatch<T>(this List<T> logs, string logType) where T : class
+        public static async Task PublishAsyncAsync<T>(this List<T> logs, string logType) where T : class
         {
             if (logType == LogType.Error.ToString())
                 logs.ForEach(log => { errorLogs.Enqueue(log as ErrorModel); });
@@ -56,36 +57,40 @@ namespace WebApp.Logger.Loggers
             List<ErrorModel> errorLogList = new List<ErrorModel>();
             List<RequestModel> requestLogList = new List<RequestModel>();
 
-            while (sqlLogs.Count > 0)
+            while (sqlLogs.IsEmpty is false)
             {
-                sqlLogList.Add(sqlLogs.Dequeue());
+                sqlLogs.TryDequeue(out SqlModel frontObj);
+                sqlLogList.Add(frontObj);
             }
 
-            while (auditLogs.Count > 0)
+            while (auditLogs.IsEmpty is false)
             {
-                auditLogList.Add(auditLogs.Dequeue());
+                auditLogs.TryDequeue(out AuditEntry topObj);
+                auditLogList.Add(topObj);
             }
 
-            while (requestLogs.Count > 0)
+            while (requestLogs.IsEmpty is false)
             {
-                requestLogList.Add(requestLogs.Dequeue());
+                requestLogs.TryDequeue(out RequestModel topObj);
+                requestLogList.Add(topObj);
             }
 
-            while (errorLogs.Count > 0)
+            while (errorLogs.IsEmpty is false)
             {
-                errorLogList.Add(errorLogs.Dequeue());
+                errorLogs.TryDequeue(out ErrorModel topObj);
+                errorLogList.Add(topObj);
             }
 
-            if (sqlLogList.Count is not 0)
+            if (sqlLogList.Any())
                 await sqlLogRepository.AddAsync(sqlLogList);
 
-            if (auditLogList.Count is not 0)
+            if (auditLogList.Any())
                 await auditLogRepository.AddAsync(auditLogList);
 
-            if (requestLogList.Count is not 0)
+            if (requestLogList.Any())
                 await routeLogRepository.AddAsync(requestLogList);
 
-            if (errorLogList.Count is not 0)
+            if (errorLogList.Any())
                 await exceptionLogRepository.AddAsync(errorLogList);
         }
     }
