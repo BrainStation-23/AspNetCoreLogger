@@ -57,27 +57,23 @@ namespace WebApp.Logger.Loggers
             List<ErrorModel> errorLogList = new List<ErrorModel>();
             List<RequestModel> requestLogList = new List<RequestModel>();
 
-            while (sqlLogs.IsEmpty is false)
+            while (sqlLogs.TryDequeue(out SqlModel frontObj))
             {
-                sqlLogs.TryDequeue(out SqlModel frontObj);
                 sqlLogList.Add(frontObj);
             }
 
-            while (auditLogs.IsEmpty is false)
+            while (auditLogs.TryDequeue(out AuditEntry topObj))
             {
-                auditLogs.TryDequeue(out AuditEntry topObj);
                 auditLogList.Add(topObj);
             }
 
-            while (requestLogs.IsEmpty is false)
+            while (requestLogs.TryDequeue(out RequestModel topObj))
             {
-                requestLogs.TryDequeue(out RequestModel topObj);
                 requestLogList.Add(topObj);
             }
 
-            while (errorLogs.IsEmpty is false)
+            while (errorLogs.TryDequeue(out ErrorModel topObj))
             {
-                errorLogs.TryDequeue(out ErrorModel topObj);
                 errorLogList.Add(topObj);
             }
 
