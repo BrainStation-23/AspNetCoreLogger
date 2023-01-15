@@ -30,11 +30,9 @@ namespace WebApp.Sql
         public readonly IAuditLogRepository _auditLogRepository;
         private readonly ISqlLogRepository _sqlLogRepository;
         public readonly IHttpContextAccessor HttpContextAccessor;
-        private long? UserId;
         private ILoggerFactory _myLoggerFactory;
         private readonly IServiceProvider _serviceProvider;
         private readonly IConfiguration _configuration;
-        private readonly LogOption _logOptions;
 
         public AuditLogContext(DbContextOptions options,
             IConfiguration configuration,
@@ -45,10 +43,7 @@ namespace WebApp.Sql
             _signInHelper = _serviceProvider.GetService<ISignInHelper>();
             _auditLogRepository = _serviceProvider.GetService<IAuditLogRepository>();
             HttpContextAccessor = _serviceProvider.GetService<IHttpContextAccessor>();
-            UserId = _signInHelper.UserId;
             _sqlLogRepository = _serviceProvider.GetService<ISqlLogRepository>();
-            //var logOption = new LogOption();
-            _logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
         }
 
         protected AuditLogContext() { }
@@ -87,9 +82,6 @@ namespace WebApp.Sql
         #region audit logic
         private async Task<bool> AuditTrailLog()
         {
-            //if (!logOptions.LogType.MustContain(LogType.Sql.ToString()))
-            //    skip = true;
-
             long userId = 0;
 
             if (_signInHelper.IsAuthenticated)
@@ -100,12 +92,14 @@ namespace WebApp.Sql
 
             if (auditEntries.Any())
             {
-                var factory = new ProviderFactory(_serviceProvider);
+                //var factory = new ProviderFactory(_serviceProvider);
 
-                var providerType = _logOptions.ProviderType;
-                ILog loggerWrapper = factory.Build(providerType);
+                //var providerType = _logOptions.ProviderType;
+                //ILog loggerWrapper = factory.Build(providerType);
 
-                await loggerWrapper.Audit.AddAsync(auditEntries.ToList());
+                //await loggerWrapper.Audit.AddAsync(auditEntries.ToList());
+
+                await _auditLogRepository.AddAsync(auditEntries.ToList());
             }
 
             return auditEntries.Any();
