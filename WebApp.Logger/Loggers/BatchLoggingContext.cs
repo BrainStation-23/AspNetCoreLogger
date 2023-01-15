@@ -32,7 +32,7 @@ namespace WebApp.Logger.Loggers
             else if (logType == LogType.Sql.ToString())
                 sqlLogs.Enqueue(log as SqlModel);
         }
-        public static async Task PublishAsyncAsync<T>(this List<T> logs, string logType) where T : class
+        public static async Task PublishAsync<T>(this List<T> logs, string logType) where T : class
         {
             if (logType == LogType.Error.ToString())
                 logs.ForEach(log => { errorLogs.Enqueue(log as ErrorModel); });
