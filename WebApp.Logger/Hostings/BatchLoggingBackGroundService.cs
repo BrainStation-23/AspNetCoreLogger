@@ -36,7 +36,7 @@ namespace WebApp.Logger.Hostings
                 var _auditLogRepository = scope.ServiceProvider.GetService<IAuditLogRepository>();
                 var _sqlLogRepository = scope.ServiceProvider.GetService<ISqlLogRepository>();
 
-                await BatchLoggingContext.BatchLogProceassAsync(
+                await BatchLoggingContext.BatchLogProcessAsync(
                     _routeLogRepository
                     , _sqlLogRepository
                     , _exceptionLogRepository
