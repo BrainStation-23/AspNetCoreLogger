@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApp.Common.Responses;
@@ -73,6 +74,24 @@ namespace WebApp.Controllers
         {
             await _blogService.AddBlogOperationAsync();
 
+        }
+
+        [HttpPost("AddDummyBlogs/{amount}")]
+        public async Task<IActionResult> AddDummyBlogDetailAsync(int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                Guid obj = Guid.NewGuid();
+                BlogModel model = new BlogModel()
+                {
+                    Name = "My Blog" + obj.ToString(),
+                    Description = "My blog description" + obj.ToString(),
+                    Motto = "Blog Motto",
+                    Id = 0
+                };
+                await _blogService.AddBlogDetailAsync(model);
+            }
+            return new OkResponse("Dummy data added");
         }
     }
 }
