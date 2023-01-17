@@ -10,7 +10,7 @@ using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Providers.Sqls;
 
-namespace WebApp.Controllers.Logs
+namespace WebApp6.Controllers.Logs
 {
     [ApiController]
     [Route("api/[controller]")]
