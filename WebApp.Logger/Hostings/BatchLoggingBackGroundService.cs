@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 using System;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using WebApp.Logger.Loggers;
@@ -14,7 +15,8 @@ namespace WebApp.Logger.Hostings
     public class BatchLoggingBackGroundService : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;
-        Timer _loggingTimer;
+        public Timer _loggingTimer;
+
         public BatchLoggingBackGroundService(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
@@ -22,7 +24,7 @@ namespace WebApp.Logger.Hostings
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _loggingTimer = new Timer(PublishToDb, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            _loggingTimer = new Timer(PublishToDb, null, TimeSpan.Zero, TimeSpan.FromSeconds(5000));
         }
 
         public async void PublishToDb(object? state)
@@ -33,12 +35,22 @@ namespace WebApp.Logger.Hostings
                 var _routeLogRepository = scope.ServiceProvider.GetService<IRouteLogRepository>();
                 var _auditLogRepository = scope.ServiceProvider.GetService<IAuditLogRepository>();
                 var _sqlLogRepository = scope.ServiceProvider.GetService<ISqlLogRepository>();
-                BatchLoggingContext.PublishToDbAsync(
+
+                await BatchLoggingContext.BatchLogProceassAsync(
                     _routeLogRepository
                     , _sqlLogRepository
                     , _exceptionLogRepository
-                    , _auditLogRepository);
+                    , _auditLogRepository
+                    //,this
+                    );
             }
+        }
+
+        public void ChangeTimerInterval()
+        {
+            // if cpu usage high, then publish low
+            // if cpu usage low, then publish high
+            _loggingTimer.Change(10000,10000);
         }
 
     }

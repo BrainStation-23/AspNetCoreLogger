@@ -32,12 +32,7 @@ namespace WebApp.Logger.Middlewares
             _logOptions = logOptions.Value;
         }
 
-        public async Task InvokeAsync(HttpContext context
-            ,IServiceProvider _serviceProvider
-            ,IRouteLogRepository RouteLogRepository
-            , IExceptionLogRepository ExceptionLogRepository
-            , ISqlLogRepository SqlLogRepository
-            ,IAuditLogRepository AuditLogRepository)
+        public async Task InvokeAsync(HttpContext context)
         {
             var isSkipable = LogOptionExtension.SkipRequest(context, _logOptions);
             if (isSkipable)
@@ -46,12 +41,11 @@ namespace WebApp.Logger.Middlewares
                 return;
             }
 
-            var requestModel = new RequestModel();
 
             var originalBodyStream = context.Response.Body;
             var responseBody = new MemoryStream();
 
-            requestModel = await context.ToModelAsync();
+            var requestModel = await context.ToModelAsync();
             requestModel.Body = await context.Request.GetRequestBodyAsync();
 
             context.Response.Body = responseBody;
@@ -73,9 +67,7 @@ namespace WebApp.Logger.Middlewares
             //await loggerWrapper.Request.AddAsync(request);
             //await RouteLogRepository.AddAsync(request);
 
-            await request.PublishAsync(LogType.Request.ToString());
-
-            //await BatchLoggingContext.PublishToDbAsync(RouteLogRepository, SqlLogRepository, ExceptionLogRepository, AuditLogRepository);
+            await BatchLoggingContext.PublishAsync(request,LogType.Request.ToString());
 
             //await routeLogRepository.AddAsync(requestModel);
         }

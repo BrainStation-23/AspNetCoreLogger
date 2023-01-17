@@ -66,7 +66,7 @@ namespace WebApp.Logger.Interceptors
 
             // await SqlLogRepository.AddAsync(model);
 
-            await model.PublishAsync(LogType.Sql.ToString());
+            await BatchLoggingContext.PublishAsync(model,LogType.Sql.ToString());
         }
     }
 }

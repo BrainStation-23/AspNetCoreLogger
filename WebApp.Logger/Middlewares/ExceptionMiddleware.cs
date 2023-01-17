@@ -35,11 +35,7 @@ namespace WebApp.Logger.Middlewares
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task InvokeAsync(HttpContext context
-            , IRouteLogRepository routeLogRepository
-            , IExceptionLogRepository exceptionLogRepository
-            , ISqlLogRepository sqlLogRepository
-            , IAuditLogRepository auditLogRepository)
+        public async Task InvokeAsync(HttpContext context)
         {
             var errorModel = new ErrorModel();
             var requestModel = new RequestModel();
@@ -73,9 +69,7 @@ namespace WebApp.Logger.Middlewares
 
                 //await exceptionLogRepository.AddAsync(errorModel);
 
-                await errorModel.PublishAsync(LogType.Error.ToString());
-
-                //await BatchLoggingContext.PublishToDbAsync(routeLogRepository, sqlLogRepository, exceptionLogRepository, auditLogRepository);
+                await BatchLoggingContext.PublishAsync(errorModel,LogType.Error.ToString());
             }
             finally
             {
