@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace WebApp.Logger.Loggers
         private static ConcurrentQueue<ErrorModel> errorLogs = new ConcurrentQueue<ErrorModel>();
         private static ConcurrentQueue<RequestModel> requestLogs = new ConcurrentQueue<RequestModel>();
         private static ConcurrentQueue<SqlModel> sqlLogs = new ConcurrentQueue<SqlModel>();
+
+        private readonly static int maxBatchSize = 100;
 
         public static async Task PublishAsync<T>(this T log, string logType) where T : class
         {
@@ -47,7 +50,7 @@ namespace WebApp.Logger.Loggers
                 logs.ForEach(log => { sqlLogs.Enqueue(log as SqlModel); });
         }
 
-        public static async Task PublishToDbAsync(IRouteLogRepository routeLogRepository
+        public static async void PublishToDbAsync(IRouteLogRepository routeLogRepository
             , ISqlLogRepository sqlLogRepository
             , IExceptionLogRepository exceptionLogRepository
             , IAuditLogRepository auditLogRepository)
@@ -57,24 +60,45 @@ namespace WebApp.Logger.Loggers
             List<ErrorModel> errorLogList = new List<ErrorModel>();
             List<RequestModel> requestLogList = new List<RequestModel>();
 
-            while (sqlLogs.TryDequeue(out SqlModel frontObj))
+
+            if (sqlLogs.Count >= maxBatchSize)
             {
-                sqlLogList.Add(frontObj);
+                while (sqlLogs.TryDequeue(out SqlModel frontObj))
+                {
+                    sqlLogList.Add(frontObj);
+                    if (sqlLogList.Count >= maxBatchSize)
+                        break;
+                }
             }
 
-            while (auditLogs.TryDequeue(out AuditEntry topObj))
+            if (auditLogs.Count >= maxBatchSize)
             {
-                auditLogList.Add(topObj);
+                while (auditLogs.TryDequeue(out AuditEntry topObj))
+                {
+                    auditLogList.Add(topObj);
+                    if (auditLogList.Count >= maxBatchSize)
+                        break;
+                }
             }
 
-            while (requestLogs.TryDequeue(out RequestModel topObj))
+            if (requestLogs.Count >= maxBatchSize)
             {
-                requestLogList.Add(topObj);
+                while (requestLogs.TryDequeue(out RequestModel topObj))
+                {
+                    requestLogList.Add(topObj);
+                    if (requestLogList.Count >= maxBatchSize)
+                        break;
+                }
             }
 
-            while (errorLogs.TryDequeue(out ErrorModel topObj))
+            if (errorLogs.Count >= maxBatchSize)
             {
-                errorLogList.Add(topObj);
+                while (errorLogs.TryDequeue(out ErrorModel topObj))
+                {
+                    errorLogList.Add(topObj);
+                    if (errorLogList.Count >= maxBatchSize)
+                        break;
+                }
             }
 
             if (sqlLogList.Any())
