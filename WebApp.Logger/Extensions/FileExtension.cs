@@ -97,7 +97,7 @@ namespace WebApp.Logger.Extensions
 
             var dir = ReadOrCreateDirectory($"{path}/{logName}/{dateStamp}");
 
-            var lastCreatedFile = dir.GetLastCreatedFile(fileNamingFormat);
+            var lastCreatedFile = dir.GetLastCreatedFile(fileNamingFormat.ToLower());
 
             var fileName = defaultFileName;
 
@@ -174,9 +174,22 @@ namespace WebApp.Logger.Extensions
         /// <param name="model"></param>
         public static void LogWrite<T>(Loggers.File fileConfig, List<T> models) where T : class
         {
-            foreach (var model in models)
+            if (models.Any() is false)
+                return;
+            var file = PrepareLogFile(fileConfig, models[0]);
+
+            if (file.Exists)
             {
-                LogWrite(fileConfig, model);
+                using (StreamWriter writer = System.IO.File.AppendText(file.FullName))
+                {
+                    var message = "";
+                    if (fileConfig.FileFormate == "JSON")
+                        message = PrepareMessageForJSONFormat(models);
+                    else
+                        message = PrepareMessageForTextFormat(models);
+
+                    writer.WriteLine(message);
+                }
             }
         }
 
@@ -275,6 +288,21 @@ namespace WebApp.Logger.Extensions
             jsonText = HeaderAppender(logType) + jsonText + FooterAppender();
 
             return jsonText;
+        }
+
+        public static string PrepareMessageForJSONFormat<T>(List<T> models) where T : class
+        {
+            var JsonReturnText = "";
+
+            foreach (var model in models)
+            {
+                var jsonText = model.ToPrettyJson();
+                var logType = model.GetLogType();
+
+                JsonReturnText = JsonReturnText + HeaderAppender(logType) + jsonText + FooterAppender() + '\n';
+            }
+
+            return JsonReturnText;
         }
 
         public static Dictionary<string, object> GetDirectories(string path, bool withSubdirectories = false)
