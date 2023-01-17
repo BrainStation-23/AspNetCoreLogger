@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using WebApp.Logger.Loggers;
@@ -544,6 +545,11 @@ namespace WebApp.Logger.Extensions
                     Directory.Delete(directoryFullname, true);
                 });
             }
+        }
+
+        public static IEnumerable<T> Paging<T>(this IEnumerable<T> list, int pageIndex, int pageSize)
+        {
+            return list.Skip(pageIndex * pageSize).Take(pageSize);
         }
     }
 }
