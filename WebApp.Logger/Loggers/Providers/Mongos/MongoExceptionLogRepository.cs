@@ -40,11 +40,10 @@ namespace WebApp.Logger.Loggers.Repositories
             if (LogOptionExtension.SkipErrorLog(errorModel, _logOptions))
                 return;
 
-            errorModel = errorModel.PrepareErrorModel(_logOptions);
+            errorModel = errorModel.DeserializeErrorModel().PrepareErrorModel(_logOptions);
 
             //if (errorModel.Url.Contains("/Log/"))
             //    return;
-            errorModel = errorModel.DeserializeErrorModel();
             var errorDocument = errorModel.ToDocument();
 
             await _errorRepository.InsertAsync(errorDocument);
