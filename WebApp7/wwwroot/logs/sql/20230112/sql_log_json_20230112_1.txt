@@ -1,0 +1,223 @@
+01-12-2023 18:42:26 +06 [sql] {
+  "userId": null,
+  "applicationName": "",
+  "ipAddress": "::1",
+  "version": "",
+  "host": "localhost:44342",
+  "url": "https://localhost:44342/api/Blog",
+  "source": "Query",
+  "scheme": "https",
+  "traceId": "400001f0-0008-fa00-b63f-84710c7967bb",
+  "protocol": "HTTP/2",
+  "urlReferrer": "",
+  "area": "",
+  "controllerName": "Blog",
+  "actionName": "AddBlogDetail",
+  "className": "",
+  "methodName": "",
+  "connection": {
+    "database": "DotnetLoggerWrapper",
+    "dataSource": "BS-1002\\SQLEXPRESS",
+    "serverVersion": "15.00.2000",
+    "connectionId": "85859db1-1d7e-458a-8ead-d693f342deb0",
+    "connectionTimeout": 15
+  },
+  "command": {
+    "commandTimeout": 30,
+    "commandType": "Text"
+  },
+  "event": {
+    "name": "Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"
+  },
+  "queryType": "Text",
+  "query": "SELECT TOP(1) [b].[Id], [b].[CreatedBy], [b].[CreatedDateUtc], [b].[Description], [b].[Motto], [b].[Name], [b].[UpdatedBy], [b].[UpdatedDateUtc]\r\nFROM [Blogs] AS [b]\r\nWHERE [b].[Id] = @__p_0",
+  "response": null,
+  "duration": 26.3643,
+  "message": null,
+  "createdDateUtc": "2023-01-12T12:42:26.0222753Z"
+}
+----------------------------------------------------------------------------------
+01-12-2023 18:42:26 +06 [sql] {
+  "userId": null,
+  "applicationName": "",
+  "ipAddress": "::1",
+  "version": "",
+  "host": "localhost:44342",
+  "url": "https://localhost:44342/api/Blog",
+  "source": "Connection",
+  "scheme": "https",
+  "traceId": "400001f0-0008-fa00-b63f-84710c7967bb",
+  "protocol": "HTTP/2",
+  "urlReferrer": "",
+  "area": "",
+  "controllerName": "",
+  "actionName": "",
+  "className": "",
+  "methodName": "",
+  "connection": {
+    "database": "DotnetLoggerWrapper",
+    "dataSource": "BS-1002\\SQLEXPRESS",
+    "connectionId": "85859db1-1d7e-458a-8ead-d693f342deb0",
+    "connectionTimeout": 15
+  },
+  "command": {
+    "commandTimeout": 0,
+    "commandType": ""
+  },
+  "event": {
+    "name": "Microsoft.EntityFrameworkCore.Database.Connection.ConnectionOpening"
+  },
+  "queryType": "",
+  "query": "",
+  "response": null,
+  "duration": 0.0,
+  "message": null,
+  "createdDateUtc": "2023-01-12T12:42:26.1188633Z"
+}
+----------------------------------------------------------------------------------
+01-12-2023 18:42:26 +06 [sql] {
+  "userId": null,
+  "applicationName": "",
+  "ipAddress": "::1",
+  "version": "",
+  "host": "localhost:44342",
+  "url": "https://localhost:44342/api/Blog",
+  "source": "Query",
+  "scheme": "https",
+  "traceId": "400001f0-0008-fa00-b63f-84710c7967bb",
+  "protocol": "HTTP/2",
+  "urlReferrer": "",
+  "area": "",
+  "controllerName": "Blog",
+  "actionName": "AddBlogDetail",
+  "className": "",
+  "methodName": "",
+  "connection": {
+    "database": "DotnetLoggerWrapper",
+    "dataSource": "BS-1002\\SQLEXPRESS",
+    "serverVersion": "15.00.2000",
+    "connectionId": "85859db1-1d7e-458a-8ead-d693f342deb0",
+    "connectionTimeout": 15
+  },
+  "command": {
+    "commandTimeout": 30,
+    "commandType": "Text"
+  },
+  "event": {
+    "name": "Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"
+  },
+  "queryType": "Text",
+  "query": "SET NOCOUNT ON;\r\nINSERT INTO [Blogs] ([CreatedBy], [CreatedDateUtc], [Description], [Motto], [Name], [UpdatedBy], [UpdatedDateUtc])\r\nVALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);\r\nSELECT [Id]\r\nFROM [Blogs]\r\nWHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();\r\n\r\n",
+  "response": null,
+  "duration": 15.9728,
+  "message": null,
+  "createdDateUtc": "2023-01-12T12:42:26.1930139Z"
+}
+----------------------------------------------------------------------------------
+01-12-2023 18:42:26 +06 [sql] {
+  "userId": null,
+  "applicationName": "",
+  "ipAddress": "::1",
+  "version": "",
+  "host": "localhost:44342",
+  "url": "https://localhost:44342/api/Blog",
+  "source": "Transaction",
+  "scheme": "https",
+  "traceId": "400001f0-0008-fa00-b63f-84710c7967bb",
+  "protocol": "HTTP/2",
+  "urlReferrer": "",
+  "area": "",
+  "controllerName": "",
+  "actionName": "",
+  "className": "",
+  "methodName": "",
+  "connection": null,
+  "command": null,
+  "event": {
+    "name": "Microsoft.EntityFrameworkCore.Database.Transaction.TransactionCommitting"
+  },
+  "queryType": null,
+  "query": null,
+  "response": null,
+  "duration": 0.0,
+  "message": null,
+  "createdDateUtc": "2023-01-12T12:42:26.2273323Z"
+}
+----------------------------------------------------------------------------------
+01-12-2023 18:44:14 +06 [sql] {
+  "userId": null,
+  "applicationName": "",
+  "ipAddress": "::1",
+  "version": "",
+  "host": "localhost:44342",
+  "url": "https://localhost:44342/api/Blog",
+  "source": "Query",
+  "scheme": "https",
+  "traceId": "40000209-0004-ff00-b63f-84710c7967bb",
+  "protocol": "HTTP/2",
+  "urlReferrer": "",
+  "area": "",
+  "controllerName": "Blog",
+  "actionName": "AddBlogDetail",
+  "className": "",
+  "methodName": "",
+  "connection": {
+    "database": "DotnetLoggerWrapper",
+    "dataSource": "BS-1002\\SQLEXPRESS",
+    "serverVersion": "15.00.2000",
+    "connectionId": "7a415507-908d-4445-a1c1-dee0a55479a9",
+    "connectionTimeout": 15
+  },
+  "command": {
+    "commandTimeout": 30,
+    "commandType": "Text"
+  },
+  "event": {
+    "name": "Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"
+  },
+  "queryType": "Text",
+  "query": "SELECT TOP(1) [b].[Id], [b].[CreatedBy], [b].[CreatedDateUtc], [b].[Description], [b].[Motto], [b].[Name], [b].[UpdatedBy], [b].[UpdatedDateUtc]\r\nFROM [Blogs] AS [b]\r\nWHERE [b].[Id] = @__p_0",
+  "response": null,
+  "duration": 2.2029,
+  "message": null,
+  "createdDateUtc": "2023-01-12T12:44:14.5487436Z"
+}
+----------------------------------------------------------------------------------
+01-12-2023 18:44:14 +06 [sql] {
+  "userId": null,
+  "applicationName": "",
+  "ipAddress": "::1",
+  "version": "",
+  "host": "localhost:44342",
+  "url": "https://localhost:44342/api/Blog",
+  "source": "Connection",
+  "scheme": "https",
+  "traceId": "40000209-0004-ff00-b63f-84710c7967bb",
+  "protocol": "HTTP/2",
+  "urlReferrer": "",
+  "area": "",
+  "controllerName": "",
+  "actionName": "",
+  "className": "",
+  "methodName": "",
+  "connection": {
+    "database": "DotnetLoggerWrapper",
+    "dataSource": "BS-1002\\SQLEXPRESS",
+    "connectionId": "7a415507-908d-4445-a1c1-dee0a55479a9",
+    "connectionTimeout": 15
+  },
+  "command": {
+    "commandTimeout": 0,
+    "commandType": ""
+  },
+  "event": {
+    "name": "Microsoft.EntityFrameworkCore.Database.Connection.ConnectionOpening"
+  },
+  "queryType": "",
+  "query": "",
+  "response": null,
+  "duration": 0.0,
+  "message": null,
+  "createdDateUtc": "2023-01-12T12:44:14.5934348Z"
+}
+----------------------------------------------------------------------------------
