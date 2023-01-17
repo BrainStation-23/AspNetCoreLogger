@@ -1,0 +1,5202 @@
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.001413+06:00",
+  "primaryKey": {
+    "id": -9223372036854773703
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:20.6369371+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0014148Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0014157+06:00",
+  "primaryKey": {
+    "id": -9223372036854773702
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:20.7120782+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0014159Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0014164+06:00",
+  "primaryKey": {
+    "id": -9223372036854773707
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:20.1378886+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0014166Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0014169+06:00",
+  "primaryKey": {
+    "id": -9223372036854773701
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:20.7828398+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0014171Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0014176+06:00",
+  "primaryKey": {
+    "id": -9223372036854773700
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:20.8199398+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0014178Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0014182+06:00",
+  "primaryKey": {
+    "id": -9223372036854773699
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:21.137734+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0014183Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.001419+06:00",
+  "primaryKey": {
+    "id": -9223372036854773697
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:21.2545181+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0014192Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0014197+06:00",
+  "primaryKey": {
+    "id": -9223372036854773698
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:21.2477474+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0014199Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0014991+06:00",
+  "primaryKey": {
+    "id": -9223372036854773696
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:21.3829477+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015005Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015066+06:00",
+  "primaryKey": {
+    "id": -9223372036854773693
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:21.7719662+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015068Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015074+06:00",
+  "primaryKey": {
+    "id": -9223372036854773694
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:21.7331101+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015076Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015082+06:00",
+  "primaryKey": {
+    "id": -9223372036854773692
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:21.797805+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015085Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015089+06:00",
+  "primaryKey": {
+    "id": -9223372036854773689
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:22.2349662+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015092Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015095+06:00",
+  "primaryKey": {
+    "id": -9223372036854773688
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:22.2706102+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015098Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015102+06:00",
+  "primaryKey": {
+    "id": -9223372036854773690
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:22.248166+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015104Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015108+06:00",
+  "primaryKey": {
+    "id": -9223372036854773687
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:22.6617893+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.001511Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015115+06:00",
+  "primaryKey": {
+    "id": -9223372036854773691
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:22.1421711+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015117Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015121+06:00",
+  "primaryKey": {
+    "id": -9223372036854773685
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:22.801845+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015123Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015127+06:00",
+  "primaryKey": {
+    "id": -9223372036854773686
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:22.6983682+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015129Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015134+06:00",
+  "primaryKey": {
+    "id": -9223372036854773683
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:23.1778102+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015136Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.001514+06:00",
+  "primaryKey": {
+    "id": -9223372036854773684
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:23.1386405+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015142Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015146+06:00",
+  "primaryKey": {
+    "id": -9223372036854773682
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:23.2853316+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015148Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015152+06:00",
+  "primaryKey": {
+    "id": -9223372036854773681
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:23.3599282+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015153Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015157+06:00",
+  "primaryKey": {
+    "id": -9223372036854773695
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:21.9120577+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015159Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015162+06:00",
+  "primaryKey": {
+    "id": -9223372036854773680
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:23.6556309+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015164Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015167+06:00",
+  "primaryKey": {
+    "id": -9223372036854773678
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:23.9162777+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015169Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015173+06:00",
+  "primaryKey": {
+    "id": -9223372036854773679
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:23.8590283+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015175Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015178+06:00",
+  "primaryKey": {
+    "id": -9223372036854773677
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:24.0179213+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.001518Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015184+06:00",
+  "primaryKey": {
+    "id": -9223372036854773675
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:24.3145968+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015186Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.001519+06:00",
+  "primaryKey": {
+    "id": -9223372036854773716
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:19.3833728+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015193Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015197+06:00",
+  "primaryKey": {
+    "id": -9223372036854773674
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:24.4460881+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015199Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015203+06:00",
+  "primaryKey": {
+    "id": -9223372036854773673
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:24.4487015+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015205Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.001521+06:00",
+  "primaryKey": {
+    "id": -9223372036854773676
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:24.1472987+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015212Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015216+06:00",
+  "primaryKey": {
+    "id": -9223372036854773672
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:24.8500495+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015218Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015222+06:00",
+  "primaryKey": {
+    "id": -9223372036854773671
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:24.9630491+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015224Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015228+06:00",
+  "primaryKey": {
+    "id": -9223372036854773670
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:25.1546139+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015229Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015233+06:00",
+  "primaryKey": {
+    "id": -9223372036854773667
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:25.380346+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015235Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015239+06:00",
+  "primaryKey": {
+    "id": -9223372036854773668
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:25.3533331+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015241Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015286+06:00",
+  "primaryKey": {
+    "id": -9223372036854773669
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:25.2229768+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015288Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015292+06:00",
+  "primaryKey": {
+    "id": -9223372036854773665
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:25.6250796+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0015294Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0015298+06:00",
+  "primaryKey": {
+    "id": -9223372036854773664
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:25.9181475+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.00153Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022687+06:00",
+  "primaryKey": {
+    "id": -9223372036854773663
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:25.9462862+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022702Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022725+06:00",
+  "primaryKey": {
+    "id": -9223372036854773661
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:26.082689+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022727Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022733+06:00",
+  "primaryKey": {
+    "id": -9223372036854773662
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:26.0168667+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022736Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022742+06:00",
+  "primaryKey": {
+    "id": -9223372036854773659
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:26.4543994+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022745Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022751+06:00",
+  "primaryKey": {
+    "id": -9223372036854773660
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:26.4668422+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022753Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022796+06:00",
+  "primaryKey": {
+    "id": -9223372036854773658
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:26.5841347+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022799Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022805+06:00",
+  "primaryKey": {
+    "id": -9223372036854773656
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:26.8725464+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022808Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022813+06:00",
+  "primaryKey": {
+    "id": -9223372036854773655
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:26.997937+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022816Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022821+06:00",
+  "primaryKey": {
+    "id": -9223372036854773657
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:26.791297+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022824Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022829+06:00",
+  "primaryKey": {
+    "id": -9223372036854773654
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:27.2512189+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022832Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022838+06:00",
+  "primaryKey": {
+    "id": -9223372036854773653
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:27.3721819+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022841Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022847+06:00",
+  "primaryKey": {
+    "id": -9223372036854773652
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:27.4565369+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022849Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022857+06:00",
+  "primaryKey": {
+    "id": -9223372036854773651
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:27.7473374+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022859Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022866+06:00",
+  "primaryKey": {
+    "id": -9223372036854773650
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:27.8539528+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022869Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022874+06:00",
+  "primaryKey": {
+    "id": -9223372036854773649
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:27.8758193+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022877Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022886+06:00",
+  "primaryKey": {
+    "id": -9223372036854773646
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:28.2512551+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022888Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022892+06:00",
+  "primaryKey": {
+    "id": -9223372036854773647
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:28.2087198+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022895Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022901+06:00",
+  "primaryKey": {
+    "id": -9223372036854773645
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:28.3458074+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022903Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022909+06:00",
+  "primaryKey": {
+    "id": -9223372036854773666
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:25.7633362+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022911Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022916+06:00",
+  "primaryKey": {
+    "id": -9223372036854773648
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:28.1038228+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022919Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022924+06:00",
+  "primaryKey": {
+    "id": -9223372036854773642
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:28.7765098+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022926Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022932+06:00",
+  "primaryKey": {
+    "id": -9223372036854773644
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:28.7240559+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022934Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.002294+06:00",
+  "primaryKey": {
+    "id": -9223372036854773643
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:28.7522836+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022943Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022947+06:00",
+  "primaryKey": {
+    "id": -9223372036854773641
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:29.1507504+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.002295Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022955+06:00",
+  "primaryKey": {
+    "id": -9223372036854773640
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:29.3250883+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022958Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000019",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022964+06:00",
+  "primaryKey": {
+    "id": -9223372036854773638
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:29.4489398+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022967Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022973+06:00",
+  "primaryKey": {
+    "id": -9223372036854773639
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:29.362172+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022976Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022981+06:00",
+  "primaryKey": {
+    "id": -9223372036854773636
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:29.700199+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022983Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022989+06:00",
+  "primaryKey": {
+    "id": -9223372036854773634
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:29.90796+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022991Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0022996+06:00",
+  "primaryKey": {
+    "id": -9223372036854773633
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:30.2808058+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0022999Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023004+06:00",
+  "primaryKey": {
+    "id": -9223372036854773635
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:29.9168062+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023007Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023012+06:00",
+  "primaryKey": {
+    "id": -9223372036854773632
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:30.3685983+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023015Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023021+06:00",
+  "primaryKey": {
+    "id": -9223372036854773631
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:30.3899351+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023024Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.002303+06:00",
+  "primaryKey": {
+    "id": -9223372036854773630
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:30.6844199+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023033Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023038+06:00",
+  "primaryKey": {
+    "id": -9223372036854773629
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:30.7264096+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023041Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023046+06:00",
+  "primaryKey": {
+    "id": -9223372036854773628
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:30.8762469+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023049Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023053+06:00",
+  "primaryKey": {
+    "id": -9223372036854773627
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:30.9146452+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023058Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023062+06:00",
+  "primaryKey": {
+    "id": -9223372036854773625
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:31.249844+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023064Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023068+06:00",
+  "primaryKey": {
+    "id": -9223372036854773626
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:31.2303962+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.002307Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023074+06:00",
+  "primaryKey": {
+    "id": -9223372036854773624
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:31.3568982+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023081Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023085+06:00",
+  "primaryKey": {
+    "id": -9223372036854773621
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:31.718713+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023088Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023094+06:00",
+  "primaryKey": {
+    "id": -9223372036854773637
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:30.0659503+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023097Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023104+06:00",
+  "primaryKey": {
+    "id": -9223372036854773622
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:31.6826674+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023106Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023156+06:00",
+  "primaryKey": {
+    "id": -9223372036854773620
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:31.7658976+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023159Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023165+06:00",
+  "primaryKey": {
+    "id": -9223372036854773623
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:31.5342682+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023168Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023172+06:00",
+  "primaryKey": {
+    "id": -9223372036854773618
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:32.1740854+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023175Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023183+06:00",
+  "primaryKey": {
+    "id": -9223372036854773617
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:32.1951722+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023186Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023192+06:00",
+  "primaryKey": {
+    "id": -9223372036854773619
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:32.1548708+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023194Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023203+06:00",
+  "primaryKey": {
+    "id": -9223372036854773768
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:12.4920803+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023205Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023209+06:00",
+  "primaryKey": {
+    "id": -9223372036854773615
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:32.6012018+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023211Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023217+06:00",
+  "primaryKey": {
+    "id": -9223372036854773616
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:32.5040869+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023219Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023223+06:00",
+  "primaryKey": {
+    "id": -9223372036854773614
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:32.6881353+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023225Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.002323+06:00",
+  "primaryKey": {
+    "id": -9223372036854773613
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:32.7680266+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023232Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023239+06:00",
+  "primaryKey": {
+    "id": -9223372036854773611
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:33.05742+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023241Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023246+06:00",
+  "primaryKey": {
+    "id": -9223372036854773610
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:33.1489094+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023249Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023254+06:00",
+  "primaryKey": {
+    "id": -9223372036854773609
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:33.3137658+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023255Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023261+06:00",
+  "primaryKey": {
+    "id": -9223372036854773608
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:33.4976238+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023263Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023267+06:00",
+  "primaryKey": {
+    "id": -9223372036854773607
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:33.5215425+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023269Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:34 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:34.0023273+06:00",
+  "primaryKey": {
+    "id": -9223372036854773612
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:33.1785608+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:34.0023275Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951545+06:00",
+  "primaryKey": {
+    "id": -9223372036854773606
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:33.6872617+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.995157Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951582+06:00",
+  "primaryKey": {
+    "id": -9223372036854773605
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:33.8884846+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951585Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951595+06:00",
+  "primaryKey": {
+    "id": -9223372036854773604
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:34.020173+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951597Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951602+06:00",
+  "primaryKey": {
+    "id": -9223372036854773601
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:34.2084148+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951604Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.995161+06:00",
+  "primaryKey": {
+    "id": -9223372036854773600
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:34.3082196+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951612Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951616+06:00",
+  "primaryKey": {
+    "id": -9223372036854773603
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:34.0748144+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951618Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951623+06:00",
+  "primaryKey": {
+    "id": -9223372036854773599
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:34.5512116+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951625Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951629+06:00",
+  "primaryKey": {
+    "id": -9223372036854773598
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:34.6088731+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951631Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951635+06:00",
+  "primaryKey": {
+    "id": -9223372036854773597
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:34.8719042+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951637Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951643+06:00",
+  "primaryKey": {
+    "id": -9223372036854773596
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:34.9893596+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951645Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951648+06:00",
+  "primaryKey": {
+    "id": -9223372036854773595
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:35.162211+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.995165Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951657+06:00",
+  "primaryKey": {
+    "id": -9223372036854773592
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:35.4524681+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951658Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951661+06:00",
+  "primaryKey": {
+    "id": -9223372036854773593
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:35.462307+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951663Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951667+06:00",
+  "primaryKey": {
+    "id": -9223372036854773594
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:35.3300709+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951669Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951672+06:00",
+  "primaryKey": {
+    "id": -9223372036854773591
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:35.6300976+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951673Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951676+06:00",
+  "primaryKey": {
+    "id": -9223372036854773590
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:35.8214967+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951678Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951695+06:00",
+  "primaryKey": {
+    "id": -9223372036854773587
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:36.1899355+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951697Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951701+06:00",
+  "primaryKey": {
+    "id": -9223372036854773588
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:36.1430837+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951703Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000025",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951706+06:00",
+  "primaryKey": {
+    "id": -9223372036854773586
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:36.2269194+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951708Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951711+06:00",
+  "primaryKey": {
+    "id": -9223372036854773589
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:36.281851+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951713Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951719+06:00",
+  "primaryKey": {
+    "id": -9223372036854773602
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:34.1670727+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.995172Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951725+06:00",
+  "primaryKey": {
+    "id": -9223372036854773585
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:36.4885368+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951727Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951731+06:00",
+  "primaryKey": {
+    "id": -9223372036854773584
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:36.588762+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951733Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951738+06:00",
+  "primaryKey": {
+    "id": -9223372036854773583
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:36.8120673+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.995174Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951743+06:00",
+  "primaryKey": {
+    "id": -9223372036854773582
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:36.8747329+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951745Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951749+06:00",
+  "primaryKey": {
+    "id": -9223372036854773581
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:36.9683943+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.995175Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951755+06:00",
+  "primaryKey": {
+    "id": -9223372036854773580
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:37.2384123+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951757Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.995176+06:00",
+  "primaryKey": {
+    "id": -9223372036854773579
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:37.2818813+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951762Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951769+06:00",
+  "primaryKey": {
+    "id": -9223372036854773577
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:37.4321972+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.995177Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951774+06:00",
+  "primaryKey": {
+    "id": -9223372036854773578
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:37.4117984+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951776Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.995178+06:00",
+  "primaryKey": {
+    "id": -9223372036854773576
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:37.6839347+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951782Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951785+06:00",
+  "primaryKey": {
+    "id": -9223372036854773575
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:37.7308442+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951787Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951791+06:00",
+  "primaryKey": {
+    "id": -9223372036854773574
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:38.0542583+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951793Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951796+06:00",
+  "primaryKey": {
+    "id": -9223372036854773573
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:38.0564021+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951798Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951802+06:00",
+  "primaryKey": {
+    "id": -9223372036854773571
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:38.1973292+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951804Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951809+06:00",
+  "primaryKey": {
+    "id": -9223372036854773572
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:38.1795728+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951811Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951815+06:00",
+  "primaryKey": {
+    "id": -9223372036854773570
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:38.4375274+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951817Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951821+06:00",
+  "primaryKey": {
+    "id": -9223372036854773569
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:38.6136263+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951823Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951826+06:00",
+  "primaryKey": {
+    "id": -9223372036854773568
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:38.7361975+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951828Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951832+06:00",
+  "primaryKey": {
+    "id": -9223372036854773566
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:38.8908159+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951834Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951838+06:00",
+  "primaryKey": {
+    "id": -9223372036854773565
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:39.0487068+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.995184Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.995185+06:00",
+  "primaryKey": {
+    "id": -9223372036854773564
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:39.1286192+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951852Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951858+06:00",
+  "primaryKey": {
+    "id": -9223372036854773567
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:38.8030095+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951862Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951865+06:00",
+  "primaryKey": {
+    "id": -9223372036854773563
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:39.4039171+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951866Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.995187+06:00",
+  "primaryKey": {
+    "id": -9223372036854773562
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:39.4384715+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951871Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951875+06:00",
+  "primaryKey": {
+    "id": -9223372036854773561
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:39.5510208+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951876Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.995188+06:00",
+  "primaryKey": {
+    "id": -9223372036854773559
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:39.7953567+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951882Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951885+06:00",
+  "primaryKey": {
+    "id": -9223372036854773558
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:39.8127096+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951887Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951889+06:00",
+  "primaryKey": {
+    "id": -9223372036854773557
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:40.0588845+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951891Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951893+06:00",
+  "primaryKey": {
+    "id": -9223372036854773555
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:40.1970631+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951895Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951898+06:00",
+  "primaryKey": {
+    "id": -9223372036854773556
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:40.1468508+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951899Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951902+06:00",
+  "primaryKey": {
+    "id": -9223372036854773553
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:40.468109+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951903Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951906+06:00",
+  "primaryKey": {
+    "id": -9223372036854773552
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:40.5699937+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.995191Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951914+06:00",
+  "primaryKey": {
+    "id": -9223372036854773550
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:40.7156399+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951916Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951919+06:00",
+  "primaryKey": {
+    "id": -9223372036854773554
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:40.3841801+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951921Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951925+06:00",
+  "primaryKey": {
+    "id": -9223372036854773549
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:40.8928488+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951927Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.995193+06:00",
+  "primaryKey": {
+    "id": -9223372036854773547
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:41.0434774+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951932Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951936+06:00",
+  "primaryKey": {
+    "id": -9223372036854773548
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:41.0218056+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951938Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951941+06:00",
+  "primaryKey": {
+    "id": -9223372036854773546
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:41.3771532+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951943Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951947+06:00",
+  "primaryKey": {
+    "id": -9223372036854773560
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:40.3408503+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951949Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951953+06:00",
+  "primaryKey": {
+    "id": -9223372036854773543
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:41.5197866+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951955Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951958+06:00",
+  "primaryKey": {
+    "id": -9223372036854773545
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:41.3921597+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.995196Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951971+06:00",
+  "primaryKey": {
+    "id": -9223372036854773544
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:41.4861961+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951974Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951978+06:00",
+  "primaryKey": {
+    "id": -9223372036854773542
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:41.7506171+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.995198Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9951985+06:00",
+  "primaryKey": {
+    "id": -9223372036854773541
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:42.012998+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9951987Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968846+06:00",
+  "primaryKey": {
+    "id": -9223372036854773540
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:42.1244606+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968858Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968885+06:00",
+  "primaryKey": {
+    "id": -9223372036854773538
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:42.2838388+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968887Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968892+06:00",
+  "primaryKey": {
+    "id": -9223372036854773539
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:42.1544568+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968893Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968898+06:00",
+  "primaryKey": {
+    "id": -9223372036854773537
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:42.4486004+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968899Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968903+06:00",
+  "primaryKey": {
+    "id": -9223372036854773536
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:42.6895679+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968904Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968908+06:00",
+  "primaryKey": {
+    "id": -9223372036854773535
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:42.7772997+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.996891Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968914+06:00",
+  "primaryKey": {
+    "id": -9223372036854773534
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:42.8079999+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968915Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.996892+06:00",
+  "primaryKey": {
+    "id": -9223372036854773533
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:43.0413434+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968922Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968925+06:00",
+  "primaryKey": {
+    "id": -9223372036854773531
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:43.1385487+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968926Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.996893+06:00",
+  "primaryKey": {
+    "id": -9223372036854773530
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:43.285624+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968931Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968933+06:00",
+  "primaryKey": {
+    "id": -9223372036854773529
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:43.4485382+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968935Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968938+06:00",
+  "primaryKey": {
+    "id": -9223372036854773532
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:43.1579178+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968939Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968944+06:00",
+  "primaryKey": {
+    "id": -9223372036854773528
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:43.5792291+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968945Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968949+06:00",
+  "primaryKey": {
+    "id": -9223372036854773527
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:43.7140392+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.996895Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968953+06:00",
+  "primaryKey": {
+    "id": -9223372036854773526
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:43.8501811+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968955Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968957+06:00",
+  "primaryKey": {
+    "id": -9223372036854773524
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:43.9736359+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968958Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968961+06:00",
+  "primaryKey": {
+    "id": -9223372036854773522
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:44.2325611+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968962Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968965+06:00",
+  "primaryKey": {
+    "id": -9223372036854773521
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:44.322777+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968966Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968969+06:00",
+  "primaryKey": {
+    "id": -9223372036854773523
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:44.243973+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968971Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968973+06:00",
+  "primaryKey": {
+    "id": -9223372036854773520
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:44.4500079+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968974Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968977+06:00",
+  "primaryKey": {
+    "id": -9223372036854773519
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:44.6577482+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968979Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968982+06:00",
+  "primaryKey": {
+    "id": -9223372036854773518
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:44.8131119+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968983Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968986+06:00",
+  "primaryKey": {
+    "id": -9223372036854773516
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:44.9920282+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968987Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968991+06:00",
+  "primaryKey": {
+    "id": -9223372036854773515
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:45.0386298+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968992Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000013",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9968994+06:00",
+  "primaryKey": {
+    "id": -9223372036854773525
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:44.1037252+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9968996Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9969+06:00",
+  "primaryKey": {
+    "id": -9223372036854773514
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:45.3739021+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9969001Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9969004+06:00",
+  "primaryKey": {
+    "id": -9223372036854773513
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:45.4057026+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9969006Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9969009+06:00",
+  "primaryKey": {
+    "id": -9223372036854773517
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:45.1194419+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9969011Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9969014+06:00",
+  "primaryKey": {
+    "id": -9223372036854773512
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:45.5300859+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9969015Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9969019+06:00",
+  "primaryKey": {
+    "id": -9223372036854773511
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:45.8886708+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9969021Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9969024+06:00",
+  "primaryKey": {
+    "id": -9223372036854773509
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:46.1792781+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9969025Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000027",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9969029+06:00",
+  "primaryKey": {
+    "id": -9223372036854773510
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:45.9717645+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9969031Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000011",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9969034+06:00",
+  "primaryKey": {
+    "id": -9223372036854773507
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:46.3079659+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9969036Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:00000039",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9969039+06:00",
+  "primaryKey": {
+    "id": -9223372036854773508
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:46.2767403+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9969041Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-15-2023 19:38:47 +06 [audit] {
+  "userId": 0,
+  "traceId": "0HMNMVLO92VDD:0000002B",
+  "type": "Create",
+  "schemaName": "dbo",
+  "tableName": "BlogEntity",
+  "dateTime": "2023-01-15T19:38:46.9969045+06:00",
+  "primaryKey": {
+    "id": -9223372036854773506
+  },
+  "oldValues": {},
+  "newValues": {
+    "createdDateUtc": "2023-01-15T19:38:46.6205371+06:00",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "name": "My Blog",
+    "updatedBy": 0,
+    "updatedDateUtc": null
+  },
+  "affectedColumns": [],
+  "createdBy": 0,
+  "createdDateUtc": "2023-01-15T13:38:46.9969047Z",
+  "updatedBy": 0,
+  "updatedDateUtc": null
+}
+----------------------------------------------------------------------------------
+

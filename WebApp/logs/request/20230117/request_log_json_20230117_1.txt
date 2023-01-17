@@ -1,0 +1,642 @@
+01-17-2023 11:52:44 +06 [request] {
+  "userId": null,
+  "application": null,
+  "ipAddress": "::1",
+  "version": "https",
+  "host": "localhost:5001",
+  "url": "POST https://localhost:5001/api/Blog",
+  "source": null,
+  "form": "",
+  "body": {
+    "name": "My Blog",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "posts": null,
+    "id": 0
+  },
+  "response": {
+    "statusCode": 200,
+    "appStatusCode": "AP1300E",
+    "isSuccess": true,
+    "message": null,
+    "data": {
+      "name": "My Blog",
+      "description": "My blog description",
+      "motto": "Blog Motto",
+      "posts": [],
+      "id": 4720
+    },
+    "errors": null
+  },
+  "requestHeaders": {
+    "Content-Type": [
+      "application/json-patch+json"
+    ],
+    ":authority": [
+      "localhost:5001"
+    ],
+    ":method": [
+      "POST"
+    ],
+    ":path": [
+      "/api/Blog"
+    ],
+    ":scheme": [
+      "https"
+    ],
+    "Accept": [
+      "application/json"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.9"
+    ],
+    "Host": [
+      "localhost:5001"
+    ],
+    "Referer": [
+      "https://localhost:5001/swagger/index.html"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+    ],
+    "Origin": [
+      "https://localhost:5001"
+    ],
+    "Content-Length": [
+      "95"
+    ],
+    "sec-ch-ua": [
+      "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\""
+    ],
+    "sec-ch-ua-mobile": [
+      "?0"
+    ],
+    "sec-ch-ua-platform": [
+      "\"Windows\""
+    ],
+    "sec-fetch-site": [
+      "same-origin"
+    ],
+    "sec-fetch-mode": [
+      "cors"
+    ],
+    "sec-fetch-dest": [
+      "empty"
+    ]
+  },
+  "responseHeaders": {
+    "Content-Type": [
+      "application/json-patch+json"
+    ],
+    ":authority": [
+      "localhost:5001"
+    ],
+    ":method": [
+      "POST"
+    ],
+    ":path": [
+      "/api/Blog"
+    ],
+    ":scheme": [
+      "https"
+    ],
+    "Accept": [
+      "application/json"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.9"
+    ],
+    "Host": [
+      "localhost:5001"
+    ],
+    "Referer": [
+      "https://localhost:5001/swagger/index.html"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+    ],
+    "Origin": [
+      "https://localhost:5001"
+    ],
+    "Content-Length": [
+      "95"
+    ],
+    "sec-ch-ua": [
+      "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\""
+    ],
+    "sec-ch-ua-mobile": [
+      "?0"
+    ],
+    "sec-ch-ua-platform": [
+      "\"Windows\""
+    ],
+    "sec-fetch-site": [
+      "same-origin"
+    ],
+    "sec-fetch-mode": [
+      "cors"
+    ],
+    "sec-fetch-dest": [
+      "empty"
+    ]
+  },
+  "scheme": "https",
+  "traceId": "0HMNO9RJGHSGH:00000009",
+  "proctocol": "HTTP/2",
+  "area": null,
+  "controllerName": null,
+  "actionName": null,
+  "executionDuration": 0.0,
+  "roleId": null,
+  "languageId": null,
+  "isFirstLogin": null,
+  "loggedInDateTimeUtc": null,
+  "loggedOutDateTimeUtc": null,
+  "loginStatus": null,
+  "pageAccessed": null,
+  "sessionId": null,
+  "urlReferrer": null,
+  "statusCode": 200,
+  "appStatusCode": "*****",
+  "createdDateUtc": null
+}
+----------------------------------------------------------------------------------
+01-17-2023 11:52:44 +06 [request] {
+  "userId": null,
+  "application": null,
+  "ipAddress": "::1",
+  "version": "https",
+  "host": "localhost:5001",
+  "url": "POST https://localhost:5001/api/Blog",
+  "source": null,
+  "form": "",
+  "body": {
+    "name": "My Blog",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "posts": null,
+    "id": 0
+  },
+  "response": {
+    "statusCode": 200,
+    "appStatusCode": "AP1300E",
+    "isSuccess": true,
+    "message": null,
+    "data": {
+      "name": "My Blog",
+      "description": "My blog description",
+      "motto": "Blog Motto",
+      "posts": [],
+      "id": 4721
+    },
+    "errors": null
+  },
+  "requestHeaders": {
+    "Content-Type": [
+      "application/json-patch+json"
+    ],
+    ":authority": [
+      "localhost:5001"
+    ],
+    ":method": [
+      "POST"
+    ],
+    ":path": [
+      "/api/Blog"
+    ],
+    ":scheme": [
+      "https"
+    ],
+    "Accept": [
+      "application/json"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.9"
+    ],
+    "Host": [
+      "localhost:5001"
+    ],
+    "Referer": [
+      "https://localhost:5001/swagger/index.html"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+    ],
+    "Origin": [
+      "https://localhost:5001"
+    ],
+    "Content-Length": [
+      "95"
+    ],
+    "sec-ch-ua": [
+      "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\""
+    ],
+    "sec-ch-ua-mobile": [
+      "?0"
+    ],
+    "sec-ch-ua-platform": [
+      "\"Windows\""
+    ],
+    "sec-fetch-site": [
+      "same-origin"
+    ],
+    "sec-fetch-mode": [
+      "cors"
+    ],
+    "sec-fetch-dest": [
+      "empty"
+    ]
+  },
+  "responseHeaders": {
+    "Content-Type": [
+      "application/json-patch+json"
+    ],
+    ":authority": [
+      "localhost:5001"
+    ],
+    ":method": [
+      "POST"
+    ],
+    ":path": [
+      "/api/Blog"
+    ],
+    ":scheme": [
+      "https"
+    ],
+    "Accept": [
+      "application/json"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.9"
+    ],
+    "Host": [
+      "localhost:5001"
+    ],
+    "Referer": [
+      "https://localhost:5001/swagger/index.html"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+    ],
+    "Origin": [
+      "https://localhost:5001"
+    ],
+    "Content-Length": [
+      "95"
+    ],
+    "sec-ch-ua": [
+      "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\""
+    ],
+    "sec-ch-ua-mobile": [
+      "?0"
+    ],
+    "sec-ch-ua-platform": [
+      "\"Windows\""
+    ],
+    "sec-fetch-site": [
+      "same-origin"
+    ],
+    "sec-fetch-mode": [
+      "cors"
+    ],
+    "sec-fetch-dest": [
+      "empty"
+    ]
+  },
+  "scheme": "https",
+  "traceId": "0HMNO9RJGHSGH:0000000B",
+  "proctocol": "HTTP/2",
+  "area": null,
+  "controllerName": null,
+  "actionName": null,
+  "executionDuration": 0.0,
+  "roleId": null,
+  "languageId": null,
+  "isFirstLogin": null,
+  "loggedInDateTimeUtc": null,
+  "loggedOutDateTimeUtc": null,
+  "loginStatus": null,
+  "pageAccessed": null,
+  "sessionId": null,
+  "urlReferrer": null,
+  "statusCode": 200,
+  "appStatusCode": "*****",
+  "createdDateUtc": null
+}
+----------------------------------------------------------------------------------
+
+01-17-2023 11:53:58 +06 [request] {
+  "userId": null,
+  "application": null,
+  "ipAddress": "::1",
+  "version": "https",
+  "host": "localhost:5001",
+  "url": "POST https://localhost:5001/api/Blog",
+  "source": null,
+  "form": "",
+  "body": {
+    "name": "My Blog",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "posts": null,
+    "id": 0
+  },
+  "response": {
+    "statusCode": 200,
+    "appStatusCode": "AP1300E",
+    "isSuccess": true,
+    "message": null,
+    "data": {
+      "name": "My Blog",
+      "description": "My blog description",
+      "motto": "Blog Motto",
+      "posts": [],
+      "id": 4722
+    },
+    "errors": null
+  },
+  "requestHeaders": {
+    "Content-Type": [
+      "application/json-patch+json"
+    ],
+    ":authority": [
+      "localhost:5001"
+    ],
+    ":method": [
+      "POST"
+    ],
+    ":path": [
+      "/api/Blog"
+    ],
+    ":scheme": [
+      "https"
+    ],
+    "Accept": [
+      "application/json"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.9"
+    ],
+    "Host": [
+      "localhost:5001"
+    ],
+    "Referer": [
+      "https://localhost:5001/swagger/index.html"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+    ],
+    "Origin": [
+      "https://localhost:5001"
+    ],
+    "Content-Length": [
+      "95"
+    ],
+    "sec-ch-ua": [
+      "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\""
+    ],
+    "sec-ch-ua-mobile": [
+      "?0"
+    ],
+    "sec-ch-ua-platform": [
+      "\"Windows\""
+    ],
+    "sec-fetch-site": [
+      "same-origin"
+    ],
+    "sec-fetch-mode": [
+      "cors"
+    ],
+    "sec-fetch-dest": [
+      "empty"
+    ]
+  },
+  "responseHeaders": {
+    "Content-Type": [
+      "application/json-patch+json"
+    ],
+    ":authority": [
+      "localhost:5001"
+    ],
+    ":method": [
+      "POST"
+    ],
+    ":path": [
+      "/api/Blog"
+    ],
+    ":scheme": [
+      "https"
+    ],
+    "Accept": [
+      "application/json"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.9"
+    ],
+    "Host": [
+      "localhost:5001"
+    ],
+    "Referer": [
+      "https://localhost:5001/swagger/index.html"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+    ],
+    "Origin": [
+      "https://localhost:5001"
+    ],
+    "Content-Length": [
+      "95"
+    ],
+    "sec-ch-ua": [
+      "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\""
+    ],
+    "sec-ch-ua-mobile": [
+      "?0"
+    ],
+    "sec-ch-ua-platform": [
+      "\"Windows\""
+    ],
+    "sec-fetch-site": [
+      "same-origin"
+    ],
+    "sec-fetch-mode": [
+      "cors"
+    ],
+    "sec-fetch-dest": [
+      "empty"
+    ]
+  },
+  "scheme": "https",
+  "traceId": "0HMNO9S9M5P9H:00000009",
+  "proctocol": "HTTP/2",
+  "area": null,
+  "controllerName": null,
+  "actionName": null,
+  "executionDuration": 0.0,
+  "roleId": null,
+  "languageId": null,
+  "isFirstLogin": null,
+  "loggedInDateTimeUtc": null,
+  "loggedOutDateTimeUtc": null,
+  "loginStatus": null,
+  "pageAccessed": null,
+  "sessionId": null,
+  "urlReferrer": null,
+  "statusCode": 200,
+  "appStatusCode": "*****",
+  "createdDateUtc": null
+}
+----------------------------------------------------------------------------------
+
+01-17-2023 13:04:39 +06 [request] {
+  "userId": null,
+  "application": null,
+  "ipAddress": "::1",
+  "version": "https",
+  "host": "localhost:5001",
+  "url": "GET https://localhost:5001/favicon.ico",
+  "source": null,
+  "form": "",
+  "body": null,
+  "response": null,
+  "requestHeaders": {
+    ":authority": [
+      "localhost:5001"
+    ],
+    ":method": [
+      "GET"
+    ],
+    ":path": [
+      "/favicon.ico"
+    ],
+    ":scheme": [
+      "https"
+    ],
+    "Accept": [
+      "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.9"
+    ],
+    "Host": [
+      "localhost:5001"
+    ],
+    "Referer": [
+      "https://localhost:5001/logger-wrapper/file/read-file?fileName=sql_log_json_20230115_6.txt"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+    ],
+    "sec-ch-ua": [
+      "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\""
+    ],
+    "sec-ch-ua-mobile": [
+      "?0"
+    ],
+    "sec-ch-ua-platform": [
+      "\"Windows\""
+    ],
+    "sec-fetch-site": [
+      "same-origin"
+    ],
+    "sec-fetch-mode": [
+      "no-cors"
+    ],
+    "sec-fetch-dest": [
+      "image"
+    ]
+  },
+  "responseHeaders": {
+    ":authority": [
+      "localhost:5001"
+    ],
+    ":method": [
+      "GET"
+    ],
+    ":path": [
+      "/favicon.ico"
+    ],
+    ":scheme": [
+      "https"
+    ],
+    "Accept": [
+      "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.9"
+    ],
+    "Host": [
+      "localhost:5001"
+    ],
+    "Referer": [
+      "https://localhost:5001/logger-wrapper/file/read-file?fileName=sql_log_json_20230115_6.txt"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+    ],
+    "sec-ch-ua": [
+      "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\""
+    ],
+    "sec-ch-ua-mobile": [
+      "?0"
+    ],
+    "sec-ch-ua-platform": [
+      "\"Windows\""
+    ],
+    "sec-fetch-site": [
+      "same-origin"
+    ],
+    "sec-fetch-mode": [
+      "no-cors"
+    ],
+    "sec-fetch-dest": [
+      "image"
+    ]
+  },
+  "scheme": "https",
+  "traceId": "0HMNOB3QUO8GI:0000000D",
+  "proctocol": "HTTP/2",
+  "area": null,
+  "controllerName": null,
+  "actionName": null,
+  "executionDuration": 0.0,
+  "roleId": null,
+  "languageId": null,
+  "isFirstLogin": null,
+  "loggedInDateTimeUtc": null,
+  "loggedOutDateTimeUtc": null,
+  "loginStatus": null,
+  "pageAccessed": null,
+  "sessionId": null,
+  "urlReferrer": null,
+  "statusCode": 200,
+  "appStatusCode": "*****",
+  "createdDateUtc": null
+}
+----------------------------------------------------------------------------------
+
