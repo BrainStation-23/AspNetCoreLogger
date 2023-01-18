@@ -63,6 +63,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "loggers", "loggers", "{D71C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Logger.Test", "WebApp.Logger.Test\WebApp.Logger.Test.csproj", "{70EE0751-2AE9-430A-85A3-2E979979F30E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cosmosdb", "cosmosdb", "{9C3A11A0-F149-40FA-94AB-2C971C730231}"
+	ProjectSection(SolutionItems) = preProject
+		spDeleteLogItems.txt = spDeleteLogItems.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +144,7 @@ Global
 		{CFCBC8FF-79A1-47E2-8C0A-A82B3BB72116} = {D71C1C10-8DAA-466C-903A-1AA30392BF63}
 		{D71C1C10-8DAA-466C-903A-1AA30392BF63} = {172EC35C-DFEB-49BE-904F-040A43EFD3BA}
 		{70EE0751-2AE9-430A-85A3-2E979979F30E} = {D71C1C10-8DAA-466C-903A-1AA30392BF63}
+		{9C3A11A0-F149-40FA-94AB-2C971C730231} = {6530F204-DF52-4DF9-AD99-4672F4FDFE9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFCCDA0E-EADD-457B-9016-11900245AB18}
