@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.Cosmos;
+﻿using Castle.Core.Resource;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
 using Microsoft.Azure.Cosmos.Scripts;
 using Microsoft.Extensions.Options;
@@ -16,6 +17,7 @@ using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Providers.CosmosDbs;
 using WebApp.Logger.Providers.Sqls;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace WebApp.Logger.Providers.Mongos
 {
@@ -23,7 +25,7 @@ namespace WebApp.Logger.Providers.Mongos
     {
 
         protected readonly CosmosClient _client;
-        protected readonly Database _database;
+        protected readonly Microsoft.Azure.Cosmos.Database _database;
         protected Microsoft.Azure.Cosmos.Container _container;
 
         public string DatabaseName { get; set; }
@@ -75,7 +77,7 @@ namespace WebApp.Logger.Providers.Mongos
             //_container = Task.Run(async () => await CreateContainerAsync()).Result;
         }
 
-        public async Task<Database> CreateDatabaseAsync()
+        public async Task<Microsoft.Azure.Cosmos.Database> CreateDatabaseAsync()
         {
             var response = await _client.CreateDatabaseIfNotExistsAsync(_cosmosOptions.DatabaseName);
 
@@ -209,29 +211,22 @@ namespace WebApp.Logger.Providers.Mongos
         {
             var response = await _container.DeleteItemAsync<TItem>(id, new PartitionKey());
 
-            //            using FeedIterator<Product> feed = _container.GetItemQueryIterator<Product>(
-            //    queryText: "DELETE * FROM products where id < 1"
-            //);
-
-            //            //// Iterate query result pages
-            //            //while (feed.HasMoreResults)
-            //            //{
-            //            //    FeedResponse<Product> response = await feed.ReadNextAsync();
-
-            //            //    // Iterate query results
-            //            //    foreach (Product item in response)
-            //            //    {
-            //            //        Console.WriteLine($"Found item:\t{item.name}");
-            //            //    }
-            //            //}
-
             return response.Resource;
         }
 
-        public async Task GetItemQueryable(DateTime date)
+        public async Task GetItemQueryable(string date, string logType)
         {
-                string query = "SELECT * FROM SqlLogItem";
-            var result = await _container.Scripts.ExecuteStoredProcedureAsync<object>("DeleteSqlItems", new PartitionKey("/id"), null);
+
+            string query = $"SELECT * FROM root r WHERE r.createdDateUtc <= '{date}'";
+
+            if (logType == "audit")
+                await _container.Scripts.ExecuteStoredProcedureAsync<TItem>("spDeleteAuditLogItems", new PartitionKey(logType), new[] { query });
+            else if (logType == "error")
+                await _container.Scripts.ExecuteStoredProcedureAsync<TItem>("spDeleteErrorLogItems", new PartitionKey(logType), new[] { query });
+            else if (logType == "request")
+                await _container.Scripts.ExecuteStoredProcedureAsync<TItem>("spDeleteRequestLogItems", new PartitionKey(logType), new[] { query });
+            else
+                await _container.Scripts.ExecuteStoredProcedureAsync<TItem>("spDeleteSqlLogItems", new PartitionKey(logType), new[] { query });
 
         }
     }

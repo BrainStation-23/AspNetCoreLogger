@@ -16,7 +16,7 @@ namespace WebApp.Logger.Providers.Mongos
         Task<TItem> InsertAsync(TItem item);
         Task<List<TItem>> InsertManyAsync(List<TItem> items);
         Task<TItem> UpdateAsync(string id, TItem item);
-       Task GetItemQueryable(DateTime date);
+        Task GetItemQueryable(string date, string logType);
     }
 
 }

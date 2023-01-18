@@ -53,7 +53,8 @@ namespace WebApp.Logger.Loggers.Repositories
         }
         public async Task RetentionAsync(DateTime dateTime)
         {
-            //todo
+            string date = dateTime.ToString("yyyy-MM-dd");//'T'HH: mm:ss.SSS'Z'
+            await _auditRepository.GetItemQueryable(date, _logOption.Log.Audit.GetType().Name.ToString().ToLower());
         }
     }
 }
