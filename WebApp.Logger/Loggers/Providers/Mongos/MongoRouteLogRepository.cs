@@ -51,7 +51,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(List<RequestModel> requestModels)
         {
-            var requestDocuments = requestModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.ToDocument());
+            var requestDocuments = requestModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.PrepareRequestModel(_logOption).DeserializeRequestModel().ToDocument());
 
             await _RequestRepository.InsertManyAsync(requestDocuments);
         }

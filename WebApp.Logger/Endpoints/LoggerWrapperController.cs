@@ -79,9 +79,11 @@ namespace WebApp.Logger
         }
 
         [HttpGet("file/read-file")]
-        public async Task<IActionResult> GetLogsFromFileAsync(string fileName)
+        public async Task<IActionResult> GetLogsFromFileAsync(string fileName
+            ,int pageIndex = CommonVariables.pageIndex
+            ,int pageSize = CommonVariables.pageSize)
         {
-            var res = FileExtension.GetLogObjects(_logOption.Provider.File.Path,fileName);
+            var res = FileExtension.GetLogObjects(_logOption.Provider.File.Path,fileName).Paging(pageIndex, pageSize);
 
             return new OkResponse(res);
         }

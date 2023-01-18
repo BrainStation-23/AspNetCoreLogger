@@ -38,9 +38,31 @@ namespace WebApp.Logger.Loggers.Repositories
 
             try
             {
-                errorModel = errorModel.PrepareErrorModel(_logOptions).DeserializeErrorModel();
+                errorModel = errorModel.DeserializeErrorModel().PrepareErrorModel(_logOptions);
 
                 FileExtension.LogWrite(fileConfig, errorModel);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(nameof(ExceptionLogRepository), exception);
+            }
+        }
+
+        public async Task AddAsync(List<ErrorModel> errorModels)
+        {
+            //if (errorModel.Url.Contains("/Log/"))
+            //    return;
+
+            var fileConfig = _logOptions.Provider.File;
+
+            try
+            {
+                errorModels.ForEach(errorModel =>
+                {
+                    errorModel = errorModel.DeserializeErrorModel().PrepareErrorModel(_logOptions);
+                });
+                
+                FileExtension.LogWrite(fileConfig, errorModels);
             }
             catch (Exception exception)
             {

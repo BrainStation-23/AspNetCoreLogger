@@ -3,6 +3,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Common.Serialize;
 using WebApp.Logger.Models;
@@ -89,6 +92,73 @@ namespace WebApp.Logger.Loggers.Repositories
                 using var connection = _dapper.CreateConnection();
                 sqlModel = sqlModel.SerializeSqlModel();
                 await connection.ExecuteAsync(query, sqlModel);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(nameof(RouteLogRepository), exception);
+            }
+        }
+
+        public async Task AddAsync(List<SqlModel> sqlModels)
+        {
+            var query = @"INSERT INTO [dbo].[SqlLogs]
+                            ([UserId]
+                            ,[ApplicationName]
+                            ,[IpAddress]
+                            ,[Version]
+                            ,[Host]
+                            ,[Url]
+                            ,[Source]
+                            ,[Scheme]
+                            ,[TraceId]
+                            ,[Protocol]
+                            ,[UrlReferrer]
+                            ,[Area]
+                            ,[ControllerName]
+                            ,[ActionName]
+                            ,[ClassName]
+                            ,[MethodName]
+                            ,[QueryType]
+                            ,[Query]
+                            ,[Response]  
+                            ,[Duration]
+                            ,[Message]    
+                            ,[Connection]
+                            ,[Command]
+                            ,[Event]
+                            ,[CreatedDateUtc] )
+                         VALUES
+                            ( @UserId
+                            , @ApplicationName
+                            , @IpAddress
+                            , @Version
+                            , @Host
+                            , @Url
+                            , @Source                            
+                            , @Scheme
+                            , @TraceId
+                            , @Protocol
+                            , @UrlReferrer
+                            , @Area
+                            , @ControllerName
+                            , @ActionName
+                            , @ClassName
+                            , @MethodName
+                            , @QueryType
+                            , @Query
+                            , @Response                            
+                            , @Duration
+                            , @Message
+                            , @Connection
+                            , @Command
+                            , @Event
+                            , @CreatedDateUtc)";
+            
+            sqlModels=sqlModels.Select(sqlModel =>sqlModel.PrepareSqlModel(_logOptions).SerializeSqlModel()).ToList();
+            try
+            {
+                using var connection = _dapper.CreateConnection();
+                await connection.ExecuteAsync(query, sqlModels);
             }
             catch (Exception exception)
             {

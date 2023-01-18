@@ -8,6 +8,7 @@ using WebApp.Logger.Providers.Sqls;
 using WebApp.Logger.Models;
 using Microsoft.Extensions.Options;
 using WebApp.Logger.Extensions;
+using System.Collections.Generic;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
@@ -36,8 +37,29 @@ namespace WebApp.Logger.Loggers.Repositories
 
             try
             {
-                requestModel = requestModel.PrepareRequestModel(_logOption).DeserializeRequestModel();
+                requestModel = requestModel.DeserializeRequestModel().PrepareRequestModel(_logOption);
                 FileExtension.LogWrite(fileConfig, requestModel);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(nameof(RouteLogRepository), exception);
+            }
+        }
+
+        public async Task AddAsync(List<RequestModel> requestModels)
+        {
+            //if (requestModel.Url.Contains("/Log/"))
+            //    return;
+
+            var fileConfig = _logOption.Provider.File;
+
+            try
+            {
+                requestModels.ForEach(requestModel =>
+                {
+                    requestModel = requestModel.DeserializeRequestModel().PrepareRequestModel(_logOption);
+                });
+                FileExtension.LogWrite(fileConfig, requestModels);
             }
             catch (Exception exception)
             {

@@ -51,7 +51,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(List<ErrorModel> errorModels)
         {
-            var errorDocuments = errorModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.ToDocument());
+            var errorDocuments = errorModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.DeserializeErrorModel().PrepareErrorModel(_logOptions).ToDocument());
 
             await _errorRepository.InsertManyAsync(errorDocuments);
         }

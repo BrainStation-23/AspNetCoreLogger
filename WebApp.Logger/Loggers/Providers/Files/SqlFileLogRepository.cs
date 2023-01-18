@@ -4,6 +4,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Threading.Tasks;
 using WebApp.Common.Serialize;
 using WebApp.Logger.Extensions;
@@ -38,6 +40,27 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 sqlModel = sqlModel.PrepareSqlModel(_logOptions);
                 FileExtension.LogWrite(fileConfig, sqlModel);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(nameof(ExceptionLogRepository), exception);
+            }
+        }
+
+        public async Task AddAsync(List<SqlModel> sqlModels)
+        {
+            //if (sqlModel.Url.Contains("/Log/"))
+            //    return;
+
+            var fileConfig = _logOptions.Provider.File;
+
+            try
+            {
+                sqlModels.ForEach(sqlModel =>
+                {
+                    sqlModel = sqlModel.PrepareSqlModel(_logOptions);
+                });
+                FileExtension.LogWrite(fileConfig, sqlModels);
             }
             catch (Exception exception)
             {

@@ -35,6 +35,8 @@ namespace WebApp.Logger.Loggers
        
             services.AddHostedService<RetentionPolicyService>();
 
+            services.AddHostedService<BatchLoggingBackGroundService>();
+
             if (logOptions.ProviderType.ToString().ToLower() == "mssql")
             {
                 services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();

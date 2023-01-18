@@ -121,7 +121,9 @@ namespace WebApp.Logger.Interceptors
                 }
             };
 
-            await SqlLogRepository.AddAsync(model);
+            //await SqlLogRepository.AddAsync(model);
+
+            await BatchLoggingContext.PublishAsync(model,LogType.Sql.ToString());
         }
     }
 }
