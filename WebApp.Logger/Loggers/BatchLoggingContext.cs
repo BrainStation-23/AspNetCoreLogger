@@ -43,9 +43,7 @@ namespace WebApp.Logger.Loggers
         public static async Task BatchLogProcessAsync(IRouteLogRepository routeLogRepository
             , ISqlLogRepository sqlLogRepository
             , IExceptionLogRepository exceptionLogRepository
-            , IAuditLogRepository auditLogRepository
-            //,BatchLoggingBackGroundService batchLoggingServicInstance
-            )
+            , IAuditLogRepository auditLogRepository)
         {
             List<AuditEntry> auditLogs = auditLogQueue.GetLogList(maxBatchSize);
             List<SqlModel> sqlLogs = sqlLogQueue.GetLogList(maxBatchSize);
@@ -66,11 +64,11 @@ namespace WebApp.Logger.Loggers
 
         }
 
-        public static List<T> GetLogList<T>(this ConcurrentQueue<T> logQueue,int maxListSize)
+        public static List<T> GetLogList<T>(this ConcurrentQueue<T> logQueue, int maxListSize)
         {
             List<T> logs = new List<T>();
 
-            if (logQueue.Count >= maxListSize)
+            if (!logQueue.IsEmpty)
             {
                 while (logQueue.TryDequeue(out T log))
                 {

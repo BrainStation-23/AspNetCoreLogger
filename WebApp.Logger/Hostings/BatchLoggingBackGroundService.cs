@@ -22,35 +22,32 @@ namespace WebApp.Logger.Hostings
             _serviceProvider = serviceProvider;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _loggingTimer = new Timer(PublishToDb, null, TimeSpan.Zero, TimeSpan.FromSeconds(5000));
+            _loggingTimer = new Timer(ProcessBatchLog, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
+
+            return Task.CompletedTask;
         }
 
-        public async void PublishToDb(object? state)
+        public async void ProcessBatchLog(object state)
         {
-            using (IServiceScope scope = _serviceProvider.CreateScope())
-            {
-                var _exceptionLogRepository = scope.ServiceProvider.GetService<IExceptionLogRepository>();
-                var _routeLogRepository = scope.ServiceProvider.GetService<IRouteLogRepository>();
-                var _auditLogRepository = scope.ServiceProvider.GetService<IAuditLogRepository>();
-                var _sqlLogRepository = scope.ServiceProvider.GetService<ISqlLogRepository>();
+            using IServiceScope scope = _serviceProvider.CreateScope();
+            var _exceptionLogRepository = scope.ServiceProvider.GetService<IExceptionLogRepository>();
+            var _routeLogRepository = scope.ServiceProvider.GetService<IRouteLogRepository>();
+            var _auditLogRepository = scope.ServiceProvider.GetService<IAuditLogRepository>();
+            var _sqlLogRepository = scope.ServiceProvider.GetService<ISqlLogRepository>();
 
-                await BatchLoggingContext.BatchLogProcessAsync(
-                    _routeLogRepository
-                    , _sqlLogRepository
-                    , _exceptionLogRepository
-                    , _auditLogRepository
-                    //,this
-                    );
-            }
+            await BatchLoggingContext.BatchLogProcessAsync(_routeLogRepository
+                , _sqlLogRepository
+                , _exceptionLogRepository
+                , _auditLogRepository);
         }
 
         public void ChangeTimerInterval()
         {
             // if cpu usage high, then publish low
             // if cpu usage low, then publish high
-            _loggingTimer.Change(10000,10000);
+            _loggingTimer.Change(10000, 10000);
         }
 
     }
