@@ -13,13 +13,9 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\Configurations\**" />
-    <Compile Remove="wwwroot\images\**" />
     <Content Remove="Controllers\Configurations\**" />
-    <Content Remove="wwwroot\images\**" />
     <EmbeddedResource Remove="Controllers\Configurations\**" />
-    <EmbeddedResource Remove="wwwroot\images\**" />
     <None Remove="Controllers\Configurations\**" />
-    <None Remove="wwwroot\images\**" />
   </ItemGroup>
 
   <ItemGroup>
