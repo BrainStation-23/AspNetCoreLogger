@@ -82,7 +82,7 @@ namespace WebApp.Logger.Hostings
             retentionDays = retentionDays.Remove(retentionDays.Length - 1);
             var currentDate = DateTime.UtcNow;
 
-            return currentDate.AddDays(Int32.Parse(retentionDays) * mul).Date;
+            return currentDate.AddDays(-Int32.Parse(retentionDays) * mul).Date;
 
         }
 

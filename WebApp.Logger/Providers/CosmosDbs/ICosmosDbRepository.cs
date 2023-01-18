@@ -16,7 +16,14 @@ namespace WebApp.Logger.Providers.Mongos
         Task<TItem> InsertAsync(TItem item);
         Task<List<TItem>> InsertManyAsync(List<TItem> items);
         Task<TItem> UpdateAsync(string id, TItem item);
-        Task GetItemQueryable(string date, string logType);
+
+        /// <summary>
+        /// delete logs before date
+        /// </summary>
+        /// <param name="dateTime">Date time </param>
+        /// <param name="logType">Log type eg. sql, request, audit & error</param>
+        /// <returns></returns>
+        Task DeleteAsync(string dateTime, string logType);
     }
 
 }

@@ -52,7 +52,7 @@ namespace WebApp.Logger.Loggers.Repositories
         public async Task RetentionAsync(DateTime dateTime)
         {
             string date = dateTime.ToString("yyyy-MM-dd");//'T'HH: mm:ss.SSS'Z'
-            await _sqlRepository.GetItemQueryable(date, _logOption.Log.Sql.GetType().Name.ToString().ToLower());
+            await _sqlRepository.DeleteAsync(date, _logOption.Log.Sql.GetType().Name.ToString().ToLower());
 
         }
     }

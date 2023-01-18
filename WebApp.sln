@@ -65,7 +65,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Logger.Test", "WebAp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cosmosdb", "cosmosdb", "{9C3A11A0-F149-40FA-94AB-2C971C730231}"
 	ProjectSection(SolutionItems) = preProject
-		spDeleteLogItems.txt = spDeleteLogItems.txt
+		spDeleteAuditLogItems.txt = spDeleteAuditLogItems.txt
+		spDeleteErrorLogItems.txt = spDeleteErrorLogItems.txt
+		spDeleteRequestLogItems.txt = spDeleteRequestLogItems.txt
+		spDeleteSqlLogItems.txt = spDeleteSqlLogItems.txt
 	EndProjectSection
 EndProject
 Global

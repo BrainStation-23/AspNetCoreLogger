@@ -1,32 +1,24 @@
-﻿using Castle.Core.Resource;
-using Microsoft.Azure.Cosmos;
+﻿using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
-using Microsoft.Azure.Cosmos.Scripts;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Numeric;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using WebApp.Common.Serialize;
-using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
-using WebApp.Logger.Providers.CosmosDbs;
+using WebApp.Logger.Providers.Mongos;
 using WebApp.Logger.Providers.Sqls;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace WebApp.Logger.Providers.Mongos
+namespace WebApp.Logger.Providers.CosmosDbs
 {
     public class CosmosDbRepository<TItem> : ICosmosDbRepository<TItem> where TItem : IItem
     {
 
         protected readonly CosmosClient _client;
-        protected readonly Microsoft.Azure.Cosmos.Database _database;
-        protected Microsoft.Azure.Cosmos.Container _container;
+        protected readonly Database _database;
+        protected Container _container;
 
         public string DatabaseName { get; set; }
         public string ContainerName { get; set; }
@@ -77,14 +69,14 @@ namespace WebApp.Logger.Providers.Mongos
             //_container = Task.Run(async () => await CreateContainerAsync()).Result;
         }
 
-        public async Task<Microsoft.Azure.Cosmos.Database> CreateDatabaseAsync()
+        public async Task<Database> CreateDatabaseAsync()
         {
             var response = await _client.CreateDatabaseIfNotExistsAsync(_cosmosOptions.DatabaseName);
 
             return response.Database;
         }
 
-        public async Task<Microsoft.Azure.Cosmos.Container> CreateContainerAsync()
+        public async Task<Container> CreateContainerAsync()
         {
             var response = await _database.CreateContainerIfNotExistsAsync(id: ContainerName,
                 partitionKeyPath: "/id",
@@ -152,7 +144,7 @@ namespace WebApp.Logger.Providers.Mongos
         public async Task<TItem> UpdateAsync(string id, TItem item)
         {
             //var Id = item.GetType().GetProperty("Id").GetValue(item);
-            var response = await _container.UpsertItemAsync<TItem>(item);
+            var response = await _container.UpsertItemAsync(item);
 
             return response.Resource;
         }
@@ -166,7 +158,7 @@ namespace WebApp.Logger.Providers.Mongos
 
         public async Task<TItem> InsertAsync(TItem item)
         {
-            var response = await _container.CreateItemAsync<TItem>(item);
+            var response = await _container.CreateItemAsync(item);
 
             return response.Resource;
         }
@@ -214,10 +206,9 @@ namespace WebApp.Logger.Providers.Mongos
             return response.Resource;
         }
 
-        public async Task GetItemQueryable(string date, string logType)
+        public async Task DeleteAsync(string dateTime, string logType)
         {
-
-            string query = $"SELECT * FROM root r WHERE r.createdDateUtc <= '{date}'";
+            string query = $"SELECT * FROM root r WHERE r.createdDateUtc <= '{dateTime}'";
 
             if (logType == "audit")
                 await _container.Scripts.ExecuteStoredProcedureAsync<TItem>("spDeleteAuditLogItems", new PartitionKey(logType), new[] { query });
