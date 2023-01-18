@@ -53,7 +53,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(List<SqlModel> sqlModels)
         {
-            var sqlDocuments = sqlModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.ToDocument());
+            var sqlDocuments = sqlModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.PrepareSqlModel(_logOptions).ToDocument());
 
             await _sqlRepository.InsertManyAsync(sqlDocuments);
         }

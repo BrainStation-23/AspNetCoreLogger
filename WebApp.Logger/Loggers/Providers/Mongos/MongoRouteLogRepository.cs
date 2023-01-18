@@ -41,10 +41,9 @@ namespace WebApp.Logger.Loggers.Repositories
             if (LogOptionExtension.SkipRequestLog(requestModel, _logOption))
                 return;
 
-            requestModel = requestModel.PrepareRequestModel(_logOption);
+            requestModel = requestModel.DeserializeRequestModel().PrepareRequestModel(_logOption);
             //if (requestModel.Url.Contains("/Log/"))
             //    return;
-            requestModel = requestModel.DeserializeRequestModel();
             var requestDocument = requestModel.ToDocument();
 
             await _RequestRepository.InsertAsync(requestDocument);
@@ -52,7 +51,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(List<RequestModel> requestModels)
         {
-            var requestDocuments = requestModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.ToDocument());
+            var requestDocuments = requestModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.PrepareRequestModel(_logOption).DeserializeRequestModel().ToDocument());
 
             await _RequestRepository.InsertManyAsync(requestDocuments);
         }

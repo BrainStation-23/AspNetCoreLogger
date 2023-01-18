@@ -99,7 +99,9 @@ namespace WebApp.Sql
 
                 //await loggerWrapper.Audit.AddAsync(auditEntries.ToList());
 
-                await _auditLogRepository.AddAsync(auditEntries.ToList());
+                //await _auditLogRepository.AddAsync(auditEntries.ToList());
+
+                await BatchLoggingContext.PublishAsync(auditEntries.ToList(),LogType.Audit.ToString());
             }
 
             return auditEntries.Any();

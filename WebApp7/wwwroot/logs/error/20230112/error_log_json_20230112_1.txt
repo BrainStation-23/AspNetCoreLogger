@@ -1,0 +1,136 @@
+01-12-2023 18:44:14 +06 [error] {
+  "userId": null,
+  "application": "Microsoft.EntityFrameworkCore.Relational",
+  "ipAddress": "::1",
+  "version": "https",
+  "host": "localhost:44342",
+  "url": "POST https://localhost:44342/api/Blog",
+  "source": "Microsoft.EntityFrameworkCore.Relational",
+  "form": "",
+  "body": {
+    "name": "My Blog",
+    "description": "My blog description",
+    "motto": "Blog Motto",
+    "posts": null,
+    "id": -2
+  },
+  "response": null,
+  "requestHeaders": {
+    "Accept": [
+      "application/json"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.9"
+    ],
+    "Connection": [
+      "close"
+    ],
+    "Content-Length": [
+      "117"
+    ],
+    "Content-Type": [
+      "application/json-patch+json"
+    ],
+    "Cookie": [
+      "ai_user=Om3pRtZZHcvb4iRyXnNlJR|2023-01-05T10:34:28.135Z"
+    ],
+    "Host": [
+      "localhost:44342"
+    ],
+    "Referer": [
+      "https://localhost:44342/swagger/index.html"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.76"
+    ],
+    "sec-ch-ua": [
+      "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Microsoft Edge\";v=\"108\""
+    ],
+    "sec-ch-ua-mobile": [
+      "?0"
+    ],
+    "sec-ch-ua-platform": [
+      "\"Windows\""
+    ],
+    "origin": [
+      "https://localhost:44342"
+    ],
+    "sec-fetch-site": [
+      "same-origin"
+    ],
+    "sec-fetch-mode": [
+      "cors"
+    ],
+    "sec-fetch-dest": [
+      "empty"
+    ]
+  },
+  "responseHeaders": {
+    "Accept": [
+      "application/json"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, br"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.9"
+    ],
+    "Connection": [
+      "close"
+    ],
+    "Content-Length": [
+      "117"
+    ],
+    "Content-Type": [
+      "application/json-patch+json"
+    ],
+    "Cookie": [
+      "ai_user=Om3pRtZZHcvb4iRyXnNlJR|2023-01-05T10:34:28.135Z"
+    ],
+    "Host": [
+      "localhost:44342"
+    ],
+    "Referer": [
+      "https://localhost:44342/swagger/index.html"
+    ],
+    "User-Agent": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.76"
+    ],
+    "sec-ch-ua": [
+      "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Microsoft Edge\";v=\"108\""
+    ],
+    "sec-ch-ua-mobile": [
+      "?0"
+    ],
+    "sec-ch-ua-platform": [
+      "\"Windows\""
+    ],
+    "origin": [
+      "https://localhost:44342"
+    ],
+    "sec-fetch-site": [
+      "same-origin"
+    ],
+    "sec-fetch-mode": [
+      "cors"
+    ],
+    "sec-fetch-dest": [
+      "empty"
+    ]
+  },
+  "errorCode": "DUE",
+  "scheme": "https",
+  "traceId": "40000209-0004-ff00-b63f-84710c7967bb",
+  "proctocol": "HTTP/2",
+  "errors": null,
+  "statusCode": 200,
+  "appStatusCode": "AP1300E",
+  "message": "An error occurred while updating the entries. See the inner exception for details.",
+  "messageDetails": "Cannot insert explicit value for identity column in table 'Blogs' when IDENTITY_INSERT is set to OFF.",
+  "stackTrace": "   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)\r\n   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)\r\n   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)\r\n   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)\r\n   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)\r\n   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)\r\n   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)\r\n   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)\r\n   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)\r\n   at WebApp.Sql.AuditLogContext`8.SaveChangesAsync(CancellationToken cancellationToken) in C:\\Users\\BS1002\\Documents\\BS-Work\\BS_23\\AspNetCoreLogger\\WebApp.Logger\\Loggers\\AuditLogContext.cs:line 68\r\n   at WebApp.Service.UnitOfWork.CompleteAsync() in C:\\Users\\BS1002\\Documents\\BS-Work\\BS_23\\AspNetCoreLogger\\WebApp.Service\\UnitOfWorks\\UnitOfWork.cs:line 35\r\n   at WebApp.Service.BlogService.AddBlogDetailAsync(BlogModel model) in C:\\Users\\BS1002\\Documents\\BS-Work\\BS_23\\AspNetCoreLogger\\WebApp.Service\\Services\\Blogs\\BlogService.cs:line 65\r\n   at WebApp7.Controllers.BlogController.AddBlogDetailAsync(BlogModel model) in C:\\Users\\BS1002\\Documents\\BS-Work\\BS_23\\AspNetCoreLogger\\WebApp7\\Controllers\\Blogs\\BlogController.cs:line 50\r\n   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)\r\n   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)\r\n   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)\r\n   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)\r\n   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)\r\n   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)\r\n   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)\r\n   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)\r\n   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)\r\n   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)\r\n   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)\r\n   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)\r\n   at WebApp.Logger.Middlewares.HttpRequestMiddleware.InvokeAsync(HttpContext context, IServiceProvider _serviceProvider, IRouteLogRepository RouteLogRepository) in C:\\Users\\BS1002\\Documents\\BS-Work\\BS_23\\AspNetCoreLogger\\WebApp.Logger\\Middlewares\\HttpRequestMiddleware.cs:line 56\r\n   at WebApp.Logger.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context, IExceptionLogRepository exceptionLogRepository) in C:\\Users\\BS1002\\Documents\\BS-Work\\BS_23\\AspNetCoreLogger\\WebApp.Logger\\Middlewares\\ExceptionMiddleware.cs:line 53",
+  "createdDateUtc": null
+}
+----------------------------------------------------------------------------------

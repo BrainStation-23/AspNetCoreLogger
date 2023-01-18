@@ -40,11 +40,10 @@ namespace WebApp.Logger.Loggers.Repositories
             if (LogOptionExtension.SkipErrorLog(errorModel, _logOptions))
                 return;
 
-            errorModel = errorModel.PrepareErrorModel(_logOptions);
+            errorModel = errorModel.DeserializeErrorModel().PrepareErrorModel(_logOptions);
 
             //if (errorModel.Url.Contains("/Log/"))
             //    return;
-            errorModel = errorModel.DeserializeErrorModel();
             var errorDocument = errorModel.ToDocument();
 
             await _errorRepository.InsertAsync(errorDocument);
@@ -52,7 +51,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(List<ErrorModel> errorModels)
         {
-            var errorDocuments = errorModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.ToDocument());
+            var errorDocuments = errorModels.Where(e => !e.Url.Contains("/Log")).Select(e => e.DeserializeErrorModel().PrepareErrorModel(_logOptions).ToDocument());
 
             await _errorRepository.InsertManyAsync(errorDocuments);
         }
