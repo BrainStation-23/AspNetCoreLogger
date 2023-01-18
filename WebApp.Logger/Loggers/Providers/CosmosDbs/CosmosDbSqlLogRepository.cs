@@ -1,5 +1,7 @@
 ﻿using Dapper;
+using FluentAssertions;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +19,16 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly DapperContext _dapper;
         private readonly ILogger<CosmosDbSqlLogRepository> _logger;
         private readonly ICosmosDbRepository<SqlLogItem> _sqlRepository;
-
+        private readonly LogOption _logOption;
         public CosmosDbSqlLogRepository(DapperContext dapper,
             ILogger<CosmosDbSqlLogRepository> logger,
-            ICosmosDbRepository<SqlLogItem> sqlRepository)
+            ICosmosDbRepository<SqlLogItem> sqlRepository,
+            IOptions<LogOption> logOption)
         {
             _dapper = dapper;
             _logger = logger;
             _sqlRepository = sqlRepository;
+            _logOption = logOption.Value;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -42,12 +46,14 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(SqlModel sqlModel)
         {
-            //var model = sqlModel.ToItem();
-            //await _sqlRepository.InsertAsync(model);
+            var model = sqlModel.PrepareSqlModel(_logOption).ToItem();
+            await _sqlRepository.InsertAsync(model);
         }
         public async Task RetentionAsync(DateTime dateTime)
         {
-            //todo
+            string date = dateTime.ToString("yyyy-MM-dd");//'T'HH: mm:ss.SSS'Z'
+            await _sqlRepository.DeleteAsync(date, _logOption.Log.Sql.GetType().Name.ToString().ToLower());
+
         }
     }
 }

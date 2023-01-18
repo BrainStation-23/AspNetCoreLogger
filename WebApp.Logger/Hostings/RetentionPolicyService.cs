@@ -26,7 +26,7 @@ namespace WebApp.Logger.Hostings
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            new Timer(RetentionAsync, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            new Timer(RetentionAsync, null, TimeSpan.Zero, TimeSpan.FromMinutes(3));
         }
 
         public async void RetentionAsync(object? state)

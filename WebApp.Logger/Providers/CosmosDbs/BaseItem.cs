@@ -8,5 +8,6 @@ namespace WebApp.Logger.Providers.CosmosDbs
         public string Id { get; }
         public long CreatedBy { get; set; }
         public DateTime CreatedDateUtc { get; }
+        public string LogType { get; }
     }
 }

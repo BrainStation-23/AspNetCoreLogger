@@ -40,7 +40,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(List<AuditEntry> auditEntries)
         {
-            var auditModels = auditEntries.ToAuditModel(_logOption);
+            var auditModels = auditEntries.ToAuditModel(_logOption).PrepareAuditModel(_logOption);
             var auditItems = auditModels.Select(e => e.ToItem()).ToList();
 
             await _auditRepository.InsertManyAsync(auditItems);
@@ -48,12 +48,13 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(AuditEntry auditEntry)
         {
-            var model = auditEntry.ToAuditModel(false).ToItem();
+            var model = auditEntry.ToAuditModel(false).PrepareAuditModel(_logOption).ToItem();
             await _auditRepository.InsertAsync(model);
         }
         public async Task RetentionAsync(DateTime dateTime)
         {
-            //todo
+            string date = dateTime.ToString("yyyy-MM-dd");//'T'HH: mm:ss.SSS'Z'
+            await _auditRepository.DeleteAsync(date, _logOption.Log.Audit.GetType().Name.ToString().ToLower());
         }
     }
 }
