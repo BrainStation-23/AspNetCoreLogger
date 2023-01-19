@@ -15,6 +15,7 @@ namespace WebApp.Logger.Providers.CosmosDbs
 {
     public class CosmosDbRepository<TItem> : ICosmosDbRepository<TItem> where TItem : IItem
     {
+
         protected readonly CosmosClient _client;
         protected readonly Database _database;
         protected Container _container;
