@@ -10,5 +10,6 @@ namespace WebApp.Logger.Loggers.Providers.CosmosDbs.Items
         public new long CreatedBy { get; set; }
         public string Id => Guid.NewGuid().ToString();
         public DateTime CreatedDateUtc => System.DateTime.UtcNow;
+        public string LogType => "audit";
     }
 }

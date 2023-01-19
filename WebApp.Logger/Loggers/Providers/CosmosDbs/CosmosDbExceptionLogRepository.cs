@@ -1,5 +1,5 @@
-﻿using Dapper;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +17,17 @@ namespace WebApp.Logger.Loggers.Repositories
         private readonly DapperContext _dapper;
         private readonly ILogger<RouteLogRepository> _logger;
         private readonly ICosmosDbRepository<ErrorLogItem> _errorRepository;
+        private readonly LogOption _logOption;
 
         public CosmosDbExceptionLogRepository(DapperContext dapper,
             ILogger<RouteLogRepository> logger,
-            ICosmosDbRepository<ErrorLogItem> errorRepository)
+            ICosmosDbRepository<ErrorLogItem> errorRepository,
+            IOptions<LogOption> logOption)
         {
             _dapper = dapper;
             _logger = logger;
             _errorRepository = errorRepository;
+            _logOption = logOption.Value;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -43,12 +46,13 @@ namespace WebApp.Logger.Loggers.Repositories
 
         public async Task AddAsync(ErrorModel errorModel)
         {
-            //var model = errorModel.ToItem();
-            //await _errorRepository.InsertAsync(model);
+            var model = errorModel.PrepareErrorModel(_logOption).ToItem();
+            await _errorRepository.InsertAsync(model);
         }
         public async Task RetentionAsync(DateTime dateTime)
         {
-            //todo
+            string date = dateTime.ToString("yyyy-MM-dd");//'T'HH: mm:ss.SSS'Z'
+            await _errorRepository.DeleteAsync(date, _logOption.Log.Error.GetType().Name.ToString().ToLower());
         }
     }
 }

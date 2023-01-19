@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Logger.Loggers.Repositories;
+using WebApp.Logger.Providers.CosmosDbs;
 
 namespace WebApp.Logger.Providers.Mongos.Configurations
 {
