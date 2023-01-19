@@ -5,6 +5,7 @@
         MSSql,
         File,
         CosmosDb,
-        MongoDb
+        MongoDb,
+        Mongo
     }
 }
