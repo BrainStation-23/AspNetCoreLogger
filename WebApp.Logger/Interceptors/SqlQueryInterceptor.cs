@@ -6,6 +6,7 @@ using System.Data.Common;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using WebApp.Common.DataType;
 using WebApp.Common.Extensions;
 using WebApp.Common.Serialize;
 using WebApp.Logger.Loggers;
@@ -89,7 +90,7 @@ namespace WebApp.Logger.Interceptors
                 TraceId = context.TraceIdentifier,
                 Scheme = context.Request.Scheme,
                 Protocol = context.Request.Protocol,
-                Version = "",
+                Version = (string)context.Features.GetPropValue("HttpVersion"),
                 UrlReferrer = context.Request.Headers["Referer"].ToString(),
                 Area = "",
                 ControllerName = context.Request.RouteValues["controller"].ToString(),
