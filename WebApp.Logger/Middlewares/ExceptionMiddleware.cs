@@ -37,6 +37,9 @@ namespace WebApp.Logger.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
+
+            context.Items["request-begin-time"] = DateTime.Now;
+
             var errorModel = new ErrorModel();
             var requestModel = new RequestModel();
 
@@ -59,15 +62,19 @@ namespace WebApp.Logger.Middlewares
             }
             catch (Exception exception)
             {
-                
+
                 errorModel = await exception.ErrorAsync(context, _logger);
                 errorModel.Body = requestModel.Body;
                 context.Response.Body = originalBodyStream;
 
-                var apiResponse = _webHostEnvironment.IsDevelopment() ? errorModel.ToApiDevelopmentResponse(): errorModel.ToApiResponse();
+                var apiResponse = _webHostEnvironment.IsDevelopment() ? errorModel.ToApiDevelopmentResponse() : errorModel.ToApiResponse();
                 await context.Response.WriteAsync(apiResponse);
 
                 //await exceptionLogRepository.AddAsync(errorModel);
+
+                var requestbegin = (DateTime)context.Items["request-begin-time"];
+                var duration = DateTime.Now - requestbegin;
+                errorModel.Duration = duration.TotalMilliseconds;
 
                 await BatchLoggingContext.PublishAsync(errorModel,LogType.Error.ToString());
             }

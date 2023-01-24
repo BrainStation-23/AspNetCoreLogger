@@ -51,7 +51,7 @@ namespace WebApp.Logger.Interceptors
             var model = new SqlModel
             {
                 Source = "Connection",
-                ApplicationName = "",
+                ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString(),
                 UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null,
                 IpAddress = context.GetIpAddress(),
                 Host = context.Request.Host.ToString(),
@@ -60,15 +60,15 @@ namespace WebApp.Logger.Interceptors
                 Scheme = context.Request.Scheme,
                 Protocol = context.Request.Protocol,
                 Version = "",
-                UrlReferrer = "",
+                UrlReferrer = context.Request.Headers["Referer"].ToString(),
                 Area = "",
-                ControllerName = "",
-                ActionName = "",
+                ControllerName = context.Request.RouteValues["controller"].ToString(),
+                ActionName = context.Request.RouteValues["action"].ToString(),
                 ClassName = "",
                 MethodName = "",
                 Query = "",
                 QueryType = "",
-                Duration = 0,
+                Duration = (DateTimeOffset.Now - commandExecutedEventData.StartTime).TotalMilliseconds,
                 //Response = commandExecutedEventData.Result.ToJson(),
                 Connection = new
                 {

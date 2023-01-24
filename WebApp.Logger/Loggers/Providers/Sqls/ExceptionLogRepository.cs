@@ -12,6 +12,8 @@ using WebApp.Logger.Models;
 using WebApp.Logger.Extensions;
 using MassTransit.Configuration;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
+using Azure.Core;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
@@ -59,7 +61,12 @@ namespace WebApp.Logger.Loggers.Repositories
                                ,[Message]
                                ,[MessageDetails]
                                ,[StackTrace]
-                               ,[CreatedDateUtc] )
+                               ,[CreatedDateUtc]
+                               ,[ControllerName]
+                               ,[ActionName]
+                               ,[Duration]
+                               ,[RequestMethod])
+                            
                          VALUES
                                ( @UserId
                                , @ApplicationName
@@ -83,7 +90,11 @@ namespace WebApp.Logger.Loggers.Repositories
                                , @Message
                                , @MessageDetails
                                , @StackTrace
-                               , @CreatedDateUtc)";
+                               , @CreatedDateUtc
+                               , @ControllerName
+                               , @ActionName
+                               , @Duration
+                               , @RequestMethod)";
 
             try
             {
@@ -92,7 +103,11 @@ namespace WebApp.Logger.Loggers.Repositories
                     await connection.ExecuteAsync(query, new
                     {
                         UserId = errorModel.UserId,
-                        ApplicationName = errorModel.Application,
+                        ApplicationName = errorModel.ApplicationName,
+                        ControllerName = errorModel.ControllerName,
+                        ActionName = errorModel.ActionName,
+                        Duration = errorModel.Duration,
+                        RequestMethod = errorModel.RequestMethod,
                         IpAddress = errorModel.IpAddress,
                         Version = errorModel.Version,
                         Host = errorModel.Host,
@@ -148,7 +163,11 @@ namespace WebApp.Logger.Loggers.Repositories
                                ,[Message]
                                ,[MessageDetails]
                                ,[StackTrace]
-                               ,[CreatedDateUtc] )
+                               ,[CreatedDateUtc]
+                               ,[ControllerName]
+                               ,[ActionName]
+                               ,[Duration]
+                               ,[RequestMethod])
                          VALUES
                                ( @UserId
                                , @ApplicationName
@@ -172,7 +191,12 @@ namespace WebApp.Logger.Loggers.Repositories
                                , @Message
                                , @MessageDetails
                                , @StackTrace
-                               , @CreatedDateUtc)";
+                               , @CreatedDateUtc
+                               , @ControllerName
+                               , @ActionName
+                               , @Duration
+                               , @RequestMethod)";
+
             var errorLogs = new List<object>();
             errorModels.ForEach(errorModel =>
             {
@@ -183,7 +207,7 @@ namespace WebApp.Logger.Loggers.Repositories
                 errorLogs.Add(new
                 {
                     UserId = errorModel.UserId,
-                    ApplicationName = errorModel.Application,
+                    ApplicationName = errorModel.ApplicationName,
                     IpAddress = errorModel.IpAddress,
                     Version = errorModel.Version,
                     Host = errorModel.Host,
@@ -204,7 +228,11 @@ namespace WebApp.Logger.Loggers.Repositories
                     Message = errorModel.Message,
                     MessageDetails = errorModel.MessageDetails,
                     StackTrace = errorModel.StackTrace,
-                    CreatedDateUtc = DateTime.UtcNow
+                    CreatedDateUtc = DateTime.UtcNow,
+                    ControllerName = errorModel.ControllerName,
+                    ActionName = errorModel.ActionName,
+                    Duration = errorModel.Duration,
+                    RequestMethod = errorModel.RequestMethod
                 });
             });
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Options;
+using System;
 using System.Data.Common;
 using System.Security.Claims;
 using System.Threading;
@@ -42,7 +43,7 @@ namespace WebApp.Logger.Interceptors
             var model = new SqlModel
             {
                 Source = "Transaction",
-                ApplicationName = "",
+                ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString(),
                 UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null,
                 IpAddress = context.GetIpAddress(),
                 Host = context.Request.Host.ToString(),
@@ -51,12 +52,13 @@ namespace WebApp.Logger.Interceptors
                 Scheme = context.Request.Scheme,
                 Protocol = context.Request.Protocol,
                 Version = "",
-                UrlReferrer = "",
+                UrlReferrer = context.Request.Headers["Referer"].ToString(),
                 Area = "",
-                ControllerName = "",
-                ActionName = "",
+                ControllerName = context.Request.RouteValues["controller"].ToString(),
+                ActionName = context.Request.RouteValues["action"].ToString(),
                 ClassName = "",
                 MethodName = "",
+                Duration = (DateTimeOffset.Now - eventData.StartTime).TotalMilliseconds,
                 Event = new
                 {
                     eventData.EventId.Id,

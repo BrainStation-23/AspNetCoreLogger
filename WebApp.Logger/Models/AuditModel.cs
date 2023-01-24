@@ -5,6 +5,9 @@ namespace WebApp.Logger.Models
     public class AuditModel
     {
         public long UserId { get; set; }
+        public string ApplicationName { get; set; }
+        public string ControllerName { get; set; }
+        public string ActionName { get; set; }
         public string TraceId { get; set; }
         public string Type { get; set; }
         public string SchemaName { get; set; }

@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Text.Json;
@@ -66,18 +69,25 @@ namespace WebApp.Logger.Middlewares
             model.Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
             model.StatusCode = (HttpStatusCode)context.Response.StatusCode;
             model.AppStatusCode = ((HttpStatusCode)context.Response.StatusCode).ToAppStatusCode();
-            model.Version = context.Request.Scheme;
             model.Form = context.Request.HasFormContentType ? JsonSerializer.Serialize(context.Request.Form.ToDictionary()) : string.Empty;
             model.RequestHeaders = JsonSerializer.Serialize(context.Request.Headers);
             model.ResponseHeaders = JsonSerializer.Serialize(context.Request.Headers);
-            //model.Body = await context.Request.GetBody1Async();
             model.Response = string.Empty;
             model.TraceId = context.TraceIdentifier;
-            //model.Version = context.Features.HttpVersion;
             model.Scheme = context.Request.Scheme;
             model.Proctocol = context.Request.Protocol;
-            model.Url = $"{context.Request.Method} {model?.Url}";
-
+            model.ControllerName = context.Request.RouteValues["controller"].ToString();
+            model.ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString();
+            model.ActionName = context.Request.RouteValues["action"].ToString();
+            model.RequestMethod = context.Request.Method;
+            model.ResponseLength = context.Response.ContentLength.ToString();
+            model.RequestLength = context.Request.ContentLength.ToString();
+            model.IsHttps = context.Request.IsHttps;
+            model.CorrelationId = context.TraceIdentifier;
+            model.UrlReferrer = context.Request.Headers["Referer"].ToString();
+            //model.Body = await context.Request.GetBody1Async();
+            //model.Version = context.Features;
+            //model.Session = context.Session;
             return await Task.FromResult(model);
         }
 
@@ -98,15 +108,18 @@ namespace WebApp.Logger.Middlewares
             model.Form = context.Request.HasFormContentType ? JsonSerializer.Serialize(context.Request.Form.ToDictionary()) : string.Empty;
             model.RequestHeaders = JsonSerializer.Serialize(context.Request.Headers);
             model.ResponseHeaders = JsonSerializer.Serialize(context.Request.Headers);
-            //model.Body = await context.Request.GetRequestBodyAsync();
             model.Response = await context.Response.GetResponseAsync();
             model.TraceId = context.TraceIdentifier;
-            //model.Version = context.Features.HttpVersion;
             model.Scheme = context.Request.Scheme;
             model.Proctocol = context.Request.Protocol;
-            model.Url = $"{context.Request.Method} {model?.Url}";
             model.ErrorCode = exception.GetType().Name.ToShorten();
-
+            model.ControllerName = context.Request.RouteValues["controller"].ToString();
+            model.ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString();
+            model.ActionName = context.Request.RouteValues["action"].ToString();
+            model.RequestMethod = context.Request.Method;
+            //model.Body = await context.Request.GetRequestBodyAsync();
+            //model.Version = context.Features.HttpVersion;
+            //model.Url = $"{context.Request.Method} {model?.Url}";
             return await Task.FromResult(model);
         }
 
