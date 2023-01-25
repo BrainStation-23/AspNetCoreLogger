@@ -87,7 +87,7 @@ namespace WebApp.Logger.Middlewares
             model.UrlReferrer = context.Request.Headers["Referer"].ToString();
             //model.Body = await context.Request.GetBody1Async();
             model.Version = (string)context.Features.GetPropValue("HttpVersion");
-            //model.Session = context.Session;
+            model.Session = JsonSerializer.Serialize(context.Session);
             return await Task.FromResult(model);
         }
 

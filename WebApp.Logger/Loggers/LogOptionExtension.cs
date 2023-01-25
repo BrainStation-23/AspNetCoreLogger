@@ -334,6 +334,7 @@ namespace WebApp.Logger.Loggers
         {
             requestModel.Body = requestModel.Body == null ? null : JsonConvert.DeserializeObject<object>(requestModel.Body.ToString());
             requestModel.Response = requestModel.Response == null ? null : JsonConvert.DeserializeObject<object>(requestModel.Response.ToString());
+            requestModel.Session = requestModel.Session == null ? null : JsonConvert.DeserializeObject<object>(requestModel.Session.ToString());
             requestModel.RequestHeaders = requestModel.RequestHeaders == null ? null : JsonConvert.DeserializeObject<object>(requestModel.RequestHeaders.ToString());
             requestModel.ResponseHeaders = requestModel.ResponseHeaders == null ? null : JsonConvert.DeserializeObject<object>(requestModel.ResponseHeaders.ToString());
             return requestModel;

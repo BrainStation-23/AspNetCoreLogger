@@ -208,7 +208,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     Duration = requestModel.Duration,
                     StatusCode = ((int)requestModel.StatusCode).ToString(),
                     AppStatusCode = requestModel.AppStatusCode,
-                    Session = "",
+                    Session = requestModel.Session,
                     RequestMethod = requestModel.RequestMethod,
                     RequestLength = requestModel.RequestLength,
                     ResponseLength = requestModel.ResponseLength,

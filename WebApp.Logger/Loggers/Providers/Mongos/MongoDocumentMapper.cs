@@ -63,7 +63,7 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 LoggedOutDateTimeUtc = model.LoggedInDateTimeUtc,
                 LoginStatus = model.LoginStatus,
                 PageAccessed = model.PageAccessed,
-                Session = model.Session,
+                Session = model.Session.ReadNestedObject(),
                 UrlReferrer = model.UrlReferrer,
                 StatusCode = model.StatusCode,
                 AppStatusCode = model.AppStatusCode,
