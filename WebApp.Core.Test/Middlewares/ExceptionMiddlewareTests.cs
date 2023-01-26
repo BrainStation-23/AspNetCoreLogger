@@ -31,6 +31,10 @@ namespace WebApp.Core.Test.Middlewares
         public void Initialize()
         {
             defaultContext = new DefaultHttpContext();
+            defaultContext.Session = null;
+            defaultContext.Request.RouteValues["controller"] = "controller";
+            defaultContext.Request.RouteValues["action"] = "action";
+            defaultContext.Request.RouteValues["Referer"] = "referer";
             mockLogger = new Mock<ILogger<ExceptionMiddleware>>();
             hostEnvironment = new Mock<IHostEnvironment>();
         }

@@ -9,7 +9,7 @@ namespace WebApp.Common.DataType
     {
         public static object GetPropValue(this object src, string propName)
         {
-            return src.GetType().GetProperty(propName).GetValue(src, null);
+            return src.GetType().GetProperty(propName)?.GetValue(src, null);
         }
 
         public static IDictionary<string, string> ToDictionary(this IFormCollection collection)
