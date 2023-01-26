@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApp.Logger.Loggers.Providers.Files;
+using WebApp.Logger.Loggers.Providers;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Providers.CosmosDbs;
+using WebApp.Logger.Loggers.Providers.CosmosDbs;
 
 namespace WebApp.Logger.Providers.Mongos.Configurations
 {
@@ -15,6 +18,7 @@ namespace WebApp.Logger.Providers.Mongos.Configurations
             services.AddScoped<IRouteLogRepository, CosmosDbRouteLogRepository>();
             services.AddScoped<IAuditLogRepository, CosmosDbAuditLogRepository>();
             services.AddScoped<ISqlLogRepository, CosmosDbSqlLogRepository>();
+            //services.AddScoped<IDashboardRepository, CosmosDbDashboardRepository>();
         }
     }
 }

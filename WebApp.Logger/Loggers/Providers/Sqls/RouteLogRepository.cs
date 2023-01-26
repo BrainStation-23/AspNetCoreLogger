@@ -51,7 +51,7 @@ namespace WebApp.Logger.Loggers.Repositories
                                ,[Area]
                                ,[ControllerName]
                                ,[ActionName]
-                               ,[ExecutionDuration]
+                               ,[Duration]
                                ,[StatusCode]
                                ,[AppStatusCode]
                                ,[CreatedDateUtc] )
@@ -75,7 +75,7 @@ namespace WebApp.Logger.Loggers.Repositories
                                , @Area
                                , @ControllerName
                                , @ActionName
-                               , @ExecutionDuration
+                               , @Duration
                                , @StatusCode
                                , @AppStatusCode
                                , @CreatedDateUtc)";
@@ -104,7 +104,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     Area = requestModel.Area,
                     ControllerName = requestModel.ControllerName,
                     ActionName = requestModel.ActionName,
-                    ExecutionDuration = requestModel.ExecutionDuration,
+                    Duration = requestModel.ExecutionDuration,
                     StatusCode = ((int)requestModel.StatusCode).ToString(),
                     AppStatusCode = requestModel.AppStatusCode,
                     CreatedDateUtc = createdDateUtc
@@ -140,7 +140,7 @@ namespace WebApp.Logger.Loggers.Repositories
                                ,[Area]
                                ,[ControllerName]
                                ,[ActionName]
-                               ,[ExecutionDuration]
+                               ,[Duration]
                                ,[StatusCode]
                                ,[AppStatusCode]
                                ,[CreatedDateUtc] )
@@ -164,7 +164,7 @@ namespace WebApp.Logger.Loggers.Repositories
                                , @Area
                                , @ControllerName
                                , @ActionName
-                               , @ExecutionDuration
+                               , @Duration
                                , @StatusCode
                                , @AppStatusCode
                                , @CreatedDateUtc)";
@@ -192,7 +192,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     Area = requestModel.Area,
                     ControllerName = requestModel.ControllerName,
                     ActionName = requestModel.ActionName,
-                    ExecutionDuration = requestModel.ExecutionDuration,
+                    Duration = requestModel.ExecutionDuration,
                     StatusCode = ((int)requestModel.StatusCode).ToString(),
                     AppStatusCode = requestModel.AppStatusCode,
                     CreatedDateUtc = createdDateUtc

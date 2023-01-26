@@ -551,5 +551,20 @@ namespace WebApp.Logger.Extensions
         {
             return list.Skip(pageIndex * pageSize).Take(pageSize);
         }
+
+        public static List<object> GetLogsByDate(this LogType logType, DateTime dateTime, string path)
+        {
+            string date = dateTime.ToString("yyyyMMdd");
+
+            List<object> logs = new();
+
+            GetFilenames(path, date).ForEach(fileName =>
+            {
+                if (fileName.Contains(logType.ToString().ToLower()))
+                    logs = logs.Concat(GetLogObjects(path, fileName)).ToList();
+            });
+
+            return logs;
+        }
     }
 }

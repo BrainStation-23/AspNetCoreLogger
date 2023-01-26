@@ -5,7 +5,10 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using WebApp.Logger.Loggers;
+using WebApp.Logger.Loggers.Providers.Files;
+using WebApp.Logger.Loggers.Providers;
 using WebApp.Logger.Loggers.Repositories;
+using WebApp.Logger.Loggers.Providers.Mongos;
 
 namespace WebApp.Logger.Providers.Mongos.Configurations
 {
@@ -26,6 +29,7 @@ namespace WebApp.Logger.Providers.Mongos.Configurations
             services.AddScoped<IRouteLogRepository, MongoRouteLogRepository>();
             services.AddScoped<IAuditLogRepository, MongoAuditLogRepository>();
             services.AddScoped<ISqlLogRepository, MongoSqlLogRepository>();
+            //services.AddScoped<IDashboardRepository, MongoDashboardRepository>();
         }
     }
 

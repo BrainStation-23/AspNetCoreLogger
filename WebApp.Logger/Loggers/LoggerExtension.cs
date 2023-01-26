@@ -20,6 +20,9 @@ using System;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Hostings;
 using Microsoft.AspNetCore.Http;
+using WebApp.Logger.Loggers.Providers;
+using WebApp.Logger.Loggers.Providers.Sqls;
+using WebApp.Logger.Loggers.Providers.Files;
 
 namespace WebApp.Logger.Loggers
 {
@@ -43,6 +46,7 @@ namespace WebApp.Logger.Loggers
                 services.AddScoped<IRouteLogRepository, RouteLogRepository>();
                 services.AddScoped<IAuditLogRepository, AuditLogRepository>();
                 services.AddScoped<ISqlLogRepository, SqlLogRepository>();
+                services.AddScoped<IDashboardRepository, DashboardRepository>();
             }
             if (logOptions.ProviderType.ToString().ToLower() == "mongo")
                 services.AddMongoDb(configuration);
@@ -56,6 +60,7 @@ namespace WebApp.Logger.Loggers
                 services.AddScoped<IRouteLogRepository, RouteFileLogRepository>();
                 services.AddScoped<IAuditLogRepository, AuditFileLogRepository>();
                 services.AddScoped<ISqlLogRepository, SqlFileLogRepository>();
+                //services.AddScoped<IDashboardRepository, FileDashboardRepository>();
             }
 
             //services.AddMongoDb(configuration);
