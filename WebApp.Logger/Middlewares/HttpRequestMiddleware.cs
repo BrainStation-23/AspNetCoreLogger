@@ -62,6 +62,9 @@ namespace WebApp.Logger.Middlewares
             //var factory = new ProviderFactory(_serviceProvider);
             ////var providerType = _logOptions.ProviderType.ToProviderTypeEnums().FirstOrDefault();
             //ILog loggerWrapper = factory.Build(_logOptions.ProviderType);
+            var requestbegin = (DateTime)context.Items["request-begin-time"];
+            var duration = DateTime.Now - requestbegin;
+            requestModel.Duration = duration.TotalMilliseconds;
 
             var request = requestModel.PrepareRequestModel(_logOptions);
             //await loggerWrapper.Request.AddAsync(request);

@@ -21,9 +21,10 @@ namespace WebApp.Logger.Models
         public string TraceId { get; set; }
         public string Proctocol { get; set; }
         public string Area { get; set; }
+        public string ApplicationName { get; set; }
         public string ControllerName { get; set; }
         public string ActionName { get; set; }
-        public double ExecutionDuration { get; set; }
+        public double Duration { get; set; }
         public string RoleId { get; set; }
         public string LanguageId { get; set; }
         public string IsFirstLogin { get; set; }
@@ -31,8 +32,13 @@ namespace WebApp.Logger.Models
         public string LoggedOutDateTimeUtc { get; set; }
         public string LoginStatus { get; set; }
         public string PageAccessed { get; set; }
-        public string SessionId { get; set; }
+        public object Session { get; set; }
         public string UrlReferrer { get; set; }
+        public string RequestMethod { get; set; }
+        public string? RequestLength { get; set; }
+        public string? ResponseLength { get; set; }
+        public bool IsHttps { get; set; }
+        public string CorrelationId { get; set; }
 
         public HttpStatusCode StatusCode { get; set; }
         public string AppStatusCode { get; set; }

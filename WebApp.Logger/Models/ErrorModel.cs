@@ -7,6 +7,11 @@ namespace WebApp.Logger.Models
     public class ErrorModel
     {
         public long? UserId { get; set; }
+        public string ApplicationName { get; set; }
+        public string ControllerName { get; set; }
+        public string ActionName { get; set; }
+        public double Duration { get; set; }
+        public string RequestMethod { get; set; }
         public string Application { get; set; }
         public string IpAddress { get; set; }
         public string Version { get; set; }

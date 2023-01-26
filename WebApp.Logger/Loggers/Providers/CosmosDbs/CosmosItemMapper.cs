@@ -1,4 +1,5 @@
-﻿using WebApp.Logger.Loggers.Providers.CosmosDbs.Items;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebApp.Logger.Loggers.Providers.CosmosDbs.Items;
 using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Loggers.Providers.CosmosDbs
@@ -18,7 +19,10 @@ namespace WebApp.Logger.Loggers.Providers.CosmosDbs
                 NewValues = model.NewValues,
                 AffectedColumns = model.AffectedColumns,
                 CreatedBy = model.CreatedBy,
-                TraceId = model.TraceId
+                TraceId = model.TraceId,
+                ApplicationName = model.ApplicationName,
+                ControllerName = model.ControllerName,
+                ActionName = model.ActionName
             };
         }
 
@@ -80,6 +84,10 @@ namespace WebApp.Logger.Loggers.Providers.CosmosDbs
                 Url = model.Url,
                 UserId = model.UserId,
                 Version = model.Version,
+                ControllerName = model.ControllerName,
+                ActionName = model.ActionName,
+                Duration = model.Duration,
+                RequestMethod = model.RequestMethod
             };
         }
 
@@ -109,15 +117,21 @@ namespace WebApp.Logger.Loggers.Providers.CosmosDbs
                 Area = model.Area,
                 PageAccessed = model.PageAccessed,
                 ControllerName = model.ControllerName,
-                ExecutionDuration = model.ExecutionDuration,
+                Duration = model.Duration,
                 IsFirstLogin = model.IsFirstLogin,
                 LanguageId = model.LanguageId,
                 LoggedInDateTimeUtc = model.LoggedInDateTimeUtc,
                 LoggedOutDateTimeUtc = model.LoggedOutDateTimeUtc,
                 LoginStatus = model.LoginStatus,
                 RoleId = model.RoleId,
-                SessionId = model.SessionId,
+                Session = model.Session,
                 UrlReferrer = model.UrlReferrer,
+                RequestMethod = model.RequestMethod,
+                RequestLength = model.RequestLength,
+                ResponseLength = model.ResponseLength,
+                IsHttps = model.IsHttps,
+                CorrelationId = model.CorrelationId,
+                ApplicationName = model.ApplicationName,
             };
         }
     }

@@ -89,6 +89,9 @@ namespace WebApp.Sql
 
             var auditEntries = base.ChangeTracker.AuditTrailLog(userId);
             auditEntries.ToList().ForEach(x => x.TraceId = HttpContextAccessor.HttpContext.TraceIdentifier);
+            auditEntries.ToList().ForEach(x => x.ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString());
+            auditEntries.ToList().ForEach(x => x.ControllerName = HttpContextAccessor.HttpContext.Request.RouteValues["controller"].ToString());
+            auditEntries.ToList().ForEach(x => x.ActionName = HttpContextAccessor.HttpContext.Request.RouteValues["action"].ToString());
 
             if (auditEntries.Any())
             {
