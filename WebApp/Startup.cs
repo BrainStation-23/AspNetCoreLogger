@@ -41,10 +41,10 @@ namespace WebApp
             services.AddSession();
             services.AddDistributedMemoryCache();
             services.AddControllers(
-                //options =>
-                //{
-                //    options.Filters.Add<RouteFilterAttribute>();
-                //}
+            //options =>
+            //{
+            //    options.Filters.Add<RouteFilterAttribute>();
+            //}
             ).AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -128,10 +128,9 @@ namespace WebApp
             app.UseAuthentication();
             //app.ExceptionLog();
             app.UseAuthorization();
-            //app.UseSession();
+            app.UseSession();
             app.ExceptionLog();
             app.HttpLog();
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

@@ -22,7 +22,7 @@ namespace WebApp.Logger.Providers.CosmosDbs
 
         public string DatabaseName { get; set; }
         public string ContainerName { get; set; }
-
+        public string PartitionKey { get; set; }
 
         private readonly LogOption _logOption;
         private readonly CosmosDb _cosmosOptions;
@@ -57,16 +57,16 @@ namespace WebApp.Logger.Providers.CosmosDbs
 
             DatabaseName = _cosmosOptions.DatabaseName;
             ContainerName = typeof(TItem).Name;
-
+            PartitionKey = "logType";
             _client = new CosmosClient(accountEndpoint: _cosmosOptions.AccountUrl, authKeyOrResourceToken: _cosmosOptions.Key, cosmosClientOptions);
 
             _database = _client.GetDatabase(DatabaseName);
             //if (string.IsNullOrEmpty(_database.Id))
-            //_database = Task.Run(async () => await CreateDatabaseAsync()).Result;
+                //_database = Task.Run(async () => await CreateDatabaseAsync()).Result;
 
             _container = _database.GetContainer(ContainerName);
-            //if (string.IsNullOrEmpty(_container.Id))
-            //_container = Task.Run(async () => await CreateContainerAsync()).Result;
+           // if (string.IsNullOrEmpty(_container.Id))
+                //_container = Task.Run(async () => await CreateContainerAsync()).Result;
         }
 
         public async Task<Database> CreateDatabaseAsync()
@@ -79,7 +79,7 @@ namespace WebApp.Logger.Providers.CosmosDbs
         public async Task<Container> CreateContainerAsync()
         {
             var response = await _database.CreateContainerIfNotExistsAsync(id: ContainerName,
-                partitionKeyPath: "/id",
+                partitionKeyPath: "/logType",
                 throughput: 400);
 
             return response.Container;

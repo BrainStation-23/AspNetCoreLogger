@@ -21,6 +21,9 @@ namespace WebApp.Logger.Models
         public string TraceId { get; set; }
         public string RequestId { get; set; }
         public long UserId { get; set; }
+        public string ControllerName { get; set; }
+        public string ActionName { get; set; }
+        public string ApplicationName { get; set; }
         public string SchemaName { get; set; }
         public string TableName { get; set; }
         public Dictionary<string, object> KeyValues { get; } = new Dictionary<string, object>();
@@ -113,7 +116,10 @@ namespace WebApp.Logger.Models
                 AffectedColumns = auditEntry.ChangedColumnNames,
                 CreatedBy = 0,
                 CreatedDateUtc = DateTime.UtcNow,
-                TraceId = auditEntry.TraceId
+                TraceId = auditEntry.TraceId,
+                ApplicationName = auditEntry.ApplicationName,
+                ControllerName = auditEntry.ControllerName,
+                ActionName = auditEntry.ActionName
             };
         }
 

@@ -24,9 +24,12 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 CreatedBy = model.CreatedBy,
                 TraceId = model.TraceId,
                 CreatedDateUtc = model.CreatedDateUtc,
-                UpdatedDateUtc= model.DateTime,
-                SchemaName= model.SchemaName,
-                UpdatedBy=model.UpdatedBy
+                UpdatedDateUtc = model.DateTime,
+                SchemaName = model.SchemaName,
+                UpdatedBy = model.UpdatedBy,
+                ControllerName = model.ControllerName,
+                ActionName = model.ActionName,
+                ApplicationName = model.ApplicationName,
             };
         }
 
@@ -52,7 +55,7 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Area = model.Area,
                 ControllerName = model.ControllerName,
                 ActionName = model.ActionName,
-                ExecutionDuration = model.ExecutionDuration,
+                Duration = model.Duration,
                 RoleId = model.RoleId,
                 LanguageId = model.LanguageId,
                 IsFirstLogin = model.IsFirstLogin,
@@ -60,10 +63,16 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 LoggedOutDateTimeUtc = model.LoggedInDateTimeUtc,
                 LoginStatus = model.LoginStatus,
                 PageAccessed = model.PageAccessed,
-                SessionId = model.SessionId,
+                Session = model.Session.ReadNestedObject(),
                 UrlReferrer = model.UrlReferrer,
                 StatusCode = model.StatusCode,
                 AppStatusCode = model.AppStatusCode,
+                ApplicationName = model.ApplicationName,
+                RequestMethod = model.RequestMethod,
+                RequestLength = model.RequestLength,
+                ResponseLength = model.ResponseLength,
+                IsHttps = model.IsHttps,
+                CorrelationId = model.CorrelationId,
             };
         }
 
@@ -71,30 +80,30 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
         {
             return new SqlLogDocument
             {
-                ActionName= model.ActionName,
-                ApplicationName= model.ApplicationName,
-                Area= model.Area,
-                ControllerName= model.ControllerName,
-                ClassName= model.ClassName,
-                Command= model.Command.ReadNestedObject(),
-                IpAddress= model.IpAddress,
-                Connection= model.Connection.ReadNestedObject(),
-                Duration= model.Duration,
-                Event= model.Event.ReadNestedObject(),
-                Host= model.Host,
-                Message= model.Message,
-                MethodName= model.MethodName,
-                Protocol= model.Protocol,
-                Query= model.Query,
-                QueryType= model.QueryType,
-                Response= model.Response,
-                Scheme= model.Scheme,
-                Source= model.Source,
-                TraceId= model.TraceId,
-                Url= model.Url,
-                UrlReferrer= model.UrlReferrer,
-                UserId= model.UserId,
-                Version= model.Version
+                ActionName = model.ActionName,
+                ApplicationName = model.ApplicationName,
+                Area = model.Area,
+                ControllerName = model.ControllerName,
+                ClassName = model.ClassName,
+                Command = model.Command.ReadNestedObject(),
+                IpAddress = model.IpAddress,
+                Connection = model.Connection.ReadNestedObject(),
+                Duration = model.Duration,
+                Event = model.Event.ReadNestedObject(),
+                Host = model.Host,
+                Message = model.Message,
+                MethodName = model.MethodName,
+                Protocol = model.Protocol,
+                Query = model.Query,
+                QueryType = model.QueryType,
+                Response = model.Response,
+                Scheme = model.Scheme,
+                Source = model.Source,
+                TraceId = model.TraceId,
+                Url = model.Url,
+                UrlReferrer = model.UrlReferrer,
+                UserId = model.UserId,
+                Version = model.Version
             };
         }
 
@@ -124,7 +133,10 @@ namespace WebApp.Logger.Loggers.Providers.Mongos
                 Message = model.Message,
                 MessageDetails = model.MessageDetails,
                 StackTrace = model.StackTrace,
-                
+                ApplicationName = model.ApplicationName,
+                ControllerName = model.ControllerName,
+                ActionName = model.ActionName,
+                Duration = model.Duration,
             };
         }
     }

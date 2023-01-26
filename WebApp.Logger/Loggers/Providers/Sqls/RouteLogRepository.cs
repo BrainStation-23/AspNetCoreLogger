@@ -9,6 +9,7 @@ using WebApp.Logger.Models;
 using System.Collections.Generic;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Linq;
+using Azure.Core;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
@@ -51,7 +52,7 @@ namespace WebApp.Logger.Loggers.Repositories
                                ,[Area]
                                ,[ControllerName]
                                ,[ActionName]
-                               ,[ExecutionDuration]
+                               ,[Duration]
                                ,[StatusCode]
                                ,[AppStatusCode]
                                ,[CreatedDateUtc] )
@@ -75,7 +76,7 @@ namespace WebApp.Logger.Loggers.Repositories
                                , @Area
                                , @ControllerName
                                , @ActionName
-                               , @ExecutionDuration
+                               , @Duration
                                , @StatusCode
                                , @AppStatusCode
                                , @CreatedDateUtc)";
@@ -86,7 +87,7 @@ namespace WebApp.Logger.Loggers.Repositories
                 await connection.ExecuteAsync(query, new
                 {
                     UserId = requestModel.UserId,
-                    ApplicationName = requestModel.Application,
+                    ApplicationName = requestModel.ApplicationName,
                     IpAddress = requestModel.IpAddress,
                     Version = requestModel.Version,
                     Host = requestModel.Host,
@@ -104,7 +105,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     Area = requestModel.Area,
                     ControllerName = requestModel.ControllerName,
                     ActionName = requestModel.ActionName,
-                    ExecutionDuration = requestModel.ExecutionDuration,
+                    Duration = requestModel.Duration,
                     StatusCode = ((int)requestModel.StatusCode).ToString(),
                     AppStatusCode = requestModel.AppStatusCode,
                     CreatedDateUtc = createdDateUtc
@@ -140,10 +141,16 @@ namespace WebApp.Logger.Loggers.Repositories
                                ,[Area]
                                ,[ControllerName]
                                ,[ActionName]
-                               ,[ExecutionDuration]
+                               ,[Duration]
                                ,[StatusCode]
                                ,[AppStatusCode]
-                               ,[CreatedDateUtc] )
+                               ,[Session]
+                               ,[RequestMethod]
+                               ,[RequestLength]
+                               ,[ResponseLength]
+                               ,[IsHttps]
+                               ,[CorrelationId]
+                               ,[CreatedDateUtc])
                          VALUES
                                ( @UserId
                                , @ApplicationName
@@ -164,9 +171,15 @@ namespace WebApp.Logger.Loggers.Repositories
                                , @Area
                                , @ControllerName
                                , @ActionName
-                               , @ExecutionDuration
+                               , @Duration
                                , @StatusCode
                                , @AppStatusCode
+                               , @Session
+                               , @RequestMethod
+                               , @RequestLength
+                               , @ResponseLength
+                               , @IsHttps
+                               , @CorrelationId
                                , @CreatedDateUtc)";
 
             requestModels.ForEach(requestModel =>
@@ -174,7 +187,7 @@ namespace WebApp.Logger.Loggers.Repositories
                 requestLogs.Add(new
                 {
                     UserId = requestModel.UserId,
-                    ApplicationName = requestModel.Application,
+                    ApplicationName = requestModel.ApplicationName,
                     IpAddress = requestModel.IpAddress,
                     Version = requestModel.Version,
                     Host = requestModel.Host,
@@ -192,9 +205,15 @@ namespace WebApp.Logger.Loggers.Repositories
                     Area = requestModel.Area,
                     ControllerName = requestModel.ControllerName,
                     ActionName = requestModel.ActionName,
-                    ExecutionDuration = requestModel.ExecutionDuration,
+                    Duration = requestModel.Duration,
                     StatusCode = ((int)requestModel.StatusCode).ToString(),
                     AppStatusCode = requestModel.AppStatusCode,
+                    Session = requestModel.Session,
+                    RequestMethod = requestModel.RequestMethod,
+                    RequestLength = requestModel.RequestLength,
+                    ResponseLength = requestModel.ResponseLength,
+                    IsHttps = requestModel.IsHttps,
+                    CorrelationId = requestModel.CorrelationId,
                     CreatedDateUtc = createdDateUtc
                 });
             });
