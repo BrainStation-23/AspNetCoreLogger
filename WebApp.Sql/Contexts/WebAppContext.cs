@@ -33,7 +33,8 @@ namespace WebApp.Sql
         public WebAppContext(DbContextOptions<WebAppContext> options,
             ISignInHelper signInHelper,
             IConfiguration configuration,
-            IServiceProvider serviceProvider) : base(options, configuration, serviceProvider)
+            ILoggerFactory myLoggerFactory,
+            IServiceProvider serviceProvider) : base(options, serviceProvider, myLoggerFactory)
         {
             SignInHelper = signInHelper;
             Configuration = configuration;
@@ -58,7 +59,7 @@ namespace WebApp.Sql
             builder.DateTimeConvention();
         }
 
-        public static readonly LoggerFactory _myLoggerFactory = new LoggerFactory(new[] {
+        public static readonly LoggerFactory _myLoggerFactory = new(new[] {
             new Microsoft.Extensions.Logging.Debug.DebugLoggerProvider()
                 //new ConsoleLoggerProvider((_, __) => true, true)
         });

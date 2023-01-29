@@ -6,6 +6,7 @@ using System.DirectoryServices;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Providers.Sqls;
 
@@ -306,17 +307,17 @@ namespace WebApp.Logger.Extensions
             return JsonReturnText;
         }
 
-        public static Dictionary<string, object> GetDirectories(string path, bool withSubdirectories = false)
+        public async static Task<Dictionary<string, object>> GetDirectories(string path, bool withSubdirectories = false)
         {
             var directory = ReadDirectory(path);
 
             if (directory is null)
                 return null;
 
-            return GetDirectories(directory, withSubdirectories);
+            return await GetDirectories(directory, withSubdirectories);
         }
 
-        public static Dictionary<string, object> GetDirectories(DirectoryInfo directory, bool withSubdirectories = false)
+        public async static Task<Dictionary<string, object>> GetDirectories(DirectoryInfo directory, bool withSubdirectories = false)
         {
             if (directory is null)
                 return null;
@@ -327,9 +328,9 @@ namespace WebApp.Logger.Extensions
 
             if (withSubdirectories is true)
             {
-                directory.GetDirectories().ToList().ForEach(subDirectory =>
+                directory.GetDirectories().ToList().ForEach(async subDirectory =>
                 {
-                    subDirectories.Add(GetDirectories(subDirectory, true));
+                    subDirectories.Add(await GetDirectories(subDirectory, true));
                 });
             }
 
@@ -340,7 +341,7 @@ namespace WebApp.Logger.Extensions
 
             fileTree.Add(directory.Name, subDirectories);
 
-            return fileTree;
+            return await Task.FromResult(fileTree);
 
         }
 
@@ -356,8 +357,6 @@ namespace WebApp.Logger.Extensions
                 if (fi.Name.ToLower() == fileName.ToLower())
                 {
                     file = fi;
-
-                    return;
                 }
             });
 
@@ -414,14 +413,14 @@ namespace WebApp.Logger.Extensions
 
         }
 
-        public static List<string> GetFilenames(this string path, string searchkey)
+        public async static Task<List<string>> GetFilenames(this string path, string searchkey)
         {
             var directory = ReadDirectory(path);
 
             if (directory is null)
                 return null;
 
-            return SearchFiles(directory, searchkey);
+            return await Task.FromResult(SearchFiles(directory, searchkey));
         }
 
         public static FileInfo SearchFileWithPath(this string path, string fileName)
@@ -436,7 +435,7 @@ namespace WebApp.Logger.Extensions
             return file;
         }
 
-        public static List<object> GetLogObjects(this string path, string fileName)
+        public async static Task<List<object>> GetLogObjects(this string path, string fileName)
         {
             var file = path.SearchFileWithPath(fileName);
 
@@ -445,7 +444,7 @@ namespace WebApp.Logger.Extensions
 
             var fileContent = System.IO.File.ReadAllText(file.FullName);
 
-            return fileContent.ToLogObjects();
+            return await Task.FromResult(fileContent.ToLogObjects());
         }
 
         public static List<object> ToLogObjects(this string jsonString)
@@ -523,7 +522,7 @@ namespace WebApp.Logger.Extensions
             return directoryInfo;
         }
 
-        public static void RetentionFileLogs(this DateTime datetime, string path, string logtype)
+        public async static Task RetentionFileLogs(this DateTime datetime, string path, string logtype)
         {
             string date = datetime.ToString("yyyyMMdd");
 
@@ -545,6 +544,7 @@ namespace WebApp.Logger.Extensions
                     Directory.Delete(directoryFullname, true);
                 });
             }
+            await Task.CompletedTask;
         }
 
         public static IEnumerable<T> Paging<T>(this IEnumerable<T> list, int pageIndex, int pageSize)

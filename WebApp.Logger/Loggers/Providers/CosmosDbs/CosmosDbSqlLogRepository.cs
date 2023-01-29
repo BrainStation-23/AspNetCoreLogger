@@ -1,10 +1,6 @@
-﻿using Dapper;
-using FluentAssertions;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Logger.Loggers.Providers.CosmosDbs;
 using WebApp.Logger.Loggers.Providers.CosmosDbs.Items;
@@ -16,17 +12,11 @@ namespace WebApp.Logger.Loggers.Repositories
 {
     public class CosmosDbSqlLogRepository : ISqlLogRepository
     {
-        private readonly DapperContext _dapper;
-        private readonly ILogger<CosmosDbSqlLogRepository> _logger;
         private readonly ICosmosDbRepository<SqlLogItem> _sqlRepository;
         private readonly LogOption _logOption;
-        public CosmosDbSqlLogRepository(DapperContext dapper,
-            ILogger<CosmosDbSqlLogRepository> logger,
-            ICosmosDbRepository<SqlLogItem> sqlRepository,
+        public CosmosDbSqlLogRepository(ICosmosDbRepository<SqlLogItem> sqlRepository,
             IOptions<LogOption> logOption)
         {
-            _dapper = dapper;
-            _logger = logger;
             _sqlRepository = sqlRepository;
             _logOption = logOption.Value;
         }
@@ -38,10 +28,12 @@ namespace WebApp.Logger.Loggers.Repositories
             return response;
         }
 
-        public async Task AddAsync(List<SqlModel> sqlModels)
+        public async Task AddAsync(List<SqlModel> sqlModel)
         {
             //var sqlItems = sqlModels.Select(e => e.ToItem()).ToList();
             //await _sqlRepository.InsertManyAsync(sqlItems);
+
+            await Task.CompletedTask;
         }
 
         public async Task AddAsync(SqlModel sqlModel)

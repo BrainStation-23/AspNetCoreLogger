@@ -30,20 +30,19 @@ namespace WebApp.Sql
         public readonly IAuditLogRepository _auditLogRepository;
         private readonly ISqlLogRepository _sqlLogRepository;
         public readonly IHttpContextAccessor HttpContextAccessor;
-        private ILoggerFactory _myLoggerFactory;
+        private readonly ILoggerFactory _myLoggerFactory;
         private readonly IServiceProvider _serviceProvider;
-        private readonly IConfiguration _configuration;
 
         public AuditLogContext(DbContextOptions options,
-            IConfiguration configuration,
-            IServiceProvider serviceProvider) : base(options)
+            IServiceProvider serviceProvider,
+            ILoggerFactory myLoggerFactory) : base(options)
         {
             _serviceProvider = serviceProvider;
-            _configuration = configuration;
             _signInHelper = _serviceProvider.GetService<ISignInHelper>();
             _auditLogRepository = _serviceProvider.GetService<IAuditLogRepository>();
             HttpContextAccessor = _serviceProvider.GetService<IHttpContextAccessor>();
             _sqlLogRepository = _serviceProvider.GetService<ISqlLogRepository>();
+            _myLoggerFactory = myLoggerFactory;
         }
 
         protected AuditLogContext() { }
@@ -61,8 +60,7 @@ namespace WebApp.Sql
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            bool hasAuditData = false;
-            hasAuditData = await AuditTrailLog();
+            var hasAuditData = await AuditTrailLog();
 
             if (hasAuditData)
                 return await base.SaveChangesAsync(cancellationToken);
@@ -73,7 +71,7 @@ namespace WebApp.Sql
         public override int SaveChanges()
         {
             //AuditTrailLog().ConfigureAwait(false);
-            Task.Run(async () => AuditTrailLog());
+            Task.Run(async () => await AuditTrailLog());
             //AuditTrailLog().GetAwaiter().GetResult();
 
             return base.SaveChanges();
@@ -104,7 +102,7 @@ namespace WebApp.Sql
 
                 //await _auditLogRepository.AddAsync(auditEntries.ToList());
 
-                await BatchLoggingContext.PublishAsync(auditEntries.ToList(),LogType.Audit.ToString());
+                await BatchLoggingContext.PublishAsync(auditEntries.ToList(), LogType.Audit.ToString());
             }
 
             return auditEntries.Any();

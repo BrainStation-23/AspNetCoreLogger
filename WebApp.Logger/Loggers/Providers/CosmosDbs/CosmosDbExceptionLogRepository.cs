@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Logger.Loggers.Providers.CosmosDbs;
 using WebApp.Logger.Loggers.Providers.CosmosDbs.Items;
@@ -42,6 +41,8 @@ namespace WebApp.Logger.Loggers.Repositories
             //var errorItems = errorModels.Select(e => e.ToItem()).ToList();
 
             //await _errorRepository.InsertManyAsync(errorItems);
+
+            await Task.CompletedTask;
         }
 
         public async Task AddAsync(ErrorModel errorModel)

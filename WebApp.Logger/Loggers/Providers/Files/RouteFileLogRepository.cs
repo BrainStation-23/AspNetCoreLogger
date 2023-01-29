@@ -1,28 +1,22 @@
-﻿using Dapper;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Threading.Tasks;
-using WebApp.Common.Serialize;
-using WebApp.Logger.Providers.Sqls;
-using WebApp.Logger.Models;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using WebApp.Logger.Extensions;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using WebApp.Logger.Extensions;
+using WebApp.Logger.Models;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
     public class RouteFileLogRepository : IRouteLogRepository
     {
-        private readonly DapperContext _dapper;
         private readonly ILogger<RouteLogRepository> _logger;
         private readonly LogOption _logOption;
 
-        public RouteFileLogRepository(DapperContext dapper,
-            ILogger<RouteLogRepository> logger,
+        public RouteFileLogRepository(ILogger<RouteLogRepository> logger,
             IOptions<LogOption> logOption)
         {
-            _dapper = dapper;
             _logger = logger;
             _logOption = logOption.Value;
         }
@@ -44,6 +38,8 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 _logger.LogError(nameof(RouteLogRepository), exception);
             }
+
+            await Task.CompletedTask;
         }
 
         public async Task AddAsync(List<RequestModel> requestModels)
@@ -65,6 +61,8 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 _logger.LogError(nameof(RouteLogRepository), exception);
             }
+
+            await Task.CompletedTask;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -72,11 +70,11 @@ namespace WebApp.Logger.Loggers.Repositories
             var fileConfig = _logOption.Provider.File;
             var routeLogs = FileExtension.GetFilenames(fileConfig.Path, LogType.Request.ToString());
 
-            return routeLogs;
+            return await Task.Run(() => routeLogs);
         }
         public async Task RetentionAsync(DateTime dateTime)
         {
-            FileExtension.RetentionFileLogs(dateTime, _logOption.Provider.File.Path, LogType.Request.ToString());
+            await FileExtension.RetentionFileLogs(dateTime, _logOption.Provider.File.Path, LogType.Request.ToString());
         }
     }
 }

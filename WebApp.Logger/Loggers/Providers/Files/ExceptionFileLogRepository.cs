@@ -1,16 +1,11 @@
-﻿using Dapper;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using WebApp.Common.Serialize;
-using WebApp.Logger.Providers.Sqls;
-using WebApp.Logger.Models;
 using WebApp.Logger.Extensions;
-using Microsoft.Extensions.Options;
+using WebApp.Logger.Models;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
@@ -46,6 +41,8 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 _logger.LogError(nameof(ExceptionLogRepository), exception);
             }
+
+            await Task.CompletedTask;
         }
 
         public async Task AddAsync(List<ErrorModel> errorModels)
@@ -61,13 +58,15 @@ namespace WebApp.Logger.Loggers.Repositories
                 {
                     errorModel = errorModel.DeserializeErrorModel().PrepareErrorModel(_logOptions);
                 });
-                
+
                 FileExtension.LogWrite(fileConfig, errorModels);
             }
             catch (Exception exception)
             {
                 _logger.LogError(nameof(ExceptionLogRepository), exception);
             }
+
+            await Task.CompletedTask;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -75,12 +74,12 @@ namespace WebApp.Logger.Loggers.Repositories
             var fileConfig = _logOptions.Provider.File;
             var exceptionLogs = FileExtension.GetFilenames(fileConfig.Path, LogType.Error.ToString());
 
-            return exceptionLogs;
+            return await Task.Run(()=>exceptionLogs);
         }
 
         public async Task RetentionAsync(DateTime dateTime)
         {
-            FileExtension.RetentionFileLogs(dateTime, _logOptions.Provider.File.Path, LogType.Error.ToString());
+            await FileExtension.RetentionFileLogs(dateTime, _logOptions.Provider.File.Path, LogType.Error.ToString());
         }
     }
 }

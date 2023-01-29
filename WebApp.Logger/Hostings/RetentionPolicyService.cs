@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading;
@@ -26,10 +25,12 @@ namespace WebApp.Logger.Hostings
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            new Timer(RetentionAsync, null, TimeSpan.Zero, TimeSpan.FromDays(30));
+            _ = new Timer(RetentionAsync, null, TimeSpan.Zero, TimeSpan.FromDays(30));
+
+            await Task.CompletedTask;
         }
 
-        public async void RetentionAsync(object? state)
+        public async void RetentionAsync(object state)
         {
             var retentionDate = GetRetentionTime();
 

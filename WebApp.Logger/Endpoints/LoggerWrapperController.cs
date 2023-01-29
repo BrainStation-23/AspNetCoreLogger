@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System;
 using System.Threading.Tasks;
 using WebApp.Common.Responses;
 using WebApp.Core;
@@ -73,7 +71,7 @@ namespace WebApp.Logger
         [HttpGet("file/file-directories")]
         public async Task<IActionResult> GetFileLogsDirectoriesAsync()
         {
-            var res = FileExtension.GetDirectories(_logOption.Provider.File.Path,true);
+            var res = await FileExtension.GetDirectories(_logOption.Provider.File.Path,true);
 
             return new OkResponse(res);
         }
@@ -83,7 +81,7 @@ namespace WebApp.Logger
             ,int pageIndex = CommonVariables.pageIndex
             ,int pageSize = CommonVariables.pageSize)
         {
-            var res = FileExtension.GetLogObjects(_logOption.Provider.File.Path,fileName).Paging(pageIndex, pageSize);
+            var res = (await FileExtension.GetLogObjects(_logOption.Provider.File.Path,fileName)).Paging(pageIndex, pageSize);
 
             return new OkResponse(res);
         }
@@ -91,7 +89,7 @@ namespace WebApp.Logger
         [HttpGet("file/search-file")]
         public async Task<IActionResult> GetLogFilesBySearchKeyAsync(string searchKey)
         {
-            var res = FileExtension.GetFilenames(_logOption.Provider.File.Path, searchKey);
+            var res = await FileExtension.GetFilenames(_logOption.Provider.File.Path, searchKey);
 
             return new OkResponse(res);
         }

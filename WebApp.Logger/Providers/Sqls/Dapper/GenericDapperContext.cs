@@ -6,7 +6,6 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Dapper_ORM.Services
 {
@@ -22,7 +21,7 @@ namespace Dapper_ORM.Services
 
         public void Dispose()
         {
-
+            // Method intentionally left empty.
         }
 
         public int Execute(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
@@ -62,15 +61,15 @@ namespace Dapper_ORM.Services
                     result = db.Query<T>(sp, parms, commandType: commandType, transaction: tran).FirstOrDefault();
                     tran.Commit();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     tran.Rollback();
                     throw;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -96,15 +95,15 @@ namespace Dapper_ORM.Services
                     result = db.Query<T>(sp, parms, commandType: commandType, transaction: tran).FirstOrDefault();
                     tran.Commit();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     tran.Rollback();
-                    throw ex;
+                    throw;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {

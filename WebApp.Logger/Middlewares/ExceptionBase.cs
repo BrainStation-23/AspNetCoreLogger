@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -220,7 +218,7 @@ namespace WebApp.Logger.Middlewares
                     break;
             }
 
-            errorModel.AppStatusCode = ((HttpStatusCode)errorModel.StatusCode).ToAppStatusCode();
+            errorModel.AppStatusCode = errorModel.StatusCode.ToAppStatusCode();
 
             logger.LogError(exception, exception.Message);
 

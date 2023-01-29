@@ -1,25 +1,18 @@
-﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
-using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using WebApp.Logger.Hostings;
-using WebApp.Logger.Loggers.Providers.Mongos;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Models;
-using WebApp.Logger.Providers;
 
 namespace WebApp.Logger.Loggers
 {
     public static class BatchLoggingContext
     {
-        private static ConcurrentQueue<AuditEntry> auditLogQueue = new ConcurrentQueue<AuditEntry>();
-        private static ConcurrentQueue<ErrorModel> errorLogQueue = new ConcurrentQueue<ErrorModel>();
-        private static ConcurrentQueue<RequestModel> requestLogQueue = new ConcurrentQueue<RequestModel>();
-        private static ConcurrentQueue<SqlModel> sqlLogQueue = new ConcurrentQueue<SqlModel>();
+        private static ConcurrentQueue<AuditEntry> auditLogQueue = new();
+        private static ConcurrentQueue<ErrorModel> errorLogQueue = new();
+        private static ConcurrentQueue<RequestModel> requestLogQueue = new();
+        private static ConcurrentQueue<SqlModel> sqlLogQueue = new();
 
         private readonly static int maxBatchSize = 100;
 
@@ -33,11 +26,15 @@ namespace WebApp.Logger.Loggers
                 requestLogQueue.Enqueue(log as RequestModel);
             else if (logType == LogType.Sql.ToString())
                 sqlLogQueue.Enqueue(log as SqlModel);
+
+            await Task.CompletedTask;
         }
 
-        public static async Task PublishAsync<T>(this List<T> logs, string logType) where T : class
+        public static Task PublishAsync<T>(this List<T> logs, string logType) where T : class
         {
-            logs.ForEach(async log => await PublishAsync(log, logType));
+            logs.ForEach(async log => await log.PublishAsync(logType));
+
+            return Task.CompletedTask;
         }
 
         public static async Task BatchLogProcessAsync(IRouteLogRepository routeLogRepository
@@ -66,7 +63,7 @@ namespace WebApp.Logger.Loggers
 
         public static List<T> GetLogList<T>(this ConcurrentQueue<T> logQueue, int maxListSize)
         {
-            List<T> logs = new List<T>();
+            List<T> logs = new();
 
             if (!logQueue.IsEmpty)
             {
