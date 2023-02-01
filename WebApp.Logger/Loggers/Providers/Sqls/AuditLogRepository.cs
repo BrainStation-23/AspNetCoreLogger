@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -70,7 +71,11 @@ namespace WebApp.Logger.Loggers.Repositories
                                ,[CreatedBy]
                                ,[CreatedDateUtc]
                                ,[UpdatedBy]
-                               ,[UpdatedDateUtc])
+                               ,[UpdatedDateUtc]
+                               ,[TraceId]
+                               ,[ControllerName]
+                               ,[ActionName]
+                               ,[ApplicationName])
                          VALUES
                                ( @UserId
                                , @Type
@@ -82,9 +87,12 @@ namespace WebApp.Logger.Loggers.Repositories
                                 ,@PrimaryKey
                                , @CreatedBy
                                , @CreatedDateUtc
-                                , @UpdatedBy
-                                , @UpdatedDateUtc
-                        )";
+                               , @UpdatedBy
+                               , @UpdatedDateUtc
+                               , @TraceId
+                               , @ControllerName
+                               , @ActionName
+                               , @ApplicationName)";
 
             try
             {
@@ -93,6 +101,10 @@ namespace WebApp.Logger.Loggers.Repositories
                 {
                     UserId = auditEntry.UserId,
                     Type = auditEntry.AuditType.ToString(),
+                    TraceId = auditEntry.TraceId,
+                    ControllerName = auditEntry.ControllerName,
+                    ActionName = auditEntry.ActionName,
+                    ApplicationName = auditEntry.ApplicationName,
                     TableName = auditEntry.TableName,
                     DateTime = DateTime.Now,
                     PrimaryKey = JsonConvert.SerializeObject(auditEntry.KeyValues),
@@ -125,7 +137,11 @@ namespace WebApp.Logger.Loggers.Repositories
                                ,[CreatedBy]
                                ,[CreatedDateUtc]
                                ,[UpdatedBy]
-                               ,[UpdatedDateUtc])
+                               ,[UpdatedDateUtc]
+                               ,[TraceId]
+                               ,[ControllerName]
+                               ,[ActionName]
+                               ,[ApplicationName])
                          VALUES
                                ( @UserId
                                , @Type
@@ -137,9 +153,12 @@ namespace WebApp.Logger.Loggers.Repositories
                                 ,@PrimaryKey
                                , @CreatedBy
                                , @CreatedDateUtc
-                                , @UpdatedBy
-                                , @UpdatedDateUtc
-                        )";
+                               , @UpdatedBy
+                               , @UpdatedDateUtc
+                               , @TraceId
+                               , @ControllerName
+                               , @ActionName
+                               , @ApplicationName)";
 
             try
             {
