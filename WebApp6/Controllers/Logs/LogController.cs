@@ -38,7 +38,7 @@ namespace WebApp6.Controllers.Logs
             var factory = new ProviderFactory(_serviceProvider);
 
             var providerType = _logOption.ProviderType;
-            _loggerWrapper = factory.Build(providerType);
+            _loggerWrapper = factory.Build(providerType.ToEnum(ProviderType.MSSql));
         }
 
         [HttpGet("routes")]

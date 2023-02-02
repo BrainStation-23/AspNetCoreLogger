@@ -81,8 +81,8 @@ namespace WebApp.Logger.Interceptors
             var context = Context.HttpContext;
             var model = new SqlModel
             {
-                Source = "Query",
-                ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString(),
+                Source = SqlSource.Query.ToString(),
+                ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString(),                
                 UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null,
                 IpAddress = context.GetIpAddress(),
                 Host = context.Request.Host.ToString(),
@@ -124,7 +124,7 @@ namespace WebApp.Logger.Interceptors
 
             //await SqlLogRepository.AddAsync(model);
 
-            await BatchLoggingContext.PublishAsync(model,LogType.Sql.ToString());
+            await BatchLoggingContext.PublishAsync(model, LogType.Sql.ToString());
         }
     }
 }
