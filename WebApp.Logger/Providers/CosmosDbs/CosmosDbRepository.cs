@@ -62,11 +62,11 @@ namespace WebApp.Logger.Providers.CosmosDbs
 
             _database = _client.GetDatabase(DatabaseName);
             //if (string.IsNullOrEmpty(_database.Id))
-                //_database = Task.Run(async () => await CreateDatabaseAsync()).Result;
+            //_database = Task.Run(async () => await CreateDatabaseAsync()).Result;
 
             _container = _database.GetContainer(ContainerName);
-           // if (string.IsNullOrEmpty(_container.Id))
-                //_container = Task.Run(async () => await CreateContainerAsync()).Result;
+            // if (string.IsNullOrEmpty(_container.Id))
+            //_container = Task.Run(async () => await CreateContainerAsync()).Result;
         }
 
         public async Task<Database> CreateDatabaseAsync()
@@ -149,7 +149,7 @@ namespace WebApp.Logger.Providers.CosmosDbs
             return response.Resource;
         }
 
-        public async Task<string> GetPartitionKey(Microsoft.Azure.Cosmos.Container container)
+        public async Task<string> GetPartitionKey(Container container)
         {
             ContainerProperties cproperties = await _container.ReadContainerAsync();
 
@@ -210,11 +210,11 @@ namespace WebApp.Logger.Providers.CosmosDbs
         {
             string query = $"SELECT * FROM root r WHERE r.createdDateUtc <= '{dateTime}'";
 
-            if (logType == "audit")
+            if (logType == LogType.Audit.ToString().ToLower())
                 await _container.Scripts.ExecuteStoredProcedureAsync<TItem>("spDeleteAuditLogItems", new PartitionKey(logType), new[] { query });
-            else if (logType == "error")
+            else if (logType == LogType.Error.ToString().ToLower())
                 await _container.Scripts.ExecuteStoredProcedureAsync<TItem>("spDeleteErrorLogItems", new PartitionKey(logType), new[] { query });
-            else if (logType == "request")
+            else if (logType == LogType.Request.ToString().ToLower())
                 await _container.Scripts.ExecuteStoredProcedureAsync<TItem>("spDeleteRequestLogItems", new PartitionKey(logType), new[] { query });
             else
                 await _container.Scripts.ExecuteStoredProcedureAsync<TItem>("spDeleteSqlLogItems", new PartitionKey(logType), new[] { query });

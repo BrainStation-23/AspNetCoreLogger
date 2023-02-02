@@ -32,25 +32,25 @@ namespace WebApp.Logger.Loggers
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
 
             var logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
-       
+
             services.AddHostedService<RetentionPolicyService>();
 
             services.AddHostedService<BatchLoggingBackGroundService>();
 
-            if (logOptions.ProviderType.ToString().ToLower() == "mssql")
+            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.MSSql.ToString().ToLower())
             {
                 services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
                 services.AddScoped<IRouteLogRepository, RouteLogRepository>();
                 services.AddScoped<IAuditLogRepository, AuditLogRepository>();
                 services.AddScoped<ISqlLogRepository, SqlLogRepository>();
             }
-            if (logOptions.ProviderType.ToString().ToLower() == "mongo")
+            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.Mongo.ToString().ToLower())
                 services.AddMongoDb(configuration);
 
-            if (logOptions.ProviderType.ToString().ToLower() == "cosmosdb")
+            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.CosmosDb.ToString().ToLower())
                 services.AddCosmosDb(configuration);
 
-            if (logOptions.ProviderType.ToString().ToLower() == "file")
+            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.File.ToString().ToLower())
             {
                 services.AddScoped<IExceptionLogRepository, ExceptionFileLogRepository>();
                 services.AddScoped<IRouteLogRepository, RouteFileLogRepository>();
@@ -60,7 +60,7 @@ namespace WebApp.Logger.Loggers
 
             //services.AddMongoDb(configuration);
             //services.AddCosmosDb(configuration);
-            
+
 
 
         }
