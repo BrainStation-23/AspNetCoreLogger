@@ -39,16 +39,16 @@ namespace WebApp.Logger.Hostings
 
                 using (IServiceScope scope = _serviceProvider.CreateScope())
                 {
-                    if(_logOptions.IgnoreRetentionPolicy.MustContain(LogType.Error.ToString()) is false)
+                    if(_logOptions.LogType.MustContain(LogType.Error.ToString()) is true)
                        await scope.ServiceProvider.GetService<IExceptionLogRepository>().RetentionAsync(date);
 
-                    if (_logOptions.IgnoreRetentionPolicy.MustContain(LogType.Request.ToString()) is false)
+                    if (_logOptions.LogType.MustContain(LogType.Request.ToString()) is true)
                         await scope.ServiceProvider.GetService<IRouteLogRepository>().RetentionAsync(date);
 
-                    if (_logOptions.IgnoreRetentionPolicy.MustContain(LogType.Audit.ToString()) is false)
+                    if (_logOptions.LogType.MustContain(LogType.Audit.ToString()) is true)
                         await scope.ServiceProvider.GetService<IAuditLogRepository>().RetentionAsync(date);
 
-                    if (_logOptions.IgnoreRetentionPolicy.MustContain(LogType.Sql.ToString()) is false)
+                    if (_logOptions.LogType.MustContain(LogType.Sql.ToString()) is true)
                         await scope.ServiceProvider.GetService<ISqlLogRepository>().RetentionAsync(date);
                 }
             }

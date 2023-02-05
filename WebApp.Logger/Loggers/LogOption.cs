@@ -9,7 +9,6 @@ namespace WebApp.Logger.Loggers
 
         public string ProviderType { get; set; }
         public List<string> LogType { get; set; }
-        public List<string> IgnoreRetentionPolicy { get; set; }
         public List<string> IgnoreEndPoints { get; set; }
         public List<string> IgnoreHttpVerbs { get; set; }
         public string Mode { get; set; }
