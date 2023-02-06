@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -31,6 +29,10 @@ namespace WebApp.Core.Test.Middlewares
         public void Initialize()
         {
             defaultContext = new DefaultHttpContext();
+            defaultContext.Session = null;
+            defaultContext.Request.RouteValues["controller"] = "controller";
+            defaultContext.Request.RouteValues["action"] = "action";
+            defaultContext.Request.RouteValues["Referer"] = "referer";
             mockLogger = new Mock<ILogger<ExceptionMiddleware>>();
             hostEnvironment = new Mock<IHostEnvironment>();
         }

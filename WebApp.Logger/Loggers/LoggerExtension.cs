@@ -1,25 +1,23 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.Diagnostics;
 using WebApp.Common.Contexts;
-using WebApp.Logger.Providers.Sqls;
+using WebApp.Logger.Endpoints;
 using WebApp.Logger.Enums;
+using WebApp.Logger.Hostings;
+using WebApp.Logger.Loggers.Providers;
+using WebApp.Logger.Loggers.Providers.Sqls;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Middlewares;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Mongos.Configurations;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using System.Threading.Tasks;
-using WebApp.Logger.Endpoints;
-using System;
-using WebApp.Logger.Extensions;
-using WebApp.Logger.Hostings;
-using Microsoft.AspNetCore.Http;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers
 {
@@ -32,25 +30,26 @@ namespace WebApp.Logger.Loggers
             services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
 
             var logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
-       
+
             services.AddHostedService<RetentionPolicyService>();
 
             services.AddHostedService<BatchLoggingBackGroundService>();
 
-            if (logOptions.ProviderType.ToString().ToLower() == "mssql")
+            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.MSSql.ToString().ToLower())
             {
                 services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
                 services.AddScoped<IRouteLogRepository, RouteLogRepository>();
                 services.AddScoped<IAuditLogRepository, AuditLogRepository>();
                 services.AddScoped<ISqlLogRepository, SqlLogRepository>();
+                services.AddScoped<IDashboardRepository, DashboardRepository>();
             }
-            if (logOptions.ProviderType.ToString().ToLower() == "mongo")
+            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.Mongo.ToString().ToLower())
                 services.AddMongoDb(configuration);
 
-            if (logOptions.ProviderType.ToString().ToLower() == "cosmosdb")
+            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.CosmosDb.ToString().ToLower())
                 services.AddCosmosDb(configuration);
 
-            if (logOptions.ProviderType.ToString().ToLower() == "file")
+            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.File.ToString().ToLower())
             {
                 services.AddScoped<IExceptionLogRepository, ExceptionFileLogRepository>();
                 services.AddScoped<IRouteLogRepository, RouteFileLogRepository>();
@@ -60,7 +59,7 @@ namespace WebApp.Logger.Loggers
 
             //services.AddMongoDb(configuration);
             //services.AddCosmosDb(configuration);
-            
+
 
 
         }
