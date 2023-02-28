@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Core;
 using WebApp.Core.Acls;
+using WebApp.Logger.Loggers;
 using WebApp.Service.Services.Accounts;
 using WebApp.Services;
 using WebApp.Sql.Configurations;
@@ -16,12 +17,13 @@ namespace WebApp.Service.Configurations
             services.AddAutoMapper(typeof(ServiceMapperProfile));
 
             services.AddTransient(typeof(IBaseService<,>), typeof(BaseService<,>));
-            
+
             services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
-            
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<ISignInHelper, SignInHelper>();
+            services.AddScoped<IDbContextExtension, DbContextExtension>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBlogService, BlogService>();
             services.AddScoped<IPostService, PostService>();

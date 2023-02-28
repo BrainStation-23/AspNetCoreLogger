@@ -33,7 +33,7 @@ namespace WebApp.Sql
         public WebAppContext(DbContextOptions<WebAppContext> options,
             ISignInHelper signInHelper,
             IConfiguration configuration,
-            IServiceProvider serviceProvider) : base(options, configuration, serviceProvider)
+            IServiceProvider serviceProvider) : base(options, serviceProvider)
         {
             SignInHelper = signInHelper;
             Configuration = configuration;

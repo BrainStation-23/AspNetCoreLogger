@@ -76,9 +76,9 @@ namespace WebApp.Logger.Middlewares
             model.TraceId = context.TraceIdentifier;
             model.Scheme = context.Request.Scheme;
             model.Proctocol = context.Request.Protocol;
-            model.ControllerName = context.Request.RouteValues["controller"].ToString();
+            model.ControllerName = context.Request.RouteValues["controller"]?.ToString();
             model.ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString();
-            model.ActionName = context.Request.RouteValues["action"].ToString();
+            model.ActionName = context.Request.RouteValues["action"]?.ToString();
             model.RequestMethod = context.Request.Method;
             model.ResponseLength = context.Response.ContentLength.ToString();
             model.RequestLength = context.Request.ContentLength.ToString();
