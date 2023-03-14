@@ -65,7 +65,7 @@ namespace WebApp.Logger.Loggers.Repositories
             var fileConfig = _logOptions.Provider.File;
             var auditLogs = FileExtension.GetFilenames(fileConfig.Path, LogType.Audit.ToString());
 
-            await Task.FromResult(auditLogs);
+            return await Task.FromResult(auditLogs);
         }
 
         public async Task RetentionAsync(DateTime dateTime)

@@ -19,12 +19,14 @@ namespace WebApp7.Controllers.Logs
         public LogController(IRouteLogRepository routeLogRepository,
             IExceptionLogRepository exceptionLogRepository,
             IAuditLogRepository auditLogRepository,
-            ISqlLogRepository sqlLogRepository)
+            ISqlLogRepository sqlLogRepository,
+            IServiceProvider serviceProvider)
         {
             _routeLogRepository = routeLogRepository;
             _exceptionLogRepository = exceptionLogRepository;
             _auditLogRepository = auditLogRepository;
             _sqlLogRepository = sqlLogRepository;
+            _serviceProvider = serviceProvider;
         }
 
         [HttpGet("routes")]
