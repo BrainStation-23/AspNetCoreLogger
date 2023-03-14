@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Net;
-using WebApp.Common.Serialize;
-using WebApp.Common.Extensions;
+using WebApp.Logger.Extensions;
 
-namespace WebApp.Common.Responses
+namespace WebApp.Logger.Responses
 {
-    public class ApiResponse
+    internal class ApiResponse
     {
         public int StatusCode { get; set; }
         public string AppStatusCode { get; set; }
@@ -27,7 +26,7 @@ namespace WebApp.Common.Responses
         public ApiResponse(int statusCode, string message, IEnumerable<string> errors = null)
         {
             StatusCode = statusCode;
-            AppStatusCode = ((HttpStatusCode)statusCode).ToAppStatusCode();
+            AppStatusCode = statusCode.ToAppStatusCode();
             Message = message;
             IsSuccess = Success(statusCode);
             Errors = errors;
@@ -37,14 +36,14 @@ namespace WebApp.Common.Responses
         {
             Data = data;
             StatusCode = (int)HttpStatusCode.OK;
-            AppStatusCode = ((HttpStatusCode)(int)HttpStatusCode.OK).ToAppStatusCode();
+            AppStatusCode = ((int)HttpStatusCode.OK).ToAppStatusCode();
             IsSuccess = true;
         }
 
         public ApiResponse(int statusCode, object data)
         {
             StatusCode = statusCode;
-            AppStatusCode = ((HttpStatusCode)statusCode).ToAppStatusCode();
+            AppStatusCode = statusCode.ToAppStatusCode();
             Data = data;
             IsSuccess = Success(statusCode);
         }
@@ -52,7 +51,7 @@ namespace WebApp.Common.Responses
         public ApiResponse(int statusCode, string message, object data)
         {
             StatusCode = statusCode;
-            AppStatusCode = ((HttpStatusCode)statusCode).ToAppStatusCode();
+            AppStatusCode = statusCode.ToAppStatusCode();
             Message = message;
             Data = data;
             IsSuccess = Success(statusCode);
@@ -63,10 +62,10 @@ namespace WebApp.Common.Responses
             return value.ToString().StartsWith('2');
         }
 
-        //public override string ToString()
-        //{
-        //    return this.ToJson();
-        //    //return JsonConvert.SerializeObject(this);
-        //}
+        public override string ToString()
+        {
+            return this.ToJson();
+            //return JsonConvert.SerializeObject(this);
+        }
     }
 }

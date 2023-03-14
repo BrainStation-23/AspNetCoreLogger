@@ -8,6 +8,7 @@ using WebApp.Service;
 using WebApp.Service.Contract.Models;
 using WebApp.Core.Sqls;
 using WebApp.Core.Collections;
+using WebApp.Logger.Defaults;
 
 namespace WebApp.Services
 {

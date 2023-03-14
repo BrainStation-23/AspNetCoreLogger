@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using WebApp.Common.Serialize;
-using WebApp.Logger.Extensions;
+﻿using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Loggers.Providers.Mongos

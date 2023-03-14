@@ -10,6 +10,7 @@ using WebApp.Common.Responses;
 using WebApp.Core;
 using WebApp.Entity.Entities.Blogs;
 using WebApp.Helpers.Base;
+using WebApp.Logger.Defaults;
 using WebApp.Service;
 using WebApp.Service.Contract.Models.Blogs;
 using WebApp.Swaggers.Examples.Requests.Blogs;

@@ -8,6 +8,7 @@ using WebApp.Entity.Entities.Blogs;
 using WebApp7.Helpers.Base;
 using WebApp.Service;
 using WebApp.Service.Contract.Models.Blogs;
+using WebApp.Logger.Defaults;
 
 namespace WebApp7.Controllers
 {

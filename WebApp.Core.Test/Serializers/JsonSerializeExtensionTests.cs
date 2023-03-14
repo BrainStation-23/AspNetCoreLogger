@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using WebApp.Common.Files;
-using WebApp.Common.Serialize;
+using WebApp.Logger.Extensions;
 
 namespace WebApp.Core.Test.Serializers
 {

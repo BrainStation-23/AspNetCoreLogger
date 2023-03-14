@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System;
 using System.Threading.Tasks;
-using WebApp.Common.Responses;
-using WebApp.Core;
+using WebApp.Logger.Defaults;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Providers.Sqls;
+using WebApp.Logger.Responses;
 
 namespace WebApp.Logger
 {

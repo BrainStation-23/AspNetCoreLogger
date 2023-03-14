@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Core;
 using WebApp.Core.Acls;
+using WebApp.Logger.Acls;
 using WebApp.Logger.Loggers;
 using WebApp.Service.Services.Accounts;
 using WebApp.Services;

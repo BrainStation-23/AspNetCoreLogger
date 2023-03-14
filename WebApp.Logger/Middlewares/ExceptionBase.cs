@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,13 +10,10 @@ using System.Net;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
-using WebApp.Common.DataType;
-using WebApp.Common.Exceptions;
-using WebApp.Common.Extensions;
-using WebApp.Common.Responses;
-using WebApp.Common.Serialize;
+using WebApp.Logger.Exceptions;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
+using WebApp.Logger.Responses;
 
 namespace WebApp.Logger.Middlewares
 {
@@ -63,30 +58,30 @@ namespace WebApp.Logger.Middlewares
         public static async Task<RequestModel> ToModelAsync(this HttpContext context)
         {
             var model = new RequestModel();
-            model.UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null;
+            model.UserId = context.GetUserId();
             model.IpAddress = context.GetIpAddress();
             model.Host = context.Request.Host.ToString();
-            model.Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
+            model.Url = context.GetUrl();
             model.StatusCode = (HttpStatusCode)context.Response.StatusCode;
-            model.AppStatusCode = ((HttpStatusCode)context.Response.StatusCode).ToAppStatusCode();
-            model.Form = context.Request.HasFormContentType ? JsonSerializer.Serialize(context.Request.Form.ToDictionary()) : string.Empty;
+            model.AppStatusCode = context.GetAppStatusCode();
+            model.Form = context.GetFormValue();
             model.RequestHeaders = JsonSerializer.Serialize(context.Request.Headers);
             model.ResponseHeaders = JsonSerializer.Serialize(context.Request.Headers);
             model.Response = string.Empty;
             model.TraceId = context.TraceIdentifier;
             model.Scheme = context.Request.Scheme;
             model.Proctocol = context.Request.Protocol;
-            model.ControllerName = context.Request.RouteValues["controller"]?.ToString();
+            model.ControllerName = context.GetControllerName();
             model.ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString();
-            model.ActionName = context.Request.RouteValues["action"]?.ToString();
+            model.ActionName = context.GetActionName();
             model.RequestMethod = context.Request.Method;
             model.ResponseLength = context.Response.ContentLength.ToString();
             model.RequestLength = context.Request.ContentLength.ToString();
             model.IsHttps = context.Request.IsHttps;
             model.CorrelationId = context.TraceIdentifier;
-            model.UrlReferrer = context.Request.Headers["Referer"].ToString();
+            model.UrlReferrer = context.GetUrlReferrer();
             //model.Body = await context.Request.GetBody1Async();
-            model.Version = (string)context.Features.GetPropValue("HttpVersion");
+            model.Version = context.GetHttpVersion();
             model.Session = JsonSerializer.Serialize(context.Session);
             return await Task.FromResult(model);
         }
@@ -94,31 +89,31 @@ namespace WebApp.Logger.Middlewares
         private static async Task<ErrorModel> ToErrorModelAsync(this HttpContext context, Exception exception)
         {
             var model = new ErrorModel();
-            model.UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null;
+            model.UserId = context.GetUserId();
             model.Source = exception.Source;
             model.StackTrace = exception.StackTrace;
             model.IpAddress = context.GetIpAddress();
             model.Host = context.Request.Host.ToString();
-            model.Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
+            model.Url = context.GetUrl();
             model.Message = exception.Message;
             model.StatusCode = (HttpStatusCode)context.Response.StatusCode;
-            model.AppStatusCode = ((HttpStatusCode)context.Response.StatusCode).ToAppStatusCode();
+            model.AppStatusCode = context.GetAppStatusCode();
             model.Application = exception.Source;
             model.Scheme = context.Request.Scheme;
-            model.Form = context.Request.HasFormContentType ? JsonSerializer.Serialize(context.Request.Form.ToDictionary()) : string.Empty;
+            model.Form = context.GetFormValue();
             model.RequestHeaders = JsonSerializer.Serialize(context.Request.Headers);
             model.ResponseHeaders = JsonSerializer.Serialize(context.Request.Headers);
-            model.Response = await context.Response.GetResponseAsync();
+            //model.Response = await context.Response.GetResponseAsync();
             model.TraceId = context.TraceIdentifier;
             model.Scheme = context.Request.Scheme;
             model.Proctocol = context.Request.Protocol;
             model.ErrorCode = exception.GetType().Name.ToShorten();
-            model.ControllerName = context.Request.RouteValues["controller"].ToString();
+            model.ControllerName = context.GetControllerName();
             model.ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString();
-            model.ActionName = context.Request.RouteValues["action"].ToString();
+            model.ActionName = context.GetActionName();
             model.RequestMethod = context.Request.Method;
             //model.Body = await context.Request.GetRequestBodyAsync();
-            model.Version = (string)context.Features.GetPropValue("HttpVersion");
+            model.Version = context.GetHttpVersion();
             //model.Url = $"{context.Request.Method} {model?.Url}";
             return await Task.FromResult(model);
         }
@@ -126,20 +121,20 @@ namespace WebApp.Logger.Middlewares
         public static async Task<ErrorModel> ToErrorModelsAsync(this HttpContext context)
         {
             var model = new ErrorModel();
-            model.UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null;
+            model.UserId = context.GetUserId();
             model.IpAddress = context.GetIpAddress();
             model.Host = context.Request.Host.ToString();
-            model.Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl();
+            model.Url = context.GetUrl();
             model.StatusCode = (HttpStatusCode)context.Response.StatusCode;
-            model.AppStatusCode = ((HttpStatusCode)context.Response.StatusCode).ToAppStatusCode();
+            model.AppStatusCode = context.GetAppStatusCode();
             model.Scheme = context.Request.Scheme;
-            model.Form = context.Request.HasFormContentType ? JsonSerializer.Serialize(context.Request.Form.ToDictionary()) : string.Empty;
+            model.Form = context.GetFormValue();
             model.RequestHeaders = JsonSerializer.Serialize(context.Request.Headers);
             model.ResponseHeaders = JsonSerializer.Serialize(context.Request.Headers);
             //model.Body = await context.Request.GetBody1Async();
             model.Response = string.Empty;
             model.TraceId = context.TraceIdentifier;
-            model.Version = (string)context.Features.GetPropValue("HttpVersion");
+            model.Version = context.GetHttpVersion();
             model.Scheme = context.Request.Scheme;
             model.Proctocol = context.Request.Protocol;
             model.Url = $"{context.Request.Method} {model?.Url}";
@@ -220,7 +215,7 @@ namespace WebApp.Logger.Middlewares
                     break;
             }
 
-            errorModel.AppStatusCode = ((HttpStatusCode)errorModel.StatusCode).ToAppStatusCode();
+            errorModel.AppStatusCode = ((int)errorModel.StatusCode).ToAppStatusCode();
 
             logger.LogError(exception, exception.Message);
 

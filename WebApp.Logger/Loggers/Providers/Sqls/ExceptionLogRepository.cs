@@ -1,19 +1,15 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApp.Common.Serialize;
-using WebApp.Logger.Providers.Sqls;
-using WebApp.Logger.Models;
 using WebApp.Logger.Extensions;
-using MassTransit.Configuration;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Mvc;
-using Azure.Core;
+using WebApp.Logger.Models;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
@@ -270,7 +266,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     {
                         f.StackTrace = JsonConvert.SerializeObject(f.StackTrace);
                     });
-                    exceptionLogUnescapeString = JsonSerializeExtentions.ToJson(exceptionLogs);
+                    exceptionLogUnescapeString = JsonSerializeExtentions.ToJsonString(exceptionLogs);
                     var unescape = exceptionLogUnescapeString.JsonUnescaping();
 
                     logs = JArray.Parse(unescape);

@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
-using WebApp.Common.Collections;
-using WebApp.Common.DataType;
+using WebApp.Logger.Collections;
+using WebApp.Logger.Extensions;
 
-namespace WebApp.Common.Responses
+namespace WebApp.Logger.Responses
 {
-    public class OkResponse : IActionResult
+    internal class OkResponse : IActionResult
     {
         private readonly object _result;
 

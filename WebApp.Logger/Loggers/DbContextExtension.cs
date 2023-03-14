@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApp.Core.Acls;
+using WebApp.Logger.Acls;
 using WebApp.Logger.Interceptors;
 using WebApp.Logger.Loggers.Repositories;
 
@@ -18,6 +18,7 @@ namespace WebApp.Logger.Loggers
         private readonly ISqlLogRepository _sqlLogRepository;
         private readonly IServiceProvider _serviceProvider;
         private readonly ISignInHelper _signInHelper;
+
         public DbContextExtension(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;

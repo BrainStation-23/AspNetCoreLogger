@@ -2,14 +2,11 @@
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Threading.Tasks;
-using WebApp.Common.Serialize;
-using WebApp.Logger.Providers.Sqls;
-using WebApp.Logger.Models;
 using System.Collections.Generic;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Linq;
-using Azure.Core;
+using System.Threading.Tasks;
+using WebApp.Logger.Extensions;
+using WebApp.Logger.Models;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
@@ -208,7 +205,7 @@ namespace WebApp.Logger.Loggers.Repositories
                     Duration = requestModel.Duration,
                     StatusCode = ((int)requestModel.StatusCode).ToString(),
                     AppStatusCode = requestModel.AppStatusCode,
-                    Session = requestModel.Session,
+                    Session = string.Empty,
                     RequestMethod = requestModel.RequestMethod,
                     RequestLength = requestModel.RequestLength,
                     ResponseLength = requestModel.ResponseLength,

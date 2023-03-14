@@ -1,13 +1,8 @@
-﻿using Dapper;
-using MassTransit.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Threading.Tasks;
-using WebApp.Common.Serialize;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Sqls;

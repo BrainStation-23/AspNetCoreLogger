@@ -1,16 +1,11 @@
-﻿using Dapper;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using WebApp.Common.Serialize;
-using WebApp.Logger.Providers.Sqls;
-using WebApp.Logger.Models;
 using WebApp.Logger.Extensions;
-using Microsoft.Extensions.Options;
+using WebApp.Logger.Models;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {

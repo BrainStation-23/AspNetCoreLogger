@@ -5,6 +5,7 @@ using System;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using WebApp.Common;
 using WebApp.Common.Contexts;
 using WebApp.Core.Acls;
 using WebApp.Core.Contexts;
@@ -73,6 +74,7 @@ namespace WebApp.Sql
 
             base.ChangeTracker.Audit(userId);
         }
+
 
         //private bool AuditTrailLog()
         //{

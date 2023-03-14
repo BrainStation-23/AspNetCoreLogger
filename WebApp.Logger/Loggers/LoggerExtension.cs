@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.Diagnostics;
 using WebApp.Common.Contexts;
+using WebApp.Logger.Acls;
 using WebApp.Logger.Endpoints;
 using WebApp.Logger.Enums;
 using WebApp.Logger.Hostings;
@@ -31,6 +32,7 @@ namespace WebApp.Logger.Loggers
 
             var logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
 
+            services.AddScoped<ISignInHelper, SignInHelper>();
             services.AddHostedService<RetentionPolicyService>();
 
             services.AddHostedService<BatchLoggingBackGroundService>();

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -38,12 +39,17 @@ namespace WebApp.Logger.Extensions
             });
         }
 
-        public static T ToModel<T>(this string str)
+        //public static T ToModel<T>(this string str)
+        //{
+        //    return JsonConvert.DeserializeObject<T>(str, new JsonSerializerSettings
+        //    {
+        //        DateParseHandling = DateParseHandling.None
+        //    });
+        //}
+
+        public static T ToModel<T>(this string jsonString)
         {
-            return JsonConvert.DeserializeObject<T>(str, new JsonSerializerSettings
-            {
-                DateParseHandling = DateParseHandling.None
-            });
+            return JsonConvert.DeserializeObject<T>(jsonString, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
         }
 
         public static List<JProperty> SelectJsonProperties(JObject json, string[] selectProperties)
@@ -76,7 +82,7 @@ namespace WebApp.Logger.Extensions
 
             foreach (var prop in toMask)
             {
-                if(prop.Value.Type == JTokenType.String)
+                if (prop.Value.Type == JTokenType.String)
                 {
                     prop.Value = "*****";
                 }

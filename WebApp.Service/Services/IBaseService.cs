@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Common.Collections;
+using WebApp.Logger.Defaults;
 
 namespace WebApp.Services
 {

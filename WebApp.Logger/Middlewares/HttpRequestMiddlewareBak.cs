@@ -5,8 +5,8 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using WebApp.Common.Responses;
 using WebApp.Logger.Models;
+using WebApp.Logger.Responses;
 
 namespace WebApp.Logger.Middlewares
 {

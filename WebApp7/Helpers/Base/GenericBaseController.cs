@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Common.Responses;
 using WebApp.Services;
+using WebApp.Logger.Defaults;
 
 namespace WebApp7.Helpers.Base
 {

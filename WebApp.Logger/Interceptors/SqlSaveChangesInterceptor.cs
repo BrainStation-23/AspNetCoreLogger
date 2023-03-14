@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Options;
 using System.Threading;
 using System.Threading.Tasks;
-using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
 
 namespace WebApp.Logger.Interceptors

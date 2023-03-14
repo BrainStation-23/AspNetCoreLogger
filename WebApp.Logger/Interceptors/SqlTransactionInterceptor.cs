@@ -1,15 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Options;
 using System;
 using System.Data.Common;
-using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using WebApp.Common.DataType;
-using WebApp.Common.Extensions;
-using WebApp.Common.Serialize;
+using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Models;
@@ -44,19 +39,19 @@ namespace WebApp.Logger.Interceptors
             var model = new SqlModel
             {
                 Source = SqlSource.Transaction.ToString(),
-                ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString(),                
-                UserId = context.User.Identity?.IsAuthenticated ?? false ? long.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) : null,
+                ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString(),
+                UserId = context.GetUserId(),
                 IpAddress = context.GetIpAddress(),
                 Host = context.Request.Host.ToString(),
-                Url = context.Request.GetDisplayUrl() ?? context.Request.GetEncodedUrl(),
+                Url = context.GetUrl(),
                 TraceId = context.TraceIdentifier,
                 Scheme = context.Request.Scheme,
                 Protocol = context.Request.Protocol,
-                Version = (string)context.Features.GetPropValue("HttpVersion"),
-                UrlReferrer = context.Request.Headers["Referer"].ToString(),
+                Version = context.GetHttpVersion(),
+                UrlReferrer = context.GetUrlReferrer(),
                 Area = "",
-                ControllerName = context.Request.RouteValues["controller"].ToString(),
-                ActionName = context.Request.RouteValues["action"].ToString(),
+                ControllerName = context.GetControllerName(),
+                ActionName = context.GetActionName(),
                 ClassName = "",
                 MethodName = "",
                 Duration = (DateTimeOffset.Now - eventData.StartTime).TotalMilliseconds,

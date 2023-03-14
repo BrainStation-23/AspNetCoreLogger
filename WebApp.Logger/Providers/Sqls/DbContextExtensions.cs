@@ -8,9 +8,8 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
-using WebApp.Common.Exceptions;
-using WebApp.Common.Sqls;
 using WebApp.Logger.Enums;
+using WebApp.Logger.Exceptions;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Models;
 
@@ -140,31 +139,31 @@ namespace WebApp.Common.Contexts
             return auditEntries;
         }
 
-        public static void Audit(this ChangeTracker changeTracker, long userId)
-        {
-            var now = DateTimeOffset.UtcNow;
+        //public static void Audit(this ChangeTracker changeTracker, long userId)
+        //{
+        //    var now = DateTimeOffset.UtcNow;
 
-            foreach (var entry in changeTracker.Entries<BaseEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
-            {
-                foreach (var property in entry.Properties)
-                {
-                    string propertyName = property.Metadata.Name;
-                }
+        //    foreach (var entry in changeTracker.Entries<BaseEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
+        //    {
+        //        foreach (var property in entry.Properties)
+        //        {
+        //            string propertyName = property.Metadata.Name;
+        //        }
 
-                if (entry.State == EntityState.Added)
-                {
-                    entry.Entity.CreatedBy = entry.Entity.CreatedBy != 0 ? entry.Entity.CreatedBy : userId;
-                    entry.Entity.CreatedDateUtc = entry.Entity.CreatedDateUtc == DateTimeOffset.MinValue ? now : entry.Entity.CreatedDateUtc;
-                    entry.Entity.UpdatedBy = 0;
-                    entry.Entity.UpdatedDateUtc = null;
-                }
-                else
-                {
-                    entry.Entity.UpdatedDateUtc ??= now;
-                    entry.Entity.UpdatedBy ??= userId;
-                }
-            }
-        }
+        //        if (entry.State == EntityState.Added)
+        //        {
+        //            entry.Entity.CreatedBy = entry.Entity.CreatedBy != 0 ? entry.Entity.CreatedBy : userId;
+        //            entry.Entity.CreatedDateUtc = entry.Entity.CreatedDateUtc == DateTimeOffset.MinValue ? now : entry.Entity.CreatedDateUtc;
+        //            entry.Entity.UpdatedBy = 0;
+        //            entry.Entity.UpdatedDateUtc = null;
+        //        }
+        //        else
+        //        {
+        //            entry.Entity.UpdatedDateUtc ??= now;
+        //            entry.Entity.UpdatedBy ??= userId;
+        //        }
+        //    }
+        //}
 
         public static void RevertChanges(this ChangeTracker changeTracker)
         {

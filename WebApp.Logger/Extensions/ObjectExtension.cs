@@ -8,6 +8,11 @@ namespace WebApp.Logger.Extensions
 {
     public static class ObjectExtension
     {
+        public static object GetPropValue(this object src, string propName)
+        {
+            return src.GetType().GetProperty(propName)?.GetValue(src, null);
+        }
+
         public static bool NotContains<T>(this List<T> lists, T item)
         {
             return !lists.Contains(item);

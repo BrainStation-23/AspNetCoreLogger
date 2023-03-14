@@ -1,16 +1,9 @@
-﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
-using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using WebApp.Logger.Hostings;
-using WebApp.Logger.Loggers.Providers.Mongos;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Models;
-using WebApp.Logger.Providers;
 
 namespace WebApp.Logger.Loggers
 {

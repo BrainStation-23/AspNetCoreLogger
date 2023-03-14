@@ -13,6 +13,7 @@ using WebApp.Service;
 using WebApp.Service.Contract.Models.Blogs;
 using WebApp7.Swaggers.Examples.Requests.Blogs;
 using WebApp7.Swaggers.Examples.Responses.Blogs;
+using WebApp.Logger.Defaults;
 
 namespace WebApp7.Controllers
 {

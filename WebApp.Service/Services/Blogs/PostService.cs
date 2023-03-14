@@ -8,6 +8,7 @@ using WebApp.Entity.Entities.Blogs;
 using WebApp.Service.Contract.Models.Blogs;
 using WebApp.Services;
 using WebApp.Core.Collections;
+using WebApp.Logger.Defaults;
 
 namespace WebApp.Service
 {

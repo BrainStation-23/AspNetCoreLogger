@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using WebApp.Common.Responses;
 using WebApp.Logger.Loggers.Providers;
+using WebApp.Logger.Responses;
 
 namespace WebApp.Logger
 {

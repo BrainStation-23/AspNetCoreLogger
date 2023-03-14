@@ -2,21 +2,13 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
-using WebApp.Logger.Loggers.Repositories;
-using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Middlewares
 {
-    /// <summary>
-    /// Handling all request
-    /// startup.cs -> app.UseMiddleware<HttpRequestMiddleware>();;
-    /// </summary>
     public class HttpRequestMiddleware
     {
         private readonly RequestDelegate _next;

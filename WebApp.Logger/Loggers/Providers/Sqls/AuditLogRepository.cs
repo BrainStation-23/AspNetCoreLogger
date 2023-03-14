@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApp.Common.Serialize;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Sqls;
@@ -43,7 +42,7 @@ namespace WebApp.Logger.Loggers.Repositories
                 using (var connection = _dapper.CreateConnection())
                 {
                     var auditLogsEntities = await connection.QueryAsync(query, pager);
-                    var auditLogUnescapeString = JsonSerializeExtentions.ToJson(auditLogsEntities).JsonUnescaping();
+                    var auditLogUnescapeString = JsonSerializeExtentions.ToJsonString(auditLogsEntities).JsonUnescaping();
                     auditLogs = JArray.Parse(auditLogUnescapeString);
                 }
 
