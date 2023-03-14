@@ -35,8 +35,8 @@ namespace WebApp.Logger.Models
         public object Session { get; set; }
         public string UrlReferrer { get; set; }
         public string RequestMethod { get; set; }
-        public string? RequestLength { get; set; }
-        public string? ResponseLength { get; set; }
+        public string RequestLength { get; set; }
+        public string ResponseLength { get; set; }
         public bool IsHttps { get; set; }
         public string CorrelationId { get; set; }
 

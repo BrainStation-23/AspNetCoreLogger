@@ -379,5 +379,12 @@ namespace WebApp.Logger.Loggers
 
             return list;
         }
+
+        public static bool IsProvider(this LogOption logOption, ProviderType providerType)
+        {
+            var isProvider = logOption.ProviderType.ToString().ToLower() == providerType.ToString().ToLower();
+
+            return isProvider;
+        }
     }
 }

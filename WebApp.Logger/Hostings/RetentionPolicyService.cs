@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading;
@@ -26,10 +25,12 @@ namespace WebApp.Logger.Hostings
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            new Timer(RetentionAsync, null, TimeSpan.Zero, TimeSpan.FromDays(30));
+            _ = new Timer(RetentionAsync, null, TimeSpan.Zero, TimeSpan.FromDays(30));
+
+            await Task.FromResult(Task.CompletedTask);
         }
 
-        public async void RetentionAsync(object? state)
+        public async void RetentionAsync(object state = null)
         {
             var retentionDate = GetRetentionTime();
 
@@ -39,8 +40,8 @@ namespace WebApp.Logger.Hostings
 
                 using (IServiceScope scope = _serviceProvider.CreateScope())
                 {
-                    if(_logOptions.LogType.MustContain(LogType.Error.ToString()) is true)
-                       await scope.ServiceProvider.GetService<IExceptionLogRepository>().RetentionAsync(date);
+                    if (_logOptions.LogType.MustContain(LogType.Error.ToString()) is true)
+                        await scope.ServiceProvider.GetService<IExceptionLogRepository>().RetentionAsync(date);
 
                     if (_logOptions.LogType.MustContain(LogType.Request.ToString()) is true)
                         await scope.ServiceProvider.GetService<IRouteLogRepository>().RetentionAsync(date);
@@ -90,8 +91,6 @@ namespace WebApp.Logger.Hostings
             var currentDate = DateTime.UtcNow;
 
             return currentDate.AddDays(-Int32.Parse(retentionDays) * mul).Date;
-
         }
-
     }
 }

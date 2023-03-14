@@ -12,22 +12,22 @@ namespace WebApp7.Helpers.Base
             get => User.Identity?.IsAuthenticated ?? false ? long.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) : null;
         }
 
-        public string Email
+        public string? Email
         {
             get => User.Identity?.IsAuthenticated ?? false ? User.FindFirstValue(ClaimTypes.Email) : null;
         }
 
-        public string MobileNumber
+        public string? MobileNumber
         {
             get => User.Identity?.IsAuthenticated ?? false ? User.FindFirstValue(ClaimTypes.MobilePhone) : null;
         }
 
-        public string Username
+        public string? Username
         {
             get => User.Identity?.IsAuthenticated ?? false ? User.Identity.Name : null;
         }
 
-        public string UserFullname
+        public string? UserFullname
         {
             get => User.Identity?.IsAuthenticated ?? false ? User.FindFirstValue(ClaimTypes.GivenName) : null;
         }

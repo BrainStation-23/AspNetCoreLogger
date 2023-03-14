@@ -26,11 +26,15 @@ namespace WebApp.Logger.Loggers
                 requestLogQueue.Enqueue(log as RequestModel);
             else if (logType == LogType.Sql.ToString())
                 sqlLogQueue.Enqueue(log as SqlModel);
+
+            await Task.CompletedTask;
         }
 
         public static async Task PublishAsync<T>(this List<T> logs, string logType) where T : class
         {
             logs.ForEach(async log => await PublishAsync(log, logType));
+
+            await Task.CompletedTask;
         }
 
         public static async Task BatchLogProcessAsync(IRouteLogRepository routeLogRepository

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
 using WebApp.Logger.Loggers.Repositories;
@@ -22,7 +23,6 @@ namespace WebApp.Logger.Interceptors
             InterceptionResult<int> result,
             CancellationToken cancellationToken = default)
         {
-
             return result;
         }
 

@@ -50,7 +50,7 @@ namespace WebApp.Sql
         public override int SaveChanges()
         {
             //AuditTrailLog().ConfigureAwait(false);
-            Task.Run(async () => AuditTrailLog());
+            Task.Run(() => AuditTrailLog());
             //AuditTrailLog().GetAwaiter().GetResult();
 
             return base.SaveChanges();

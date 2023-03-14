@@ -25,7 +25,7 @@ namespace WebApp7.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string? searchText = null)
         {
             var res = await _postService.GetSearchAsync(pageIndex, pageSize, searchText);
 

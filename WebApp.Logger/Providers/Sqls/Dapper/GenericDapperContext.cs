@@ -70,7 +70,7 @@ namespace Dapper_ORM.Services
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -99,12 +99,12 @@ namespace Dapper_ORM.Services
                 catch (Exception ex)
                 {
                     tran.Rollback();
-                    throw ex;
+                    throw;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {

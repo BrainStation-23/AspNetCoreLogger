@@ -8,12 +8,12 @@ using WebApp.Logger.Loggers.Repositories;
 
 namespace WebApp.Logger.Hostings
 {
-    public class BatchLoggingBackGroundService : BackgroundService
+    public class BatchLoggingBackgroundService : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;
         public Timer _loggingTimer;
 
-        public BatchLoggingBackGroundService(IServiceProvider serviceProvider)
+        public BatchLoggingBackgroundService(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }

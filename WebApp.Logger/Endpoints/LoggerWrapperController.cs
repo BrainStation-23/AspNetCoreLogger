@@ -73,7 +73,7 @@ namespace WebApp.Logger
         {
             var res = FileExtension.GetDirectories(_logOption.Provider.File.Path,true);
 
-            return new OkResponse(res);
+            return await Task.FromResult(new OkResponse(res));
         }
 
         [HttpGet("file/read-file")]
@@ -83,7 +83,7 @@ namespace WebApp.Logger
         {
             var res = FileExtension.GetLogObjects(_logOption.Provider.File.Path,fileName).Paging(pageIndex, pageSize);
 
-            return new OkResponse(res);
+            return await Task.FromResult(new OkResponse(res));
         }
 
         [HttpGet("file/search-file")]
@@ -91,7 +91,7 @@ namespace WebApp.Logger
         {
             var res = FileExtension.GetFilenames(_logOption.Provider.File.Path, searchKey);
 
-            return new OkResponse(res);
+            return await Task.FromResult(new OkResponse(res));
         }
     }
 }

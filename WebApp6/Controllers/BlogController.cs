@@ -29,10 +29,8 @@ namespace WebApp6.Controllers
             {
                 case ExceptionType.ArgumentException:
                     throw new ArgumentException("My data not found in data store.");
-                    break;
                 case ExceptionType.ArgumentNullException:
                     throw new ArgumentNullException("My data not found in data store.");
-                    break;
                 case ExceptionType.DivideByZeroException:
                     int zero = 0;
                     var number = 100 / zero;

@@ -1,13 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApp.Common.Responses;
 using WebApp.Core;
-using WebApp.Logger.Defaults;
-using WebApp.Logger.Extensions;
-using WebApp.Logger.Loggers;
 using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Providers.Sqls;
 
@@ -35,7 +28,7 @@ namespace WebApp7.Controllers.Logs
         }
 
         [HttpGet("routes")]
-        public async Task<IActionResult> GetRouteLogsAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        public async Task<IActionResult> GetRouteLogsAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string? searchText = null)
         {
             var res = await _routeLogRepository.GetPageAsync(new DapperPager(pageIndex, pageSize));
 
@@ -45,8 +38,8 @@ namespace WebApp7.Controllers.Logs
         [HttpGet("audits")]
         public async Task<IActionResult> GetAuditLogsAsync(int pageIndex = CommonVariables.pageIndex,
             int pageSize = CommonVariables.pageSize,
-            string continuationToken = null,
-            string searchText = null)
+            string? continuationToken = null,
+            string? searchText = null)
         {
             var res = await _auditLogRepository.GetPageAsync(new DapperPager(pageIndex, continuationToken, pageSize));
 
@@ -54,7 +47,7 @@ namespace WebApp7.Controllers.Logs
         }
 
         [HttpGet("exceptions")]
-        public async Task<IActionResult> GetExceptionLogssAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        public async Task<IActionResult> GetExceptionLogssAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string? searchText = null)
         {
             var res = await _exceptionLogRepository.GetPageAsync(new DapperPager(pageIndex, pageSize));
 
@@ -62,7 +55,7 @@ namespace WebApp7.Controllers.Logs
         }
 
         [HttpGet("sqls")]
-        public async Task<IActionResult> GetSqlLogssAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        public async Task<IActionResult> GetSqlLogssAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string? searchText = null)
         {
             var res = await _sqlLogRepository.GetPageAsync(new DapperPager(pageIndex, pageSize));
 

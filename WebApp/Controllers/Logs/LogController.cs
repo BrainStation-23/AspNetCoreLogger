@@ -21,7 +21,6 @@ namespace WebApp.Controllers.Logs
         private readonly IRouteLogRepository _routeLogRepository;
         private readonly IExceptionLogRepository _exceptionLogRepository;
         private readonly IAuditLogRepository _auditLogRepository;
-        private readonly IServiceProvider _serviceProvider;
 
         public LogController(IRouteLogRepository routeLogRepository,
             IExceptionLogRepository exceptionLogRepository,

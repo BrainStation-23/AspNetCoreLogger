@@ -59,7 +59,7 @@ namespace WebApp
             services.AddDbContextDependencies(Configuration);
             services.AddWebAppDependency(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddDapper(Configuration);
+            services.AddLogDependency(Configuration);
             //services.AddHealthChecks();
             services.Configure<JwtOption>(Configuration.GetSection("Jwt"));
             services.AddHttpContextAccessor();
@@ -129,8 +129,7 @@ namespace WebApp
             //app.ExceptionLog();
             app.UseAuthorization();
             app.UseSession();
-            app.ExceptionLog();
-            app.HttpLog();
+            app.UseLog();
 
             app.UseEndpoints(endpoints =>
             {

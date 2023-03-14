@@ -39,6 +39,8 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 _logger.LogError(nameof(AuditFileLogRepository), exception);
             }
+
+            await Task.CompletedTask;
         }
 
         public async Task AddAsync(List<AuditEntry> auditEntries)
@@ -54,6 +56,8 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 _logger.LogError(nameof(AuditFileLogRepository), exception);
             }
+
+            await Task.FromResult(Task.CompletedTask);
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -61,12 +65,14 @@ namespace WebApp.Logger.Loggers.Repositories
             var fileConfig = _logOptions.Provider.File;
             var auditLogs = FileExtension.GetFilenames(fileConfig.Path, LogType.Audit.ToString());
 
-            return auditLogs;
+            await Task.FromResult(auditLogs);
         }
 
         public async Task RetentionAsync(DateTime dateTime)
         {
             FileExtension.RetentionFileLogs(dateTime, _logOptions.Provider.File.Path, LogType.Audit.ToString());
+
+            await Task.FromResult(Task.CompletedTask);
         }
     }
 }

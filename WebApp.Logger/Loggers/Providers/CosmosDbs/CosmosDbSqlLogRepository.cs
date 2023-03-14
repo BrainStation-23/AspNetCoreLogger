@@ -42,6 +42,8 @@ namespace WebApp.Logger.Loggers.Repositories
         {
             //var sqlItems = sqlModels.Select(e => e.ToItem()).ToList();
             //await _sqlRepository.InsertManyAsync(sqlItems);
+
+            await Task.FromResult(Task.CompletedTask);
         }
 
         public async Task AddAsync(SqlModel sqlModel)

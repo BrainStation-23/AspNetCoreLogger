@@ -32,7 +32,7 @@ namespace WebApp7.Controllers
 
         [HttpGet("search")]
         [Produces("application/json")]
-        public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string? searchText = null)
         {
             var res = await _blogService.GetSearchAsync(pageIndex, pageSize, searchText);
 

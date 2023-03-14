@@ -45,19 +45,20 @@ namespace WebApp.Logger.Loggers
 
             if (_signInHelper.IsAuthenticated)
                 userId = (long)_signInHelper.UserId;
-            var auditEntries = context.ChangeTracker.AuditTrailLog(userId);
-            auditEntries.ToList().ForEach(x => x.TraceId = HttpContextAccessor.HttpContext.TraceIdentifier);
-            auditEntries.ToList().ForEach(x => x.ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString());
-            auditEntries.ToList().ForEach(x => x.ControllerName = HttpContextAccessor.HttpContext.Request.RouteValues["controller"].ToString());
-            auditEntries.ToList().ForEach(x => x.ActionName = HttpContextAccessor.HttpContext.Request.RouteValues["action"].ToString());
+
+            var auditEntries = context.ChangeTracker.AuditTrailLog(userId).ToList();
+            auditEntries.ForEach(x =>
+            {
+                x.TraceId = HttpContextAccessor.HttpContext.TraceIdentifier;
+                x.ApplicationName = AppDomain.CurrentDomain.FriendlyName.ToString();
+                x.ControllerName = HttpContextAccessor.HttpContext.Request.RouteValues["controller"].ToString();
+                x.ActionName = HttpContextAccessor.HttpContext.Request.RouteValues["action"].ToString();
+            });
 
             if (auditEntries.Any())
-            {
-                await BatchLoggingContext.PublishAsync(auditEntries.ToList(), LogType.Audit.ToString());
-            }
+                await BatchLoggingContext.PublishAsync(auditEntries, LogType.Audit.ToString());
 
             return auditEntries.Any();
         }
-
     }
 }

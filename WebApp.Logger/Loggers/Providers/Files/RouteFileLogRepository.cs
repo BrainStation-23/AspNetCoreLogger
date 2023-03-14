@@ -41,6 +41,8 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 _logger.LogError(nameof(RouteLogRepository), exception);
             }
+
+            await Task.CompletedTask;
         }
 
         public async Task AddAsync(List<RequestModel> requestModels)
@@ -62,6 +64,8 @@ namespace WebApp.Logger.Loggers.Repositories
             {
                 _logger.LogError(nameof(RouteLogRepository), exception);
             }
+
+            await Task.CompletedTask;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
@@ -69,11 +73,14 @@ namespace WebApp.Logger.Loggers.Repositories
             var fileConfig = _logOption.Provider.File;
             var routeLogs = FileExtension.GetFilenames(fileConfig.Path, LogType.Request.ToString());
 
-            return routeLogs;
+            return await Task.FromResult(routeLogs);
         }
+
         public async Task RetentionAsync(DateTime dateTime)
         {
             FileExtension.RetentionFileLogs(dateTime, _logOption.Provider.File.Path, LogType.Request.ToString());
+
+            await Task.CompletedTask;
         }
     }
 }

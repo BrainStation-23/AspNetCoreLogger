@@ -42,7 +42,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 builder.Services.AddDbContextDependencies(Configuration);
 builder.Services.AddWebAppDependency(Configuration);
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddDapper(Configuration);
+builder.Services.AddLogDependency(Configuration);
 builder.Services.Configure<JwtOption>(Configuration.GetSection("Jwt"));
 builder.Services.AddHttpContextAccessor();
 builder.Services.ConfigureModelBindingExceptionHandling();
@@ -91,8 +91,8 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-app.ExceptionLog();
-app.HttpLog();
+app.UseExceptionLog();
+app.UseHttpLog();
 app.UseSession();
 
 IApplicationBuilder applicationBuilder = app.UseEndpoints(endpoints =>

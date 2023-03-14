@@ -24,20 +24,34 @@ namespace WebApp.Logger.Loggers
 {
     public static class LoggerExtension
     {
-        public static void AddDapper(this IServiceCollection services, IConfiguration configuration)
+        public static void UseHttpLog(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<HttpRequestMiddleware>();
+        }
+
+        public static void UseExceptionLog(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<ExceptionMiddleware>();
+        }
+
+        public static void UseLog(this IApplicationBuilder app)
+        {
+            app.UseExceptionLog();
+            app.UseHttpLog();
+        }
+
+        public static void AddLogDependency(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddLoggerControllers();
 
-            services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
-
             var logOptions = configuration.GetSection(LogOption.Name).Get<LogOption>();
 
+            services.TryAddSingleton<DapperContext>(provider => new DapperContext(provider.GetService<IConfiguration>(), "WebAppConnection"));
             services.AddScoped<ISignInHelper, SignInHelper>();
             services.AddHostedService<RetentionPolicyService>();
+            services.AddHostedService<BatchLoggingBackgroundService>();
 
-            services.AddHostedService<BatchLoggingBackGroundService>();
-
-            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.MSSql.ToString().ToLower())
+            if (logOptions.IsProvider(ProviderType.MSSql))
             {
                 services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
                 services.AddScoped<IRouteLogRepository, RouteLogRepository>();
@@ -45,33 +59,26 @@ namespace WebApp.Logger.Loggers
                 services.AddScoped<ISqlLogRepository, SqlLogRepository>();
                 services.AddScoped<IDashboardRepository, DashboardRepository>();
             }
-            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.Mongo.ToString().ToLower())
+
+            if (logOptions.IsProvider(ProviderType.Mongo))
                 services.AddMongoDb(configuration);
 
-            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.CosmosDb.ToString().ToLower())
+            if (logOptions.IsProvider(ProviderType.CosmosDb))
                 services.AddCosmosDb(configuration);
 
-            if (logOptions.ProviderType.ToString().ToLower() == ProviderType.File.ToString().ToLower())
+            if (logOptions.IsProvider(ProviderType.File))
             {
                 services.AddScoped<IExceptionLogRepository, ExceptionFileLogRepository>();
                 services.AddScoped<IRouteLogRepository, RouteFileLogRepository>();
                 services.AddScoped<IAuditLogRepository, AuditFileLogRepository>();
                 services.AddScoped<ISqlLogRepository, SqlFileLogRepository>();
             }
-
-            //services.AddMongoDb(configuration);
-            //services.AddCosmosDb(configuration);
-
-
-
         }
 
-        public static void AddLoggerControllers(this IServiceCollection services)
+        private static void AddLoggerControllers(this IServiceCollection services)
         {
             var assembly = typeof(LoggerWrapperController).Assembly;
-            services.AddControllers()
-                //.AddApplicationPart(Assembly.Load(new AssemblyName("ClassLibrary")));
-                .AddApplicationPart(assembly);
+            services.AddControllers().AddApplicationPart(assembly);
         }
 
         //public static void AddLoggerEndpoints(this IEndpointRouteBuilder endpoints)
@@ -93,16 +100,6 @@ namespace WebApp.Logger.Loggers
                 });
 
             host.Build().Run();
-        }
-
-        public static void HttpLog(this IApplicationBuilder app)
-        {
-            app.UseMiddleware<HttpRequestMiddleware>();
-        }
-
-        public static void ExceptionLog(this IApplicationBuilder app)
-        {
-            app.UseMiddleware<ExceptionMiddleware>();
         }
 
         //public static void HeaderLog(this IApplicationBuilder app)
