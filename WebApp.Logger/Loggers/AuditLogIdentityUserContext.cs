@@ -5,31 +5,26 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using WebApp.Logger.Loggers;
 
-namespace WebApp.Sql
+namespace WebApp.Logger.Loggers
 {
-    public class AuditLogContext<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken> : IdentityDbContext<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+    public class AuditLogIdentityUserContext<TUser, TKey, TUserClaim, TUserLogin, TUserToken> : IdentityUserContext<TUser, TKey, TUserClaim, TUserLogin, TUserToken>
         where TUser : IdentityUser<TKey>
-        where TRole : IdentityRole<TKey>
         where TKey : IEquatable<TKey>
         where TUserClaim : IdentityUserClaim<TKey>
-        where TUserRole : IdentityUserRole<TKey>
         where TUserLogin : IdentityUserLogin<TKey>
-        where TRoleClaim : IdentityRoleClaim<TKey>
         where TUserToken : IdentityUserToken<TKey>
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IDbContextExtension _dbContextExtension;
 
-        public AuditLogContext(DbContextOptions options,
+        public AuditLogIdentityUserContext(DbContextOptions options,
             IServiceProvider serviceProvider) : base(options)
         {
             _serviceProvider = serviceProvider;
             _dbContextExtension = _serviceProvider.GetService<IDbContextExtension>();
         }
-
-        protected AuditLogContext() { }
+        protected AuditLogIdentityUserContext() { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
