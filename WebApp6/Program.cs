@@ -48,17 +48,20 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.ConfigureModelBindingExceptionHandling();
 
 var origins = Configuration.GetSection("Domain").Get<Domain>();
-if (origins.Client2.Any()) { origins?.Client1?.AddRange(origins.Client2); }
+if (origins is not null)
+{
+    if (origins.Client2.Any()) { origins?.Client1?.AddRange(origins.Client2); }
+    List<string> clients = origins?.Client1 ?? new();
 
-builder.Services.AddCors(options =>
-    {
-        options.AddPolicy(WebAppCorsPolicy,
-            builder => builder.WithOrigins(origins?.Client1?.ToArray())
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials());
-    });
-
+    builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(WebAppCorsPolicy,
+                builder => builder.WithOrigins(clients.ToArray())
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+        });
+}
 
 builder.Services.AddSwaggerExamples();
 builder.Services.AddLogConfig(Configuration);

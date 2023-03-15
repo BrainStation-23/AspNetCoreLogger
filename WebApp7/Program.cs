@@ -48,16 +48,21 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.ConfigureModelBindingExceptionHandling();
 
 var origins = Configuration.GetSection("Domain").Get<Domain>();
-if (origins.Client2.Any()) { origins?.Client1?.AddRange(origins.Client2); }
 
-builder.Services.AddCors(options =>
+if (origins is not null)
 {
-    options.AddPolicy(WebAppCorsPolicy,
-        builder => builder.WithOrigins(origins?.Client1?.ToArray())
-        .AllowAnyMethod()
-        .AllowAnyHeader()
-        .AllowCredentials());
-});
+    if (origins.Client2.Any()) { origins?.Client1?.AddRange(origins.Client2); }
+    List<string> clients = origins?.Client1 ?? new();
+
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(WebAppCorsPolicy,
+            builder => builder.WithOrigins(clients.ToArray())
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+    });
+}
 
 
 builder.Services.AddSwaggerExamples();
@@ -95,11 +100,6 @@ app.UseExceptionLog();
 app.UseHttpLog();
 app.UseSession();
 
-IApplicationBuilder applicationBuilder = app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-            name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
-});
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

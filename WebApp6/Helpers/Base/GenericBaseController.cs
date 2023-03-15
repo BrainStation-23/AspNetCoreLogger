@@ -67,7 +67,7 @@ namespace WebApp6.Helpers.Base
         public virtual async Task<IActionResult> DeleteAsync(TModel model)
         {
             Type type = model.GetType();
-            long Id = (long)type.GetProperty("Id").GetValue(model);
+            long Id = (long)(type.GetProperty("Id")?.GetValue(model) ?? 0);
 
             var deleted = await _service.DeleteAsync(Id);
 

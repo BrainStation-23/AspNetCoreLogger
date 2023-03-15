@@ -19,17 +19,11 @@ namespace WebApp.Logger.Interceptors
             SqlLogRepository = sqlLogRepository;
         }
 
-        public async ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData,
+        public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData,
             InterceptionResult<int> result,
-            CancellationToken cancellationToken = default)
-        {
-            return result;
-        }
+            CancellationToken cancellationToken = default) => new(result);
 
-        public InterceptionResult<int> SavingChanges(DbContextEventData eventData,
-            InterceptionResult<int> result)
-        {
-            return result;
-        }
+        public override InterceptionResult<int> SavingChanges(DbContextEventData eventData,
+            InterceptionResult<int> result) => result;
     }
 }

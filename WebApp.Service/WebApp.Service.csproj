@@ -1,22 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="12.0.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.16" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\WebApp.Core\WebApp.Core.csproj" />
-    <ProjectReference Include="..\WebApp.Service.Contract\WebApp.Service.Contract.csproj" />
-    <ProjectReference Include="..\WebApp.Sql\WebApp.Sql.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="12.0.0" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.16" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\WebApp.Core\WebApp.Core.csproj" />
+		<ProjectReference Include="..\WebApp.Service.Contract\WebApp.Service.Contract.csproj" />
+		<ProjectReference Include="..\WebApp.Sql\WebApp.Sql.csproj" />
+	</ItemGroup>
 
 </Project>

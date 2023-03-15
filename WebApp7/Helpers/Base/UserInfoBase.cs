@@ -9,7 +9,7 @@ namespace WebApp7.Helpers.Base
     {
         public long? UserId
         {
-            get => User.Identity?.IsAuthenticated ?? false ? long.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) : null;
+            get => User.Identity?.IsAuthenticated ?? false ? long.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "") : null;
         }
 
         public string? Email

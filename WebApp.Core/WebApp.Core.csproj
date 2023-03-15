@@ -1,126 +1,126 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="DataType\**" />
-    <Compile Remove="Extensions\**" />
-    <Compile Remove="Helpers\**" />
-    <Compile Remove="Interface\**" />
-    <Compile Remove="Messages\**" />
-    <Compile Remove="Redis\**" />
-    <Compile Remove="Results\**" />
-    <Compile Remove="StackExchange\**" />
-    <Compile Remove="ThreadChannels\**" />
-    <EmbeddedResource Remove="DataType\**" />
-    <EmbeddedResource Remove="Extensions\**" />
-    <EmbeddedResource Remove="Helpers\**" />
-    <EmbeddedResource Remove="Interface\**" />
-    <EmbeddedResource Remove="Messages\**" />
-    <EmbeddedResource Remove="Redis\**" />
-    <EmbeddedResource Remove="Results\**" />
-    <EmbeddedResource Remove="StackExchange\**" />
-    <EmbeddedResource Remove="ThreadChannels\**" />
-    <None Remove="DataType\**" />
-    <None Remove="Extensions\**" />
-    <None Remove="Helpers\**" />
-    <None Remove="Interface\**" />
-    <None Remove="Messages\**" />
-    <None Remove="Redis\**" />
-    <None Remove="Results\**" />
-    <None Remove="StackExchange\**" />
-    <None Remove="ThreadChannels\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="DataType\**" />
+		<Compile Remove="Extensions\**" />
+		<Compile Remove="Helpers\**" />
+		<Compile Remove="Interface\**" />
+		<Compile Remove="Messages\**" />
+		<Compile Remove="Redis\**" />
+		<Compile Remove="Results\**" />
+		<Compile Remove="StackExchange\**" />
+		<Compile Remove="ThreadChannels\**" />
+		<EmbeddedResource Remove="DataType\**" />
+		<EmbeddedResource Remove="Extensions\**" />
+		<EmbeddedResource Remove="Helpers\**" />
+		<EmbeddedResource Remove="Interface\**" />
+		<EmbeddedResource Remove="Messages\**" />
+		<EmbeddedResource Remove="Redis\**" />
+		<EmbeddedResource Remove="Results\**" />
+		<EmbeddedResource Remove="StackExchange\**" />
+		<EmbeddedResource Remove="ThreadChannels\**" />
+		<None Remove="DataType\**" />
+		<None Remove="Extensions\**" />
+		<None Remove="Helpers\**" />
+		<None Remove="Interface\**" />
+		<None Remove="Messages\**" />
+		<None Remove="Redis\**" />
+		<None Remove="Results\**" />
+		<None Remove="StackExchange\**" />
+		<None Remove="ThreadChannels\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="AddAuthHeaderOperationFilter.cs" />
-    <Compile Remove="Collections\IPagedList.cs" />
-    <Compile Remove="Collections\PagedList.cs" />
-    <Compile Remove="Collections\Pagination.cs" />
-    <Compile Remove="CustomAuthorizeAttribute.cs" />
-    <Compile Remove="CustomException.cs" />
-    <Compile Remove="DataSetExtention.cs" />
-    <Compile Remove="ErrorCodes.cs" />
-    <Compile Remove="ErrorResponse.cs" />
-    <Compile Remove="ExceptionExtensions.cs" />
-    <Compile Remove="GlobalCustomExceptionMiddleware.cs" />
-    <Compile Remove="GlobalExceptionHandler.cs" />
-    <Compile Remove="HttpExtension.cs" />
-    <Compile Remove="HttpResponseExceptionFilter.cs" />
-    <Compile Remove="LamdaBuilder.cs" />
-    <Compile Remove="MyAppException.cs" />
-    <Compile Remove="RequestHandler.cs" />
-    <Compile Remove="Serialize\ExcelSerializeExtension.cs" />
-    <Compile Remove="Serialize\UtcDateTimeConverter.cs" />
-    <Compile Remove="SwaggerAuthorizationFilter.cs" />
-    <Compile Remove="SwaggerExcludeAttribute.cs" />
-    <Compile Remove="SwaggerExcludeFilter.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="AddAuthHeaderOperationFilter.cs" />
+		<Compile Remove="Collections\IPagedList.cs" />
+		<Compile Remove="Collections\PagedList.cs" />
+		<Compile Remove="Collections\Pagination.cs" />
+		<Compile Remove="CustomAuthorizeAttribute.cs" />
+		<Compile Remove="CustomException.cs" />
+		<Compile Remove="DataSetExtention.cs" />
+		<Compile Remove="ErrorCodes.cs" />
+		<Compile Remove="ErrorResponse.cs" />
+		<Compile Remove="ExceptionExtensions.cs" />
+		<Compile Remove="GlobalCustomExceptionMiddleware.cs" />
+		<Compile Remove="GlobalExceptionHandler.cs" />
+		<Compile Remove="HttpExtension.cs" />
+		<Compile Remove="HttpResponseExceptionFilter.cs" />
+		<Compile Remove="LamdaBuilder.cs" />
+		<Compile Remove="MyAppException.cs" />
+		<Compile Remove="RequestHandler.cs" />
+		<Compile Remove="Serialize\ExcelSerializeExtension.cs" />
+		<Compile Remove="Serialize\UtcDateTimeConverter.cs" />
+		<Compile Remove="SwaggerAuthorizationFilter.cs" />
+		<Compile Remove="SwaggerExcludeAttribute.cs" />
+		<Compile Remove="SwaggerExcludeFilter.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="DataType\StringExtension.cs" />
-    <Compile Include="Extensions\EnumExtension.cs" />
-    <Compile Include="Extensions\ClassExtension.cs" />
-    <Compile Include="Extensions\ObjectExtension.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Include="DataType\StringExtension.cs" />
+		<Compile Include="Extensions\EnumExtension.cs" />
+		<Compile Include="Extensions\ClassExtension.cs" />
+		<Compile Include="Extensions\ObjectExtension.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="EPPlus" Version="4.5.3.3" />
-    <PackageReference Include="AutoMapper" Version="12.0.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-    <PackageReference Include="FluentValidation" Version="9.3.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.16" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.1" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
-    <PackageReference Include="System.DirectoryServices" Version="5.0.0" />
-    <PackageReference Include="System.Threading.Channels" Version="5.0.0" />
-    <PackageReference Include=" Microsoft.Extensions.Identity.Core" Version="5.0.16" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.16" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.16" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.16" />
-    <PackageReference Include="MassTransit" Version="7.2.1" />
-    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.1" />
-    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.2.1" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.1" />
-    <PackageReference Include="StackExchange.Redis.Extensions.Core" Version="7.0.0" />
-    <PackageReference Include="StackExchange.Redis.Extensions.AspNetCore" Version="7.0.0" />
-    <PackageReference Include="StackExchange.Redis.Extensions.Newtonsoft" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.1" />
+	<ItemGroup>
+		<PackageReference Include="EPPlus" Version="4.5.3.3" />
+		<PackageReference Include="AutoMapper" Version="12.0.0" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+		<PackageReference Include="FluentValidation" Version="9.3.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.16" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.1" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+		<PackageReference Include="System.DirectoryServices" Version="5.0.0" />
+		<PackageReference Include="System.Threading.Channels" Version="5.0.0" />
+		<PackageReference Include=" Microsoft.Extensions.Identity.Core" Version="5.0.16" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.16" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.16" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.16" />
+		<PackageReference Include="MassTransit" Version="7.2.1" />
+		<PackageReference Include="MassTransit.AspNetCore" Version="7.2.1" />
+		<PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.2.1" />
+		<PackageReference Include="MassTransit.RabbitMQ" Version="7.2.1" />
+		<PackageReference Include="StackExchange.Redis.Extensions.Core" Version="7.0.0" />
+		<PackageReference Include="StackExchange.Redis.Extensions.AspNetCore" Version="7.0.0" />
+		<PackageReference Include="StackExchange.Redis.Extensions.Newtonsoft" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.1" />
 
 
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
 
-    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
 
-    <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
-    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.5.0" />
-    <PackageReference Include="Serilog.Extensions.Hosting" Version="4.2.0" />
-    <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
-    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
-    <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
-    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.7.0" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="5.1.1" />
-    <PackageReference Include="Seq.Extensions.Logging" Version="4.0.2" />
+		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+		<PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.7.0" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="4.2.0" />
+		<PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+		<PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageReference Include="Serilog.Sinks.Seq" Version="5.1.1" />
+		<PackageReference Include="Seq.Extensions.Logging" Version="4.0.2" />
 
-    <PackageReference Include="MongoDB.Driver" Version="2.15.1" />
-    <PackageReference Include="Dapper" Version="2.0.123" />
-  </ItemGroup>
+		<PackageReference Include="MongoDB.Driver" Version="2.15.1" />
+		<PackageReference Include="Dapper" Version="2.0.123" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\WebApp.Common\WebApp.Common.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\WebApp.Common\WebApp.Common.csproj" />
+	</ItemGroup>
 
 </Project>
