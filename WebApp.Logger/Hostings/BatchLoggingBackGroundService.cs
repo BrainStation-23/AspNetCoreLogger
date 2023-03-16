@@ -32,11 +32,13 @@ namespace WebApp.Logger.Hostings
             var _routeLogRepository = scope.ServiceProvider.GetService<IRequestLogRepository>();
             var _auditLogRepository = scope.ServiceProvider.GetService<IAuditLogRepository>();
             var _sqlLogRepository = scope.ServiceProvider.GetService<ISqlLogRepository>();
+            var _traceRepository = scope.ServiceProvider.GetService<ITraceRepository>();
 
             await BatchLoggingContext.BatchLogProcessAsync(_routeLogRepository
                 , _sqlLogRepository
                 , _exceptionLogRepository
-                , _auditLogRepository);
+                , _auditLogRepository
+                , _traceRepository);
         }
 
         public void ChangeTimerInterval()

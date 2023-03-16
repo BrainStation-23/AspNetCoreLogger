@@ -57,6 +57,7 @@ namespace WebApp.Logger.Loggers
                 services.AddScoped<IRequestLogRepository, RequestLogRepository>();
                 services.AddScoped<IAuditLogRepository, AuditLogRepository>();
                 services.AddScoped<ISqlLogRepository, SqlLogRepository>();
+                services.AddScoped<ITraceRepository, TraceRepository>();
                 services.AddScoped<IDashboardRepository, DashboardRepository>();
             }
 

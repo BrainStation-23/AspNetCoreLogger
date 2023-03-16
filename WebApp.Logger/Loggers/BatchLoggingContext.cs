@@ -13,6 +13,7 @@ namespace WebApp.Logger.Loggers
         private static ConcurrentQueue<ErrorModel> errorLogQueue = new ConcurrentQueue<ErrorModel>();
         private static ConcurrentQueue<RequestModel> requestLogQueue = new ConcurrentQueue<RequestModel>();
         private static ConcurrentQueue<SqlModel> sqlLogQueue = new ConcurrentQueue<SqlModel>();
+        private static ConcurrentQueue<TraceModel> traceQueue = new ConcurrentQueue<TraceModel>();
 
         private readonly static int maxBatchSize = 100;
 
@@ -26,6 +27,8 @@ namespace WebApp.Logger.Loggers
                 requestLogQueue.Enqueue(log as RequestModel);
             else if (logType == LogType.Sql.ToString())
                 sqlLogQueue.Enqueue(log as SqlModel);
+            else if(logType == LogType.Trace.ToString())
+                traceQueue.Enqueue(log as TraceModel);
 
             await Task.CompletedTask;
         }
@@ -40,12 +43,14 @@ namespace WebApp.Logger.Loggers
         public static async Task BatchLogProcessAsync(IRequestLogRepository routeLogRepository
             , ISqlLogRepository sqlLogRepository
             , IErrorLogRepository exceptionLogRepository
-            , IAuditLogRepository auditLogRepository)
+            , IAuditLogRepository auditLogRepository
+            , ITraceRepository traceRepository)
         {
             List<AuditEntry> auditLogs = auditLogQueue.GetLogList(maxBatchSize);
             List<SqlModel> sqlLogs = sqlLogQueue.GetLogList(maxBatchSize);
             List<ErrorModel> errorLogs = errorLogQueue.GetLogList(maxBatchSize);
             List<RequestModel> requestLogs = requestLogQueue.GetLogList(maxBatchSize);
+            List<TraceModel> traces = traceQueue.GetLogList(maxBatchSize);
 
             if (sqlLogs.Any())
                 await sqlLogRepository.AddAsync(sqlLogs);
@@ -59,6 +64,8 @@ namespace WebApp.Logger.Loggers
             if (errorLogs.Any())
                 await exceptionLogRepository.AddAsync(errorLogs);
 
+            if (traces.Any())
+                await traceRepository.AddAsync(traces);
         }
 
         public static List<T> GetLogList<T>(this ConcurrentQueue<T> logQueue, int maxListSize)

@@ -67,7 +67,12 @@ namespace WebApp.Logger.Middlewares
                 var duration = DateTime.Now - requestbegin;
                 errorModel.Duration = duration.TotalMilliseconds;
 
-                await BatchLoggingContext.PublishAsync(errorModel,LogType.Error.ToString());
+                
+
+                await BatchLoggingContext.PublishAsync(errorModel, LogType.Error.ToString());
+
+                var traces = new TraceHelper();
+                await traces.CollectTraces(context);
             }
             finally
             {

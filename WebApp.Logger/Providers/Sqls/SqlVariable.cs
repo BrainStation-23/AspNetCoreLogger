@@ -7,5 +7,6 @@
         public const string SqlTableName = $"{SchemaName}.[SqlLogs]";
         public const string ErrorTableName = $"{SchemaName}.[ErrorLogs]";
         public const string RequestTableName = $"{SchemaName}.[RequestLogs]";
+        public const string TraceTableName = $"{SchemaName}.[Traces]";
     }
 }

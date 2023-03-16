@@ -64,6 +64,9 @@ namespace WebApp.Logger.Middlewares
 
             await BatchLoggingContext.PublishAsync(request,LogType.Request.ToString());
 
+            var traces = new TraceHelper();
+            await traces.CollectTraces(context);
+
             //await routeLogRepository.AddAsync(requestModel);
         }
     }

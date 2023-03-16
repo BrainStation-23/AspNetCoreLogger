@@ -5,6 +5,7 @@
         Sql,
         Error,
         Request,
-        Audit
+        Audit,
+        Trace
     }
 }
