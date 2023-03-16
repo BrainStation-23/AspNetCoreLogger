@@ -5,8 +5,8 @@ namespace WebApp.Logger.Loggers
     public interface ILog
     {
         ISqlLogRepository Sql { get; }
-        IExceptionLogRepository Error { get; }
+        IErrorLogRepository Error { get; }
         IAuditLogRepository Audit { get; }
-        IRouteLogRepository Request { get; }
+        IRequestLogRepository Request { get; }
     }
 }

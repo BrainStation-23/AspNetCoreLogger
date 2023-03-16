@@ -22,8 +22,8 @@ namespace WebApp.Logger.Providers.Mongos.Configurations
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 
 
-            services.AddScoped<IExceptionLogRepository, MongoExceptionLogRepository>();
-            services.AddScoped<IRouteLogRepository, MongoRouteLogRepository>();
+            services.AddScoped<IErrorLogRepository, MongoExceptionLogRepository>();
+            services.AddScoped<IRequestLogRepository, MongoRouteLogRepository>();
             services.AddScoped<IAuditLogRepository, MongoAuditLogRepository>();
             services.AddScoped<ISqlLogRepository, MongoSqlLogRepository>();
         }

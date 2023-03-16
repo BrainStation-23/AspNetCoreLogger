@@ -13,15 +13,15 @@ using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
-    public class CosmosDbRouteLogRepository : IRouteLogRepository
+    public class CosmosDbRouteLogRepository : IRequestLogRepository
     {
         private readonly DapperContext _dapper;
-        private readonly ILogger<RouteLogRepository> _logger;
+        private readonly ILogger<RequestLogRepository> _logger;
         private readonly ICosmosDbRepository<RequestLogItem> _routeRepository;
         private readonly LogOption _logOption;
 
         public CosmosDbRouteLogRepository(DapperContext dapper,
-            ILogger<RouteLogRepository> logger,
+            ILogger<RequestLogRepository> logger,
             ICosmosDbRepository<RequestLogItem> routeRepository,
             IOptions<LogOption> logOption)
         {

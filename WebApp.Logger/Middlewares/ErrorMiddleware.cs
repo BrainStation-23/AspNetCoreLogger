@@ -13,16 +13,16 @@ namespace WebApp.Logger.Middlewares
 {
     /// <summary>
     /// Handling all request
-    /// startup.cs -> app.UseMiddleware<ExceptionMiddleware>();;
+    /// startup.cs -> app.UseMiddleware<ErrorMiddleware>();;
     /// </summary>
-    public class ExceptionMiddleware
+    public class ErrorMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionMiddleware> _logger;
+        private readonly ILogger<ErrorMiddleware> _logger;
         private readonly IHostEnvironment _webHostEnvironment;
 
-        public ExceptionMiddleware(RequestDelegate next,
-            ILogger<ExceptionMiddleware> logger,
+        public ErrorMiddleware(RequestDelegate next,
+            ILogger<ErrorMiddleware> logger,
             IHostEnvironment webHostEnvironment)
         {
             _next = next;

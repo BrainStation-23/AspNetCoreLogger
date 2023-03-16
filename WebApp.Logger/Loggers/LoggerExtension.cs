@@ -31,7 +31,7 @@ namespace WebApp.Logger.Loggers
 
         public static void UseExceptionLog(this IApplicationBuilder app)
         {
-            app.UseMiddleware<ExceptionMiddleware>();
+            app.UseMiddleware<ErrorMiddleware>();
         }
 
         public static void UseLog(this IApplicationBuilder app)
@@ -53,8 +53,8 @@ namespace WebApp.Logger.Loggers
 
             if (logOptions.IsProvider(ProviderType.MSSql))
             {
-                services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
-                services.AddScoped<IRouteLogRepository, RouteLogRepository>();
+                services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
+                services.AddScoped<IRequestLogRepository, RequestLogRepository>();
                 services.AddScoped<IAuditLogRepository, AuditLogRepository>();
                 services.AddScoped<ISqlLogRepository, SqlLogRepository>();
                 services.AddScoped<IDashboardRepository, DashboardRepository>();
@@ -68,8 +68,8 @@ namespace WebApp.Logger.Loggers
 
             if (logOptions.IsProvider(ProviderType.File))
             {
-                services.AddScoped<IExceptionLogRepository, ExceptionFileLogRepository>();
-                services.AddScoped<IRouteLogRepository, RouteFileLogRepository>();
+                services.AddScoped<IErrorLogRepository, ExceptionFileLogRepository>();
+                services.AddScoped<IRequestLogRepository, RouteFileLogRepository>();
                 services.AddScoped<IAuditLogRepository, AuditFileLogRepository>();
                 services.AddScoped<ISqlLogRepository, SqlFileLogRepository>();
             }

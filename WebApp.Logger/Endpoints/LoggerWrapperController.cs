@@ -15,13 +15,13 @@ namespace WebApp.Logger
     public class LoggerWrapperController : ControllerBase
     {
         private readonly ISqlLogRepository _sqlLogRepository;
-        private readonly IRouteLogRepository _routeLogRepository;
-        private readonly IExceptionLogRepository _exceptionLogRepository;
+        private readonly IRequestLogRepository _routeLogRepository;
+        private readonly IErrorLogRepository _exceptionLogRepository;
         private readonly IAuditLogRepository _auditLogRepository;
         private readonly LogOption _logOption;
 
-        public LoggerWrapperController(IRouteLogRepository routeLogRepository,
-            IExceptionLogRepository exceptionLogRepository,
+        public LoggerWrapperController(IRequestLogRepository routeLogRepository,
+            IErrorLogRepository exceptionLogRepository,
             IAuditLogRepository auditLogRepository,
             ISqlLogRepository sqlLogRepository,
             IOptions<LogOption> logOption)

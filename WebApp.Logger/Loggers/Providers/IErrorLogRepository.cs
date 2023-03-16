@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
-    public interface IExceptionLogRepository
+    public interface IErrorLogRepository
     {
         Task AddAsync(ErrorModel errorModel);
         Task AddAsync(List<ErrorModel> errorModel);

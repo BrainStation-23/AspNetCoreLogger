@@ -8,23 +8,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Logger.Extensions;
+using WebApp.Logger.Loggers.Providers.Sqls;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
-    public class ExceptionLogRepository : IExceptionLogRepository
+    public class ErrorLogRepository : IErrorLogRepository
     {
         private readonly DapperContext _dapper;
-        private readonly ILogger<ExceptionLogRepository> _logger;
+        private readonly ILogger<ErrorLogRepository> _logger;
         private readonly LogOption _logOptions;
+        private readonly string _tableName;
 
-        public ExceptionLogRepository(DapperContext dapper,
-            ILogger<ExceptionLogRepository> logger, IOptions<LogOption> logOptions)
+        public ErrorLogRepository(DapperContext dapper,
+            ILogger<ErrorLogRepository> logger, IOptions<LogOption> logOptions)
         {
             _dapper = dapper;
             _logger = logger;
             _logOptions = logOptions.Value;
+            _tableName = SqlVariable.ErrorTableName;
         }
 
         public async Task AddAsync(ErrorModel errorModel)
@@ -34,7 +37,7 @@ namespace WebApp.Logger.Loggers.Repositories
 
             errorModel = errorModel.PrepareErrorModel(_logOptions);
 
-            var query = @"INSERT INTO [dbo].[ExceptionLogs]
+            var query = $@"INSERT INTO {_tableName}
                                ([UserId]
                                ,[ApplicationName]
                                ,[IpAddress]
@@ -130,13 +133,13 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
+                _logger.LogError(nameof(ErrorLogRepository), exception);
             }
         }
 
         public async Task AddAsync(List<ErrorModel> errorModels)
         {
-            var query = @"INSERT INTO [dbo].[ExceptionLogs]
+            var query = $@"INSERT INTO {_tableName}
                                ([UserId]
                                ,[ApplicationName]
                                ,[IpAddress]
@@ -241,7 +244,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
+                _logger.LogError(nameof(ErrorLogRepository), exception);
             }
 
         }
@@ -250,7 +253,7 @@ namespace WebApp.Logger.Loggers.Repositories
         {
             dynamic logs;
 
-            var query = @"SELECT * FROM [dbo].[ExceptionLogs]
+            var query = $@"SELECT * FROM {_tableName}
                             ORDER BY [Id] DESC
                             OFFSET @Offset ROWS 
                             FETCH NEXT @Next ROWS ONLY";
@@ -276,7 +279,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
+                _logger.LogError(nameof(ErrorLogRepository), exception);
                 throw;
             }
         }
@@ -284,7 +287,8 @@ namespace WebApp.Logger.Loggers.Repositories
         public async Task RetentionAsync(DateTime dateTime)
         {
             string date = dateTime.ToString();//"2023-01-04 06:11:12.2333333"
-            var query = $"delete from [dbo].[ExceptionLogs] where CreatedDateUtc <= '{date}'";
+            var query = $"delete from {_tableName} where CreatedDateUtc <= '{date}'";
+
             using var connection = _dapper.CreateConnection();
             await connection.ExecuteAsync(query);
         }
@@ -317,5 +321,4 @@ namespace WebApp.Logger.Loggers.Repositories
         public string StackTrace { get; set; }
         public DateTime? CreatedDateUtc { get; set; }
     }
-
 }

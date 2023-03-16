@@ -17,15 +17,15 @@ namespace WebApp6.Controllers.Logs
     [Route("api/[controller]")]
     public class LogController : ControllerBase
     {
-        private readonly IRouteLogRepository _routeLogRepository;
-        private readonly IExceptionLogRepository _exceptionLogRepository;
+        private readonly IRequestLogRepository _routeLogRepository;
+        private readonly IErrorLogRepository _exceptionLogRepository;
         private readonly IAuditLogRepository _auditLogRepository;
         private readonly IServiceProvider _serviceProvider;
         private readonly LogOption _logOption;
         private readonly ILog _loggerWrapper;
 
-        public LogController(IRouteLogRepository routeLogRepository,
-            IExceptionLogRepository exceptionLogRepository,
+        public LogController(IRequestLogRepository routeLogRepository,
+            IErrorLogRepository exceptionLogRepository,
             IAuditLogRepository auditLogRepository,
             IServiceProvider serviceProvider,
             IOptions<LogOption> options)

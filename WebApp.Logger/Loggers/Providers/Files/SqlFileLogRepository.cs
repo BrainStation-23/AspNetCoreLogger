@@ -38,7 +38,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
+                _logger.LogError(nameof(ErrorLogRepository), exception);
             }
 
             await Task.CompletedTask;
@@ -61,7 +61,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
+                _logger.LogError(nameof(ErrorLogRepository), exception);
             }
 
             await Task.CompletedTask;

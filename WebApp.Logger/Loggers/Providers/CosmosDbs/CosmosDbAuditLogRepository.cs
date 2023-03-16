@@ -16,12 +16,12 @@ namespace WebApp.Logger.Loggers.Repositories
     public class CosmosDbAuditLogRepository : IAuditLogRepository
     {
         private readonly DapperContext _dapper;
-        private readonly ILogger<RouteLogRepository> _logger;
+        private readonly ILogger<RequestLogRepository> _logger;
         private readonly ICosmosDbRepository<AuditLogItem> _auditRepository;
         private readonly LogOption _logOption;
 
         public CosmosDbAuditLogRepository(DapperContext dapper,
-            ILogger<RouteLogRepository> logger,
+            ILogger<RequestLogRepository> logger,
             ICosmosDbRepository<AuditLogItem> auditRepository,
             IOptions<LogOption> logOptions)
         {

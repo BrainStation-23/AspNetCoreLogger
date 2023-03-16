@@ -37,9 +37,9 @@ namespace WebApp.Logger.Loggers
             await Task.CompletedTask;
         }
 
-        public static async Task BatchLogProcessAsync(IRouteLogRepository routeLogRepository
+        public static async Task BatchLogProcessAsync(IRequestLogRepository routeLogRepository
             , ISqlLogRepository sqlLogRepository
-            , IExceptionLogRepository exceptionLogRepository
+            , IErrorLogRepository exceptionLogRepository
             , IAuditLogRepository auditLogRepository)
         {
             List<AuditEntry> auditLogs = auditLogQueue.GetLogList(maxBatchSize);

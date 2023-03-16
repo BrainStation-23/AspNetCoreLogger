@@ -12,7 +12,7 @@ using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
-    public class MongoExceptionLogRepository : IExceptionLogRepository
+    public class MongoExceptionLogRepository : IErrorLogRepository
     {
         private readonly DapperContext _dapper;
         private readonly ILogger<MongoExceptionLogRepository> _logger;

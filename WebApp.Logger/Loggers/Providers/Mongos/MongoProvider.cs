@@ -14,8 +14,8 @@ namespace WebApp.Logger.Loggers.Providers.Sqls
         }
 
         public ISqlLogRepository Sql => ActivatorUtilities.CreateInstance<MongoSqlLogRepository>(_serviceProvider);
-        public IExceptionLogRepository Error => ActivatorUtilities.CreateInstance<MongoExceptionLogRepository>(_serviceProvider);
+        public IErrorLogRepository Error => ActivatorUtilities.CreateInstance<MongoExceptionLogRepository>(_serviceProvider);
         public IAuditLogRepository Audit => ActivatorUtilities.CreateInstance<MongoAuditLogRepository>(_serviceProvider);
-        public IRouteLogRepository Request => ActivatorUtilities.CreateInstance<MongoRouteLogRepository>(_serviceProvider);
+        public IRequestLogRepository Request => ActivatorUtilities.CreateInstance<MongoRouteLogRepository>(_serviceProvider);
     }
 }

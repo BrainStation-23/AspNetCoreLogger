@@ -28,8 +28,8 @@ namespace WebApp.Logger.Hostings
         public async void ProcessBatchLog(object state)
         {
             using IServiceScope scope = _serviceProvider.CreateScope();
-            var _exceptionLogRepository = scope.ServiceProvider.GetService<IExceptionLogRepository>();
-            var _routeLogRepository = scope.ServiceProvider.GetService<IRouteLogRepository>();
+            var _exceptionLogRepository = scope.ServiceProvider.GetService<IErrorLogRepository>();
+            var _routeLogRepository = scope.ServiceProvider.GetService<IRequestLogRepository>();
             var _auditLogRepository = scope.ServiceProvider.GetService<IAuditLogRepository>();
             var _sqlLogRepository = scope.ServiceProvider.GetService<ISqlLogRepository>();
 

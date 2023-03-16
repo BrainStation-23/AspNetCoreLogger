@@ -5,23 +5,25 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApp.Logger.Extensions;
+using WebApp.Logger.Loggers.Providers.Sqls;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
-    public class RouteLogRepository : IRouteLogRepository
+    public class RequestLogRepository : IRequestLogRepository
     {
         private readonly DapperContext _dapper;
-        private readonly ILogger<RouteLogRepository> _logger;
+        private readonly ILogger<RequestLogRepository> _logger;
+        private readonly string _tableName;
 
-        public RouteLogRepository(DapperContext dapper,
-            ILogger<RouteLogRepository> logger)
+        public RequestLogRepository(DapperContext dapper,
+            ILogger<RequestLogRepository> logger)
         {
             _dapper = dapper;
             _logger = logger;
+            _tableName = SqlVariable.RequestTableName;
         }
-
 
         public async Task AddAsync(RequestModel requestModel)
         {
@@ -29,7 +31,7 @@ namespace WebApp.Logger.Loggers.Repositories
                 return;
 
             var createdDateUtc = DateTime.UtcNow.ToString();
-            var query = @"INSERT INTO [dbo].[RouteLogs]
+            var query = $@"INSERT INTO {_tableName}
                                ([UserId]
                                ,[ApplicationName]
                                ,[IpAddress]
@@ -110,7 +112,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(RouteLogRepository), exception);
+                _logger.LogError(nameof(RequestLogRepository), exception);
             }
         }
 
@@ -118,7 +120,7 @@ namespace WebApp.Logger.Loggers.Repositories
         {
             var requestLogs = new List<object>();
             var createdDateUtc = DateTime.UtcNow.ToString();
-            var query = @"INSERT INTO [dbo].[RouteLogs]
+            var query = $@"INSERT INTO {_tableName}
                                ([UserId]
                                ,[ApplicationName]
                                ,[IpAddress]
@@ -222,7 +224,7 @@ namespace WebApp.Logger.Loggers.Repositories
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
             dynamic routeLogs;
-            var query = @"SELECT * FROM [dbo].[RouteLogs]
+            var query = $@"SELECT * FROM {_tableName}
                             ORDER BY [Id] DESC
                             OFFSET @Offset ROWS 
                             FETCH NEXT  @Next   ROWS ONLY";
@@ -240,7 +242,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(RouteLogRepository), exception);
+                _logger.LogError(nameof(RequestLogRepository), exception);
                 throw;
             }
         }
@@ -248,7 +250,7 @@ namespace WebApp.Logger.Loggers.Repositories
         public async Task RetentionAsync(DateTime dateTime)
         {
             string date = dateTime.ToString();//"2023-01-04 06:11:12.2333333"
-            var query = $"delete from [dbo].[RouteLogs] where CreatedDateUtc <= '{date}'";
+            var query = $"delete from {_tableName} where CreatedDateUtc <= '{date}'";
             using var connection = _dapper.CreateConnection();
             await connection.ExecuteAsync(query);
         }

@@ -14,8 +14,8 @@ namespace WebApp.Logger.Loggers.Providers.Sqls
         }
 
         public ISqlLogRepository Sql => ActivatorUtilities.CreateInstance<CosmosDbSqlLogRepository>(_serviceProvider);
-        public IExceptionLogRepository Error => ActivatorUtilities.CreateInstance<CosmosDbExceptionLogRepository>(_serviceProvider);
+        public IErrorLogRepository Error => ActivatorUtilities.CreateInstance<CosmosDbExceptionLogRepository>(_serviceProvider);
         public IAuditLogRepository Audit => ActivatorUtilities.CreateInstance<CosmosDbAuditLogRepository>(_serviceProvider);
-        public IRouteLogRepository Request => ActivatorUtilities.CreateInstance<CosmosDbRouteLogRepository>(_serviceProvider);
+        public IRequestLogRepository Request => ActivatorUtilities.CreateInstance<CosmosDbRouteLogRepository>(_serviceProvider);
     }
 }

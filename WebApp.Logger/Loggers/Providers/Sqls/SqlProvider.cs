@@ -14,8 +14,8 @@ namespace WebApp.Logger.Loggers.Providers.Sqls
         }
 
         public ISqlLogRepository Sql => ActivatorUtilities.CreateInstance<SqlLogRepository>(_serviceProvider);
-        public IExceptionLogRepository Error => ActivatorUtilities.CreateInstance<ExceptionLogRepository>(_serviceProvider);
+        public IErrorLogRepository Error => ActivatorUtilities.CreateInstance<ErrorLogRepository>(_serviceProvider);
         public IAuditLogRepository Audit => ActivatorUtilities.CreateInstance<AuditLogRepository>(_serviceProvider);
-        public IRouteLogRepository Request => ActivatorUtilities.CreateInstance<RouteLogRepository>(_serviceProvider);
+        public IRequestLogRepository Request => ActivatorUtilities.CreateInstance<RequestLogRepository>(_serviceProvider);
     }
 }

@@ -12,7 +12,7 @@ using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
-    public class MongoRouteLogRepository : IRouteLogRepository
+    public class MongoRouteLogRepository : IRequestLogRepository
     {
         private readonly DapperContext _dapper;
         private readonly ILogger<MongoRouteLogRepository> _logger;

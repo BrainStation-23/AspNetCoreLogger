@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
-    public interface IRouteLogRepository
+    public interface IRequestLogRepository
     {
         Task AddAsync(RequestModel requestModel);
         Task AddAsync(List<RequestModel> requestModel);

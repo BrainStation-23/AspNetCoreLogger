@@ -12,15 +12,15 @@ using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
-    public class CosmosDbExceptionLogRepository : IExceptionLogRepository
+    public class CosmosDbExceptionLogRepository : IErrorLogRepository
     {
         private readonly DapperContext _dapper;
-        private readonly ILogger<RouteLogRepository> _logger;
+        private readonly ILogger<RequestLogRepository> _logger;
         private readonly ICosmosDbRepository<ErrorLogItem> _errorRepository;
         private readonly LogOption _logOption;
 
         public CosmosDbExceptionLogRepository(DapperContext dapper,
-            ILogger<RouteLogRepository> logger,
+            ILogger<RequestLogRepository> logger,
             ICosmosDbRepository<ErrorLogItem> errorRepository,
             IOptions<LogOption> logOption)
         {

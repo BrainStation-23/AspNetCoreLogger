@@ -1,15 +1,14 @@
 ﻿using Dapper;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Logger.Extensions;
+using WebApp.Logger.Loggers.Providers.Sqls;
 using WebApp.Logger.Models;
 using WebApp.Logger.Providers.Sqls;
 
@@ -18,21 +17,24 @@ namespace WebApp.Logger.Loggers.Repositories
     public class AuditLogRepository : IAuditLogRepository
     {
         private readonly DapperContext _dapper;
-        private readonly ILogger<RouteLogRepository> _logger;
+        private readonly ILogger<RequestLogRepository> _logger;
         private readonly LogOption _logOption;
+        private readonly string _tableName;
+
         public AuditLogRepository(DapperContext dapper,
-            ILogger<RouteLogRepository> logger,
+            ILogger<RequestLogRepository> logger,
             IOptions<LogOption> logOptions)
         {
             _dapper = dapper;
             _logger = logger;
             _logOption = logOptions.Value;
+            _tableName = SqlVariable.AuditTableName;
         }
 
         public async Task<dynamic> GetPageAsync(DapperPager pager)
         {
             dynamic auditLogs;
-            var query = @"SELECT * FROM [dbo].[AuditTrailLogs]
+            var query = $@"SELECT * FROM {_tableName}
                             ORDER BY [Id] DESC
                             OFFSET @Offset ROWS 
                             FETCH NEXT  @Next   ROWS ONLY";
@@ -50,7 +52,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(RouteLogRepository), exception);
+                _logger.LogError(nameof(RequestLogRepository), exception);
                 throw;
             }
         }
@@ -58,7 +60,7 @@ namespace WebApp.Logger.Loggers.Repositories
         public async Task AddAsync(AuditEntry auditEntry)
         {
             var createdDateUtc = DateTime.UtcNow.ToString();
-            var query = @"INSERT INTO [dbo].[AuditTrailLogs]
+            var query = $@"INSERT INTO {_tableName}
                                ([UserId]
                                ,[Type]
                                ,[TableName]
@@ -118,13 +120,13 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(RouteLogRepository), exception);
+                _logger.LogError(nameof(RequestLogRepository), exception);
             }
         }
 
         public async Task AddAsync(List<AuditEntry> auditEntries)
         {
-            var query = @"INSERT INTO [dbo].[AuditTrailLogs]
+            var query = $@"INSERT INTO {_tableName}
                                ([UserId]
                                ,[Type]
                                ,[TableName]
@@ -170,14 +172,14 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(RouteLogRepository), exception);
+                _logger.LogError(nameof(RequestLogRepository), exception);
             }
         }
 
         public async Task RetentionAsync(DateTime dateTime)
         {
             string date = dateTime.ToString();//"2023-01-04 06:11:12.2333333"
-            var query = $"delete from [dbo].[AuditTrailLogs] where DateTime <= '{date}'";
+            var query = $"delete from {_tableName} where DateTime <= '{date}'";
             using var connection = _dapper.CreateConnection();
             await connection.ExecuteAsync(query);
         }

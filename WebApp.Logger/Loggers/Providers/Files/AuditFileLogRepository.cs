@@ -13,11 +13,11 @@ namespace WebApp.Logger.Loggers.Repositories
     public class AuditFileLogRepository : IAuditLogRepository
     {
         private readonly DapperContext _dapper;
-        private readonly ILogger<RouteLogRepository> _logger;
+        private readonly ILogger<RequestLogRepository> _logger;
         private readonly LogOption _logOptions;
 
         public AuditFileLogRepository(DapperContext dapper,
-            ILogger<RouteLogRepository> logger,
+            ILogger<RequestLogRepository> logger,
             IOptions<LogOption> logOption)
         {
             _dapper = dapper;

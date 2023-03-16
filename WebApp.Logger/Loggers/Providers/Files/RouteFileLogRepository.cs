@@ -9,14 +9,14 @@ using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
-    public class RouteFileLogRepository : IRouteLogRepository
+    public class RouteFileLogRepository : IRequestLogRepository
     {
         private readonly DapperContext _dapper;
-        private readonly ILogger<RouteLogRepository> _logger;
+        private readonly ILogger<RequestLogRepository> _logger;
         private readonly LogOption _logOption;
 
         public RouteFileLogRepository(DapperContext dapper,
-            ILogger<RouteLogRepository> logger,
+            ILogger<RequestLogRepository> logger,
             IOptions<LogOption> logOption)
         {
             _dapper = dapper;
@@ -39,7 +39,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(RouteLogRepository), exception);
+                _logger.LogError(nameof(RequestLogRepository), exception);
             }
 
             await Task.CompletedTask;
@@ -62,7 +62,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(RouteLogRepository), exception);
+                _logger.LogError(nameof(RequestLogRepository), exception);
             }
 
             await Task.CompletedTask;

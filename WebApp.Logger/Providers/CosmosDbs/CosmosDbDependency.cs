@@ -11,8 +11,8 @@ namespace WebApp.Logger.Providers.Mongos.Configurations
         {
             services.AddScoped(typeof(ICosmosDbRepository<>), typeof(CosmosDbRepository<>));
 
-            services.AddScoped<IExceptionLogRepository, CosmosDbExceptionLogRepository>();
-            services.AddScoped<IRouteLogRepository, CosmosDbRouteLogRepository>();
+            services.AddScoped<IErrorLogRepository, CosmosDbExceptionLogRepository>();
+            services.AddScoped<IRequestLogRepository, CosmosDbRouteLogRepository>();
             services.AddScoped<IAuditLogRepository, CosmosDbAuditLogRepository>();
             services.AddScoped<ISqlLogRepository, CosmosDbSqlLogRepository>();
         }

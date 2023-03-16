@@ -9,14 +9,14 @@ using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers.Repositories
 {
-    public class ExceptionFileLogRepository : IExceptionLogRepository
+    public class ExceptionFileLogRepository : IErrorLogRepository
     {
         private readonly DapperContext _dapper;
-        private readonly ILogger<ExceptionLogRepository> _logger;
+        private readonly ILogger<ErrorLogRepository> _logger;
         private readonly LogOption _logOptions;
 
         public ExceptionFileLogRepository(DapperContext dapper,
-            ILogger<ExceptionLogRepository> logger,
+            ILogger<ErrorLogRepository> logger,
             IOptions<LogOption> logOption)
         {
             _dapper = dapper;
@@ -39,7 +39,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
+                _logger.LogError(nameof(ErrorLogRepository), exception);
             }
 
             await Task.CompletedTask;
@@ -63,7 +63,7 @@ namespace WebApp.Logger.Loggers.Repositories
             }
             catch (Exception exception)
             {
-                _logger.LogError(nameof(ExceptionLogRepository), exception);
+                _logger.LogError(nameof(ErrorLogRepository), exception);
             }
 
             await Task.CompletedTask;

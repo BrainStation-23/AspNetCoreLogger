@@ -18,12 +18,12 @@ namespace WebApp.Controllers.Logs
     public class LogController : ControllerBase
     {
         private readonly ISqlLogRepository _sqlLogRepository;
-        private readonly IRouteLogRepository _routeLogRepository;
-        private readonly IExceptionLogRepository _exceptionLogRepository;
+        private readonly IRequestLogRepository _routeLogRepository;
+        private readonly IErrorLogRepository _exceptionLogRepository;
         private readonly IAuditLogRepository _auditLogRepository;
 
-        public LogController(IRouteLogRepository routeLogRepository,
-            IExceptionLogRepository exceptionLogRepository,
+        public LogController(IRequestLogRepository routeLogRepository,
+            IErrorLogRepository exceptionLogRepository,
             IAuditLogRepository auditLogRepository,
             ISqlLogRepository sqlLogRepository)
         {
