@@ -4,8 +4,9 @@ using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
+using WebApp.Logger.Contracts;
 using WebApp.Logger.Loggers;
-using WebApp.Logger.Loggers.Repositories;
+using WebApp.Logger.Providers.Mongos.Repos;
 
 namespace WebApp.Logger.Providers.Mongos.Configurations
 {
@@ -22,8 +23,8 @@ namespace WebApp.Logger.Providers.Mongos.Configurations
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 
 
-            services.AddScoped<IErrorLogRepository, MongoExceptionLogRepository>();
-            services.AddScoped<IRequestLogRepository, MongoRouteLogRepository>();
+            services.AddScoped<IErrorLogRepository, MongoErrorLogRepository>();
+            services.AddScoped<IRequestLogRepository, MongoRequestLogRepository>();
             services.AddScoped<IAuditLogRepository, MongoAuditLogRepository>();
             services.AddScoped<ISqlLogRepository, MongoSqlLogRepository>();
         }

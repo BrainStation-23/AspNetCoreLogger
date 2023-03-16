@@ -3,8 +3,8 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using WebApp.Logger.Contracts;
 using WebApp.Logger.Loggers;
-using WebApp.Logger.Loggers.Repositories;
 
 namespace WebApp.Logger.Hostings
 {

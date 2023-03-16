@@ -9,16 +9,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using WebApp.Common.Contexts;
 using WebApp.Logger.Acls;
+using WebApp.Logger.Contracts;
 using WebApp.Logger.Endpoints;
 using WebApp.Logger.Enums;
 using WebApp.Logger.Hostings;
-using WebApp.Logger.Loggers.Providers;
-using WebApp.Logger.Loggers.Providers.Sqls;
-using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Middlewares;
 using WebApp.Logger.Models;
+using WebApp.Logger.Providers.Files.Repos;
 using WebApp.Logger.Providers.Mongos.Configurations;
 using WebApp.Logger.Providers.Sqls;
+using WebApp.Logger.Providers.Sqls.Repos;
 
 namespace WebApp.Logger.Loggers
 {
@@ -68,10 +68,10 @@ namespace WebApp.Logger.Loggers
 
             if (logOptions.IsProvider(ProviderType.File))
             {
-                services.AddScoped<IErrorLogRepository, ExceptionFileLogRepository>();
-                services.AddScoped<IRequestLogRepository, RouteFileLogRepository>();
-                services.AddScoped<IAuditLogRepository, AuditFileLogRepository>();
-                services.AddScoped<ISqlLogRepository, SqlFileLogRepository>();
+                services.AddScoped<IErrorLogRepository, FileErrorLogRepository>();
+                services.AddScoped<IRequestLogRepository, FileRequestLogRepository>();
+                services.AddScoped<IAuditLogRepository, FileAuditLogRepository>();
+                services.AddScoped<ISqlLogRepository, FileSqlLogRepository>();
             }
         }
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApp.Common.Responses;
 using WebApp.Core;
-using WebApp.Logger.Loggers.Repositories;
+using WebApp.Logger.Contracts;
 using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp7.Controllers.Logs

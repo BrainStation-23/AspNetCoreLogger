@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApp.Logger.Loggers.Repositories;
+using WebApp.Logger.Contracts;
 using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Loggers

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
-using WebApp.Logger.Loggers.Repositories;
+using WebApp.Logger.Contracts;
 
 namespace WebApp.Logger.Interceptors
 {

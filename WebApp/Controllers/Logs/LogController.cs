@@ -5,10 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Common.Responses;
 using WebApp.Core;
+using WebApp.Logger.Contracts;
 using WebApp.Logger.Defaults;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
-using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Controllers.Logs

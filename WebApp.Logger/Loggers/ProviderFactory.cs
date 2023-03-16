@@ -1,5 +1,9 @@
 ﻿using System;
-using WebApp.Logger.Loggers.Providers.Sqls;
+using WebApp.Logger.Contracts;
+using WebApp.Logger.Providers.CosmosDbs.Repos;
+using WebApp.Logger.Providers.Files;
+using WebApp.Logger.Providers.Mongos.Repos;
+using WebApp.Logger.Providers.Sqls;
 
 namespace WebApp.Logger.Loggers
 {
@@ -14,54 +18,28 @@ namespace WebApp.Logger.Loggers
 
         public ILog Build(string providerType = null)
         {
-            ILog log;
             providerType = providerType.ToLower();
-
-            switch (providerType)
+            ILog log = providerType switch
             {
-                case "mssql":
-                    log = new SqlProvider(_serviceProvider);
-                    break;
-                case "file":
-                    log = new FileProvider(_serviceProvider);
-                    break;
-                case "mongo":
-                    log = new MongoDbProvider(_serviceProvider);
-                    break;
-                case "cosmosdb":
-                    log = new CosmoDbProvider(_serviceProvider);
-                    break;
-                default:
-                    log = new FileProvider(_serviceProvider);
-                    break;
-            }
-
+                "mssql" => new SqlProvider(_serviceProvider),
+                "file" => new FileProvider(_serviceProvider),
+                "mongo" => new MongoDbProvider(_serviceProvider),
+                "cosmosdb" => new CosmoDbProvider(_serviceProvider),
+                _ => new FileProvider(_serviceProvider),
+            };
             return log;
         }
 
         public ILog Build(ProviderType providerType)
         {
-            ILog log;
-
-            switch (providerType)
+            ILog log = providerType switch
             {
-                case ProviderType.MSSql:
-                    log = new SqlProvider(_serviceProvider);
-                    break;
-                case ProviderType.File:
-                    log = new FileProvider(_serviceProvider);
-                    break;
-                case ProviderType.MongoDb:
-                    log = new MongoDbProvider(_serviceProvider);
-                    break;
-                case ProviderType.CosmosDb:
-                    log = new CosmoDbProvider(_serviceProvider);
-                    break;
-                default:
-                    log = new FileProvider(_serviceProvider);
-                    break;
-            }
-
+                ProviderType.MSSql => new SqlProvider(_serviceProvider),
+                ProviderType.File => new FileProvider(_serviceProvider),
+                ProviderType.MongoDb => new MongoDbProvider(_serviceProvider),
+                ProviderType.CosmosDb => new CosmoDbProvider(_serviceProvider),
+                _ => new FileProvider(_serviceProvider),
+            };
             return log;
         }
     }

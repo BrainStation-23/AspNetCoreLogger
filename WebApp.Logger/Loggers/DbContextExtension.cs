@@ -6,8 +6,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Logger.Acls;
+using WebApp.Logger.Contracts;
 using WebApp.Logger.Interceptors;
-using WebApp.Logger.Loggers.Repositories;
 
 namespace WebApp.Logger.Loggers
 {

@@ -1,20 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebApp.Logger.Extensions;
-using WebApp.Logger.Loggers;
-using System.Text.Json;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using WebApp.Logger.Middlewares;
-using WebApp.Logger.Loggers.Repositories;
-using Microsoft.AspNetCore.Http.Extensions;
-using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using WebApp.Logger.Loggers;
 
 namespace WebApp.Logger.Test.Extensions
 {

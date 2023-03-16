@@ -4,9 +4,9 @@ using System;
 using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
+using WebApp.Logger.Contracts;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
-using WebApp.Logger.Loggers.Repositories;
 using WebApp.Logger.Models;
 
 namespace WebApp.Logger.Interceptors
