@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApp.Common.Responses;
 using WebApp.Core;
 using WebApp.Logger.Contracts;
-using WebApp.Logger.Defaults;
 using WebApp.Logger.Extensions;
 using WebApp.Logger.Loggers;
 using WebApp.Logger.Providers.Sqls;
@@ -36,10 +32,10 @@ namespace WebApp6.Controllers.Logs
             _serviceProvider = serviceProvider;
             _logOption = options.Value;
 
-            var factory = new ProviderFactory(_serviceProvider);
+            //var factory = new ProviderFactory(_serviceProvider);
 
-            var providerType = _logOption.ProviderType;
-            _loggerWrapper = factory.Build(providerType.ToEnum(ProviderType.MSSql));
+            //var providerType = _logOption.ProviderType;
+            //_loggerWrapper = factory.Build(providerType.ToEnum(ProviderType.MSSql));
         }
 
         [HttpGet("routes")]

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WebApp.Logger.Models;
+﻿using WebApp.Logger.Models;
 using WebApp.Logger.Providers.CosmosDbs.Repos.Items;
 
 namespace WebApp.Logger.Providers.CosmosDbs.Repos

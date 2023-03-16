@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿//using System.Threading.Tasks;
 
-namespace WebApp.Logger.Providers
-{
-    public interface IStorageProvider
-    {
-        Task AddAsync();
-        Task GetAsync();
-        Task GetByTraceIdAsync();
-    }
-}
+//namespace WebApp.Logger.Providers
+//{
+//    public interface IStorageProvider
+//    {
+//        Task AddAsync();
+//        Task GetAsync();
+//        Task GetByTraceIdAsync();
+//    }
+//}
