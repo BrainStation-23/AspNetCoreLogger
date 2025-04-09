@@ -11,6 +11,7 @@ namespace WebApp.Logger.Models
         public string Url { get; set; }
         public string Source { get; set; }
         public string Trace { get; set; }
+        public int Sequence { get; set; }
         public float Duration { get; set; }
         public DateTime? CreatedDateUtc { get; set; } = DateTime.UtcNow;
     }

@@ -73,7 +73,8 @@ namespace WebApp.Logger.Providers.Sqls.Repos
                             ,[Source]
                             ,[TraceId]
                             ,[Duration]
-                            ,[Trace]    
+                            ,[Trace]
+                            , [Sequence]
                             ,[CreatedDateUtc] )
                          VALUES
                             ( @UserId
@@ -84,6 +85,7 @@ namespace WebApp.Logger.Providers.Sqls.Repos
                             , @TraceId
                             , @Duration
                             , @Trace
+                            , @Sequence
                             , @CreatedDateUtc)";
 
             try
